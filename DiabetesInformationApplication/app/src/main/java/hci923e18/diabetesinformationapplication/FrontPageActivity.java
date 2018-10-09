@@ -6,6 +6,9 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import hci923e18.database.Person;
 
 public class FrontPageActivity extends AppCompatActivity {
 
@@ -22,9 +25,25 @@ public class FrontPageActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigation_dashboard:
                     mTextMessage.setText(R.string.title_dashboard);
+
+
+                    //Eksemple på at gemme et person object
+                    Person person = new Person("Jhon", "Johnson", 30);
+                    person.save();
+                    Toast.makeText(getApplicationContext(), "SAVING", Toast.LENGTH_LONG).show();
+                    /////
+
+
                     return true;
                 case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
+
+                    //Eksemple på at hente et person object
+                    Person local;
+                    local = Person.find(Person.class, "age = ?", "30").get(0);
+                    //////
+
+
+                    mTextMessage.setText(local.firstname + " " + local.lastname + " " + local.age);
                     return true;
             }
             return false;
