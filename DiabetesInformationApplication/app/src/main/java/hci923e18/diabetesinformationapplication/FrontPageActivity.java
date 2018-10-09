@@ -15,6 +15,7 @@ import hci923e18.database.Person;
 
 public class FrontPageActivity extends AppCompatActivity {
 
+    BottomNavigationView navigation;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -45,12 +46,31 @@ public class FrontPageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_front_page);
 
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.framelayout, new HomeFragment()).commit();
+    }
+
+    public void changeToHome(){
+        navigation.setSelectedItemId(R.id.navigation_home);
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.framelayout, new HomeFragment()).commit();
+    }
+    public void changeToData(){
+        navigation.setSelectedItemId(R.id.navigation_dashboard);
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.framelayout, new DataFragment()).commit();
+    }
+    public void changeToInformation(){
+        navigation.setSelectedItemId(R.id.navigation_notifications);
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.framelayout, new InformationFragment()).commit();
     }
 
 }

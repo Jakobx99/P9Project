@@ -1,19 +1,15 @@
 package hci923e18.diabetesinformationapplication;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.List;
-
-import hci923e18.database.Person;
 
 
 /**
@@ -37,7 +33,7 @@ public class HomeFragment extends Fragment {
     //Global variables
     Button createButton;
     Button displayButton;
-    Integer age = 0;
+    Button aboutButton;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -77,27 +73,29 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         //TESTER DB
-        createButton = view.findViewById(R.id.homebutton);
-        displayButton = view.findViewById(R.id.button2);
-        final TextView textView = view.findViewById(R.id.textView);
+        createButton = view.findViewById(R.id.buttonData);
+        displayButton = view.findViewById(R.id.buttonInformation);
+        aboutButton = view.findViewById(R.id.buttonAbout);
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Eksemple på at gemme en bruger
-                age = 1;
-                Person person = new Person("Jhon", "Johnson", age);
-                person.save();
-                Toast.makeText(getActivity().getApplicationContext(), "SAVING", Toast.LENGTH_LONG).show();
+                ((FrontPageActivity)getActivity()).changeToData();
+
+
             }
         });
 
         displayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Eksemple på at hente et person object
-                Person local;
-                local = Person.find(Person.class, "age = ?", age.toString()).get(0);
-                textView.setText(local.firstname + " " + local.lastname + " " + local.age);
+                ((FrontPageActivity)getActivity()).changeToInformation();
+            }
+        });
+
+        aboutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
 
@@ -143,3 +141,12 @@ public class HomeFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 }
+
+/*    //Eksemple på at gemme en bruger
+    Person person = new Person("Jhon", "Johnson", 30);
+        person.save();
+                Toast.makeText(getActivity().getApplicationContext(),"SAVING",Toast.LENGTH_LONG).show();
+
+                //Eksemple på at hente et person object
+                Person local;
+                local=Person.find(Person.class,"age = ?","30").get(0);*/
