@@ -1,9 +1,12 @@
 package hci923e18.diabetesinformationapplication;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -72,16 +75,17 @@ public class HomeFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        //TESTER DB
+        //Binder components
         createButton = view.findViewById(R.id.buttonData);
         displayButton = view.findViewById(R.id.buttonInformation);
         aboutButton = view.findViewById(R.id.buttonAbout);
+
+
+        //Click events
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ((FrontPageActivity)getActivity()).changeToData();
-
-
             }
         });
 
@@ -95,19 +99,22 @@ public class HomeFragment extends Fragment {
         aboutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AlertDialog alertDialogAbout = new AlertDialog.Builder(getActivity()).create();
+                alertDialogAbout.setTitle("About us");
+                alertDialogAbout.setMessage("This application have been created by group hci923e18 at Aalborg University");
+                alertDialogAbout.setIcon(R.drawable.ic_dashboard_black_24dp);
 
+                alertDialogAbout.setButton(Dialog.BUTTON_NEUTRAL, "OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        return;
+                    }
+                });
+                alertDialogAbout.show();
             }
         });
 
         // Inflate the layout for this fragment
         return view;
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
     }
 
     @Override
