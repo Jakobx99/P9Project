@@ -1,38 +1,93 @@
 package hci923e18.utility;
-
-import com.orm.query.Select;
-
 import hci923e18.database.Profile;
 
 public class Calculator {
-    Profile user = Profile.listAll(Profile.class).get(0);
+    private Profile user;
 
-    public Double carbohydratesRelationCalculation()
+    /**
+     * Default constructor
+     */
+    public Calculator()
     {
-        // To calculate the carbohydrate-insulin-relation we take 500 divided by the total daily insulin consumption
-        Double carbohydratesRelation;
-        Double totalDailyInsulinConsumption = user.get_totalDailyInsulinConsumption();
-
-        return carbohydratesRelation = 500/totalDailyInsulinConsumption;
+        try {
+            user = Profile.listAll(Profile.class).get(0);
+        } catch (Exception e) {
+            user.set_idealBloodGlucoseLevel(5.5);
+            user.set_weight(80.0);
+            user.set_insulinDuration(3.5);
+            user.set_totalDailyInsulinConsumption(30.0);
+        }
     }
 
-    public Double insulinSesitivityCalculation()
+    /**
+     * To calculate the carbohydrate-insulin-relation we take 500 divided by the total daily insulin consumption
+     * @return Double value representing carbohydrate relation
+     */
+    private Double carbohydratesRelationCalculation()
     {
-        Double insulinSesitivity;
         Double totalDailyInsulinConsumption = user.get_totalDailyInsulinConsumption();
 
-        return insulinSesitivity = 100/totalDailyInsulinConsumption;
-
+        return 500/totalDailyInsulinConsumption;
     }
 
-    public Double insulinCalculator(Double carbohydrate, Double bloodGlucoseLevel, Double fiber, Double glucose)
+    /**
+     * To calculate the insulin sensitivity meaning how much the blood glucose decreases per unit
+     * we take 100 divided by the total daily insulin consumption
+     * @return Double value representing insulin sensitivity
+     */
+    private Double insulinSensitivityCalculation()
     {
+        Double totalDailyInsulinConsumption = user.get_totalDailyInsulinConsumption();
 
+        return 100/totalDailyInsulinConsumption;
+    }
+
+    /**
+     * To calculate how much insulin to take, to get the blood glucose level back to "normal"
+     * we take the current blood glucose level, subtract it from the target glucose level and divide it by the insulin sensitivity
+     * @param bloodGlucoseLevel Double representing the measured blood glucose level
+     * @return Double representing the amount of insulin needed to adjust blood glucose level
+     */
+    private Double bloodGlucoseGoalCalculation(Double bloodGlucoseLevel)
+    {
+        Double bloodGlucoseGoal = user.get_idealBloodGlucoseLevel();
+        Double differenceBloodGlucoseLevel = bloodGlucoseLevel-bloodGlucoseGoal;
+        return differenceBloodGlucoseLevel/insulinSensitivityCalculation();
+    }
+
+    /**
+     * To calculate how much insulin to take based on the carbohydrate consumption
+     * we divide the carbohydrate by the carbohydrate relation and account for the current blood glucose level.
+     * @param carbohydrate Double representing the amount of carbohydrate
+     * @param bloodGlucoseLevel Double representing the measured blood glucose level
+     * @return Double representing the amount of insulin needed to account for the carbohydrates and adjust of blood glucose level
+     */
+    public Double insulinCalculator(Double carbohydrate, Double bloodGlucoseLevel)
+    {
         double carbohydrateRelation = carbohydratesRelationCalculation();
-        double insulinSesitivity = insulinSesitivityCalculation();
+        return carbohydrate/carbohydrateRelation + bloodGlucoseGoalCalculation(bloodGlucoseLevel);
 
+    }
 
+    /**
+     * To calculate the percentage of fibers in the carbohydrates, we take the total amount of carbohydrate divided by fiber
+     * @param carbohydrate Double representing the amount of carbohydrate
+     * @param fiber Double representing the amount of fiber
+     * @return Double representing the amount of carbohydrate that is fiber in percentages
+     */
+    public Double fiberPercentage(Double carbohydrate, Double fiber)
+    {
+        return carbohydrate/fiber;
+    }
 
-
+    /**
+     * To calculate the percentage of sugar in the carbohydrates, we take the total amount of carbohydrate divided by sugar
+     * @param carbohydrate Double representing the amount of carbohydrate
+     * @param sugar Double representing the amount of sugar
+     * @return Double representing the amount of carbohydrate that is sugar in percentages
+     */
+    public Double sugarPercentage(Double carbohydrate, Double sugar)
+    {
+        return carbohydrate/sugar;
     }
 }
