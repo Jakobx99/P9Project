@@ -41,7 +41,7 @@
                 android:id="@+id/textView8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Base blod sukker værdi (mmol/L)" />
+                android:text="Base blodsukker værdi (mmol/L)" />
 
             <EditText
                 android:id="@+id/textView_idealBloodGlucoseLevel"
