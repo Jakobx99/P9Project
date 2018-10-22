@@ -32,7 +32,8 @@
                 android:id="@+id/textView_weight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="105"
+                android:hint="80"
+                android:inputType="numberDecimal"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="29dp" />
 
@@ -40,13 +41,14 @@
                 android:id="@+id/textView8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ideel blod sukker værdi (mmol/L)" />
+                android:text="Base blod sukker værdi (mmol/L)" />
 
             <EditText
                 android:id="@+id/textView_idealBloodGlucoseLevel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="5,5"
+                android:inputType="numberDecimal"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="29dp" />
 
@@ -61,6 +63,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="3,5"
+                android:inputType="numberDecimal"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="29dp" />
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Daglig insulin forbrug (Enheder)" />
+
+            <EditText
+                android:id="@+id/textView_totalDailyInsulinConsumption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="30"
+                android:inputType="numberDecimal"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="29dp" />
 
