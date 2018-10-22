@@ -4,9 +4,9 @@ import com.orm.SugarRecord;
 
 public class Person extends SugarRecord<Person> {
 
-    public String firstname;
-    public Integer age;
-    public String lastname;
+    private String firstname;
+    private Integer age;
+    private String lastname;
 
     //default Constructor
     public Person(){
