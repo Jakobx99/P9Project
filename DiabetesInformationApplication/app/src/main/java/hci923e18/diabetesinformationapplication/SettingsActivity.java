@@ -16,7 +16,7 @@ public class SettingsActivity extends AppCompatActivity {
     public EditText idealBloodGlucoseLevel;
     public EditText insulinDuration;
     public EditText totalDailyInsulinConsumption;
-    Profile p = new Profile();
+    Profile p;
 
     /**
      * OnCreate method called when activity is initiated.
@@ -57,8 +57,10 @@ public class SettingsActivity extends AppCompatActivity {
      */
     private void fetchdata(){
         try {
-            p = Profile.find(Profile.class, "id = ?", "0").get(0);
+            p = Profile.find(Profile.class, "ID = ?", "1").get(0);
+            Toast.makeText(getApplicationContext(), "Hentet object", Toast.LENGTH_SHORT);
         } catch (Exception e) {
+            p = new Profile();
             p.set_weight(80.0);
             p.set_idealBloodGlucoseLevel(5.5);
             p.set_insulinDuration(3.5);
@@ -70,7 +72,8 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     /**
-     * Save Profile object to database
+     * Save the Profile object
+     * @return Boolean value depending on success of database operation
      */
     private Boolean save(){
          p.set_weight(Double.parseDouble(weight.getText().toString()));
@@ -78,7 +81,7 @@ public class SettingsActivity extends AppCompatActivity {
          p.set_insulinDuration(Double.parseDouble(insulinDuration.getText().toString()));
          p.set_idealBloodGlucoseLevel(Double.parseDouble(idealBloodGlucoseLevel.getText().toString()));
         try {
-            save();
+            p.save();
             return true;
         } catch (Exception e) {
             Toast.makeText(getApplicationContext(), "Der skete en fejl med databasen", Toast.LENGTH_SHORT).show();

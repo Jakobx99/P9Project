@@ -32,7 +32,7 @@ public class Calculator {
         double insulinSesitivity = insulinSesitivityCalculation();
 
 
-
+return 2.0;
 
     }
 }
