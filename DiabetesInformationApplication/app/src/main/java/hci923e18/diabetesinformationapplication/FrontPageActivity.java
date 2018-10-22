@@ -8,10 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import hci923e18.database.Person;
 
 public class FrontPageActivity extends AppCompatActivity {
 
