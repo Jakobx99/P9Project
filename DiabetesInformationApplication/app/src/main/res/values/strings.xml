@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Diabetes Informations Applikation</string>
     <string name="title_home">Forside</string>
-    <string name="title_dashboard">Data</string>
+    <string name="title_dashboard">Insulin beregner</string>
     <string name="title_notifications">Måltids planlægger</string>
 </resources>
