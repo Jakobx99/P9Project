@@ -2,9 +2,5 @@
     <string name="app_name">Diabetes Informations Applikation</string>
     <string name="title_home">Forside</string>
     <string name="title_dashboard">Data</string>
-    <string name="title_notifications">Information</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="title_notifications">Måltids planlægger</string>
 </resources>

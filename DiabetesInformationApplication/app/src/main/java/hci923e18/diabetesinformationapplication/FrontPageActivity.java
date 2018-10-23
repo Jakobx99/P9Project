@@ -1,16 +1,12 @@
 package hci923e18.diabetesinformationapplication;
 
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.orm.SugarRecord;
 
@@ -45,7 +41,7 @@ public class FrontPageActivity extends AppCompatActivity {
                     fragmentTransaction.replace(R.id.framelayout, new DataFragment()).commit();
                     return true;
                 case R.id.navigation_notifications:
-                    fragmentTransaction.replace(R.id.framelayout, new InformationFragment()).commit();
+                    fragmentTransaction.replace(R.id.framelayout, new MealPlanFragment()).commit();
                     return true;
             }
             return false;
@@ -102,11 +98,11 @@ public class FrontPageActivity extends AppCompatActivity {
     /**
      * Method to change navigation bar and active fragment to Information
      */
-    public void changeToInformation(){
+    public void changeToMealPlan(){
         navigation.setSelectedItemId(R.id.navigation_notifications);
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.framelayout, new InformationFragment()).commit();
+        fragmentTransaction.replace(R.id.framelayout, new MealPlanFragment()).commit();
     }
 
     /**

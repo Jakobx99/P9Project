@@ -100,7 +100,7 @@ public class HomeFragment extends Fragment {
         displayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((FrontPageActivity)getActivity()).changeToInformation();
+                ((FrontPageActivity)getActivity()).changeToMealPlan();
             }
         });
 
