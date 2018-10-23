@@ -137,7 +137,7 @@ public class MealPlanFragment extends Fragment {
         mealPlanButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //CALC
+                calculate();
             }
         });
 
@@ -253,6 +253,12 @@ public class MealPlanFragment extends Fragment {
      */
     private void createDatabaseFoodList(){
         databaseFoods = Food.listAll(Food.class);
+    }
+
+    private void calculate(){
+        //Calculate result
+        //Display result
+        //Save in db or override
     }
 }
 
