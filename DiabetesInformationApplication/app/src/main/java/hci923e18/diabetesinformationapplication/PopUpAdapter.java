@@ -1,25 +1,26 @@
 package hci923e18.diabetesinformationapplication;
 
-import android.app.Fragment;
 import android.content.Context;
-import android.graphics.Movie;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import hci923e18.database.Food;
 
-public class MealPlanAdapter extends ArrayAdapter<Food> {
+public class PopUpAdapter extends ArrayAdapter<Food> {
 
     private Context mContext;
-    private List<Food> mFood;
+    private List<Food> mFood = null;
     private MealPlanFragment mMealPlanFragment;
+    private ArrayList<Food> arraylist = null;
 
     /**
      * Constructor
@@ -28,11 +29,23 @@ public class MealPlanAdapter extends ArrayAdapter<Food> {
      * @param objects List of Food objects
      * @param mealPlanFragment The instance of the fragment the adapter is used with
      */
-    public MealPlanAdapter(@NonNull Context context, int resource, @NonNull List<Food> objects, MealPlanFragment mealPlanFragment) {
+    public PopUpAdapter(@NonNull Context context, int resource, @NonNull List<Food> objects, MealPlanFragment mealPlanFragment) {
         super(context, resource, objects);
         mContext = context;
-        mFood = objects;
+        this.mFood = objects;
         mMealPlanFragment = mealPlanFragment;
+        this.arraylist = new ArrayList<Food>();
+        this.arraylist.addAll(mFood);
+
+    }
+
+    /**
+     * Count method of the number of objects in the list
+     * @return
+     */
+    @Override
+    public int getCount() {
+        return mFood.size();
     }
 
     /**
@@ -47,18 +60,18 @@ public class MealPlanAdapter extends ArrayAdapter<Food> {
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View listItem = convertView;
         if(listItem == null)
-            listItem = LayoutInflater.from(mContext).inflate(R.layout.mealplanlistlayout,parent,false);
+            listItem = LayoutInflater.from(mContext).inflate(R.layout.popuplistlayout,parent,false);
 
         Food currentFood = mFood.get(position);
 
-        ImageView image = listItem.findViewById(R.id.imageView_mealPlanList);
-        image.setOnClickListener(new View.OnClickListener() {
+        listItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mMealPlanFragment.removeItemFromList(position);
-
+                mMealPlanFragment.addItemToList(mFood.get(position));
+                mMealPlanFragment.alertDialog.cancel();
             }
         });
+
 
         TextView name = listItem.findViewById(R.id.textView_mealPlanListname);
         name.setText(currentFood.get_name());
@@ -78,5 +91,26 @@ public class MealPlanAdapter extends ArrayAdapter<Food> {
 
 
         return listItem;
+    }
+
+    /**
+     * Filter method used when searching
+     * @param charText The search string
+     */
+    public void filter(String charText) {
+        charText = charText.toLowerCase(Locale.getDefault());
+        mFood.clear();
+        if (charText.length() == 0) {
+            mFood.addAll(arraylist);
+        }
+        else
+        {
+            for (Food food : arraylist) {
+                if (food.get_name().toLowerCase(Locale.getDefault()).contains(charText)) {
+                    mFood.add(food);
+                }
+            }
+        }
+
     }
 }

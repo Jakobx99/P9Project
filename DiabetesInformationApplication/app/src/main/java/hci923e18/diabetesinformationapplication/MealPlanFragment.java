@@ -5,6 +5,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.app.AlertDialog;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,16 +15,20 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.ScrollView;
+import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import hci923e18.database.Food;
 
@@ -36,9 +43,6 @@ import hci923e18.database.Food;
  */
 public class MealPlanFragment extends Fragment {
 
-    /**
-     * Global variables
-     */
     private OnFragmentInteractionListener mListener;
     Spinner mealPlanSpinner;
     Button mealPlanButton;
@@ -48,6 +52,8 @@ public class MealPlanFragment extends Fragment {
     List<Food> foods = new ArrayList<>();
     MealPlanAdapter mAdapter;
     TextView mealPlanAddFood;
+    List<Food> databaseFoods = new ArrayList<>();
+    AlertDialog alertDialog;
 
     /**
      * Default constructor
@@ -69,7 +75,7 @@ public class MealPlanFragment extends Fragment {
 
     /**
      * On create method called when the fragment is constructed
-     * @param savedInstanceState
+     * @param savedInstanceState The saved instance can be used if the application is reopened
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -79,9 +85,9 @@ public class MealPlanFragment extends Fragment {
 
     /**
      * Method to create the view that is rendered. Binds the different controls and sets up the onclick events
-     * @param inflater
-     * @param container
-     * @param savedInstanceState
+     * @param inflater Layout inflater
+     * @param container Layout container
+     * @param savedInstanceState The saved instance state used if the application is reopened
      * @return The View object
      */
     @Override
@@ -97,6 +103,8 @@ public class MealPlanFragment extends Fragment {
         mealPlanSpinner = view.findViewById(R.id.spinner_mealplan);
         mealPlanLayout = view.findViewById(R.id.mealplan_listview);
         mealPlanAddFood = view.findViewById(R.id.textView_addfood);
+
+        createDatabaseFoodList();
 
         String [] values =
                 {"Morgenmad","Middagsmad","Aftensmad"};
@@ -121,7 +129,7 @@ public class MealPlanFragment extends Fragment {
         mealPlanAddFood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //OPEN NEW WINDOW
+                createPopup(getActivity());
             }
         });
 
@@ -133,22 +141,9 @@ public class MealPlanFragment extends Fragment {
             }
         });
 
-
-        foods.add(new Food("Cola", 10.6, 0.1, 0.0, 10.6));
-        foods.add(new Food("Cola light", 0.0, 0.0,0.0,0.0));
-        foods.add(new Food("Arla Letmælk", 4.7, 3.5, 0.0,4.7));
-        foods.add(new Food("Cola", 10.6, 0.1, 0.0, 10.6));
-        foods.add(new Food("Cola light", 0.0, 0.0,0.0,0.0));
-        foods.add(new Food("Arla Letmælk", 4.7, 3.5, 0.0,4.7));
-        foods.add(new Food("Cola", 10.6, 0.1, 0.0, 10.6));
-        foods.add(new Food("Cola light", 0.0, 0.0,0.0,0.0));
-        foods.add(new Food("Arla Letmælk", 4.7, 3.5, 0.0,4.7));
-        foods.add(new Food("Cola", 10.6, 0.1, 0.0, 10.6));
-        foods.add(new Food("Cola light", 0.0, 0.0,0.0,0.0));
-        foods.add(new Food("Arla Letmælk", 4.7, 3.5, 0.0,4.7));
-
         mAdapter = new MealPlanAdapter(view.getContext(),0, foods, MealPlanFragment.this);
         mealPlanLayout.setAdapter(mAdapter);
+
 
         return view;
     }
@@ -210,6 +205,55 @@ public class MealPlanFragment extends Fragment {
         mAdapter.notifyDataSetChanged();
     }
 
+    /**
+     * Creates the PopUp menu with a list of all Food items
+     * @param context The context of the activity
+     */
+    public void createPopup(Context context){
+        LayoutInflater li = LayoutInflater.from(context);
+        View view = li.inflate(R.layout.popupwindow, null);
+
+
+        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+        alertDialogBuilder.setView(view);
+
+
+        ListView listViewPopUp = view.findViewById(R.id.listViewPopUp);
+        final PopUpAdapter localAdapter;
+        localAdapter = new PopUpAdapter(view.getContext(),0, databaseFoods, MealPlanFragment.this);
+        listViewPopUp.setAdapter(localAdapter);
+
+        final EditText editTextSearch = view.findViewById(R.id.edittextSearch);
+        editTextSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                localAdapter.getFilter().filter(s);
+
+                String text = editTextSearch.getText().toString().toLowerCase(Locale.getDefault());
+                localAdapter.filter(text);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+        alertDialog.getWindow().setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);//
+    }
+
+    /**
+     * Creates a list of all Food items in the database
+     */
+    private void createDatabaseFoodList(){
+        databaseFoods = Food.listAll(Food.class);
+    }
 }
 
 
