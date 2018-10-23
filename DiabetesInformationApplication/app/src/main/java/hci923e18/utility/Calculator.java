@@ -2,7 +2,7 @@ package hci923e18.utility;
 import hci923e18.database.Profile;
 
 public class Calculator {
-    private Profile user;
+    private Profile user = new Profile();
 
     /**
      * Default constructor
@@ -12,10 +12,10 @@ public class Calculator {
         try {
             user = Profile.listAll(Profile.class).get(0);
         } catch (Exception e) {
-            user.set_idealBloodGlucoseLevel(5.5);
+            user.set_idealBloodGlucoseLevel(6.0);
             user.set_weight(80.0);
             user.set_insulinDuration(3.5);
-            user.set_totalDailyInsulinConsumption(30.0);
+            user.set_totalDailyInsulinConsumption(41.6);
         }
     }
 
@@ -48,7 +48,7 @@ public class Calculator {
      * @param bloodGlucoseLevel Double representing the measured blood glucose level
      * @return Double representing the amount of insulin needed to adjust blood glucose level
      */
-    private Double bloodGlucoseGoalCalculation(Double bloodGlucoseLevel)
+    public Double bloodGlucoseGoalCalculation(Double bloodGlucoseLevel)
     {
         Double bloodGlucoseGoal = user.get_idealBloodGlucoseLevel();
         Double differenceBloodGlucoseLevel = bloodGlucoseLevel-bloodGlucoseGoal;
@@ -70,24 +70,27 @@ public class Calculator {
     }
 
     /**
-     * To calculate the percentage of fibers in the carbohydrates, we take the total amount of carbohydrate divided by fiber
+     * To calculate the percentage of fibers in the carbohydrates, we take the amount of fiber divided by the total amount of carbohydrate divided by 100
      * @param carbohydrate Double representing the amount of carbohydrate
      * @param fiber Double representing the amount of fiber
      * @return Double representing the amount of carbohydrate that is fiber in percentages
      */
     public Double fiberPercentage(Double carbohydrate, Double fiber)
     {
-        return carbohydrate/fiber;
+        return fiber/(carbohydrate/100);
     }
 
     /**
-     * To calculate the percentage of sugar in the carbohydrates, we take the total amount of carbohydrate divided by sugar
+     * To calculate the percentage of sugar in the carbohydrates, we take the amount of sugar divided by the total amount of carbohydrate divided by 100
      * @param carbohydrate Double representing the amount of carbohydrate
      * @param sugar Double representing the amount of sugar
      * @return Double representing the amount of carbohydrate that is sugar in percentages
      */
     public Double sugarPercentage(Double carbohydrate, Double sugar)
     {
-        return carbohydrate/sugar;
+        return sugar/(carbohydrate/100);
     }
+
+
+
 }

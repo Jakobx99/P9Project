@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CalculatorFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewCarbohydrate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Kulhydrat"
+                app:layout_constraintBottom_toBottomOf="@+id/textInputLayoutCarbohydrate"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.944"
+                app:layout_constraintStart_toEndOf="@+id/textInputLayoutCarbohydrate"
+                app:layout_constraintTop_toTopOf="@+id/textInputLayoutCarbohydrate" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/textInputLayoutCarbohydrate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toStartOf="@+id/textViewCarbohydrate"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/textInputCarbohydrate"
+                    android:inputType="numberDecimal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Indtast dit indtag af kulhydrater" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/textInputLayoutBloodSugar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toStartOf="@+id/textViewBloodSugar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayoutCarbohydrate">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/textInputBloodSugar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:hint="Indtast dit blodsukker i mmol/l" />
+            </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                android:id="@+id/textViewBloodSugar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Blodsukker"
+                app:layout_constraintBottom_toBottomOf="@+id/textInputLayoutBloodSugar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textInputLayoutBloodSugar"
+                app:layout_constraintTop_toTopOf="@+id/textInputLayoutBloodSugar" />
+
+            <Switch
+                android:id="@+id/switchAdvancedOptionsCalculator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:text="Indtast fiber"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayoutBloodSugar" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/textInputLayoutFiber"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toStartOf="@+id/textViewFiber"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/switchAdvancedOptionsCalculator"
+                app:layout_constraintVertical_chainStyle="spread_inside">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/textInputFiber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:hint="Indtast antal gram fiber"
+                    android:visibility="visible" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                android:id="@+id/textViewFiber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:text="Fiber"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/textInputLayoutFiber"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textInputLayoutFiber"
+                app:layout_constraintTop_toTopOf="@+id/textInputLayoutFiber" />
+
+            <Button
+                style="@style/newbuttonstyle"
+                android:id="@+id/buttonCalculate"
+                android:layout_width="154dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="150dp"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="8dp"
+                android:text="Udregn insulin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.511"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayoutFiber" />
+
+            <TextView
+                android:id="@+id/textViewEnheder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Enheder"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewCalculatedInsulin"
+                app:layout_constraintStart_toEndOf="@+id/textViewCalculatedInsulin"
+                app:layout_constraintTop_toTopOf="@+id/textViewCalculatedInsulin" />
+
+            <EditText
+                android:id="@+id/editTextShowGuideText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:ems="10"
+                android:inputType="textMultiLine"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:background="@null"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewCalculatedInsulin" />
+
+            <TextView
+                android:id="@+id/textViewCalculatedInsulin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:text="-"
+                android:textAlignment="center"
+                android:textSize="36sp"
+                app:layout_constraintEnd_toEndOf="@+id/buttonCalculate"
+                app:layout_constraintStart_toStartOf="@+id/buttonCalculate"
+                app:layout_constraintTop_toBottomOf="@+id/buttonCalculate" />
+
+
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+
+</FrameLayout>

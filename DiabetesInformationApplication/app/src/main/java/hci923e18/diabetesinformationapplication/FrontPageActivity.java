@@ -1,6 +1,5 @@
 package hci923e18.diabetesinformationapplication;
 
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
@@ -8,10 +7,6 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import hci923e18.database.Person;
 
 public class FrontPageActivity extends AppCompatActivity {
 
@@ -30,7 +25,7 @@ public class FrontPageActivity extends AppCompatActivity {
                     fragmentTransaction.replace(R.id.framelayout, new HomeFragment()).commit();
                     return true;
                 case R.id.navigation_dashboard:
-                    fragmentTransaction.replace(R.id.framelayout, new DataFragment()).commit();
+                    fragmentTransaction.replace(R.id.framelayout, new CalculatorFragment()).commit();
                     return true;
                 case R.id.navigation_notifications:
                     fragmentTransaction.replace(R.id.framelayout, new InformationFragment()).commit();
@@ -64,7 +59,7 @@ public class FrontPageActivity extends AppCompatActivity {
         navigation.setSelectedItemId(R.id.navigation_dashboard);
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.framelayout, new DataFragment()).commit();
+        fragmentTransaction.replace(R.id.framelayout, new CalculatorFragment()).commit();
     }
     public void changeToInformation(){
         navigation.setSelectedItemId(R.id.navigation_notifications);
