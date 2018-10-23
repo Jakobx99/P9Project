@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="100dp"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:text="Display information"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -38,18 +38,18 @@
         app:layout_constraintTop_toBottomOf="@+id/buttonData" />
 
     <Button
-        style="@style/newbuttonstyle"
         android:id="@+id/buttonAbout"
+        style="@style/newbuttonstyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="100dp"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="24dp"
         android:text="About us"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonInformation" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonSettings" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -62,5 +62,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonSettings"
+        style="@style/newbuttonstyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="100dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="8dp"
+        android:text="Settings"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonInformation" />
 
 </android.support.constraint.ConstraintLayout>
