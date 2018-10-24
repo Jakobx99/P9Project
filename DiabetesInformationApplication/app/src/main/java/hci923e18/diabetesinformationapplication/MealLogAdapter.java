@@ -36,14 +36,13 @@ public class MealLogAdapter extends ArrayAdapter<MealObject> {
         Type.setText(currentMeal.get_mealtype());
 
         TextView Date = listItem.findViewById(R.id.textView_meaLogDate);
-        Date.setText(currentMeal.get_timestamp().toString());
+        Date.setText(currentMeal.get_timestamp());
 
         TextView Carbs = listItem.findViewById(R.id.textView_mealLogCarbs);
-        //Carbs.setText(currentMeal.get);
+        Carbs.setText(currentMeal.get_totalCarbs().toString());
 
         TextView Insulin = listItem.findViewById(R.id.textView_mealLogInsulin);
         Insulin.setText(currentMeal.get_insulinResult().toString() + "Enheder");
-
 
         return listItem;
     }
