@@ -1,12 +1,20 @@
 package hci923e18.diabetesinformationapplication;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.orm.SugarRecord;
 
@@ -16,9 +24,12 @@ import java.util.List;
 import hci923e18.database.Food;
 
 
-public class FrontPageActivity extends AppCompatActivity {
+public class FrontPageActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     BottomNavigationView navigation;
+    //Setup of burger menu
+    private DrawerLayout drawerLayout;
+    private ActionBarDrawerToggle actionBarDrawerToggle;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -59,6 +70,16 @@ public class FrontPageActivity extends AppCompatActivity {
 
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        //--------------------------Burger menu-------------------------------------
+        drawerLayout = findViewById(R.id.homeactivity);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        NavigationView nv = findViewById(R.id.burgermenu);
+        nv.setNavigationItemSelectedListener(this);
+        //--------------------------Burger menu-------------------------------------
 
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -130,5 +151,34 @@ public class FrontPageActivity extends AppCompatActivity {
 
 
     }
+    //--------------------------Burger menu-------------------------------------
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        if(actionBarDrawerToggle.onOptionsItemSelected(item)){
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        Intent intent = null;
+        switch (id){
+            case R.id.menumyevent:
+                intent = new Intent(FrontPageActivity.this, SettingsActivity.class);
+                drawerLayout.closeDrawers();
+                break;
+            case R.id.aboutUs:
+
+                break;
+
+        }
+        if (intent == null){
+            return false;
+        }
+        startActivity(intent);
+        return false;
+    }
+    //--------------------------Burger menu-------------------------------------
 }
