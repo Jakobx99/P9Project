@@ -9,7 +9,7 @@ This project is about the development of
 - Mathias Huse Jensen
 - Pelle Ulmer Jørgensen
 
-**Email:** SOMETHIONG@cs.aau.dk
+**Email:** hci923e18@cs.aau.dk
 **Date of completion:** DATE
 
 
