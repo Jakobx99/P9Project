@@ -3,4 +3,9 @@
     <string name="title_home">Forside</string>
     <string name="title_dashboard">Insulin beregner</string>
     <string name="title_notifications">Måltids planlægger</string>
+    <string name="title_menuhome">Hjem</string>
+    <string name="title_profile">Min profil</string>
+    <string name="title_aboutUs">Om os</string>
+    <string name="open">Åben</string>
+    <string name="close">Luk</string>
 </resources>
