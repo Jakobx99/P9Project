@@ -1,4 +1,7 @@
 package hci923e18.utility;
+import android.util.Pair;
+
+import hci923e18.database.Food;
 import hci923e18.database.Profile;
 
 public class Calculator {
@@ -89,6 +92,23 @@ public class Calculator {
     public Double sugarPercentage(Double carbohydrate, Double sugar)
     {
         return sugar/(carbohydrate/100);
+    }
+
+    /**
+     * Converts the nutritional values of a Food object so it corresponds with the amount selected
+     * @param pair A pair consisting of the Food object and the amount
+     * @return A adjusted Food object
+     */
+    public Food calculateNutritinalValuesDependingOnWeight(Pair<Food, Double> pair){
+        Food f = new Food();
+
+        f.set_name(pair.first.get_name());
+        f.set_carbohydrate(pair.first.get_carbohydrate()/100*pair.second);
+        f.set_fiber(pair.first.get_fiber()/100*pair.second);
+        f.set_protein(pair.first.get_protein()/100*pair.second);
+        f.set_sugar(pair.first.get_sugar()/100*pair.second);
+
+        return f;
     }
 
 

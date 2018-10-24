@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Movie;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,14 +13,16 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.List;
+import java.text.DecimalFormat;
 
 import hci923e18.database.Food;
 
-public class MealPlanAdapter extends ArrayAdapter<Food> {
+public class MealPlanAdapter extends ArrayAdapter<Pair<Food, Double>> {
 
     private Context mContext;
-    private List<Food> mFood;
+    private List<Pair<Food, Double>> mFood;
     private MealPlanFragment mMealPlanFragment;
+    DecimalFormat formater = new DecimalFormat("#.##");
 
     /**
      * Constructor
@@ -28,7 +31,7 @@ public class MealPlanAdapter extends ArrayAdapter<Food> {
      * @param objects List of Food objects
      * @param mealPlanFragment The instance of the fragment the adapter is used with
      */
-    public MealPlanAdapter(@NonNull Context context, int resource, @NonNull List<Food> objects, MealPlanFragment mealPlanFragment) {
+    public MealPlanAdapter(@NonNull Context context, int resource, @NonNull List<Pair<Food, Double>> objects, MealPlanFragment mealPlanFragment) {
         super(context, resource, objects);
         mContext = context;
         mFood = objects;
@@ -49,7 +52,7 @@ public class MealPlanAdapter extends ArrayAdapter<Food> {
         if(listItem == null)
             listItem = LayoutInflater.from(mContext).inflate(R.layout.mealplanlistlayout,parent,false);
 
-        Food currentFood = mFood.get(position);
+        Pair<Food, Double> currentFood = mFood.get(position);
 
         ImageView image = listItem.findViewById(R.id.imageView_mealPlanList);
         image.setOnClickListener(new View.OnClickListener() {
@@ -61,19 +64,17 @@ public class MealPlanAdapter extends ArrayAdapter<Food> {
         });
 
         TextView name = listItem.findViewById(R.id.textView_mealPlanListname);
-        name.setText(currentFood.get_name());
+        name.setText(currentFood.first.get_name());
 
         TextView carbohydrate = listItem.findViewById(R.id.textView_carbo);
-        carbohydrate.setText(currentFood.get_carbohydrate().toString() + " g");
+        carbohydrate.setText(formater.format(currentFood.first.get_carbohydrate()) + " g");
 
-        TextView protein = listItem.findViewById(R.id.textView_protein);
-        protein.setText(currentFood.get_protein().toString() + " g");
-
-        TextView sugar = listItem.findViewById(R.id.textView_sugar);
-        sugar.setText(currentFood.get_sugar().toString() + " g");
 
         TextView fiber = listItem.findViewById(R.id.textView_fiber);
-        fiber.setText(currentFood.get_fiber().toString() + " g");
+        fiber.setText(formater.format(currentFood.first.get_fiber()) + " g");
+
+        TextView weight = listItem.findViewById(R.id.textView_gram);
+        weight.setText(formater.format(currentFood.second));
 
 
 
