@@ -129,6 +129,13 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        /*settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((FrontPageActivity)getActivity()).changeToMealLog();
+            }
+        });*/
+
         // Inflate the layout for this fragment
         return view;
     }

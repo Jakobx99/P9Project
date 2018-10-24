@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 
 import com.orm.SugarRecord;
 
@@ -19,6 +20,7 @@ import hci923e18.database.Food;
 public class FrontPageActivity extends AppCompatActivity {
 
     BottomNavigationView navigation;
+    FrameLayout frameLayout;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -35,13 +37,13 @@ public class FrontPageActivity extends AppCompatActivity {
 
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    fragmentTransaction.replace(R.id.framelayout, new HomeFragment()).commit();
+                    fragmentTransaction.replace(R.id.framelayoutFrontPage, new HomeFragment()).commit();
                     return true;
                 case R.id.navigation_dashboard:
-                    fragmentTransaction.replace(R.id.framelayout, new CalculatorFragment()).commit();
+                    fragmentTransaction.replace(R.id.framelayoutFrontPage, new CalculatorFragment()).commit();
                     return true;
                 case R.id.navigation_notifications:
-                    fragmentTransaction.replace(R.id.framelayout, new MealPlanFragment()).commit();
+                    fragmentTransaction.replace(R.id.framelayoutFrontPage, new MealPlanFragment()).commit();
                     return true;
             }
             return false;
@@ -56,13 +58,13 @@ public class FrontPageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_front_page);
-
+        frameLayout = findViewById(R.id.framelayoutFrontPage);
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.framelayout, new HomeFragment()).commit();
+        fragmentTransaction.replace(R.id.framelayoutFrontPage, new HomeFragment()).commit();
 
         List<Food> _food = Food.listAll(Food.class);
         if (_food.size() == 0)
@@ -82,7 +84,7 @@ public class FrontPageActivity extends AppCompatActivity {
         navigation.setSelectedItemId(R.id.navigation_home);
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.framelayout, new HomeFragment()).commit();
+        fragmentTransaction.replace(R.id.framelayoutFrontPage, new HomeFragment()).commit();
     }
 
     /**
@@ -92,7 +94,7 @@ public class FrontPageActivity extends AppCompatActivity {
         navigation.setSelectedItemId(R.id.navigation_dashboard);
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.framelayout, new CalculatorFragment()).commit();
+        fragmentTransaction.replace(R.id.framelayoutFrontPage, new CalculatorFragment()).commit();
     }
 
     /**
@@ -102,7 +104,14 @@ public class FrontPageActivity extends AppCompatActivity {
         navigation.setSelectedItemId(R.id.navigation_notifications);
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.framelayout, new MealPlanFragment()).commit();
+        fragmentTransaction.replace(R.id.framelayoutFrontPage, new MealPlanFragment()).commit();
+    }
+
+    public void changeToMealLog(){
+        frameLayout.removeAllViews();
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.framelayoutFrontPage, new MealLogFragment()).commit();
     }
 
     /**

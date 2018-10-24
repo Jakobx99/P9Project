@@ -74,7 +74,7 @@ public class MealPlanAdapter extends ArrayAdapter<Pair<Food, Double>> {
         fiber.setText(formater.format(currentFood.first.get_fiber()) + " g");
 
         TextView weight = listItem.findViewById(R.id.textView_gram);
-        weight.setText(formater.format(currentFood.second));
+        weight.setText(formater.format(currentFood.second) + " g");
 
 
 

@@ -23,6 +23,7 @@ public class MealLogAdapter extends ArrayAdapter<MealObject> {
         mMeal = objects;
         mMealLogFragment = mealLogFragment;
     }
+
     @NonNull
     @Override
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -39,10 +40,10 @@ public class MealLogAdapter extends ArrayAdapter<MealObject> {
         Date.setText(currentMeal.get_timestamp());
 
         TextView Carbs = listItem.findViewById(R.id.textView_mealLogCarbs);
-        Carbs.setText(currentMeal.get_totalCarbs().toString());
+        Carbs.setText(currentMeal.get_totalCarbs().toString() + " g");
 
         TextView Insulin = listItem.findViewById(R.id.textView_mealLogInsulin);
-        Insulin.setText(currentMeal.get_insulinResult().toString() + "Enheder");
+        Insulin.setText(currentMeal.get_insulinResult().toString() + " Enheder");
 
         return listItem;
     }

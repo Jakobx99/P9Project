@@ -6,7 +6,77 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <LinearLayout
+        android:id="@+id/linearLayoutTop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView_mealPlanListname"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:paddingTop="6dp"
+            android:text="Navn" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayoutTop"
+        app:layout_constraintStart_toStartOf="@+id/linearLayoutTop"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutTop">
+
+<!--        <TextView
+            android:id="@+id/textView_mealPlanListname"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:paddingTop="6dp"
+            android:text="Navn" />-->
+
+        <TextView
+            android:id="@+id/textView_carbo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingTop="6dp"
+            android:text="Kulhydrate" />
+
+        <TextView
+            android:id="@+id/textView_fiber"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingTop="6dp"
+            android:text="Fiber" />
+
+        <TextView
+            android:id="@+id/textView_gram"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingTop="6dp"
+            android:text="Vægt" />
+
+        <ImageView
+            android:id="@+id/imageView_mealPlanList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@android:drawable/ic_menu_delete" />
+    </LinearLayout>
+
+    <!--<TextView
         android:id="@+id/textView_mealPlanListname"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -72,5 +142,5 @@
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/imageView_mealPlanList"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />-->
 </android.support.constraint.ConstraintLayout>
