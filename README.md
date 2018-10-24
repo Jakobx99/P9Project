@@ -1,7 +1,7 @@
 # P9Project
 
 # 9th Semester project at Aalborg University
-#### GROUPNAME semester project
+#### HCI923e18 semester project
 This project is about the development of 
 
 **Project Group:**
