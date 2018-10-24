@@ -1,13 +1,13 @@
 package hci923e18.diabetesinformationapplication;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,22 +15,21 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.PopupWindow;
-import android.widget.ScrollView;
-import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 import hci923e18.database.Food;
+import hci923e18.database.MealObject;
+import hci923e18.utility.Calculator;
 
 
 /**
@@ -49,11 +48,13 @@ public class MealPlanFragment extends Fragment {
     EditText mealPlanBloodSugar;
     TextView mealPlanResult;
     ListView mealPlanLayout;
-    List<Food> foods = new ArrayList<>();
+    List<Pair<Food, Double>> foods = new ArrayList<>();
     MealPlanAdapter mAdapter;
     TextView mealPlanAddFood;
     List<Food> databaseFoods = new ArrayList<>();
     AlertDialog alertDialog;
+    Calculator calculator = new Calculator();
+    String mealType;
 
     /**
      * Default constructor
@@ -116,7 +117,7 @@ public class MealPlanFragment extends Fragment {
         mealPlanSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String item = parent.getItemAtPosition(position).toString();
+                mealType = parent.getItemAtPosition(position).toString();
             }
 
             @Override
@@ -200,8 +201,10 @@ public class MealPlanFragment extends Fragment {
      *Adds a Food object from the list of food objects
      * @param f
      */
-    public void addItemToList(Food f){
-        foods.add(f);
+    public void addItemToList(Pair<Food, Double> f){
+
+        Pair<Food,Double> p = new Pair<>(calculator.calculateNutritinalValuesDependingOnWeight(f), f.second);
+        foods.add(p);
         mAdapter.notifyDataSetChanged();
     }
 
@@ -255,10 +258,51 @@ public class MealPlanFragment extends Fragment {
         databaseFoods = Food.listAll(Food.class);
     }
 
+    /**
+     * Method called when a users presses the calculate button. The insulin is calculated and the meal plan is saved in the database
+     */
     private void calculate(){
+
+        Double bloodsugar =Double.parseDouble(mealPlanBloodSugar.getText().toString());
+        Double carbs = 0.0;
+        Double fiber = 0.0;
+        Double weight = 0.0;
+
+        for (Pair<Food, Double> f:foods) {
+            carbs = carbs + f.first.get_carbohydrate();
+            fiber = fiber + f.first.get_fiber();
+            weight = weight + f.second;
+        }
         //Calculate result
+        Double result = calculator.insulinCalculator(carbs, bloodsugar);
         //Display result
+        mealPlanResult.setText(result.toString());
         //Save in db or override
+
+        String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+
+
+        MealObject meal = new MealObject();
+        meal.set_bloodGlucoseLevel(bloodsugar);
+        meal.set_insulinResult(result);
+        meal.set_meals(foods);
+        meal.set_mealtype(mealType);
+        meal.set_timestamp(date);
+        meal.set_totalCarbs(carbs);
+        meal.set_totalFiber(fiber);
+        meal.set_totalWeight(weight);
+
+        try {
+            MealObject m = MealObject.find(MealObject.class,"_mealtype = ? and _timestamp = ?", meal.get_mealtype(), meal.get_timestamp()).get(0);
+            Long id = m.getId();
+            m = meal;
+            m.setId(id);
+            m.save();
+        } catch (Exception e) {
+            meal.save();
+        }
+
+
     }
 }
 

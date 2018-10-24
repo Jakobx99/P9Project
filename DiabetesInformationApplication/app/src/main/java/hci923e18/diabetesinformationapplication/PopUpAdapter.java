@@ -1,19 +1,27 @@
 package hci923e18.diabetesinformationapplication;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
+import android.text.InputType;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.DuplicateFormatFlagsException;
 import java.util.List;
 import java.util.Locale;
 
 import hci923e18.database.Food;
+
+import static android.text.InputType.TYPE_NUMBER_FLAG_DECIMAL;
 
 public class PopUpAdapter extends ArrayAdapter<Food> {
 
@@ -21,6 +29,7 @@ public class PopUpAdapter extends ArrayAdapter<Food> {
     private List<Food> mFood = null;
     private MealPlanFragment mMealPlanFragment;
     private ArrayList<Food> arraylist = null;
+    private String m_Text="";
 
     /**
      * Constructor
@@ -67,8 +76,40 @@ public class PopUpAdapter extends ArrayAdapter<Food> {
         listItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mMealPlanFragment.addItemToList(mFood.get(position));
-                mMealPlanFragment.alertDialog.cancel();
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                builder.setTitle("Indtast mængde i gram");
+
+// Set up the input
+                final EditText input = new EditText(mContext);
+// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+                input.setInputType(InputType.TYPE_CLASS_NUMBER | TYPE_NUMBER_FLAG_DECIMAL);
+                builder.setView(input);
+
+// Set up the buttons
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        m_Text = input.getText().toString();
+                        dialog.cancel();
+                        Pair<Food, Double> chosenFood = new Pair<>(mFood.get(position), Double.parseDouble(m_Text));
+                        mMealPlanFragment.addItemToList(chosenFood);
+                        mMealPlanFragment.alertDialog.cancel();
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                builder.show();
+
+
+
+
+
             }
         });
 
