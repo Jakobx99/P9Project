@@ -43,7 +43,6 @@ public class MealLogFragment extends Fragment {
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
-     *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
      * @return A new instance of fragment MealLogFragment.
@@ -54,11 +53,22 @@ public class MealLogFragment extends Fragment {
         return fragment;
     }
 
+    /**
+     * Default On create method - called when the fragment is constructed
+     * @param savedInstanceState The saved instance can be used if the application is reopened
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
+    /**
+     * Method to create the view that is rendered. Binds the different controls and sets up the onclick events
+     * @param inflater Layout inflater
+     * @param container Layout container
+     * @param savedInstanceState The saved instance state used if the application is reopened
+     * @return The View object
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -76,13 +86,21 @@ public class MealLogFragment extends Fragment {
         return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
+    /**
+     * Default onButtonPressed
+     * @param uri update argument and hook method into UI event
+     */
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
     }
 
+
+    /**
+     * Default onAttach method
+     * @param context the context of the fragment
+     */
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -93,6 +111,9 @@ public class MealLogFragment extends Fragment {
         }
     }
 
+    /**
+     * Default onDetach
+     */
     @Override
     public void onDetach() {
         super.onDetach();

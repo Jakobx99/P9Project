@@ -14,10 +14,19 @@ import hci923e18.database.MealObject;
 import hci923e18.diabetesinformationapplication.R;
 
 public class MealLogAdapter extends ArrayAdapter<MealObject> {
+
     private Context mContext;
     private List<MealObject> mMeal;
     private MealLogFragment mMealLogFragment;
 
+    /**
+     *
+     * Constructor
+     * @param context Context of the application
+     * @param resource Resource number
+     * @param objects List of Food objects
+     * @param mealLogFragment The instance of the fragment the adapter is used with
+     */
     public MealLogAdapter(Context context, int resource, @NonNull List<MealObject> objects, MealLogFragment mealLogFragment){
         super(context, resource, objects);
         mContext = context;
@@ -25,6 +34,13 @@ public class MealLogAdapter extends ArrayAdapter<MealObject> {
         mMealLogFragment = mealLogFragment;
     }
 
+    /**
+     * The getView method. Called when the adapter is used to render the view and populate the MealLog list
+     * @param position  Default parameter
+     * @param convertView Default parameter
+     * @param parent Default parameter
+     * @return the views containing the populated list
+     */
     @NonNull
     @Override
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
