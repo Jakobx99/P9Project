@@ -32,7 +32,7 @@ public class MealLogAdapter extends ArrayAdapter<MealObject> {
         if(listItem == null)
             listItem = LayoutInflater.from(mContext).inflate(R.layout.mealloglayout,parent,false);
 
-        MealObject currentMeal = mMeal.get(position);
+        final MealObject currentMeal = mMeal.get(position);
 
         TextView Type = listItem.findViewById(R.id.textView_mealLogType);
         Type.setText(currentMeal.get_mealtype());
@@ -45,6 +45,13 @@ public class MealLogAdapter extends ArrayAdapter<MealObject> {
 
         TextView Insulin = listItem.findViewById(R.id.textView_mealLogInsulin);
         Insulin.setText(currentMeal.get_insulinResult().toString() + " Enheder");
+
+        listItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mMealLogFragment.openSpecificLog(currentMeal);
+            }
+        });
 
         return listItem;
     }

@@ -1,6 +1,9 @@
 package hci923e18.diabetesinformationapplication.MealLog;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -12,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import hci923e18.database.MealObject;
 import hci923e18.diabetesinformationapplication.R;
+import hci923e18.diabetesinformationapplication.SpecificLog.SpecificLogFragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,6 +31,7 @@ public class MealLogFragment extends Fragment {
     List<MealObject> meals = new ArrayList<>();
     ListView mealLogListView;
     MealLogAdapter mAdapter;
+    View view;
 
     /**
      * Default constructor
@@ -58,7 +63,7 @@ public class MealLogFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_meal_log, container, false);
+        view = inflater.inflate(R.layout.fragment_meal_log, container, false);
         mealLogListView = view.findViewById(R.id.listview_MealLog);
         try {
             meals = MealObject.listAll(MealObject.class);
@@ -92,6 +97,16 @@ public class MealLogFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    public void openSpecificLog(MealObject m){
+
+        SpecificLogFragment myFragment = new SpecificLogFragment();
+        myFragment.passData(view.getContext(),m);
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+        ft.add(R.id.framelayoutFrontPage, myFragment);
+        ft.commit();
     }
 
     /**

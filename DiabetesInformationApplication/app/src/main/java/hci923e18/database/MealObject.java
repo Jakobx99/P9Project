@@ -7,9 +7,10 @@ import com.google.gson.reflect.TypeToken;
 import com.orm.SugarRecord;
 import com.orm.dsl.Ignore;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class MealObject extends SugarRecord<MealObject>
+public class MealObject extends SugarRecord<MealObject> implements Serializable
 {
     private String _mealtype;
     private String _listMeals;
