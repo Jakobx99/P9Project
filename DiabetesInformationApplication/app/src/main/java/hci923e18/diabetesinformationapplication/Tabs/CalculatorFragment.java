@@ -1,11 +1,10 @@
-package hci923e18.diabetesinformationapplication;
+package hci923e18.diabetesinformationapplication.Tabs;
 
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.design.widget.TextInputLayout;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +15,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import hci923e18.database.Profile;
+import hci923e18.diabetesinformationapplication.R;
 import hci923e18.utility.Calculator;
 import java.text.DecimalFormat;
 

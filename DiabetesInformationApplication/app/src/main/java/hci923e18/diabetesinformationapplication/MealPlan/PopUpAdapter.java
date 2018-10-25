@@ -1,4 +1,4 @@
-package hci923e18.diabetesinformationapplication;
+package hci923e18.diabetesinformationapplication.MealPlan;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -15,11 +15,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.DuplicateFormatFlagsException;
 import java.util.List;
 import java.util.Locale;
 
 import hci923e18.database.Food;
+import hci923e18.diabetesinformationapplication.MealPlan.MealPlanFragment;
+import hci923e18.diabetesinformationapplication.R;
 
 import static android.text.InputType.TYPE_NUMBER_FLAG_DECIMAL;
 

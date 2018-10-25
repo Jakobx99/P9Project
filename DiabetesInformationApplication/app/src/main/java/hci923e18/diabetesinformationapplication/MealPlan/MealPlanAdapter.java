@@ -1,8 +1,6 @@
-package hci923e18.diabetesinformationapplication;
+package hci923e18.diabetesinformationapplication.MealPlan;
 
-import android.app.Fragment;
 import android.content.Context;
-import android.graphics.Movie;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Pair;
@@ -16,6 +14,7 @@ import java.util.List;
 import java.text.DecimalFormat;
 
 import hci923e18.database.Food;
+import hci923e18.diabetesinformationapplication.R;
 
 public class MealPlanAdapter extends ArrayAdapter<Pair<Food, Double>> {
 

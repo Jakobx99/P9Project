@@ -1,4 +1,4 @@
-package hci923e18.diabetesinformationapplication;
+package hci923e18.diabetesinformationapplication.MealPlan;
 
 import android.app.Fragment;
 import android.content.Context;
@@ -22,13 +22,13 @@ import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 import hci923e18.database.Food;
 import hci923e18.database.MealObject;
+import hci923e18.diabetesinformationapplication.R;
 import hci923e18.utility.Calculator;
 
 

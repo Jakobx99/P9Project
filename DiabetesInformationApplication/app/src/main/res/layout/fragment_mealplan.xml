@@ -8,7 +8,7 @@
         android:id="@+id/mealPlanLaAyout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MealPlanFragment">
+        tools:context=".MealPlan.MealPlanFragment">
 
         <TextView
             android:id="@+id/textView"

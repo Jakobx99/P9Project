@@ -1,10 +1,7 @@
-package hci923e18.diabetesinformationapplication;
+package hci923e18.diabetesinformationapplication.Tabs;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,7 +12,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import com.orm.SugarRecord;
 
@@ -23,6 +19,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import hci923e18.database.Food;
+import hci923e18.diabetesinformationapplication.MealLog.MealLogFragment;
+import hci923e18.diabetesinformationapplication.MealPlan.MealPlanFragment;
+import hci923e18.diabetesinformationapplication.R;
+import hci923e18.diabetesinformationapplication.SettingsActivity;
 
 
 public class FrontPageActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{

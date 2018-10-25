@@ -1,4 +1,4 @@
-package hci923e18.diabetesinformationapplication;
+package hci923e18.diabetesinformationapplication.MealLog;
 
 import android.content.Context;
 import android.net.Uri;
@@ -11,6 +11,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 import hci923e18.database.MealObject;
+import hci923e18.diabetesinformationapplication.R;
 
 /**
  * A simple {@link Fragment} subclass.
