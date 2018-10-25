@@ -175,8 +175,12 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
         int id = item.getItemId();
         Intent intent = null;
         switch (id){
-            case R.id.menumyevent:
+            case R.id.profile:
                 intent = new Intent(FrontPageActivity.this, SettingsActivity.class);
+                drawerLayout.closeDrawers();
+                break;
+            case R.id.mealLog:
+                changeToMealLog();
                 drawerLayout.closeDrawers();
                 break;
             case R.id.aboutUs:

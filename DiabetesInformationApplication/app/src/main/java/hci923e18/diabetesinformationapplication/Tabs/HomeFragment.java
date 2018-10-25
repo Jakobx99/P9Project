@@ -81,8 +81,8 @@ public class HomeFragment extends Fragment {
         //Binder components
         createButton = view.findViewById(R.id.buttonData);
         displayButton = view.findViewById(R.id.buttonInformation);
-        aboutButton = view.findViewById(R.id.buttonAbout);
-        settingsButton = view.findViewById(R.id.buttonSettings);
+        /*aboutButton = view.findViewById(R.id.buttonAbout);
+        settingsButton = view.findViewById(R.id.buttonSettings);*/
 
 
         //Click events
@@ -100,7 +100,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        aboutButton.setOnClickListener(new View.OnClickListener() {
+        /*aboutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog alertDialogAbout = new AlertDialog.Builder(getActivity()).create();
@@ -122,13 +122,6 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), SettingsActivity.class);
                 getActivity().startActivity(intent);
-            }
-        });
-
-        /*settingsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((FrontPageActivity)getActivity()).changeToMealLog();
             }
         });*/
 

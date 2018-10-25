@@ -28,16 +28,16 @@
         style="@style/newbuttonstyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="100dp"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="100dp"
         android:text="Måltids planlægger"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonData" />
 
-    <Button
+<!--    <Button
         android:id="@+id/buttonAbout"
         style="@style/newbuttonstyle"
         android:layout_width="0dp"
@@ -49,21 +49,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonSettings" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonSettings" />-->
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="86dp"
-        android:layout_marginStart="87dp"
+        android:layout_marginStart="86dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="86dp"
         android:src="@drawable/logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <!--<Button
         android:id="@+id/buttonSettings"
         style="@style/newbuttonstyle"
         android:layout_width="0dp"
@@ -74,6 +74,6 @@
         android:text="Profil"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonInformation" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonInformation" />-->
 
 </android.support.constraint.ConstraintLayout>
