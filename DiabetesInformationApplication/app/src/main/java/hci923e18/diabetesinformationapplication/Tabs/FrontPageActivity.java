@@ -100,6 +100,16 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
     }
 
     /**
+     * Method to disable back button on fragments
+     * By not calling super, we disable back button
+     */
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+
+    }
+
+    /**
      * Method to change navigation bar and active fragment to home
      */
     public void changeToHome(){
@@ -179,9 +189,9 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
                 intent = new Intent(FrontPageActivity.this, SettingsActivity.class);
                 drawerLayout.closeDrawers();
                 break;
-            case R.id.aboutUs:
+           // case R.id.aboutUs:
 
-                break;
+          //      break;
 
         }
         if (intent == null){
