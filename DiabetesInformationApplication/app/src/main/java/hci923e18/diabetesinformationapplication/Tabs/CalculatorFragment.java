@@ -17,6 +17,8 @@ import android.widget.TextView;
 import hci923e18.database.Profile;
 import hci923e18.diabetesinformationapplication.R;
 import hci923e18.utility.Calculator;
+import hci923e18.utility.KeyBoard;
+
 import java.text.DecimalFormat;
 
 
@@ -100,6 +102,8 @@ public class CalculatorFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_calculator, container, false);
+
+        KeyBoard.setHideKeyboardOnTouch(view.getContext(),view.findViewById(R.id.calculatorlayout));
 
         //Binding of components
         switchButton = view.findViewById(R.id.switchAdvancedOptionsCalculator);
