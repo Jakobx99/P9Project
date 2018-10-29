@@ -51,12 +51,21 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
 
             switch (item.getItemId()) {
                 case R.id.navigation_home:
+                    for(int i = 0; i < fragmentManager.getBackStackEntryCount(); ++i) {
+                        fragmentManager.popBackStack();
+                    }
                     fragmentTransaction.replace(R.id.framelayoutFrontPage, new HomeFragment()).commit();
                     return true;
                 case R.id.navigation_dashboard:
+                    for(int i = 0; i < fragmentManager.getBackStackEntryCount(); ++i) {
+                        fragmentManager.popBackStack();
+                    }
                     fragmentTransaction.replace(R.id.framelayoutFrontPage, new CalculatorFragment()).commit();
                     return true;
                 case R.id.navigation_notifications:
+                    for(int i = 0; i < fragmentManager.getBackStackEntryCount(); ++i) {
+                        fragmentManager.popBackStack();
+                    }
                     fragmentTransaction.replace(R.id.framelayoutFrontPage, new MealPlanFragment()).commit();
                     return true;
             }
@@ -88,6 +97,7 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
         //--------------------------Burger menu-------------------------------------
 
         FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.framelayoutFrontPage, new HomeFragment()).commit();
 
@@ -130,6 +140,7 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
         if (getFragmentManager().getBackStackEntryCount() > 0) {
             getFragmentManager().popBackStack();
         } else {
+
             //super.onBackPressed();
         }
 
@@ -139,6 +150,7 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
      * Method to change navigation bar and active fragment to home
      */
     public void changeToHome(){
+        frameLayout.removeAllViews();
         navigation.setSelectedItemId(R.id.navigation_home);
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -149,6 +161,7 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
      * Method to change navigation bar and active fragment to Data
      */
     public void changeToData(){
+        frameLayout.removeAllViews();
         navigation.setSelectedItemId(R.id.navigation_dashboard);
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -159,6 +172,7 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
      * Method to change navigation bar and active fragment to Information
      */
     public void changeToMealPlan(){
+        frameLayout.removeAllViews();
         navigation.setSelectedItemId(R.id.navigation_notifications);
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -166,10 +180,9 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
     }
 
     public void changeToMealLog(){
-        frameLayout.removeAllViews();
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.framelayoutFrontPage, new MealLogFragment()).addToBackStack("Meallog").commit();
+        fragmentTransaction.add(R.id.framelayoutFrontPage, new MealLogFragment()).addToBackStack("Meallog").commit();
     }
 
     /**

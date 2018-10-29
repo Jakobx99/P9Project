@@ -30,6 +30,7 @@ import hci923e18.database.Food;
 import hci923e18.database.MealObject;
 import hci923e18.diabetesinformationapplication.R;
 import hci923e18.utility.Calculator;
+import hci923e18.utility.KeyBoard;
 
 
 /**
@@ -97,6 +98,8 @@ public class MealPlanFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_mealplan, container, false);
+
+        KeyBoard.setHideKeyboardOnTouch(view.getContext(), view.findViewById(R.id.mealplankeyboardlayout));
 
         mealPlanBloodSugar = view.findViewById(R.id.editText_mealplan_bloodsugar);
         mealPlanButton = view.findViewById(R.id.button_mealplan);
