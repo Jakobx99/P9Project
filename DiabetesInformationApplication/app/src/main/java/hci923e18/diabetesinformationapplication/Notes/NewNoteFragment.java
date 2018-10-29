@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -18,6 +19,7 @@ import java.util.Locale;
 import hci923e18.database.NoteObject;
 import hci923e18.diabetesinformationapplication.R;
 import hci923e18.diabetesinformationapplication.Tabs.FrontPageActivity;
+import hci923e18.utility.KeyBoard;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,8 +34,11 @@ public class NewNoteFragment extends Fragment {
 
     Button saveNote;
     EditText title;
-    EditText context;
+    EditText noteContext;
+    Context mContext;
     NoteObject noteObject = new NoteObject();
+    Boolean data = false;
+    DecimalFormat formater = new DecimalFormat("#.##");
 
     /**
      * Default constructor
@@ -74,9 +79,12 @@ public class NewNoteFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_new_note, container, false);
+
+        KeyBoard.setHideKeyboardOnTouch(view.getContext(), view.findViewById(R.id.NewNoteConstraintLayout));
+
         saveNote = view.findViewById(R.id.buttonSave);
         title = view.findViewById(R.id.textInputNoteTitle);
-        context = view.findViewById(R.id.textInputNoteContext);
+        noteContext = view.findViewById(R.id.textInputNoteContext);
 
         saveNote.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +98,9 @@ public class NewNoteFragment extends Fragment {
             }
         });
 
+        if(data){
+            setup();
+        }
         return view;
     }
 
@@ -130,7 +141,7 @@ public class NewNoteFragment extends Fragment {
     private Boolean save(){
         String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         noteObject.set_title(title.getText().toString());
-        noteObject.set_context(context.getText().toString());
+        noteObject.set_context(noteContext.getText().toString());
         noteObject.set_timestamp(date);
         try {
             noteObject.save();
@@ -138,6 +149,18 @@ public class NewNoteFragment extends Fragment {
             return false;
         }
         return true;
+    }
+
+    public void passData(Context context, NoteObject m) {
+        mContext = context;
+        noteObject = m;
+        data = true;
+
+    }
+
+    public void setup(){
+        title.setText(noteObject.get_title());
+        noteContext.setText(noteObject.get_title());
     }
 
     /**
