@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import hci923e18.database.Profile;
+import hci923e18.utility.KeyBoard;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -28,6 +29,7 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+        KeyBoard.setHideKeyboardOnTouch(this, findViewById(R.id.container));
 
         saveButton = findViewById(R.id.button_save);
         weight = findViewById(R.id.textView_weight);
