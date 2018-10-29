@@ -202,7 +202,7 @@ public class MealPlanFragment extends Fragment {
 
     /**
      *Adds a Food object from the list of food objects
-     * @param f
+     * @param f A Pair consisting of a Food object and a double describing the weight of the food object
      */
     public void addItemToList(Pair<Food, Double> f){
 

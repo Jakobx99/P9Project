@@ -10,6 +10,11 @@ import android.widget.ScrollView;
 
 public class KeyBoard {
 
+    /**
+     * Method to hide the keyboard when an edittext is no longer in focus
+     * @param context The context of the current activity
+     * @param view The view element of the fragment
+     */
     public static void setHideKeyboardOnTouch(final Context context, View view) {
         //Set up touch listener for non-text box views to hide keyboard.
         try {
