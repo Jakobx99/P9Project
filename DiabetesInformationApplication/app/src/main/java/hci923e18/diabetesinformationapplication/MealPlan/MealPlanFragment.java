@@ -19,7 +19,9 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,6 +30,7 @@ import java.util.Locale;
 
 import hci923e18.database.Food;
 import hci923e18.database.MealObject;
+import hci923e18.database.Profile;
 import hci923e18.diabetesinformationapplication.R;
 import hci923e18.utility.Calculator;
 import hci923e18.utility.KeyBoard;
@@ -56,12 +59,22 @@ public class MealPlanFragment extends Fragment {
     AlertDialog alertDialog;
     Calculator calculator = new Calculator();
     String mealType;
+    DecimalFormat formater = new DecimalFormat("#.##");
+    Profile user = new Profile();
 
     /**
      * Default constructor
      */
     public MealPlanFragment() {
         // Required empty public constructor
+        try {
+            user = Profile.listAll(Profile.class).get(0);
+        } catch (Exception e) {
+            user.set_idealBloodGlucoseLevel(6.0);
+            user.set_weight(80.0);
+            user.set_insulinDuration(3.5);
+            user.set_totalDailyInsulinConsumption(41.6);
+        }
     }
 
     /**
@@ -97,7 +110,7 @@ public class MealPlanFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View view = inflater.inflate(R.layout.fragment_mealplan, container, false);
+        final View view = inflater.inflate(R.layout.fragment_mealplan, container, false);
 
         KeyBoard.setHideKeyboardOnTouch(view.getContext(), view.findViewById(R.id.mealplankeyboardlayout));
 
@@ -141,7 +154,7 @@ public class MealPlanFragment extends Fragment {
         mealPlanButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                calculate();
+                calculate(view);
             }
         });
 
@@ -264,9 +277,26 @@ public class MealPlanFragment extends Fragment {
     /**
      * Method called when a users presses the calculate button. The insulin is calculated and the meal plan is saved in the database
      */
-    private void calculate(){
+    private void calculate(View context){
 
-        Double bloodsugar =Double.parseDouble(mealPlanBloodSugar.getText().toString());
+        Double bloodsugar;
+
+        if (mealPlanBloodSugar.getText().toString().isEmpty() || Double.parseDouble(mealPlanBloodSugar.getText().toString())<=0)
+        {
+            bloodsugar = user.get_idealBloodGlucoseLevel();
+            Toast.makeText(context.getContext(),"Da du ikke har skrevet et blodsukker ind, bruges din standard værdi: " + bloodsugar, Toast.LENGTH_LONG).show();
+
+        }
+        else
+            {
+                bloodsugar = Double.parseDouble(mealPlanBloodSugar.getText().toString());
+
+            }
+
+
+
+
+
         Double carbs = 0.0;
         Double fiber = 0.0;
         Double weight = 0.0;
@@ -279,7 +309,7 @@ public class MealPlanFragment extends Fragment {
         //Calculate result
         Double result = calculator.insulinCalculator(carbs, bloodsugar);
         //Display result
-        mealPlanResult.setText(result.toString());
+        mealPlanResult.setText(formater.format(result).toString());
         //Save in db or override
 
         String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
@@ -295,14 +325,20 @@ public class MealPlanFragment extends Fragment {
         meal.set_totalFiber(fiber);
         meal.set_totalWeight(weight);
 
-        try {
-            MealObject m = MealObject.find(MealObject.class,"_mealtype = ? and _timestamp = ?", meal.get_mealtype(), meal.get_timestamp()).get(0);
-            Long id = m.getId();
-            m = meal;
-            m.setId(id);
-            m.save();
-        } catch (Exception e) {
-            meal.save();
+        if(foods.isEmpty())
+        {
+
+        }
+        else {
+            try {
+                MealObject m = MealObject.find(MealObject.class, "_mealtype = ? and _timestamp = ?", meal.get_mealtype(), meal.get_timestamp()).get(0);
+                Long id = m.getId();
+                m = meal;
+                m.setId(id);
+                m.save();
+            } catch (Exception e) {
+                meal.save();
+            }
         }
 
 
