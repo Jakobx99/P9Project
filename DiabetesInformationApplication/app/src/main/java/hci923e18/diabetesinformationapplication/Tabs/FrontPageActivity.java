@@ -1,7 +1,9 @@
 package hci923e18.diabetesinformationapplication.Tabs;
 
+import android.app.Dialog;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,6 +11,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
@@ -92,6 +95,24 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
         if (_food.size() == 0)
         {
             populateDB();
+            Dialog dialog = null;
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Dette er første gang appen startes. Vil du gerne lave dine indstillinger")
+                    .setCancelable(false)
+                    .setPositiveButton("Nej", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                            }
+                    })
+                    .setNegativeButton("Ja", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            Intent intent = new Intent(FrontPageActivity.this, SettingsActivity.class);
+                            startActivity(intent);
+                            }
+                    });
+            AlertDialog alert = builder.create();
+            dialog = alert;
+            dialog.show();
         }
         else{
             //Do nothing
