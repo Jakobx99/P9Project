@@ -21,6 +21,8 @@ import java.util.List;
 import hci923e18.database.Food;
 import hci923e18.diabetesinformationapplication.MealLog.MealLogFragment;
 import hci923e18.diabetesinformationapplication.MealPlan.MealPlanFragment;
+import hci923e18.diabetesinformationapplication.Notes.NewNoteFragment;
+import hci923e18.diabetesinformationapplication.Notes.NoteListFragment;
 import hci923e18.diabetesinformationapplication.R;
 import hci923e18.diabetesinformationapplication.SettingsActivity;
 
@@ -145,6 +147,18 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.framelayoutFrontPage, new MealLogFragment()).commit();
     }
+    public void changeToNewNote(){
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.framelayoutFrontPage, new NewNoteFragment()).addToBackStack("noter").commit();
+    }
+
+    public void changeToNoteList(){
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.framelayoutFrontPage, new NoteListFragment()).addToBackStack("noteList").commit();
+    }
+
 
     /**
      * Method to populate Database with default Food items first time the app is launched
@@ -191,6 +205,10 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
                 break;
             case R.id.mealLog:
                 changeToMealLog();
+                drawerLayout.closeDrawers();
+                break;
+            case R.id.navigation_notes:
+                changeToNoteList();
                 drawerLayout.closeDrawers();
                 break;
         

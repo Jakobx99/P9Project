@@ -1,55 +1,58 @@
-package hci923e18.diabetesinformationapplication.MealLog;
+package hci923e18.diabetesinformationapplication.Notes;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
-import java.util.ArrayList;
-import java.util.List;
-import hci923e18.database.MealObject;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
+import hci923e18.database.NoteObject;
 import hci923e18.diabetesinformationapplication.R;
-import hci923e18.diabetesinformationapplication.SpecificLog.SpecificLogFragment;
+import hci923e18.diabetesinformationapplication.Tabs.FrontPageActivity;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link MealLogFragment.OnFragmentInteractionListener} interface
+ * {@link NewNoteFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link MealLogFragment#newInstance} factory method to
+ * Use the {@link NewNoteFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MealLogFragment extends Fragment {
-
+public class NewNoteFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
-    List<MealObject> meals = new ArrayList<>();
-    ListView mealLogListView;
-    MealLogAdapter mAdapter;
-    View view;
+
+    Button saveNote;
+    EditText title;
+    EditText context;
+    NoteObject noteObject = new NoteObject();
 
     /**
      * Default constructor
      */
-    public MealLogFragment() {
+    public NewNoteFragment() {
         // Required empty public constructor
     }
 
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
+     *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment MealLogFragment.
+     * @return A new instance of fragment NewNoteFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static MealLogFragment newInstance(String param1, String param2) {
-        MealLogFragment fragment = new MealLogFragment();
+    public static NewNoteFragment newInstance(String param1, String param2) {
+        NewNoteFragment fragment = new NewNoteFragment();
         return fragment;
     }
 
@@ -58,9 +61,7 @@ public class MealLogFragment extends Fragment {
      * @param savedInstanceState The saved instance can be used if the application is reopened
      */
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
+    public void onCreate(Bundle savedInstanceState) {  super.onCreate(savedInstanceState); }
 
     /**
      * Method to create the view that is rendered. Binds the different controls and sets up the onclick events
@@ -72,30 +73,32 @@ public class MealLogFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_meal_log, container, false);
-        mealLogListView = view.findViewById(R.id.listview_MealLog);
-        try {
-            meals = MealObject.listAll(MealObject.class);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        final View view = inflater.inflate(R.layout.fragment_new_note, container, false);
+        saveNote = view.findViewById(R.id.buttonSave);
+        title = view.findViewById(R.id.textInputNoteTitle);
+        context = view.findViewById(R.id.textInputNoteContext);
 
-        mAdapter = new MealLogAdapter(view.getContext(),0, meals, MealLogFragment.this);
-        mealLogListView.setAdapter(mAdapter);
+        saveNote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(save()){
+                    Toast.makeText(view.getContext(), "Note blev gemt",Toast.LENGTH_LONG);
+                    //NoteListFragment noteListFragment = new NoteListFragment();
+                    //noteListFragment.dataChanged();
+                    getActivity().getFragmentManager().popBackStack();
+                }
+            }
+        });
+
         return view;
     }
 
-    /**
-     * Default onButtonPressed
-     * @param uri update argument and hook method into UI event
-     */
+    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
     }
-
 
     /**
      * Default onAttach method
@@ -120,13 +123,21 @@ public class MealLogFragment extends Fragment {
         mListener = null;
     }
 
-    public void openSpecificLog(MealObject m){
-        SpecificLogFragment myFragment = new SpecificLogFragment();
-        myFragment.passData(view.getContext(),m);
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction ft = fragmentManager.beginTransaction();
-        ft.add(R.id.framelayoutFrontPage, myFragment);
-        ft.commit();
+    /**
+     * Save Method to save noteObject to database
+     * @return true if success or false if fails
+     */
+    private Boolean save(){
+        String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+        noteObject.set_title(title.getText().toString());
+        noteObject.set_context(context.getText().toString());
+        noteObject.set_timestamp(date);
+        try {
+            noteObject.save();
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
     }
 
     /**

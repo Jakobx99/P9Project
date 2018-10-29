@@ -1,55 +1,56 @@
-package hci923e18.diabetesinformationapplication.MealLog;
+package hci923e18.diabetesinformationapplication.Notes;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
+
 import java.util.ArrayList;
 import java.util.List;
-import hci923e18.database.MealObject;
+
+import hci923e18.database.NoteObject;
 import hci923e18.diabetesinformationapplication.R;
-import hci923e18.diabetesinformationapplication.SpecificLog.SpecificLogFragment;
+import hci923e18.diabetesinformationapplication.Tabs.FrontPageActivity;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link MealLogFragment.OnFragmentInteractionListener} interface
+ * {@link NoteListFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link MealLogFragment#newInstance} factory method to
+ * Use the {@link NoteListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MealLogFragment extends Fragment {
-
+public class NoteListFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
-    List<MealObject> meals = new ArrayList<>();
-    ListView mealLogListView;
-    MealLogAdapter mAdapter;
-    View view;
+
+    Button newNote;
+    List<NoteObject> noteObjects = new ArrayList<>();
+    ListView noteListView;
+    NoteListAdapter localAdapter;
 
     /**
      * Default constructor
      */
-    public MealLogFragment() {
+    public NoteListFragment() {
         // Required empty public constructor
     }
 
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
+     *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment MealLogFragment.
+     * @return A new instance of fragment NoteListFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static MealLogFragment newInstance(String param1, String param2) {
-        MealLogFragment fragment = new MealLogFragment();
+    public static NoteListFragment newInstance(String param1, String param2) {
+        NoteListFragment fragment = new NoteListFragment();
         return fragment;
     }
 
@@ -72,30 +73,40 @@ public class MealLogFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_meal_log, container, false);
-        mealLogListView = view.findViewById(R.id.listview_MealLog);
+
+        View view = inflater.inflate(R.layout.fragment_note_list, container, false);
+
         try {
-            meals = MealObject.listAll(MealObject.class);
+            noteObjects = NoteObject.listAll(NoteObject.class);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        mAdapter = new MealLogAdapter(view.getContext(),0, meals, MealLogFragment.this);
-        mealLogListView.setAdapter(mAdapter);
+        noteListView = view.findViewById(R.id.listview_NoteList);
+
+
+        localAdapter = new NoteListAdapter(view.getContext(),0, noteObjects, NoteListFragment.this);
+        noteListView.setAdapter(localAdapter);
+
+
+        newNote = view.findViewById(R.id.buttonNewNote);
+
+        newNote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((FrontPageActivity)getActivity()).changeToNewNote();
+            }
+        });
+
         return view;
     }
 
-    /**
-     * Default onButtonPressed
-     * @param uri update argument and hook method into UI event
-     */
+    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
     }
-
 
     /**
      * Default onAttach method
@@ -118,15 +129,6 @@ public class MealLogFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
-    }
-
-    public void openSpecificLog(MealObject m){
-        SpecificLogFragment myFragment = new SpecificLogFragment();
-        myFragment.passData(view.getContext(),m);
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction ft = fragmentManager.beginTransaction();
-        ft.add(R.id.framelayoutFrontPage, myFragment);
-        ft.commit();
     }
 
     /**

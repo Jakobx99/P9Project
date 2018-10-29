@@ -16,4 +16,5 @@
         android:icon="@drawable/icons8_calories_50"
         android:title="@string/title_notifications" />
 
+
 </menu>
