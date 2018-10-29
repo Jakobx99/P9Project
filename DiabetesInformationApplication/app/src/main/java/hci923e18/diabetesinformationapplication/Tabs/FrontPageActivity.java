@@ -106,6 +106,11 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
     @Override
     public void onBackPressed() {
         //super.onBackPressed();
+        if (getFragmentManager().getBackStackEntryCount() > 0) {
+            getFragmentManager().popBackStack();
+        } else {
+            //super.onBackPressed();
+        }
 
     }
 
@@ -143,7 +148,7 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
         frameLayout.removeAllViews();
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.framelayoutFrontPage, new MealLogFragment()).commit();
+        fragmentTransaction.replace(R.id.framelayoutFrontPage, new MealLogFragment()).addToBackStack("Meallog").commit();
     }
 
     /**

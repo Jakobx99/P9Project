@@ -126,8 +126,8 @@ public class MealLogFragment extends Fragment {
         myFragment.passData(view.getContext(),m);
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction ft = fragmentManager.beginTransaction();
-        ft.add(R.id.framelayoutFrontPage, myFragment);
-        ft.commit();
+        ft.add(R.id.framelayoutFrontPage, myFragment).addToBackStack("Specificlog").commit();
+
     }
 
     /**
