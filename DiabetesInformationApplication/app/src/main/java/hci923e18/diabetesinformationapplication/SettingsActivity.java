@@ -2,6 +2,7 @@ package hci923e18.diabetesinformationapplication;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -43,7 +44,7 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(save()){
-                    Toast.makeText(getApplicationContext(), "Indstillinger gemt",Toast.LENGTH_LONG);
+                    Toast.makeText(getApplicationContext(), "Profil indstillingerne blev gemt",Toast.LENGTH_LONG).show();
                     finish();
                 }
             }
@@ -76,10 +77,47 @@ public class SettingsActivity extends AppCompatActivity {
      * @return Boolean value depending on success of database operation
      */
     private Boolean save(){
-         p.set_weight(Double.parseDouble(weight.getText().toString()));
-         p.set_totalDailyInsulinConsumption(Double.parseDouble(totalDailyInsulinConsumption.getText().toString()));
-         p.set_insulinDuration(Double.parseDouble(insulinDuration.getText().toString()));
-         p.set_idealBloodGlucoseLevel(Double.parseDouble(idealBloodGlucoseLevel.getText().toString()));
+        if(weight.getText().toString().isEmpty())
+        {
+            Toast.makeText(this,"Du mangler at angive vægt",Toast.LENGTH_LONG).show();
+            return false;
+        }
+        else
+        {
+            p.set_weight(Double.parseDouble(weight.getText().toString()));
+        }
+
+        if(idealBloodGlucoseLevel.getText().toString().isEmpty())
+        {
+            Toast.makeText(this,"Du mangler at angive dit mål blodsukker",Toast.LENGTH_LONG).show();
+            return false;
+        }
+        else
+        {
+            p.set_idealBloodGlucoseLevel(Double.parseDouble(idealBloodGlucoseLevel.getText().toString()));
+        }
+
+        if(insulinDuration.getText().toString().isEmpty())
+        {
+            Toast.makeText(this,"Du mangler at angive hvor længe insulinen er aktiv, efter du har taget det",Toast.LENGTH_LONG).show();
+            return false;
+        }
+        else
+        {
+            p.set_insulinDuration(Double.parseDouble(insulinDuration.getText().toString()));
+        }
+
+        if(totalDailyInsulinConsumption.getText().toString().isEmpty())
+        {
+            Toast.makeText(this,"Du mangler at angive dit daglige insulinforbrug",Toast.LENGTH_LONG).show();
+            return false;
+        }
+        else
+        {
+            p.set_totalDailyInsulinConsumption(Double.parseDouble(totalDailyInsulinConsumption.getText().toString()));
+        }
+
+
         try {
             p.save();
             return true;
