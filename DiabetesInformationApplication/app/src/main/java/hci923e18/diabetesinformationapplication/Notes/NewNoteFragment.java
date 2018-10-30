@@ -81,7 +81,7 @@ public class NewNoteFragment extends Fragment {
         saveNote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(save()){
+                if(save(view)){
                     Toast.makeText(view.getContext(), "Note blev gemt",Toast.LENGTH_LONG);
                     //NoteListFragment noteListFragment = new NoteListFragment();
                     //noteListFragment.dataChanged();
@@ -127,17 +127,24 @@ public class NewNoteFragment extends Fragment {
      * Save Method to save noteObject to database
      * @return true if success or false if fails
      */
-    private Boolean save(){
-        String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-        noteObject.set_title(title.getText().toString());
-        noteObject.set_context(context.getText().toString());
-        noteObject.set_timestamp(date);
-        try {
-            noteObject.save();
-        } catch (Exception e) {
+    private Boolean save(View view){
+
+        if(context.getText().toString().isEmpty() || title.getText().toString().isEmpty()){
+            Toast.makeText(view.getContext(),"Der er et tomt felt", Toast.LENGTH_SHORT ).show();
             return false;
         }
-        return true;
+        else {
+            String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+            noteObject.set_title(title.getText().toString());
+            noteObject.set_context(context.getText().toString());
+            noteObject.set_timestamp(date);
+            try {
+                noteObject.save();
+            } catch (Exception e) {
+                return false;
+            }
+            return true;
+            }
     }
 
     /**
