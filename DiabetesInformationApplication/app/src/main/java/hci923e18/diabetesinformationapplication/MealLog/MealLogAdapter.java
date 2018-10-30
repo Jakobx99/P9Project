@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import hci923e18.database.MealObject;
 import hci923e18.diabetesinformationapplication.R;
@@ -18,6 +19,7 @@ public class MealLogAdapter extends ArrayAdapter<MealObject> {
     private Context mContext;
     private List<MealObject> mMeal;
     private MealLogFragment mMealLogFragment;
+    DecimalFormat formater = new DecimalFormat("#.##");
 
     /**
      *
@@ -57,10 +59,10 @@ public class MealLogAdapter extends ArrayAdapter<MealObject> {
         Date.setText(currentMeal.get_timestamp());
 
         TextView Carbs = listItem.findViewById(R.id.textView_mealLogCarbs);
-        Carbs.setText(currentMeal.get_totalCarbs().toString() + " g");
+        Carbs.setText(formater.format(currentMeal.get_totalCarbs()) + " g");
 
         TextView Insulin = listItem.findViewById(R.id.textView_mealLogInsulin);
-        Insulin.setText(currentMeal.get_insulinResult().toString() + " Enheder");
+        Insulin.setText(formater.format(currentMeal.get_insulinResult()) + " Enheder");
 
         listItem.setOnClickListener(new View.OnClickListener() {
             @Override

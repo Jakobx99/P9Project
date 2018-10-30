@@ -57,12 +57,12 @@ public class NoteListAdapter extends ArrayAdapter<NoteObject> {
         Date.setText(currentNote.get_timestamp());
 
 
-        /*listItem.setOnClickListener(new View.OnClickListener() {
+        listItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                mNoteListFragment.openSpecificNote(currentNote);
             }
-        });*/
+        });
 
         return listItem;
     }

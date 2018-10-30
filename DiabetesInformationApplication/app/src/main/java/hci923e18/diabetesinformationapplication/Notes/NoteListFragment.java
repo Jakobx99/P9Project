@@ -1,5 +1,7 @@
 package hci923e18.diabetesinformationapplication.Notes;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,8 +15,10 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
+import hci923e18.database.MealObject;
 import hci923e18.database.NoteObject;
 import hci923e18.diabetesinformationapplication.R;
+import hci923e18.diabetesinformationapplication.SpecificLog.SpecificLogFragment;
 import hci923e18.diabetesinformationapplication.Tabs.FrontPageActivity;
 
 /**
@@ -32,6 +36,7 @@ public class NoteListFragment extends Fragment {
     List<NoteObject> noteObjects = new ArrayList<>();
     ListView noteListView;
     NoteListAdapter localAdapter;
+    View view;
 
     /**
      * Default constructor
@@ -74,7 +79,7 @@ public class NoteListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_note_list, container, false);
+        view = inflater.inflate(R.layout.fragment_note_list, container, false);
 
         try {
             noteObjects = NoteObject.listAll(NoteObject.class);
@@ -130,6 +135,17 @@ public class NoteListFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
+
+    public void openSpecificNote(NoteObject m){
+        NewNoteFragment myFragment = new NewNoteFragment();
+        myFragment.passData(view.getContext(),m);
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+        ft.replace(R.id.framelayoutFrontPage, myFragment).addToBackStack("SpecificNote").commit();
+
+    }
+
+
 
     /**
      * This interface must be implemented by activities that contain this

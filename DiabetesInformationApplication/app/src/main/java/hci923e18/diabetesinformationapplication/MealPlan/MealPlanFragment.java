@@ -288,14 +288,10 @@ public class MealPlanFragment extends Fragment {
 
         }
         else
-            {
-                bloodsugar = Double.parseDouble(mealPlanBloodSugar.getText().toString());
+        {
+            bloodsugar = Double.parseDouble(mealPlanBloodSugar.getText().toString());
 
-            }
-
-
-
-
+        }
 
         Double carbs = 0.0;
         Double fiber = 0.0;
