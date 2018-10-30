@@ -1,5 +1,7 @@
 package hci923e18.diabetesinformationapplication.Notes;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -94,6 +96,9 @@ public class NewNoteFragment extends Fragment {
                     //NoteListFragment noteListFragment = new NoteListFragment();
                     //noteListFragment.dataChanged();
                     getActivity().getFragmentManager().popBackStack();
+                    FragmentManager fragmentManager = getActivity().getFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.add(R.id.framelayoutFrontPage, new NoteListFragment()).addToBackStack("noteList").commit();
                 }
             }
         });
@@ -140,14 +145,14 @@ public class NewNoteFragment extends Fragment {
      */
     private Boolean save(View view){
 
-        if(context.getText().toString().isEmpty() || title.getText().toString().isEmpty()){
+        if(noteContext.getText().toString().isEmpty() || title.getText().toString().isEmpty()){
             Toast.makeText(view.getContext(),"Der er et tomt felt", Toast.LENGTH_SHORT ).show();
             return false;
         }
         else {
             String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
             noteObject.set_title(title.getText().toString());
-            noteObject.set_context(context.getText().toString());
+            noteObject.set_context(noteContext.getText().toString());
             noteObject.set_timestamp(date);
             try {
                 noteObject.save();

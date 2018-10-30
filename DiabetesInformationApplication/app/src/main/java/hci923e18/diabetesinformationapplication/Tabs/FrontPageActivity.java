@@ -189,7 +189,7 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
     public void changeToNewNote(){
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.framelayoutFrontPage, new NewNoteFragment()).addToBackStack("noter").commit();
+        fragmentTransaction.add(R.id.framelayoutFrontPage, new NewNoteFragment()).addToBackStack("noter").commit();
     }
 
     public void changeToNoteList(){
