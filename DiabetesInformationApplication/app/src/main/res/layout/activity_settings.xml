@@ -12,12 +12,14 @@
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="0dp"
-        android:layout_height="313dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
         android:focusable="true"
         android:focusableInTouchMode="true"
+        app:layout_constraintBottom_toTopOf="@+id/textView12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,76 +30,132 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textView6"
+            <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Vægt (kg)" />
-
-            <EditText
-                android:id="@+id/textView_weight"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="80"
-                android:inputType="numberDecimal"
-                tools:layout_editor_absoluteX="16dp"
-                tools:layout_editor_absoluteY="29dp" />
-
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Mål blodsukker værdi (mmol/L)" />
-
-            <EditText
-                android:id="@+id/textView_idealBloodGlucoseLevel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="5.5"
-                android:inputType="numberDecimal"
-                tools:layout_editor_absoluteX="16dp"
-                tools:layout_editor_absoluteY="29dp" />
-
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Insulin virkningstid (Timer)" />
-
-            <EditText
-                android:id="@+id/textView_insulinDuration"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="3.5"
-                android:inputType="numberDecimal"
-                tools:layout_editor_absoluteX="16dp"
-                tools:layout_editor_absoluteY="29dp" />
-
-            <TextView
-                android:id="@+id/textView11"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Daglig insulin forbrug (Enheder)" />
-
-            <EditText
-                android:id="@+id/textView_totalDailyInsulinConsumption"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="30"
-                android:inputType="numberDecimal"
-                tools:layout_editor_absoluteX="16dp"
-                tools:layout_editor_absoluteY="29dp" />
-
-            <Button
-                android:id="@+id/button_save"
-                style="@style/newbuttonstyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Gem"
-                tools:layout_editor_absoluteX="148dp"
-                tools:layout_editor_absoluteY="447dp" />
+                android:layout_height="match_parent">
 
 
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Vægt (kg)"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/textView_weight"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="80"
+                    android:inputType="numberDecimal"
+                    app:layout_constraintEnd_toStartOf="@+id/imageButtonVægt"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+                <ImageButton
+                    android:id="@+id/imageButtonVægt"
+                    android:layout_width="0dp"
+                    android:layout_height="47dp"
+                    android:background="@android:color/transparent"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView_weight"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textView_weight"
+                    app:srcCompat="@android:drawable/ic_menu_info_details" />
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Mål blodsukker værdi (mmol/L)"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_weight" />
+
+                <EditText
+                    android:id="@+id/textView_idealBloodGlucoseLevel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="5.5"
+                    android:inputType="numberDecimal"
+                    app:layout_constraintEnd_toStartOf="@+id/imageButtonBloodGlucose"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+                <ImageButton
+                    android:id="@+id/imageButtonBloodGlucose"
+                    android:layout_width="0dp"
+                    android:layout_height="47dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@android:color/transparent"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView_idealBloodGlucoseLevel"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textView_idealBloodGlucoseLevel"
+                    app:srcCompat="@android:drawable/ic_menu_info_details" />
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Insulin virkningstid (Timer)"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_idealBloodGlucoseLevel" />
+
+                <EditText
+                    android:id="@+id/textView_insulinDuration"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="3.5"
+                    android:inputType="numberDecimal"
+                    app:layout_constraintEnd_toStartOf="@+id/imageButtonInsulinDuratation"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+                <ImageButton
+                    android:id="@+id/imageButtonInsulinDuratation"
+                    android:layout_width="0dp"
+                    android:layout_height="47dp"
+                    android:background="@android:color/transparent"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView_insulinDuration"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textView_insulinDuration"
+                    app:srcCompat="@android:drawable/ic_menu_info_details" />
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Daglig insulin forbrug (Enheder)"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_insulinDuration" />
+
+                <EditText
+                    android:id="@+id/textView_totalDailyInsulinConsumption"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="30"
+                    android:inputType="numberDecimal"
+                    app:layout_constraintEnd_toStartOf="@+id/imageButtonInsulinUsage"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+                <ImageButton
+                    android:id="@+id/imageButtonInsulinUsage"
+                    android:layout_width="0dp"
+                    android:layout_height="47dp"
+                    android:background="@android:color/transparent"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView_totalDailyInsulinConsumption"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textView_totalDailyInsulinConsumption"
+                    app:srcCompat="@android:drawable/ic_menu_info_details" />
+
+                <Button
+                    android:id="@+id/button_save"
+                    style="@style/newbuttonstyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Gem"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_totalDailyInsulinConsumption" />
+            </android.support.constraint.ConstraintLayout>
         </LinearLayout>
     </ScrollView>
 
@@ -118,8 +176,8 @@
         android:id="@+id/textView13"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:text="Navn: Hans Hansen"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -130,8 +188,8 @@
         android:id="@+id/textView14"
         android:layout_width="match_parent"
         android:layout_height="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:text="Tlf. nr: 12345678"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -142,10 +200,11 @@
         android:id="@+id/textView15"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:text="Adresse: Strandvejen 86, 9600 Tåstrup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
 </android.support.constraint.ConstraintLayout>

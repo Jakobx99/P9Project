@@ -2,10 +2,12 @@ package hci923e18.diabetesinformationapplication;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.TooltipCompat;
 import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import hci923e18.database.Profile;
@@ -18,6 +20,10 @@ public class SettingsActivity extends AppCompatActivity {
     public EditText idealBloodGlucoseLevel;
     public EditText insulinDuration;
     public EditText totalDailyInsulinConsumption;
+    public ImageButton infoWeight;
+    public ImageButton infoBloodGlucose;
+    public ImageButton infoDuration;
+    public ImageButton infoInsulinUsage;
     Profile p;
 
     /**
@@ -36,6 +42,11 @@ public class SettingsActivity extends AppCompatActivity {
         idealBloodGlucoseLevel = findViewById(R.id.textView_idealBloodGlucoseLevel);
         insulinDuration = findViewById(R.id.textView_insulinDuration);
         totalDailyInsulinConsumption = findViewById(R.id.textView_totalDailyInsulinConsumption);
+        infoWeight = findViewById(R.id.imageButtonVægt);
+        infoBloodGlucose = findViewById(R.id.imageButtonBloodGlucose);
+        infoDuration = findViewById(R.id.imageButtonInsulinDuratation);
+        infoInsulinUsage = findViewById(R.id.imageButtonInsulinUsage);
+
         fetchdata();
         weight.setText(p.get_weight().toString());
         idealBloodGlucoseLevel.setText(p.get_idealBloodGlucoseLevel().toString());
@@ -51,6 +62,41 @@ public class SettingsActivity extends AppCompatActivity {
                 }
             }
         });
+
+        //TooltipCompat.setTooltipText(myView, context.getString(R.string.myString));
+        infoWeight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TooltipCompat.setTooltipText(v,"Test");
+                Toast.makeText(v.getContext(), "My tool-tip text", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        infoBloodGlucose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
+        infoDuration.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
+        infoInsulinUsage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
+
 
     }
 
