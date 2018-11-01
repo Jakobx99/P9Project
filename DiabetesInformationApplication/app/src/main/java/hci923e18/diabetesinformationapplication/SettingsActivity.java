@@ -28,7 +28,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     /**
      * OnCreate method called when activity is initiated.
-     * Bindings are performed and onclick listner for button is made
+     * Bindings are performed and setOnClickListener for button is made
      * @param savedInstanceState
      */
     @Override
@@ -63,27 +63,27 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        //TooltipCompat.setTooltipText(myView, context.getString(R.string.myString));
         infoWeight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TooltipCompat.setTooltipText(v,"Test");
-                Toast.makeText(v.getContext(), "My tool-tip text", Toast.LENGTH_SHORT).show();
+                TooltipCompat.setTooltipText(v,"Tiltænkt til fremtidige features");
+                Toast.makeText(v.getContext(), "Tiltænkt til fremtidige features", Toast.LENGTH_LONG).show();
             }
         });
 
         infoBloodGlucose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                TooltipCompat.setTooltipText(v,"Idealt blodsukker bliver brugt til at korrigere blodsukkeret udenfor normal værdien");
+                Toast.makeText(v.getContext(), "Idealt blodsukker bliver brugt til at korrigere blodsukkeret udenfor normal værdien", Toast.LENGTH_LONG).show();
             }
         });
-
 
         infoDuration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                TooltipCompat.setTooltipText(v,"Tiltænkt til fremtidige features");
+                Toast.makeText(v.getContext(), "Tiltænkt til fremtidige features", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -91,13 +91,10 @@ public class SettingsActivity extends AppCompatActivity {
         infoInsulinUsage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                TooltipCompat.setTooltipText(v,"Bruges til at udregne hvor mange enheder insulin per gram kulhydrat");
+                Toast.makeText(v.getContext(), "Bruges til at udregne hvor mange enheder insulin per gram kulhydrat", Toast.LENGTH_LONG).show();
             }
         });
-
-
-
-
     }
 
     /**
@@ -164,7 +161,6 @@ public class SettingsActivity extends AppCompatActivity {
         {
             p.set_totalDailyInsulinConsumption(Double.parseDouble(totalDailyInsulinConsumption.getText().toString()));
         }
-
 
         try {
             p.save();
