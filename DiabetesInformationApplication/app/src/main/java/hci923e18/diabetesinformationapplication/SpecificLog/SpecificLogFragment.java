@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import hci923e18.database.MealObject;
 import hci923e18.diabetesinformationapplication.R;
 
@@ -92,7 +91,6 @@ public class SpecificLogFragment extends Fragment {
         // Inflate the layout for this fragment
         return view;
     }
-
 
     /**
      *Method called when the fragment is attached to the fragment manager
