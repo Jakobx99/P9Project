@@ -46,7 +46,6 @@ public class PopUpAdapter extends ArrayAdapter<Food> {
         mMealPlanFragment = mealPlanFragment;
         this.arraylist = new ArrayList<Food>();
         this.arraylist.addAll(mFood);
-
     }
 
     /**
@@ -81,13 +80,14 @@ public class PopUpAdapter extends ArrayAdapter<Food> {
                 AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
                 builder.setTitle("Indtast mængde i gram");
 
-// Set up the input
+                // Set up the input
                 final EditText input = new EditText(mContext);
-// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+
+                // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
                 input.setInputType(InputType.TYPE_CLASS_NUMBER | TYPE_NUMBER_FLAG_DECIMAL);
                 builder.setView(input);
 
-// Set up the buttons
+                // Set up the buttons
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -106,14 +106,8 @@ public class PopUpAdapter extends ArrayAdapter<Food> {
                 });
 
                 builder.show();
-
-
-
-
-
             }
         });
-
 
         TextView name = listItem.findViewById(R.id.textView_mealPlanListname);
         name.setText(currentFood.get_name());
@@ -129,8 +123,6 @@ public class PopUpAdapter extends ArrayAdapter<Food> {
 
         TextView fiber = listItem.findViewById(R.id.textView_fiber);
         fiber.setText(currentFood.get_fiber().toString() + " g");
-
-
 
         return listItem;
     }
@@ -153,6 +145,5 @@ public class PopUpAdapter extends ArrayAdapter<Food> {
                 }
             }
         }
-
     }
 }

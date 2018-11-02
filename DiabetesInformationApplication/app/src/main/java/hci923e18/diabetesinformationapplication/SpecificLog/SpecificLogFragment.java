@@ -23,7 +23,6 @@ import hci923e18.diabetesinformationapplication.R;
  * create an instance of this fragment.
  */
 public class SpecificLogFragment extends Fragment {
-
     private SpecificLogFragment.OnFragmentInteractionListener mListener;
 
     EditText mealLogSpinner;
@@ -79,7 +78,6 @@ public class SpecificLogFragment extends Fragment {
         mealLogBloodSugar = view.findViewById(R.id.editText_meallog_bloodsugar);
         mealLogResult = view.findViewById(R.id.textView_meallog_result);
         mealLogLayout = view.findViewById(R.id.meallog_listview);
-
 
         mealLogResult.setText(_MealObject.get_insulinResult().toString());
         mealLogBloodSugar.setText(_MealObject.get_bloodGlucoseLevel().toString());
@@ -142,6 +140,4 @@ public class SpecificLogFragment extends Fragment {
         mContext = context;
         _MealObject = m;
     }
-
-
 }

@@ -58,7 +58,6 @@ public class MealPlanAdapter extends ArrayAdapter<Pair<Food, Double>> {
             @Override
             public void onClick(View v) {
                 mMealPlanFragment.removeItemFromList(position);
-
             }
         });
 
@@ -68,14 +67,11 @@ public class MealPlanAdapter extends ArrayAdapter<Pair<Food, Double>> {
         TextView carbohydrate = listItem.findViewById(R.id.textView_carbo);
         carbohydrate.setText(formater.format(currentFood.first.get_carbohydrate()) + " g");
 
-
         TextView fiber = listItem.findViewById(R.id.textView_fiber);
         fiber.setText(formater.format(currentFood.first.get_fiber()) + " g");
 
         TextView weight = listItem.findViewById(R.id.textView_gram);
         weight.setText(formater.format(currentFood.second) + " g");
-
-
 
         return listItem;
     }

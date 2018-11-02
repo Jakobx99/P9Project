@@ -18,13 +18,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">>
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/column_NoteTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:paddingTop="6dp"
             android:text="Title" />
 
         <TextView
@@ -32,6 +33,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:paddingTop="6dp"
             android:text="Dato" />
+        <ImageView
+            android:id="@+id/imageView_NoteListDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@android:drawable/ic_menu_delete" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

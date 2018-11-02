@@ -1,20 +1,14 @@
 package hci923e18.diabetesinformationapplication.Tabs;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.Fragment;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-
 import hci923e18.diabetesinformationapplication.R;
-import hci923e18.diabetesinformationapplication.SettingsActivity;
 
 
 /**
@@ -38,8 +32,6 @@ public class HomeFragment extends Fragment {
     //Global variables
     Button createButton;
     Button displayButton;
-    Button aboutButton;
-    Button settingsButton;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -63,6 +55,10 @@ public class HomeFragment extends Fragment {
         return fragment;
     }
 
+    /**
+     * Default onCreate method
+     * @param savedInstanceState The saved instance can be used if the application is reopened
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,9 +77,6 @@ public class HomeFragment extends Fragment {
         //Binder components
         createButton = view.findViewById(R.id.buttonData);
         displayButton = view.findViewById(R.id.buttonInformation);
-        /*aboutButton = view.findViewById(R.id.buttonAbout);
-        settingsButton = view.findViewById(R.id.buttonSettings);*/
-
 
         //Click events
         createButton.setOnClickListener(new View.OnClickListener() {
@@ -99,31 +92,6 @@ public class HomeFragment extends Fragment {
                 ((FrontPageActivity)getActivity()).changeToMealPlan();
             }
         });
-
-        /*aboutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog alertDialogAbout = new AlertDialog.Builder(getActivity()).create();
-                alertDialogAbout.setTitle("About us");
-                alertDialogAbout.setMessage("This application have been created by group hci923e18 at Aalborg University");
-                alertDialogAbout.setIcon(R.drawable.ic_dashboard_black_24dp);
-
-                alertDialogAbout.setButton(Dialog.BUTTON_NEUTRAL, "OK", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        return;
-                    }
-                });
-                alertDialogAbout.show();
-            }
-        });
-
-        settingsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), SettingsActivity.class);
-                getActivity().startActivity(intent);
-            }
-        });*/
 
         // Inflate the layout for this fragment
         return view;

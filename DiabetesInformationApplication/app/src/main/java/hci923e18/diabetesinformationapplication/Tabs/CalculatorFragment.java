@@ -13,14 +13,11 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
-
 import hci923e18.database.Profile;
 import hci923e18.diabetesinformationapplication.R;
 import hci923e18.utility.Calculator;
 import hci923e18.utility.KeyBoard;
-
 import java.text.DecimalFormat;
-
 
 /**
  * A simple {@link Fragment} subclass.
@@ -40,9 +37,6 @@ public class CalculatorFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private Profile user = new Profile();
-
-
-
     private OnFragmentInteractionListener mListener;
     DecimalFormat formater = new DecimalFormat("#.##");
     Switch switchButton;
@@ -52,11 +46,8 @@ public class CalculatorFragment extends Fragment {
     EditText carbohydrateInput;
     EditText bloodGlucoseInput;
     EditText fiberInput;
-
     TextView fiberText;
-
     TextInputLayout fiberLayout;
-
 
     public CalculatorFragment() {
         // Required empty public constructor
@@ -113,28 +104,18 @@ public class CalculatorFragment extends Fragment {
         carbohydrateInput = view.findViewById(R.id.textInputCarbohydrate);
         bloodGlucoseInput = view.findViewById(R.id.textInputBloodSugar);
         fiberInput = view.findViewById(R.id.textInputFiber);
-
         fiberText = view.findViewById(R.id.textViewFiber);
-
         fiberLayout = view.findViewById(R.id.textInputLayoutFiber);
-
-
         final Calculator calculator = new Calculator();
-
 
         switchButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 fiberText.setVisibility(View.VISIBLE);
-
                 fiberLayout.setVisibility(View.VISIBLE);
-
-
                 if (!isChecked)
                 {
                     fiberText.setVisibility(View.INVISIBLE);
-
                     fiberLayout.setVisibility(View.GONE);
-
                 }
             }
         });
@@ -156,9 +137,7 @@ public class CalculatorFragment extends Fragment {
                         } else {
                             guideText.setText("Fiberen udgør " + formater.format(fiberPercentageResult) + "% af kulhydraterne, vi anbefaler at du tager insulin før måltidet");
                         }
-
                     }
-
 
                     if (bloodGlucoseInput.getText().toString().isEmpty() || Integer.parseInt(bloodGlucoseInput.getText().toString())<=0) {
                         Double bloodGlucoseAdjustment = calculator.bloodGlucoseGoalCalculation(bloodGlucoseLevel);
@@ -166,7 +145,6 @@ public class CalculatorFragment extends Fragment {
                         insulinResult.setText(formater.format(result).toString());
 
                         guideText.append("\nDa der ikke er indtastet et blodsukker, benyttes mål værdien " + bloodGlucoseLevel + " fra din profil.");
-//
                     } else {
                         Double bloodGlucoseAdjustment = calculator.bloodGlucoseGoalCalculation(Double.parseDouble(bloodGlucoseInput.getText().toString()));
                         Double result = calculator.insulinCalculator(Double.parseDouble(carbohydrateInput.getText().toString()), Double.parseDouble(bloodGlucoseInput.getText().toString()));
@@ -193,15 +171,9 @@ public class CalculatorFragment extends Fragment {
                 {
                     guideText.setText("Du har ikke indtastet nogen værdi i kulhydrater.");
                 }
-
-
-
-
-
             }});
 
         return view;
-
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -241,12 +213,4 @@ public class CalculatorFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
-
-
-
-
-
-
-
-
 }

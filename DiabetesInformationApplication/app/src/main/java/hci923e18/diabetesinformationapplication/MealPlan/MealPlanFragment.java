@@ -95,7 +95,6 @@ public class MealPlanFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     /**
@@ -161,10 +160,8 @@ public class MealPlanFragment extends Fragment {
         mAdapter = new MealPlanAdapter(view.getContext(),0, foods, MealPlanFragment.this);
         mealPlanLayout.setAdapter(mAdapter);
 
-
         return view;
     }
-
 
     /**
      *Method called when the fragment is attached to the fragment manager
@@ -218,7 +215,6 @@ public class MealPlanFragment extends Fragment {
      * @param f A Pair consisting of a Food object and a double describing the weight of the food object
      */
     public void addItemToList(Pair<Food, Double> f){
-
         Pair<Food,Double> p = new Pair<>(calculator.calculateNutritinalValuesDependingOnWeight(f), f.second);
         foods.add(p);
         mAdapter.notifyDataSetChanged();
@@ -232,10 +228,8 @@ public class MealPlanFragment extends Fragment {
         LayoutInflater li = LayoutInflater.from(context);
         View view = li.inflate(R.layout.popupwindow, null);
 
-
         final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
         alertDialogBuilder.setView(view);
-
 
         ListView listViewPopUp = view.findViewById(R.id.listViewPopUp);
         final PopUpAdapter localAdapter;
@@ -246,7 +240,6 @@ public class MealPlanFragment extends Fragment {
         editTextSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override
@@ -259,7 +252,6 @@ public class MealPlanFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-
             }
         });
         alertDialog = alertDialogBuilder.create();
@@ -285,12 +277,10 @@ public class MealPlanFragment extends Fragment {
         {
             bloodsugar = user.get_idealBloodGlucoseLevel();
             Toast.makeText(context.getContext(),"Da du ikke har skrevet et blodsukker ind, bruges din standard værdi: " + bloodsugar, Toast.LENGTH_LONG).show();
-
         }
         else
         {
             bloodsugar = Double.parseDouble(mealPlanBloodSugar.getText().toString());
-
         }
 
         Double carbs = 0.0;
@@ -310,7 +300,6 @@ public class MealPlanFragment extends Fragment {
 
         String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
 
-
         MealObject meal = new MealObject();
         meal.set_bloodGlucoseLevel(bloodsugar);
         meal.set_insulinResult(result);
@@ -323,7 +312,6 @@ public class MealPlanFragment extends Fragment {
 
         if(foods.isEmpty())
         {
-
         }
         else {
             try {
@@ -336,10 +324,5 @@ public class MealPlanFragment extends Fragment {
                 meal.save();
             }
         }
-
-
     }
 }
-
-
-//Navn:                     Kulhydrater,  Protein,   Sukker,  Fiber

@@ -109,7 +109,10 @@ public class NewNoteFragment extends Fragment {
         return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
+    /**
+     * Default onButtonPressed method
+     * @param uri uri element to hook on the fragment
+     */
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
@@ -163,16 +166,23 @@ public class NewNoteFragment extends Fragment {
             }
     }
 
+    /**
+     * Used to pass date when saving a note object
+     * @param context the context of the note
+     * @param m the note object itself
+     */
     public void passData(Context context, NoteObject m) {
         mContext = context;
         noteObject = m;
         data = true;
-
     }
 
+    /**
+     * Setup method used to get a noteObject title and context
+     */
     public void setup(){
         title.setText(noteObject.get_title());
-        noteContext.setText(noteObject.get_title());
+        noteContext.setText(noteObject.get_context());
     }
 
     /**

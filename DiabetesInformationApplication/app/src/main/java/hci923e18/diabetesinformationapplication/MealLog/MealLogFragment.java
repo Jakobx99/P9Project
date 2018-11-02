@@ -3,7 +3,6 @@ package hci923e18.diabetesinformationapplication.MealLog;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -126,7 +125,6 @@ public class MealLogFragment extends Fragment {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction ft = fragmentManager.beginTransaction();
         ft.add(R.id.framelayoutFrontPage, myFragment).addToBackStack("Specificlog").commit();
-
     }
 
     /**

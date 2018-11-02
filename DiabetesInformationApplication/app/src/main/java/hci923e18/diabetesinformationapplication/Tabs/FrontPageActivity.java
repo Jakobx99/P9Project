@@ -15,12 +15,9 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
-
 import com.orm.SugarRecord;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import hci923e18.database.Food;
 import hci923e18.diabetesinformationapplication.MealLog.MealLogFragment;
 import hci923e18.diabetesinformationapplication.MealPlan.MealPlanFragment;
@@ -129,7 +126,6 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
         else{
             //Do nothing
         }
-
     }
 
     /**
@@ -138,18 +134,14 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
      */
     @Override
     public void onBackPressed() {
-        //super.onBackPressed();
         if (getFragmentManager().getBackStackEntryCount() > 0) {
             getFragmentManager().popBackStack();
         } else {
-
-            //super.onBackPressed();
         }
-
     }
 
     /**
-     * Method to change navigation bar and active fragment to home
+     * Method to change navigation bar and active fragment to Home
      */
     public void changeToHome(){
         frameLayout.removeAllViews();
@@ -171,7 +163,7 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
     }
 
     /**
-     * Method to change navigation bar and active fragment to Information
+     * Method to change navigation bar and active fragment to MealPlan
      */
     public void changeToMealPlan(){
         frameLayout.removeAllViews();
@@ -181,23 +173,32 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
         fragmentTransaction.replace(R.id.framelayoutFrontPage, new MealPlanFragment()).commit();
     }
 
+    /**
+     * Method to change navigation bar and active fragment to MealLog
+     */
     public void changeToMealLog(){
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.framelayoutFrontPage, new MealLogFragment()).addToBackStack("Meallog").commit();
     }
+
+    /**
+     * Method to change navigation bar and active fragment to NewNote
+     */
     public void changeToNewNote(){
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.framelayoutFrontPage, new NewNoteFragment()).addToBackStack("noter").commit();
     }
 
+    /**
+     * Method to change navigation bar and active fragment to NoteList
+     */
     public void changeToNoteList(){
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.framelayoutFrontPage, new NoteListFragment()).addToBackStack("noteList").commit();
     }
-
 
     /**
      * Method to populate Database with default Food items first time the app is launched
@@ -220,10 +221,8 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
 
         //Add to database
         SugarRecord.saveInTx(foods);
-
-
-
     }
+
     //--------------------------Burger menu-------------------------------------
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
@@ -250,8 +249,6 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
                 changeToNoteList();
                 drawerLayout.closeDrawers();
                 break;
-        
-
         }
         if (intent == null){
             return false;

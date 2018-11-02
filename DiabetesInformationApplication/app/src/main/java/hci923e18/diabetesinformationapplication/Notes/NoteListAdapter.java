@@ -7,10 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
-
 import java.util.List;
-
 import hci923e18.database.NoteObject;
 import hci923e18.diabetesinformationapplication.R;
 
@@ -19,6 +18,7 @@ public class NoteListAdapter extends ArrayAdapter<NoteObject> {
     private Context mContext;
     private List<NoteObject> mNotes;
     private NoteListFragment mNoteListFragment;
+    private ImageView mDelete;
 
     /**
      * Constructor
@@ -56,6 +56,15 @@ public class NoteListAdapter extends ArrayAdapter<NoteObject> {
         TextView Date = listItem.findViewById(R.id.column_NoteDate);
         Date.setText(currentNote.get_timestamp());
 
+        mDelete = listItem.findViewById(R.id.imageView_NoteListDelete);
+        mDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mNoteListFragment.removeItemFromList(position);
+                currentNote.delete();
+
+            }
+        });
 
         listItem.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,8 +72,6 @@ public class NoteListAdapter extends ArrayAdapter<NoteObject> {
                 mNoteListFragment.openSpecificNote(currentNote);
             }
         });
-
         return listItem;
     }
-
 }

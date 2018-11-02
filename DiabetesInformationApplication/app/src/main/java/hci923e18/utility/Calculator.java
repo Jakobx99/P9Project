@@ -69,7 +69,6 @@ public class Calculator {
     {
         double carbohydrateRelation = carbohydratesRelationCalculation();
         return carbohydrate/carbohydrateRelation + bloodGlucoseGoalCalculation(bloodGlucoseLevel);
-
     }
 
     /**
@@ -110,7 +109,4 @@ public class Calculator {
 
         return f;
     }
-
-
-
 }

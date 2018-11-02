@@ -11,14 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import hci923e18.database.MealObject;
 import hci923e18.database.NoteObject;
 import hci923e18.diabetesinformationapplication.R;
-import hci923e18.diabetesinformationapplication.SpecificLog.SpecificLogFragment;
 import hci923e18.diabetesinformationapplication.Tabs.FrontPageActivity;
 
 /**
@@ -88,13 +84,10 @@ public class NoteListFragment extends Fragment {
         }
 
         noteListView = view.findViewById(R.id.listview_NoteList);
-
+        newNote = view.findViewById(R.id.buttonNewNote);
 
         localAdapter = new NoteListAdapter(view.getContext(),0, noteObjects, NoteListFragment.this);
         noteListView.setAdapter(localAdapter);
-
-
-        newNote = view.findViewById(R.id.buttonNewNote);
 
         newNote.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,16 +129,26 @@ public class NoteListFragment extends Fragment {
         mListener = null;
     }
 
-    public void openSpecificNote(NoteObject m){
+    /**
+     * Method used to open a specific note from the list of notes, by replacing the fragment with a new one
+     * @param noteObject the specific note object
+     */
+    public void openSpecificNote(NoteObject noteObject){
         NewNoteFragment myFragment = new NewNoteFragment();
-        myFragment.passData(view.getContext(),m);
+        myFragment.passData(view.getContext(), noteObject);
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction ft = fragmentManager.beginTransaction();
         ft.replace(R.id.framelayoutFrontPage, myFragment).addToBackStack("SpecificNote").commit();
-
     }
 
-
+    /**
+     * Used to remove a note object from the list and the database
+     * @param pos position of the note to delete in the list of notes
+     */
+    public void removeItemFromList(int pos){
+        noteObjects.remove(pos);
+        localAdapter.notifyDataSetChanged();
+    }
 
     /**
      * This interface must be implemented by activities that contain this
