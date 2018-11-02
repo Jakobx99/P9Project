@@ -109,19 +109,19 @@ public class PopUpAdapter extends ArrayAdapter<Food> {
             }
         });
 
-        TextView name = listItem.findViewById(R.id.textView_mealPlanListname);
+        TextView name = listItem.findViewById(R.id.textView_PopUpListName);
         name.setText(currentFood.get_name());
 
-        TextView carbohydrate = listItem.findViewById(R.id.textView_carbo);
+        TextView carbohydrate = listItem.findViewById(R.id.textView_PopUpListLayoutCarbs);
         carbohydrate.setText(currentFood.get_carbohydrate().toString() + " g");
 
-        TextView protein = listItem.findViewById(R.id.textView_protein);
+        TextView protein = listItem.findViewById(R.id.textView_PopUpListLayoutProtein);
         protein.setText(currentFood.get_protein().toString() + " g");
 
-        TextView sugar = listItem.findViewById(R.id.textView_sugar);
+        TextView sugar = listItem.findViewById(R.id.textView_PopUpListLayoutSugar);
         sugar.setText(currentFood.get_sugar().toString() + " g");
 
-        TextView fiber = listItem.findViewById(R.id.textView_fiber);
+        TextView fiber = listItem.findViewById(R.id.textView_PopUpListLayoutFiber);
         fiber.setText(currentFood.get_fiber().toString() + " g");
 
         return listItem;

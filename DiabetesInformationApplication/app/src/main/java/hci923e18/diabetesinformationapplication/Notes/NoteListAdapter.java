@@ -50,10 +50,10 @@ public class NoteListAdapter extends ArrayAdapter<NoteObject> {
 
         final NoteObject currentNote = mNotes.get(position);
 
-        TextView Title = listItem.findViewById(R.id.column_NoteTitle);
+        TextView Title = listItem.findViewById(R.id.column_NoteTitleListLayout);
         Title.setText(currentNote.get_title());
 
-        TextView Date = listItem.findViewById(R.id.column_NoteDate);
+        TextView Date = listItem.findViewById(R.id.column_NoteDateListLayout);
         Date.setText(currentNote.get_timestamp());
 
         mDelete = listItem.findViewById(R.id.imageView_NoteListDelete);

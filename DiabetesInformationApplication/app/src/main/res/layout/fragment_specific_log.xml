@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mealPlanLaAyout"
+    android:id="@+id/SpecificLogLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
     tools:context=".MealPlan.MealPlanFragment">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textView_mealTypeSpecificLog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -22,63 +21,63 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/spinner_meallog"
+        android:id="@+id/spinner_specificLog"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintStart_toEndOf="@+id/textView_mealTypeSpecificLog"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textViewMealTextSpecificLog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="Hvad bestod måltidet af?"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_meallog" />
+        app:layout_constraintTop_toBottomOf="@+id/spinner_specificLog" />
 
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textView_bloodglucoseSpecificLog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="Blod sukker måling:"
-        app:layout_constraintBottom_toBottomOf="@+id/editText_meallog_bloodsugar"
+        app:layout_constraintBottom_toBottomOf="@+id/editText_specificLog_bloodsugar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/editText_meallog_bloodsugar" />
+        app:layout_constraintTop_toTopOf="@+id/editText_specificLog_bloodsugar" />
 
     <EditText
-        android:id="@+id/editText_meallog_bloodsugar"
+        android:id="@+id/editText_specificLog_bloodsugar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/meallog_listview" />
+        app:layout_constraintStart_toEndOf="@+id/textView_bloodglucoseSpecificLog"
+        app:layout_constraintTop_toBottomOf="@+id/specificLog_listview" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/textView_insulinUnitTextSpecificLog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="121dp"
         android:layout_marginStart="120dp"
         android:layout_marginTop="28dp"
+        android:layout_marginEnd="121dp"
         android:text="Beregnet insulin (Enheder):"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_meallog_bloodsugar" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_specificLog_bloodsugar" />
 
     <TextView
-        android:id="@+id/textView_meallog_result"
+        android:id="@+id/textView_specificLog_result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -87,14 +86,14 @@
         android:text="Enheder"
         android:textSize="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textView10"
+        app:layout_constraintEnd_toEndOf="@+id/textView_insulinUnitTextSpecificLog"
         app:layout_constraintHorizontal_bias="0.568"
-        app:layout_constraintStart_toStartOf="@+id/textView10"
-        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        app:layout_constraintStart_toStartOf="@+id/textView_insulinUnitTextSpecificLog"
+        app:layout_constraintTop_toBottomOf="@+id/textView_insulinUnitTextSpecificLog"
         app:layout_constraintVertical_bias="0.0" />
 
     <ListView
-        android:id="@+id/meallog_listview"
+        android:id="@+id/specificLog_listview"
         android:layout_width="0dp"
         android:layout_height="200dp"
         android:layout_marginStart="16dp"
@@ -103,7 +102,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutPopUpWindowLayout" />
 
     <!--<TextView
         android:id="@+id/textView14"
@@ -121,7 +120,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />-->
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/linearLayoutPopUpWindowLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -136,7 +135,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2">
+        app:layout_constraintTop_toBottomOf="@+id/textViewMealTextSpecificLog">
 
         <!--<TextView
             android:id="@+id/column_header1"
@@ -146,30 +145,31 @@
             android:text="Navn:" />-->
 
         <TextView
-            android:id="@+id/column_header2"
+            android:id="@+id/column_carbsSpecificLog"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Kulhydrate(g)" />
 
         <TextView
-            android:id="@+id/column_header3"
+            android:id="@+id/column_fiberSpecificLog"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.8"
+            android:layout_weight="1"
             android:text="Fiber(g)" />
 
         <TextView
-            android:id="@+id/column_header4"
+            android:id="@+id/column_WeightSpecificLog"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.8"
+            android:layout_weight="1"
             android:text="Vægt(g)" />
-        <ImageView
-            android:id="@+id/imageView_mealPlanList"
+
+        <!--<ImageView
+            android:id="@+id/imageView_SpecificLogList"
             android:layout_width="10dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.3"/>
+            android:layout_weight="0.3" />-->
     </LinearLayout>
 
 

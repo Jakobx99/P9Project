@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/linearLayoutPopUpWindowLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -20,31 +20,31 @@
         android:paddingBottom="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edittextSearch">
+        app:layout_constraintTop_toBottomOf="@+id/edittext_PopUpSearch">
 
         <TextView
-            android:id="@+id/textView_carbo"
+            android:id="@+id/textView_PopUpWindowCarbs"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Kulhydrater" />
 
         <TextView
-            android:id="@+id/textView_protein"
+            android:id="@+id/textView_PopUpWindowProtein"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Protein" />
 
         <TextView
-            android:id="@+id/textView_sugar"
+            android:id="@+id/textView_PopUpWindowSugar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Sukker" />
 
         <TextView
-            android:id="@+id/textView_fiber"
+            android:id="@+id/textView_PopUpWindowFiber"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -75,10 +75,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutPopUpWindowLayout" />
 
     <EditText
-        android:id="@+id/edittextSearch"
+        android:id="@+id/edittext_PopUpSearch"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

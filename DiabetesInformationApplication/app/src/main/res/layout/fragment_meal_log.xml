@@ -13,7 +13,7 @@
         android:id="@+id/mealloglayout">
 
         <LinearLayout
-            android:id="@+id/linearLayout"
+            android:id="@+id/linearLayoutPopUpWindowLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -30,28 +30,28 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/column_header1"
+                android:id="@+id/column_typeMealLog"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Type" />
 
             <TextView
-                android:id="@+id/column_header2"
+                android:id="@+id/column_DateMealLog"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Dato" />
 
             <TextView
-                android:id="@+id/column_header3"
+                android:id="@+id/column_CarbsMealLog"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Kulhydrater" />
 
             <TextView
-                android:id="@+id/column_header4"
+                android:id="@+id/column_InsulinMealLog"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -69,7 +69,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutPopUpWindowLayout" />
 
         <!--<TextView
             android:id="@+id/textView_MealLogType"

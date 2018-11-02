@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/linearLayoutTop"
+        android:id="@+id/linearLayoutTopPopUpListLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textView_mealPlanListname"
+            android:id="@+id/textView_PopUpListName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
@@ -27,7 +27,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/linearLayoutPopUpWindowLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -36,31 +36,31 @@
         android:paddingBottom="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayoutTop">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutTopPopUpListLayout">
 
         <TextView
-            android:id="@+id/textView_carbo"
+            android:id="@+id/textView_PopUpListLayoutCarbs"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Kulhydrater" />
 
         <TextView
-            android:id="@+id/textView_protein"
+            android:id="@+id/textView_PopUpListLayoutProtein"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Protein" />
 
         <TextView
-            android:id="@+id/textView_sugar"
+            android:id="@+id/textView_PopUpListLayoutSugar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Sukker" />
 
         <TextView
-            android:id="@+id/textView_fiber"
+            android:id="@+id/textView_PopUpListLayoutFiber"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

@@ -10,7 +10,7 @@
 
 
     <ScrollView
-        android:id="@+id/scrollView2"
+        android:id="@+id/scrollView_settingPage"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -19,7 +19,7 @@
         android:layout_marginBottom="8dp"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        app:layout_constraintBottom_toTopOf="@+id/textView12"
+        app:layout_constraintBottom_toTopOf="@+id/textView_settingDoctorInfo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +36,7 @@
 
 
                 <TextView
-                    android:id="@+id/textView6"
+                    android:id="@+id/textView_titleWeight"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Vægt (kg)"
@@ -52,7 +52,7 @@
                     android:inputType="numberDecimal"
                     app:layout_constraintEnd_toStartOf="@+id/imageButtonVægt"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView6" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView_titleWeight" />
 
                 <ImageButton
                     android:id="@+id/imageButtonVægt"
@@ -65,7 +65,7 @@
                     app:srcCompat="@android:drawable/ic_menu_info_details" />
 
                 <TextView
-                    android:id="@+id/textView8"
+                    android:id="@+id/textView_titleBloodGlucose"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -80,7 +80,7 @@
                     android:inputType="numberDecimal"
                     app:layout_constraintEnd_toStartOf="@+id/imageButtonBloodGlucose"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView8" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView_titleBloodGlucose" />
 
                 <ImageButton
                     android:id="@+id/imageButtonBloodGlucose"
@@ -94,7 +94,7 @@
                     app:srcCompat="@android:drawable/ic_menu_info_details" />
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/textView_titleInsulinDuration"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Insulin virkningstid (Timer)"
@@ -108,7 +108,7 @@
                     android:inputType="numberDecimal"
                     app:layout_constraintEnd_toStartOf="@+id/imageButtonInsulinDuratation"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView5" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView_titleInsulinDuration" />
 
                 <ImageButton
                     android:id="@+id/imageButtonInsulinDuratation"
@@ -121,7 +121,7 @@
                     app:srcCompat="@android:drawable/ic_menu_info_details" />
 
                 <TextView
-                    android:id="@+id/textView11"
+                    android:id="@+id/textView_titleInsulinUsage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Daglig insulin forbrug (Enheder)"
@@ -135,7 +135,7 @@
                     android:inputType="numberDecimal"
                     app:layout_constraintEnd_toStartOf="@+id/imageButtonInsulinUsage"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView11" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView_titleInsulinUsage" />
 
                 <ImageButton
                     android:id="@+id/imageButtonInsulinUsage"
@@ -160,7 +160,7 @@
     </ScrollView>
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/textView_settingDoctorInfo"
         android:layout_width="171dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -170,10 +170,10 @@
         android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
+        app:layout_constraintTop_toBottomOf="@+id/scrollView_settingPage" />
 
     <TextView
-        android:id="@+id/textView13"
+        android:id="@+id/textView_settingDoctorName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -182,10 +182,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_settingDoctorInfo" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/textView_settingDoctorPhoneNum"
         android:layout_width="match_parent"
         android:layout_height="16dp"
         android:layout_marginStart="16dp"
@@ -194,10 +194,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_settingDoctorName" />
 
     <TextView
-        android:id="@+id/textView15"
+        android:id="@+id/textView_settingDoctorAdr"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -205,6 +205,6 @@
         android:text="Adresse: Strandvejen 86, 9600 Tåstrup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_settingDoctorPhoneNum" />
 
 </android.support.constraint.ConstraintLayout>

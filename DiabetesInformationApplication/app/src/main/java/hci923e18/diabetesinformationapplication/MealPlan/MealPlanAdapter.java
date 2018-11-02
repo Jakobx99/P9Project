@@ -61,16 +61,16 @@ public class MealPlanAdapter extends ArrayAdapter<Pair<Food, Double>> {
             }
         });
 
-        TextView name = listItem.findViewById(R.id.textView_mealPlanListname);
+        TextView name = listItem.findViewById(R.id.textView_mealPlanListName);
         name.setText(currentFood.first.get_name());
 
-        TextView carbohydrate = listItem.findViewById(R.id.textView_carbo);
+        TextView carbohydrate = listItem.findViewById(R.id.textView_mealPlanListCarbs);
         carbohydrate.setText(formater.format(currentFood.first.get_carbohydrate()) + " g");
 
-        TextView fiber = listItem.findViewById(R.id.textView_fiber);
+        TextView fiber = listItem.findViewById(R.id.textView_mealPlanListFiber);
         fiber.setText(formater.format(currentFood.first.get_fiber()) + " g");
 
-        TextView weight = listItem.findViewById(R.id.textView_gram);
+        TextView weight = listItem.findViewById(R.id.textView_mealPlanListWeight);
         weight.setText(formater.format(currentFood.second) + " g");
 
         return listItem;

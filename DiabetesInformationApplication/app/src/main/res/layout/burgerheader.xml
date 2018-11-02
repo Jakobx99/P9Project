@@ -15,6 +15,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/textView_burgerHeaderAboutUs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Om os"
@@ -24,14 +25,14 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/textView_bugerHeaderText1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Denne applikation er lavet af gruppe hci923e18 fra Aalborg Universitet"
             android:textColor="@android:color/black" />
 
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/textView_bugerHeaderText2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Kontakt information hci923e18@cs.aau.dk"

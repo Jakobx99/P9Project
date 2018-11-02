@@ -75,8 +75,8 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         //Binder components
-        createButton = view.findViewById(R.id.buttonData);
-        displayButton = view.findViewById(R.id.buttonInformation);
+        createButton = view.findViewById(R.id.button_homepageInsulinCalc);
+        displayButton = view.findViewById(R.id.button_homepageMeal);
 
         //Click events
         createButton.setOnClickListener(new View.OnClickListener() {

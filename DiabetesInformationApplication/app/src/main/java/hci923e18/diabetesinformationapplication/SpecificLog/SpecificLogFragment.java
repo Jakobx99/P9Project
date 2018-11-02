@@ -74,10 +74,10 @@ public class SpecificLogFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_specific_log, container, false);
 
-        mealLogSpinner = view.findViewById(R.id.spinner_meallog);
-        mealLogBloodSugar = view.findViewById(R.id.editText_meallog_bloodsugar);
-        mealLogResult = view.findViewById(R.id.textView_meallog_result);
-        mealLogLayout = view.findViewById(R.id.meallog_listview);
+        mealLogSpinner = view.findViewById(R.id.spinner_specificLog);
+        mealLogBloodSugar = view.findViewById(R.id.editText_specificLog_bloodsugar);
+        mealLogResult = view.findViewById(R.id.textView_specificLog_result);
+        mealLogLayout = view.findViewById(R.id.specificLog_listview);
 
         mealLogResult.setText(_MealObject.get_insulinResult().toString());
         mealLogBloodSugar.setText(_MealObject.get_bloodGlucoseLevel().toString());

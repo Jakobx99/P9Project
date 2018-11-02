@@ -236,7 +236,7 @@ public class MealPlanFragment extends Fragment {
         localAdapter = new PopUpAdapter(view.getContext(),0, databaseFoods, MealPlanFragment.this);
         listViewPopUp.setAdapter(localAdapter);
 
-        final EditText editTextSearch = view.findViewById(R.id.edittextSearch);
+        final EditText editTextSearch = view.findViewById(R.id.edittext_PopUpSearch);
         editTextSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

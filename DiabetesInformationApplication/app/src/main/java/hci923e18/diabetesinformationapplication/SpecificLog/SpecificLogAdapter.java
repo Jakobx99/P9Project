@@ -48,16 +48,16 @@ public class SpecificLogAdapter extends ArrayAdapter<Pair<Food, Double>> {
 
         Pair<Food, Double> currentFood = mFood.get(position);
 
-        TextView name = listItem.findViewById(R.id.specificlog_mealPlanListname);
+        TextView name = listItem.findViewById(R.id.specificlog_ListLayoutName);
         name.setText(currentFood.first.get_name());
 
-        TextView carbohydrate = listItem.findViewById(R.id.specific_carbo);
+        TextView carbohydrate = listItem.findViewById(R.id.specificlog_ListLayouCarbs);
         carbohydrate.setText(formater.format(currentFood.first.get_carbohydrate()) + " g");
 
-        TextView fiber = listItem.findViewById(R.id.specific_fiber);
+        TextView fiber = listItem.findViewById(R.id.specificlog_ListLayoutFiber);
         fiber.setText(formater.format(currentFood.first.get_fiber()) + " g");
 
-        TextView weight = listItem.findViewById(R.id.specific_gram);
+        TextView weight = listItem.findViewById(R.id.specificlog_ListLayoutWeight);
         weight.setText(formater.format(currentFood.second) + " g");
 
         return listItem;
