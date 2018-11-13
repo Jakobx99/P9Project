@@ -14,18 +14,17 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="-1dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        app:layout_constraintBottom_toTopOf="@+id/textView_settingDoctorInfo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
+            android:id="@+id/linearLayout_settingPage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -35,33 +34,134 @@
                 android:layout_height="match_parent">
 
 
-                <TextView
-                    android:id="@+id/textView_titleWeight"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Vægt (kg)"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
                 <EditText
-                    android:id="@+id/textView_weight"
+                    android:id="@+id/textView_LowerBloodGlucoseLevel"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:hint="80"
+                    android:hint="Nedre grænseværdi"
                     android:inputType="numberDecimal"
-                    app:layout_constraintEnd_toStartOf="@+id/imageButtonVægt"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toStartOf="@+id/imageButton_LowerBloodGlucoseLevel"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_titleWeight" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView_titleLowerBloodGlucoseLevel" />
+
+                <TextView
+                    android:id="@+id/textView_titleLowerBloodGlucoseLevel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nedre grænseværdi (mmol/L)"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_BeforeBloodGlucoseLevel"
+                    tools:layout_editor_absoluteX="0dp" />
 
                 <ImageButton
-                    android:id="@+id/imageButtonVægt"
+                    android:id="@+id/imageButton_LowerBloodGlucoseLevel"
                     android:layout_width="0dp"
                     android:layout_height="47dp"
                     android:background="@android:color/transparent"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView_weight"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView_LowerBloodGlucoseLevel"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textView_weight"
+                    app:layout_constraintTop_toTopOf="@+id/textView_LowerBloodGlucoseLevel"
+                    app:layout_constraintVertical_bias="0.0"
+                    app:srcCompat="@android:drawable/ic_menu_info_details" />
+
+                <TextView
+                    android:id="@+id/textView_titleBeforeBloodGlucoseLevel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Før måltids grænseværdi (mmol/L)"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_AfterBloodGlucoseLevel"
+                    tools:layout_editor_absoluteX="0dp" />
+
+                <EditText
+                    android:id="@+id/textView_BeforeBloodGlucoseLevel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Før måltids grænseværdi"
+                    android:inputType="numberDecimal"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toStartOf="@+id/imageButton_BeforeBloodGlucoseLevel"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_titleBeforeBloodGlucoseLevel" />
+
+                <ImageButton
+                    android:id="@+id/imageButton_BeforeBloodGlucoseLevel"
+                    android:layout_width="0dp"
+                    android:layout_height="47dp"
+                    android:background="@android:color/transparent"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView_BeforeBloodGlucoseLevel"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textView_BeforeBloodGlucoseLevel"
+                    app:layout_constraintVertical_bias="0.0"
+                    app:srcCompat="@android:drawable/ic_menu_info_details" />
+
+                <TextView
+                    android:id="@+id/textView_titleAfterBloodGlucoseLevel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Efter måltids grænseværdi (mmol/L)"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_UpperBloodGlucoseLevel"
+                    tools:layout_editor_absoluteX="0dp" />
+
+                <EditText
+                    android:id="@+id/textView_AfterBloodGlucoseLevel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Efter måltids grænseværdi"
+                    android:inputType="numberDecimal"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toStartOf="@+id/imageButton_AfterBloodGlucoseLevel"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_titleAfterBloodGlucoseLevel" />
+
+                <ImageButton
+                    android:id="@+id/imageButton_AfterBloodGlucoseLevel"
+                    android:layout_width="0dp"
+                    android:layout_height="47dp"
+                    android:background="@android:color/transparent"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView_AfterBloodGlucoseLevel"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textView_AfterBloodGlucoseLevel"
+                    app:layout_constraintVertical_bias="0.0"
+                    app:srcCompat="@android:drawable/ic_menu_info_details" />
+
+                <EditText
+                    android:id="@+id/textView_UpperBloodGlucoseLevel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Øvre grænseværdi"
+                    android:inputType="numberDecimal"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toStartOf="@+id/imageButton_UpperBloodGlucoseLevel"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_titleUpperBloodGlucoseLevel" />
+
+                <TextView
+                    android:id="@+id/textView_titleUpperBloodGlucoseLevel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Øvre grænseværdi (mmol/L)"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@+id/switch_settingLimits"
+                    tools:layout_editor_absoluteX="0dp" />
+
+                <ImageButton
+                    android:id="@+id/imageButton_UpperBloodGlucoseLevel"
+                    android:layout_width="0dp"
+                    android:layout_height="47dp"
+                    android:background="@android:color/transparent"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView_UpperBloodGlucoseLevel"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textView_UpperBloodGlucoseLevel"
+                    app:layout_constraintVertical_bias="0.0"
                     app:srcCompat="@android:drawable/ic_menu_info_details" />
 
                 <TextView
@@ -70,13 +170,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="Mål blodsukker værdi (mmol/L)"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_weight" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
                     android:id="@+id/textView_idealBloodGlucoseLevel"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:hint="5.5"
+                    android:layout_marginEnd="5dp"
+                    android:hint="Ideal blodsukker"
                     android:inputType="numberDecimal"
                     app:layout_constraintEnd_toStartOf="@+id/imageButtonBloodGlucose"
                     app:layout_constraintStart_toStartOf="parent"
@@ -104,7 +205,7 @@
                     android:id="@+id/textView_insulinDuration"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:hint="3.5"
+                    android:hint="Insulin virkningstid"
                     android:inputType="numberDecimal"
                     app:layout_constraintEnd_toStartOf="@+id/imageButtonInsulinDuratation"
                     app:layout_constraintStart_toStartOf="parent"
@@ -131,7 +232,7 @@
                     android:id="@+id/textView_totalDailyInsulinConsumption"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:hint="30"
+                    android:hint="Daglig insulin forbrug"
                     android:inputType="numberDecimal"
                     app:layout_constraintEnd_toStartOf="@+id/imageButtonInsulinUsage"
                     app:layout_constraintStart_toStartOf="parent"
@@ -147,64 +248,75 @@
                     app:layout_constraintTop_toTopOf="@+id/textView_totalDailyInsulinConsumption"
                     app:srcCompat="@android:drawable/ic_menu_info_details" />
 
+
                 <Button
                     android:id="@+id/button_save"
                     style="@style/newbuttonstyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="16dp"
                     android:text="Gem"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_LowerBloodGlucoseLevel" />
+
+                <Switch
+                    android:id="@+id/switch_settingLimits"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:checked="false"
+                    android:text="Grænseværdier for grafer"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView_totalDailyInsulinConsumption" />
+
+                <TextView
+                    android:id="@+id/textView_settingDoctorInfo"
+                    android:layout_width="171dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="Læges information:"
+                    android:textSize="18dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.549"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/button_save" />
+
+                <TextView
+                    android:id="@+id/textView_settingDoctorName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Navn: Hans Hansen"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_settingDoctorInfo" />
+
+                <TextView
+                    android:id="@+id/textView_settingDoctorPhoneNum"
+                    android:layout_width="match_parent"
+                    android:layout_height="16dp"
+                    android:text="Tlf. nr: 12345678"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_settingDoctorName" />
+
+                <TextView
+                    android:id="@+id/textView_settingDoctorAdr"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="32dp"
+                    android:text="Adresse: Strandvejen 86, 9600 Tåstrup"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_settingDoctorPhoneNum" />
             </android.support.constraint.ConstraintLayout>
         </LinearLayout>
     </ScrollView>
 
-    <TextView
-        android:id="@+id/textView_settingDoctorInfo"
-        android:layout_width="171dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Læges information:"
-        android:textSize="18dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView_settingPage" />
 
-    <TextView
-        android:id="@+id/textView_settingDoctorName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="Navn: Hans Hansen"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_settingDoctorInfo" />
-
-    <TextView
-        android:id="@+id/textView_settingDoctorPhoneNum"
-        android:layout_width="match_parent"
-        android:layout_height="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="Tlf. nr: 12345678"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_settingDoctorName" />
-
-    <TextView
-        android:id="@+id/textView_settingDoctorAdr"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="Adresse: Strandvejen 86, 9600 Tåstrup"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_settingDoctorPhoneNum" />
 
 </android.support.constraint.ConstraintLayout>
