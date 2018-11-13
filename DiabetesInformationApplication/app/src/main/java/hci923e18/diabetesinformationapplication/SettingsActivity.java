@@ -48,7 +48,6 @@ public class SettingsActivity extends AppCompatActivity {
         infoInsulinUsage = findViewById(R.id.imageButtonInsulinUsage);
 
         fetchdata();
-        weight.setText(p.get_weight().toString());
         idealBloodGlucoseLevel.setText(p.get_idealBloodGlucoseLevel().toString());
         insulinDuration.setText(p.get_insulinDuration().toString());
         totalDailyInsulinConsumption.setText(p.get_totalDailyInsulinConsumption().toString());
@@ -107,7 +106,6 @@ public class SettingsActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Hentet object", Toast.LENGTH_SHORT);
         } catch (Exception e) {
             p = new Profile();
-            p.set_weight(80.0);
             p.set_idealBloodGlucoseLevel(5.5);
             p.set_insulinDuration(3.5);
             p.set_totalDailyInsulinConsumption(30.0);
@@ -129,7 +127,7 @@ public class SettingsActivity extends AppCompatActivity {
         }
         else
         {
-            p.set_weight(Double.parseDouble(weight.getText().toString()));
+
         }
 
         if(idealBloodGlucoseLevel.getText().toString().isEmpty())
