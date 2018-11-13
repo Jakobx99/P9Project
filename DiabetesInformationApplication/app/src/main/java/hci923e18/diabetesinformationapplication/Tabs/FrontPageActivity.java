@@ -19,6 +19,7 @@ import com.orm.SugarRecord;
 import java.util.ArrayList;
 import java.util.List;
 import hci923e18.database.Food;
+import hci923e18.diabetesinformationapplication.BloodGlycoseOverview.BloodGlycoseOverviewActivity;
 import hci923e18.diabetesinformationapplication.MealLog.MealLogFragment;
 import hci923e18.diabetesinformationapplication.MealPlan.MealPlanFragment;
 import hci923e18.diabetesinformationapplication.Notes.NewNoteFragment;
@@ -238,7 +239,7 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
         Intent intent = null;
         switch (id){
             case R.id.profile:
-                intent = new Intent(FrontPageActivity.this, SettingsActivity.class);
+                intent = new Intent(FrontPageActivity.this, BloodGlycoseOverviewActivity.class);
                 drawerLayout.closeDrawers();
                 break;
             case R.id.mealLog:
