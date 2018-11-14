@@ -19,6 +19,7 @@ import com.orm.SugarRecord;
 import java.util.ArrayList;
 import java.util.List;
 import hci923e18.database.Food;
+import hci923e18.diabetesinformationapplication.FAQFragment;
 import hci923e18.diabetesinformationapplication.MealLog.MealLogFragment;
 import hci923e18.diabetesinformationapplication.MealPlan.MealPlanFragment;
 import hci923e18.diabetesinformationapplication.Notes.NewNoteFragment;
@@ -201,6 +202,15 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
     }
 
     /**
+     * Method to change navigation bar and active fragment to FAQ
+     */
+    public void changeToFAQ(){
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.framelayoutFrontPage, new FAQFragment()).addToBackStack("FAQ").commit();
+    }
+
+    /**
      * Method to populate Database with default Food items first time the app is launched
      */
     private void populateDB(){
@@ -249,6 +259,9 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
                 changeToNoteList();
                 drawerLayout.closeDrawers();
                 break;
+            case R.id.navigation_FAQ:
+                changeToFAQ();
+                drawerLayout.closeDrawers();
         }
         if (intent == null){
             return false;
