@@ -65,11 +65,11 @@ public class BloodGlycoseOverviewActivity extends AppCompatActivity {
             @Override
             public void onGlobalLayout() {
                 int localwidth  = linearLayout.getMeasuredWidth();
-                redButton.setText("2");
+                redButton.setText(String.valueOf(reds));
                 redButton.setWidth((localwidth/count)*reds);
-                yellowButton.setText("3");
+                yellowButton.setText(String.valueOf(yellows));
                 yellowButton.setWidth((localwidth/count)*yellows);
-                greenButton.setText("5");
+                greenButton.setText(String.valueOf(greens));
                 greenButton.setWidth((localwidth/count)*greens);
             }
         });

@@ -17,7 +17,10 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 import com.orm.SugarRecord;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+
+import hci923e18.database.BloodGlucoseMeasurements;
 import hci923e18.database.Food;
 import hci923e18.diabetesinformationapplication.BloodGlycoseOverview.BloodGlycoseOverviewActivity;
 import hci923e18.diabetesinformationapplication.MealLog.MealLogFragment;
@@ -222,6 +225,28 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
 
         //Add to database
         SugarRecord.saveInTx(foods);
+
+        //Calendar date, Double glucoseLevel, Integer type, Integer category, Integer beforeAfter
+        Calendar c = Calendar.getInstance();
+
+        List<BloodGlucoseMeasurements> bloodGlucoseMeasurements = new ArrayList<>();
+        bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 3.0, 1,1,1));
+        c.set(Calendar.HOUR, 10);
+        bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 6.0, 1,1,1));
+        c.set(Calendar.HOUR, 8);
+        bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 8.0, 1,1,1));
+        c.set(Calendar.HOUR, 9);
+        bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 10.0, 1,1,1));
+        c.set(2018, Calendar.OCTOBER, 8);
+        c.set(Calendar.HOUR, 10);
+        bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 17.0, 1,1,1));
+        c.set(Calendar.HOUR, 8);
+        bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 18.0, 1,1,1));
+        c.set(Calendar.HOUR, 9);
+        bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 2.0, 1,1,1));
+
+        SugarRecord.saveInTx(bloodGlucoseMeasurements);
+
     }
 
     //--------------------------Burger menu-------------------------------------
@@ -239,7 +264,7 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
         Intent intent = null;
         switch (id){
             case R.id.profile:
-                intent = new Intent(FrontPageActivity.this, BloodGlycoseOverviewActivity.class);
+                intent = new Intent(FrontPageActivity.this, SettingsActivity.class);
                 drawerLayout.closeDrawers();
                 break;
             case R.id.mealLog:
@@ -248,6 +273,10 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
                 break;
             case R.id.navigation_notes:
                 changeToNoteList();
+                drawerLayout.closeDrawers();
+                break;
+            case R.id.blood_glycose_overview:
+                intent = new Intent(FrontPageActivity.this, BloodGlycoseOverviewActivity.class);
                 drawerLayout.closeDrawers();
                 break;
         }
