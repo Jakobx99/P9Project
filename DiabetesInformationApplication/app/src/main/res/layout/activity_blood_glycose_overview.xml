@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BloodGlycoseOverview.BloodGlycoseOverviewActivity">
+
+    <com.jjoe64.graphview.GraphView
+        android:id="@+id/graph_overview"
+        android:layout_width="match_parent"
+        android:layout_height="151dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:seriesType="line"/>
+
+
+    <EditText
+        android:id="@+id/textView_bloodoverview_lastmeasurement"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/graph_overview" />
+
+    <Button
+        android:id="@+id/button_bloodoverview_new"
+        style="@style/newbuttonstyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="44dp"
+        android:text="Tilføj ny måling"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_bloodoverview_lastmeasurement" />
+
+    <TextView
+        android:id="@+id/textView_bloodoverview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="60dp"
+        android:text="Målinger i løbet af den sidste uge:"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_bloodoverview_new" />
+
+    <LinearLayout
+        android:id="@+id/ratingBar_bloodoverview"
+        android:layout_width="0dp"
+
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_bloodoverview">
+
+        <Button
+            android:id="@+id/button_bloodoverview_buttonred"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            style="@style/redbuttonstyle"
+            android:text="Button" />
+
+        <Button
+            android:id="@+id/button_bloodoverview_buttonyellow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            style="@style/yellowbuttonstyle"
+            android:text="Button" />
+
+        <Button
+            android:id="@+id/button_bloodoverview_buttongreen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            style="@style/greenbuttonstyle"
+            android:text="Button" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView_bloodoverview_old"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="61dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="104dp"
+        android:text="@string/oldmeasure"
+        android:textSize="20dp"
+        android:textColor="@android:color/holo_blue_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ratingBar_bloodoverview" />
+
+
+</android.support.constraint.ConstraintLayout>

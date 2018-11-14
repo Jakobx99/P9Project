@@ -15,11 +15,17 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.Toast;
+
 import com.orm.SugarRecord;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+
+import hci923e18.database.BloodGlucoseMeasurements;
 import hci923e18.database.Food;
 import hci923e18.diabetesinformationapplication.FAQFragment;
+import hci923e18.diabetesinformationapplication.BloodGlycoseOverview.BloodGlycoseOverviewActivity;
 import hci923e18.diabetesinformationapplication.MealLog.MealLogFragment;
 import hci923e18.diabetesinformationapplication.MealPlan.MealPlanFragment;
 import hci923e18.diabetesinformationapplication.Notes.NewNoteFragment;
@@ -231,6 +237,31 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
 
         //Add to database
         SugarRecord.saveInTx(foods);
+
+        //Calendar date, Double glucoseLevel, Integer type, Integer category, Integer beforeAfter
+        Calendar c = Calendar.getInstance();
+
+        List<BloodGlucoseMeasurements> bloodGlucoseMeasurements = new ArrayList<>();
+        c.set(2018, Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DATE) -1);
+        c.set(Calendar.HOUR, 8);
+        bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 1.0, 1,1,1));
+        c.set(Calendar.HOUR, 9);
+        bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 4.0, 1,1,1));
+        c.set(Calendar.HOUR, 10);
+        bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 14.0, 1,1,1));
+        c.set(Calendar.HOUR, 11);
+        bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 15.0, 1,1,1));
+        c = Calendar.getInstance();
+        c.set(Calendar.HOUR, 8);
+        bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 8.0, 1,1,1));
+        c.set(Calendar.HOUR, 9);
+        bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 2.0, 1,1,1));
+        c.set(Calendar.HOUR, 10);
+        bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 6.0, 1,1,1));
+
+        SugarRecord.saveInTx(bloodGlucoseMeasurements);
+
+
     }
 
     //--------------------------Burger menu-------------------------------------
@@ -262,6 +293,10 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
             case R.id.navigation_FAQ:
                 changeToFAQ();
                 drawerLayout.closeDrawers();
+            case R.id.blood_glycose_overview:
+                intent = new Intent(FrontPageActivity.this, BloodGlycoseOverviewActivity.class);
+                drawerLayout.closeDrawers();
+                break;
         }
         if (intent == null){
             return false;
