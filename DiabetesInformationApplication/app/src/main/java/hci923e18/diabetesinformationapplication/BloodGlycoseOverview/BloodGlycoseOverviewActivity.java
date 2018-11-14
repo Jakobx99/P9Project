@@ -1,6 +1,8 @@
 package hci923e18.diabetesinformationapplication.BloodGlycoseOverview;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +14,12 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
+import com.jjoe64.graphview.series.PointsGraphSeries;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -31,11 +39,18 @@ public class BloodGlycoseOverviewActivity extends AppCompatActivity {
     private TextView oldMeasurementList;
     private LinearLayout linearLayout;
     private List<BloodGlucoseMeasurements> bloodGlucoseMeasurement;
-    private int reds;
-    private int yellows;
-    private int greens;
+    private int reds = 0;
+    private int yellows = 0;
+    private int greens = 0;
     private Profile profile;
     private int count;
+    private GraphView graphView;
+    private LineGraphSeries<DataPoint> mSeries;
+    private PointsGraphSeries<DataPoint> redSeries;
+    private PointsGraphSeries<DataPoint> yellowSeries;
+    private PointsGraphSeries<DataPoint> greenSeries;
+    private LineGraphSeries<DataPoint> lowestSeries;
+    private LineGraphSeries<DataPoint> highestSeries;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +64,8 @@ public class BloodGlycoseOverviewActivity extends AppCompatActivity {
         greenButton = findViewById(R.id.button_bloodoverview_buttongreen);
         oldMeasurementList = findViewById(R.id.textView_bloodoverview_old);
         linearLayout = findViewById(R.id.ratingBar_bloodoverview);
+        graphView = findViewById(R.id.graph_overview);
+
 
         try {
             bloodGlucoseMeasurement = fetchWeekMeasurements();
@@ -57,22 +74,67 @@ public class BloodGlycoseOverviewActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        //Sets the size of the red/yellow/green display on startup
         count = bloodGlucoseMeasurement.size();
         calculateRatio();
-        //Sets the size of the red/yellow/green display on startup
         ViewTreeObserver vto = linearLayout.getViewTreeObserver();
         vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
                 int localwidth  = linearLayout.getMeasuredWidth();
-                redButton.setText(String.valueOf(reds));
-                redButton.setWidth((localwidth/count)*reds);
-                yellowButton.setText(String.valueOf(yellows));
-                yellowButton.setWidth((localwidth/count)*yellows);
-                greenButton.setText(String.valueOf(greens));
-                greenButton.setWidth((localwidth/count)*greens);
+                if (count == 0){
+                    redButton.setText("0");
+                    yellowButton.setText("0");
+                    greenButton.setText("0");
+                } else {
+                    if (reds == 0){
+                        redButton.setText(String.valueOf(reds));
+                        redButton.setWidth((localwidth/count));
+                    }else{
+                        redButton.setText(String.valueOf(reds));
+                        redButton.setWidth((localwidth/count)*reds);
+                    }
+                    if (yellows == 0){
+                        yellowButton.setText(String.valueOf(yellows));
+                        yellowButton.setWidth((localwidth/count));
+                    }else{
+                        yellowButton.setText(String.valueOf(yellows));
+                        yellowButton.setWidth((localwidth/count)*yellows);
+                    }
+                    if (greens == 0){
+                        greenButton.setText(String.valueOf(greens));
+                        greenButton.setWidth((localwidth/count));
+                    }else {
+                        greenButton.setText(String.valueOf(greens));
+                        greenButton.setWidth((localwidth/count)*greens);
+                    }
+                }
             }
         });
+
+        //Populate graph
+        populateGraph(bloodGlucoseMeasurement);
+
+        //Customize graph
+        //graphView.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(getApplicationContext()));
+       // graphView.getGridLabelRenderer().setNumHorizontalLabels(3); // only 4 because of the space
+        //graphView.getGridLabelRenderer().setHumanRounding(false);
+
+        graphView.getViewport().setXAxisBoundsManual(true);
+        graphView.getViewport().setMinX(mSeries.getLowestValueX());
+        graphView.getViewport().setMaxX(mSeries.getHighestValueX());
+        graphView.getViewport().setYAxisBoundsManual(true);
+        graphView.getViewport().setMinY(mSeries.getLowestValueY());
+        graphView.getViewport().setMaxY(mSeries.getHighestValueY());
+        graphView.getGridLabelRenderer().setHorizontalLabelsVisible(false);
+        graphView.getGridLabelRenderer().setVerticalLabelsVisible(false);
+
+
+//        // enable scaling and scrolling
+//        graphView.getViewport().setScalable(true);
+//        graphView.getViewport().setScalableY(true);
+
+
 
 
     }
@@ -127,6 +189,78 @@ public class BloodGlycoseOverviewActivity extends AppCompatActivity {
                 greens++;
             }
         }
+
+
+    }
+
+    private void populateGraph(List<BloodGlucoseMeasurements> bloodList){
+        int i = 0;
+        int count = bloodList.size();
+        DataPoint[] values = new DataPoint[count];
+        for (BloodGlucoseMeasurements b:bloodList) {
+            DataPoint temp = new DataPoint(b.getDate().getTime(),b.get_glucoseLevel());
+            values[i] = temp;
+            i++;
+        }
+
+        //create graph
+        mSeries = new LineGraphSeries<>(values);
+        mSeries.setColor(Color.BLUE);
+
+        DataPoint[] lowest = new DataPoint[2];
+        lowest[0] = new DataPoint(mSeries.getLowestValueX(), profile.get_lowerBloodGlucoseLevel());
+        lowest[1] = new DataPoint(mSeries.getHighestValueX(), profile.get_lowerBloodGlucoseLevel());
+        lowestSeries = new LineGraphSeries<>(lowest);
+        lowestSeries.setColor(Color.RED);
+        graphView.addSeries(lowestSeries);
+
+        DataPoint[] highest = new DataPoint[2];
+        highest[0] = new DataPoint(mSeries.getLowestValueX(), profile.get_upperBloodGlucoseLevel());
+        highest[1] = new DataPoint(mSeries.getHighestValueX(), profile.get_upperBloodGlucoseLevel());
+        highestSeries = new LineGraphSeries<>(highest);
+        highestSeries.setColor(Color.YELLOW);
+        graphView.addSeries(highestSeries);
+
+        graphView.addSeries(mSeries);
+
+        //Create reg, yellow and green
+
+        DataPoint[] redValues = new DataPoint[reds];
+        DataPoint[] yellowValues = new DataPoint[yellows];
+        DataPoint[] greenValues = new DataPoint[greens];
+        int r = 0;
+        int y = 0;
+        int g = 0;
+
+        for (BloodGlucoseMeasurements b:bloodList) {
+            if (b.get_glucoseLevel() > profile.get_upperBloodGlucoseLevel()){
+                DataPoint temp = new DataPoint(b.getDate().getTime(),b.get_glucoseLevel());
+                yellowValues[y] = temp;
+                y++;
+            }else if(b.get_glucoseLevel() < profile.get_lowerBloodGlucoseLevel()){
+                DataPoint temp = new DataPoint(b.getDate().getTime(),b.get_glucoseLevel());
+                redValues[r] = temp;
+                r++;
+            }
+            else{
+                DataPoint temp = new DataPoint(b.getDate().getTime(),b.get_glucoseLevel());
+                greenValues[g] = temp;
+                g++;
+            }
+        }
+
+        redSeries = new PointsGraphSeries<>(redValues);
+        redSeries.setShape(PointsGraphSeries.Shape.POINT);
+        redSeries.setColor(Color.RED);
+        graphView.addSeries(redSeries);
+        yellowSeries = new PointsGraphSeries<>(yellowValues);
+        yellowSeries.setShape(PointsGraphSeries.Shape.POINT);
+        yellowSeries.setColor(Color.YELLOW);
+        graphView.addSeries(yellowSeries);
+        greenSeries = new PointsGraphSeries<>(greenValues);
+        greenSeries.setShape(PointsGraphSeries.Shape.POINT);
+        greenSeries.setColor(Color.GREEN);
+        graphView.addSeries(greenSeries);
 
     }
 

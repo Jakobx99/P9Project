@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".BloodGlycoseOverview.BloodGlycoseOverviewActivity">
 
-    <com.jjoe64.graphview.helper.GraphViewXML
+    <com.jjoe64.graphview.GraphView
         android:id="@+id/graph_overview"
         android:layout_width="match_parent"
         android:layout_height="151dp"
@@ -15,9 +15,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:seriesColor="#ee0000"
-        app:seriesData="0=5;2=5;3=0;4=2"
-        app:seriesType="line" />
+        app:seriesType="line"/>
+
 
     <EditText
         android:id="@+id/textView_bloodoverview_lastmeasurement"
