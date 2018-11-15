@@ -38,11 +38,20 @@
         <activity
             android:name=".SettingsActivity"
             android:label="@string/app_name"
+
             android:windowSoftInputMode="adjustPan"></activity>
         <activity
             android:name=".BloodGlycoseOverview.BloodGlycoseOverviewActivity"
             android:label="@string/app_name"
             android:windowSoftInputMode="adjustPan"></activity>
+
+
+        <activity
+            android:name=".newBloodGlucoseLevelActivity"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="adjustPan">
+        </activity>
+
     </application>
 
 </manifest>

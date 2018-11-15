@@ -31,6 +31,7 @@ import hci923e18.diabetesinformationapplication.Notes.NewNoteFragment;
 import hci923e18.diabetesinformationapplication.Notes.NoteListFragment;
 import hci923e18.diabetesinformationapplication.R;
 import hci923e18.diabetesinformationapplication.SettingsActivity;
+import hci923e18.diabetesinformationapplication.newBloodGlucoseLevelActivity;
 
 
 public class FrontPageActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -206,6 +207,7 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
         fragmentTransaction.add(R.id.framelayoutFrontPage, new NoteListFragment()).addToBackStack("noteList").commit();
     }
 
+
     /**
      * Method to populate Database with default Food items first time the app is launched
      */
@@ -280,9 +282,15 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
                 changeToNoteList();
                 drawerLayout.closeDrawers();
                 break;
+
             case R.id.blood_glycose_overview:
                 intent = new Intent(FrontPageActivity.this, BloodGlycoseOverviewActivity.class);
                 drawerLayout.closeDrawers();
+                break;
+
+            case R.id.newbloodglucoselevel:
+                intent = new Intent(FrontPageActivity.this, newBloodGlucoseLevelActivity.class);
+               drawerLayout.closeDrawers();
                 break;
         }
         if (intent == null){
