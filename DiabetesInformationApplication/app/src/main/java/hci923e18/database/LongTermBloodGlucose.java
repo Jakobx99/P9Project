@@ -4,17 +4,17 @@ import com.orm.SugarRecord;
 
 import java.util.Calendar;
 
-public class LongTermBlodGlucose extends SugarRecord<LongTermBlodGlucose> {
+public class LongTermBloodGlucose extends SugarRecord<LongTermBloodGlucose> {
 
     private Long _start;
     private Long _end;
     private Double _value;
 
-    public LongTermBlodGlucose(){
+    public LongTermBloodGlucose(){
 
     }
 
-    public LongTermBlodGlucose(Calendar start, Calendar end, Double value){
+    public LongTermBloodGlucose(Calendar start, Calendar end, Double value){
         setStart(start);
         setEnd(end);
         _value = value;

@@ -1,5 +1,6 @@
 package hci923e18.diabetesinformationapplication.BloodGlycoseOverview;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -18,9 +19,13 @@ import android.widget.Toast;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
 import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.DataPointInterface;
 import com.jjoe64.graphview.series.LineGraphSeries;
+import com.jjoe64.graphview.series.OnDataPointTapListener;
 import com.jjoe64.graphview.series.PointsGraphSeries;
+import com.jjoe64.graphview.series.Series;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -38,12 +43,12 @@ public class BloodGlycoseOverviewActivity extends AppCompatActivity {
     private Button greenButton;
     private TextView oldMeasurementList;
     private LinearLayout linearLayout;
-    private List<BloodGlucoseMeasurements> bloodGlucoseMeasurement;
+    private List<BloodGlucoseMeasurements> bloodGlucoseMeasurement = new ArrayList<>();
     private int reds = 0;
     private int yellows = 0;
     private int greens = 0;
     private Profile profile;
-    private int count;
+    private int count = 0;
     private GraphView graphView;
     private LineGraphSeries<DataPoint> mSeries;
     private PointsGraphSeries<DataPoint> redSeries;
@@ -52,6 +57,10 @@ public class BloodGlycoseOverviewActivity extends AppCompatActivity {
     private LineGraphSeries<DataPoint> lowestSeries;
     private LineGraphSeries<DataPoint> highestSeries;
 
+    /**
+     * OnCreate method for this activity
+     * @param savedInstanceState The saved instance of this activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +76,7 @@ public class BloodGlycoseOverviewActivity extends AppCompatActivity {
         graphView = findViewById(R.id.graph_overview);
 
 
+
         try {
             bloodGlucoseMeasurement = fetchWeekMeasurements();
             profile = fetchProfile();
@@ -75,6 +85,7 @@ public class BloodGlycoseOverviewActivity extends AppCompatActivity {
         }
 
         //Sets the size of the red/yellow/green display on startup
+        //TODO CHECK FOR NULL/ZERO
         count = bloodGlucoseMeasurement.size();
         calculateRatio();
         ViewTreeObserver vto = linearLayout.getViewTreeObserver();
@@ -115,11 +126,6 @@ public class BloodGlycoseOverviewActivity extends AppCompatActivity {
         //Populate graph
         populateGraph(bloodGlucoseMeasurement);
 
-        //Customize graph
-        //graphView.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(getApplicationContext()));
-       // graphView.getGridLabelRenderer().setNumHorizontalLabels(3); // only 4 because of the space
-        //graphView.getGridLabelRenderer().setHumanRounding(false);
-
         graphView.getViewport().setXAxisBoundsManual(true);
         graphView.getViewport().setMinX(mSeries.getLowestValueX());
         graphView.getViewport().setMaxX(mSeries.getHighestValueX());
@@ -129,16 +135,24 @@ public class BloodGlycoseOverviewActivity extends AppCompatActivity {
         graphView.getGridLabelRenderer().setHorizontalLabelsVisible(false);
         graphView.getGridLabelRenderer().setVerticalLabelsVisible(false);
 
+        graphView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent graph = new Intent(BloodGlycoseOverviewActivity.this, GraphActivity.class);
+                Bundle extra = new Bundle();
+                extra.putSerializable("graphData", (Serializable) bloodGlucoseMeasurement);
+                graph.putExtra("extra", extra);
+                startActivity(graph);
 
-//        // enable scaling and scrolling
-//        graphView.getViewport().setScalable(true);
-//        graphView.getViewport().setScalableY(true);
-
-
-
+            }
+        });
 
     }
 
+    /**
+     * Method used to fetch the measurements for the current week
+     * @return A list of blood glucose measurements for the current week
+     */
     public List<BloodGlucoseMeasurements> fetchWeekMeasurements(){
 
         List<BloodGlucoseMeasurements> l = new ArrayList<>();
@@ -160,6 +174,10 @@ public class BloodGlycoseOverviewActivity extends AppCompatActivity {
         return l;
     }
 
+    /**
+     * Fetches the profile from the database
+     * @return The profile object
+     */
     private Profile fetchProfile(){
         Profile p;
         try {
@@ -176,7 +194,9 @@ public class BloodGlycoseOverviewActivity extends AppCompatActivity {
         return p;
     }
 
-//Calculates the number of reds, yellows and green measurements
+    /**
+     * Calculates the ratio between low, normal and high measurements
+     */
     private void calculateRatio(){
 
         for (BloodGlucoseMeasurements b: bloodGlucoseMeasurement) {
@@ -193,6 +213,10 @@ public class BloodGlycoseOverviewActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Creates the different series that are displayed on the graph
+     * @param bloodList
+     */
     private void populateGraph(List<BloodGlucoseMeasurements> bloodList){
         int i = 0;
         int count = bloodList.size();
@@ -250,11 +274,11 @@ public class BloodGlycoseOverviewActivity extends AppCompatActivity {
         }
 
         redSeries = new PointsGraphSeries<>(redValues);
-        redSeries.setShape(PointsGraphSeries.Shape.POINT);
+        redSeries.setShape(PointsGraphSeries.Shape.RECTANGLE);
         redSeries.setColor(Color.RED);
         graphView.addSeries(redSeries);
         yellowSeries = new PointsGraphSeries<>(yellowValues);
-        yellowSeries.setShape(PointsGraphSeries.Shape.POINT);
+        yellowSeries.setShape(PointsGraphSeries.Shape.TRIANGLE);
         yellowSeries.setColor(Color.YELLOW);
         graphView.addSeries(yellowSeries);
         greenSeries = new PointsGraphSeries<>(greenValues);
