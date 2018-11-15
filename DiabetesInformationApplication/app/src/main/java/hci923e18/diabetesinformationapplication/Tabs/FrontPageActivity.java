@@ -24,6 +24,7 @@ import java.util.List;
 
 import hci923e18.database.BloodGlucoseMeasurements;
 import hci923e18.database.Food;
+import hci923e18.database.LongTermBloodGlucose;
 import hci923e18.diabetesinformationapplication.BloodGlycoseOverview.BloodGlycoseOverviewActivity;
 import hci923e18.diabetesinformationapplication.MealLog.MealLogFragment;
 import hci923e18.diabetesinformationapplication.MealPlan.MealPlanFragment;
@@ -250,6 +251,15 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
         bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 6.0, 1,1,1));
 
         SugarRecord.saveInTx(bloodGlucoseMeasurements);
+
+        //Calendar start, Calendar end, Double value
+        Calendar c1 = Calendar.getInstance();
+        Calendar c2 = Calendar.getInstance();
+        c1.set(Calendar.MONTH, 8);
+        c2.set(Calendar.MONTH, 11);
+
+        LongTermBloodGlucose longTermBloodGlucose = new LongTermBloodGlucose(c1, c2, 6.2);
+        longTermBloodGlucose.save();
 
 
     }

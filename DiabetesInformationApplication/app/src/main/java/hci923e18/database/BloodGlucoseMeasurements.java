@@ -2,11 +2,12 @@ package hci923e18.database;
 
 import com.orm.SugarRecord;
 
+import java.io.Serializable;
 import java.sql.Time;
 import java.util.Calendar;
 import java.util.Date;
 
-public class BloodGlucoseMeasurements extends SugarRecord<BloodGlucoseMeasurements> {
+public class BloodGlucoseMeasurements extends SugarRecord<BloodGlucoseMeasurements> implements Serializable{
 
     private Long _date;
     private Double _glucoseLevel;
