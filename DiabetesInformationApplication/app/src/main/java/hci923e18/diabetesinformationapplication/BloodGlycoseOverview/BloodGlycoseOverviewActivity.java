@@ -147,6 +147,29 @@ public class BloodGlycoseOverviewActivity extends AppCompatActivity {
             }
         });
 
+        BloodGlucoseMeasurements bloodGlucoseMeasurements = null;
+        try {
+            List<BloodGlucoseMeasurements> b = new ArrayList<>();
+            b.addAll(BloodGlucoseMeasurements.listAll(BloodGlucoseMeasurements.class));
+            int last = b.size() - 1;
+
+            bloodGlucoseMeasurements = b.get(last);
+            b.clear();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        lastMeasurementEdittext.setText(bloodGlucoseMeasurements.get_glucoseLevel().toString());
+        lastMeasurementEdittext.setEnabled(false);
+
+        if (bloodGlucoseMeasurements.get_glucoseLevel() <= profile.get_lowerBloodGlucoseLevel()) {
+            lastMeasurementEdittext.setBackgroundResource(R.drawable.rounded_edittext_red);
+        } else if (bloodGlucoseMeasurements.get_glucoseLevel() >= profile.get_upperBloodGlucoseLevel()) {
+            lastMeasurementEdittext.setBackgroundResource(R.drawable.rounded_edittext_yellow);
+        } else {
+            lastMeasurementEdittext.setBackgroundResource(R.drawable.rounded_edittext_green);
+        }
+
     }
 
     /**
