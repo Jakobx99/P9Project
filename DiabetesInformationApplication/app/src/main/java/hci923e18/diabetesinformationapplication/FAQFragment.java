@@ -7,11 +7,17 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ExpandableListView;
+import android.widget.Spinner;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+
+import hci923e18.database.FrequentlyAskedQuestions;
 
 
 /**
@@ -24,13 +30,21 @@ import java.util.List;
  */
 public class FAQFragment extends Fragment {
 
+    Spinner typeSpinner;
+    Spinner categorySpinner;
+    String type;
+    String category;
     ExpandableListAdapter listAdapter;
     ExpandableListView expListView;
+    List<FrequentlyAskedQuestions> FAQList = new ArrayList<>();
     List<String> listDataHeader;
-    HashMap<String, List<String>> listDataChild;
+    HashMap<String, String> listDataChild;
 
     private OnFragmentInteractionListener mListener;
 
+    /**
+     * Default constructor
+     */
     public FAQFragment() {
         // Required empty public constructor
     }
@@ -51,6 +65,10 @@ public class FAQFragment extends Fragment {
         return fragment;
     }
 
+    /**
+     * Default On create method - called when the fragment is constructed
+     * @param savedInstanceState The saved instance can be used if the application is reopened
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,30 +80,74 @@ public class FAQFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_faq, container, false);
 
+        typeSpinner = view.findViewById(R.id.spinner_FAQType);
+        categorySpinner = view.findViewById(R.id.spinner_FAQCategory);
 
         // get the listview
         expListView = view.findViewById(R.id.expandableListView_FAQ);
-
         // preparing list data
         prepareListData();
-
         listAdapter = new ExpandableListAdapter(this.getActivity(), listDataHeader, listDataChild);
-
         // setting list adapter
         expListView.setAdapter(listAdapter);
+
+        //typeSpinner
+        String [] valuesTypes =
+                {"Alle","Type 1","Type 2"};
+        ArrayAdapter<String> adapterType = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, valuesTypes);
+        adapterType.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        typeSpinner.setAdapter(adapterType);
+
+        //categorySpinner
+        String [] valuesCategory =
+                {"Alle","Mad","Livet med diabetes"};
+        ArrayAdapter<String> adapterCategory = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, valuesCategory);
+        adapterCategory.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        categorySpinner.setAdapter(adapterCategory);
+
+        // typeSpinner
+        typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                type = parent.getItemAtPosition(position).toString();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        // categorySpinner
+        categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                category = parent.getItemAtPosition(position).toString();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
 
 
         return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
+    /**
+     * Default onButtonPressed
+     * @param uri update argument and hook method into UI event
+     */
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
     }
 
+    /**
+     * Default onAttach
+     * @param context the context of the fragment
+     */
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -95,6 +157,9 @@ public class FAQFragment extends Fragment {
         }
     }
 
+    /**
+     * Default onDetach
+     */
     @Override
     public void onDetach() {
         super.onDetach();
@@ -117,50 +182,27 @@ public class FAQFragment extends Fragment {
     }
 
 
+    /**
+     * Method for preparing the List of FAQs from the database
+     */
     private void prepareListData() {
 
-        //TODO Lave og load databse FAQ obejct
+        //TODO Lave en FAQAdapter for at kunne lave et filter til reloed liste ud fra spinnerne.
+
+
         listDataHeader = new ArrayList<String>();
-        listDataChild = new HashMap<String, List<String>>();
+        listDataChild = new HashMap<String, String>();
+        String tempAnswer;
 
-        // Adding child data
-        listDataHeader.add("Top 250");
-        listDataHeader.add("Now Showing");
-        listDataHeader.add("Coming Soon..");
-
-        // Adding child data
-        List<String> top250 = new ArrayList<String>();
-        top250.add("The Shawshank Redemption");
-        top250.add("The Godfather");
-        top250.add("The Godfather: Part II");
-        top250.add("Pulp Fiction");
-        top250.add("The Good, the Bad and the Ugly");
-        top250.add("The Dark Knight");
-        top250.add("12 Angry Men");
-
-        List<String> nowShowing = new ArrayList<String>();
-        nowShowing.add("The Conjuring");
-        nowShowing.add("Despicable Me 2");
-        nowShowing.add("Turbo");
-        nowShowing.add("Grown Ups 2");
-        nowShowing.add("Red 2");
-        nowShowing.add("The Wolverine");
-
-        List<String> comingSoon = new ArrayList<String>();
-        comingSoon.add("2 Guns");
-        comingSoon.add("The Smurfs 2");
-        comingSoon.add("The Spectacular Now");
-        comingSoon.add("The Canyons");
-        comingSoon.add("Europa Report");
-
-        listDataChild.put(listDataHeader.get(0), top250); // Header, Child data
-        listDataChild.put(listDataHeader.get(1), nowShowing);
-        listDataChild.put(listDataHeader.get(2), comingSoon);
+        try {
+            FAQList = FrequentlyAskedQuestions.listAll(FrequentlyAskedQuestions.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        for (int i = 0; i < FAQList.size(); i++){
+            listDataHeader.add(FAQList.get(i).get_title());
+            tempAnswer = FAQList.get(i).get_answer();
+            listDataChild.put(listDataHeader.get(i), tempAnswer);
+        }
     }
-
-
-    //Guide til at bruge exppandable List View
-    //setOnGroupExpandListener
-    //https://www.androidhive.info/2013/07/android-expandable-list-view-tutorial/
-
 }
