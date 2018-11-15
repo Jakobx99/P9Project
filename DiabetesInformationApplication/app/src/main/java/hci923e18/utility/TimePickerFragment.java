@@ -1,14 +1,18 @@
 package hci923e18.utility;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.TimePicker;
 
 import java.util.Calendar;
+
+import hci923e18.diabetesinformationapplication.newBloodGlucoseLevelActivity;
 
 /**
  * The TimePickerFragment1 class
@@ -20,6 +24,8 @@ public class TimePickerFragment extends DialogFragment
     static private int endHour;
     static private int endMin;
     static private EditText AtTime = null;
+    private TimepickerInterface mCallback;
+    newBloodGlucoseLevelActivity saveTime = new newBloodGlucoseLevelActivity();
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -27,6 +33,8 @@ public class TimePickerFragment extends DialogFragment
         final Calendar c = Calendar.getInstance();
         int hour = c.get(Calendar.HOUR_OF_DAY);
         int minute = c.get(Calendar.MINUTE);
+
+
 
         // Create a new instance of TimePickerDialog and return it
         return new TimePickerDialog(getActivity(), this, hour, minute,
@@ -42,10 +50,25 @@ public class TimePickerFragment extends DialogFragment
             String tempminute;
             tempminute = "0" + String.valueOf(minute);
             String time = String.valueOf(hourOfDay) + ":" + tempminute;
-            AtTime.setText(time);
+            mCallback.OnTimeSet(time);
+
         } else {
             String time = String.valueOf(hourOfDay) + ":" + String.valueOf(minute);
-            AtTime.setText(time);
+            mCallback.OnTimeSet(time);
+        }
+    }
+
+
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        try {
+            mCallback = (TimepickerInterface) activity;
+        }
+        catch (ClassCastException e) {
+            Log.d("MyDialog", "Activity doesn't implement the ISelectedData interface");
         }
     }
 }

@@ -23,9 +23,14 @@ import android.widget.ToggleButton;
 
 import java.util.Calendar;
 
+import hci923e18.database.Profile;
 import hci923e18.utility.KeyBoard;
+import hci923e18.utility.TimePickerFragment;
+import hci923e18.utility.TimepickerInterface;
 
-public class newBloodGlucoseLevelActivity extends AppCompatActivity {
+import static java.lang.Double.parseDouble;
+
+public class newBloodGlucoseLevelActivity extends AppCompatActivity implements TimepickerInterface {
 
     EditText enteredTime;
     EditText enteredBloodGlucoseLevel;
@@ -35,6 +40,12 @@ public class newBloodGlucoseLevelActivity extends AppCompatActivity {
     ToggleButton afterMeal;
     Button saveBloodGlucoseLevel;
     String mealType;
+    Profile p;
+
+    Double upperLimitBS;
+    Double lowerLimitBS;
+
+
 
 
 
@@ -51,6 +62,9 @@ public class newBloodGlucoseLevelActivity extends AppCompatActivity {
         beforeMeal = findViewById(R.id.toggleButton_newglucoselevelbeforefood);
         afterMeal = findViewById(R.id.toggleButton_newglucoselevelafterfood);
         saveBloodGlucoseLevel = findViewById(R.id.button_newbloodglucoselevelsave);
+
+        upperLimitBS = 16.0;
+        lowerLimitBS = 4.0;
 
         String [] values =
                 {"Morgenmad","Middagsmad","Aftensmad"};
@@ -74,9 +88,12 @@ public class newBloodGlucoseLevelActivity extends AppCompatActivity {
         enteredTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // call that shit timepicker
+                DialogFragment newFragment = new TimePickerFragment();
+                newFragment.show(getSupportFragmentManager(),"Timepicker");
             }
         });
+
+
 
         enteredBloodGlucoseLevel.addTextChangedListener(new TextWatcher() {
             @Override
@@ -87,7 +104,22 @@ public class newBloodGlucoseLevelActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                // change that shit border color when high or low
+                if(count > 0) {
+                    // change that shit border color when high or low
+                    double bloodGlucoseLevelInput = Double.parseDouble(s.toString());
+
+                    if (bloodGlucoseLevelInput <= lowerLimitBS) {
+                        enteredBloodGlucoseLevel.setBackgroundResource(R.drawable.rounded_edittext_red);
+                    } else if (bloodGlucoseLevelInput >= upperLimitBS) {
+                        enteredBloodGlucoseLevel.setBackgroundResource(R.drawable.rounded_edittext_yellow);
+                    } else {
+                        enteredBloodGlucoseLevel.setBackgroundResource(R.drawable.rounded_edittext_green);
+                    }
+                }
+                else{
+
+                }
+
             }
 
             @Override
@@ -165,11 +197,29 @@ public class newBloodGlucoseLevelActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                    //shit happens
-                // save that shit to DB
+                if(enteredBloodGlucoseLevel.getText().toString().isEmpty())
+                {
+                    Toast.makeText(newBloodGlucoseLevelActivity.this, "Du mangler at indtaste et blodsukker", Toast.LENGTH_SHORT).show();
+                }
+                else if(!noMark.isChecked() && !afterMeal.isChecked() && !beforeMeal.isChecked())
+                {
+                    Toast.makeText(newBloodGlucoseLevelActivity.this, "Du mangler at vælge en markering", Toast.LENGTH_SHORT).show();
+                }
+                else if(enteredTime.getText().toString().isEmpty())
+                {
+                    Toast.makeText(newBloodGlucoseLevelActivity.this, "Du mangler at indtaste tid", Toast.LENGTH_SHORT).show();
+                }
+                else{
+
+                }
+
             }
         });
 
 
+    }
+    @Override
+    public void OnTimeSet(String time) {
+        enteredTime.setText(time);
     }
 }
