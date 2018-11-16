@@ -4,13 +4,19 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.Spinner;
+
+import com.orm.query.Condition;
+import com.orm.query.Select;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,6 +36,7 @@ import hci923e18.database.FrequentlyAskedQuestions;
  */
 public class FAQFragment extends Fragment {
 
+    private ArrayList<FrequentlyAskedQuestions> arraylist = null;
     Spinner typeSpinner;
     Spinner categorySpinner;
     String type;
@@ -83,6 +90,8 @@ public class FAQFragment extends Fragment {
         typeSpinner = view.findViewById(R.id.spinner_FAQType);
         categorySpinner = view.findViewById(R.id.spinner_FAQCategory);
 
+
+
         // get the listview
         expListView = view.findViewById(R.id.expandableListView_FAQ);
         // preparing list data
@@ -105,11 +114,16 @@ public class FAQFragment extends Fragment {
         adapterCategory.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         categorySpinner.setAdapter(adapterCategory);
 
+        //TODO Fix sådan man vælge fra begge spinner, og at filterer der ud fra.
+
         // typeSpinner
         typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 type = parent.getItemAtPosition(position).toString();
+                prepareListDataFilterTypeSpinner(position);
+                listAdapter = new ExpandableListAdapter(getActivity(), listDataHeader, listDataChild);
+                expListView.setAdapter(listAdapter);
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -125,6 +139,30 @@ public class FAQFragment extends Fragment {
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+
+        //Filter when using the search field
+        final EditText editTextSearch = view.findViewById(R.id.edittext_FAQSearch);
+
+        editTextSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                prepareListDataFilterSearch(editTextSearch.getText().toString());
+                listAdapter = new ExpandableListAdapter(getActivity(), listDataHeader, listDataChild);
+                // setting list adapter
+                expListView.setAdapter(listAdapter);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
 
             }
         });
@@ -187,9 +225,6 @@ public class FAQFragment extends Fragment {
      */
     private void prepareListData() {
 
-        //TODO Lave en FAQAdapter for at kunne lave et filter til reloed liste ud fra spinnerne.
-
-
         listDataHeader = new ArrayList<String>();
         listDataChild = new HashMap<String, String>();
         String tempAnswer;
@@ -199,10 +234,60 @@ public class FAQFragment extends Fragment {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         for (int i = 0; i < FAQList.size(); i++){
             listDataHeader.add(FAQList.get(i).get_title());
             tempAnswer = FAQList.get(i).get_answer();
             listDataChild.put(listDataHeader.get(i), tempAnswer);
         }
     }
+
+    /**
+     * Method for preparing the List of FAQs from the database
+     */
+    private void prepareListDataFilterSearch(String searchInput) {
+
+        FAQList.clear();
+        listDataHeader = new ArrayList<String>();
+        listDataChild = new HashMap<String, String>();
+        String tempAnswer;
+        String query = "SELECT * FROM FREQUENTLY_ASKED_QUESTIONS WHERE _title LIKE '%" + searchInput + "%'";
+
+        try {
+            FAQList = FrequentlyAskedQuestions.findWithQuery(FrequentlyAskedQuestions.class, query);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        for (int i = 0; i < FAQList.size(); i++){
+            listDataHeader.add(FAQList.get(i).get_title());
+            tempAnswer = FAQList.get(i).get_answer();
+            listDataChild.put(listDataHeader.get(i), tempAnswer);
+        }
+    }
+
+    /**
+     * Method for preparing the List of FAQs from the database
+     */
+    private void prepareListDataFilterTypeSpinner(Integer type) {
+
+        FAQList.clear();
+        listDataHeader = new ArrayList<String>();
+        listDataChild = new HashMap<String, String>();
+        String tempAnswer;
+        String query = "SELECT * FROM FREQUENTLY_ASKED_QUESTIONS WHERE _type = " + type;
+
+        try {
+            FAQList = FrequentlyAskedQuestions.findWithQuery(FrequentlyAskedQuestions.class, query);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        for (int i = 0; i < FAQList.size(); i++){
+            listDataHeader.add(FAQList.get(i).get_title());
+            tempAnswer = FAQList.get(i).get_answer();
+            listDataChild.put(listDataHeader.get(i), tempAnswer);
+        }
+    }
+
 }
