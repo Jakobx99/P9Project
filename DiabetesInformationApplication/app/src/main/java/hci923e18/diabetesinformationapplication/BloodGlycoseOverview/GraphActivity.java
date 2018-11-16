@@ -27,6 +27,7 @@ import com.jjoe64.graphview.series.OnDataPointTapListener;
 import com.jjoe64.graphview.series.PointsGraphSeries;
 import com.jjoe64.graphview.series.Series;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -311,8 +312,11 @@ public class GraphActivity extends AppCompatActivity {
         graphView.getViewport().setScalableY(true);
 
         // set date label formatter
+
+
         graphView.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(GraphActivity.this));
         graphView.getGridLabelRenderer().setNumHorizontalLabels(4); // only 4 because of the space
+
     }
 
     /**

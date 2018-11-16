@@ -2,12 +2,15 @@ package hci923e18.diabetesinformationapplication.Tabs;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import hci923e18.diabetesinformationapplication.BloodGlycoseOverview.BloodGlycoseOverviewActivity;
 import hci923e18.diabetesinformationapplication.R;
 
 
@@ -32,6 +35,7 @@ public class HomeFragment extends Fragment {
     //Global variables
     Button createButton;
     Button displayButton;
+    Button overviewButton;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -69,7 +73,7 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
@@ -77,6 +81,7 @@ public class HomeFragment extends Fragment {
         //Binder components
         createButton = view.findViewById(R.id.button_homepageInsulinCalc);
         displayButton = view.findViewById(R.id.button_homepageMeal);
+        overviewButton = view.findViewById(R.id.button_home_overview);
 
         //Click events
         createButton.setOnClickListener(new View.OnClickListener() {
@@ -90,6 +95,14 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ((FrontPageActivity)getActivity()).changeToMealPlan();
+            }
+        });
+
+        overviewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), BloodGlycoseOverviewActivity.class);
+                getActivity().startActivity(intent);
             }
         });
 

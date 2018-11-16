@@ -19,6 +19,7 @@
         android:layout_marginStart="100dp"
         android:layout_marginTop="52dp"
         android:text="Insulin beregner"
+        android:drawableRight="@drawable/icons8_calculator_24_white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,6 +34,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="100dp"
         android:text="Måltids planlægger"
+        android:drawableRight="@drawable/icons8_calories_filled_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,6 +65,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_home_overview"
+        style="@style/newbuttonstyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="100dp"
+        android:text="Blodsukker målings oversigt"
+        android:drawableRight="@drawable/icons8_task_24_white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_homepageMeal" />
 
     <!--<Button
         android:id="@+id/buttonSettings"

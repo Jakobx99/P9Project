@@ -235,6 +235,16 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
         Calendar c = Calendar.getInstance();
 
         List<BloodGlucoseMeasurements> bloodGlucoseMeasurements = new ArrayList<>();
+        c.set(2018, Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DATE) -2);
+        c.set(Calendar.HOUR, 8);
+        bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 1.0, 1,1,1));
+        c.set(Calendar.HOUR, 9);
+        bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 4.0, 1,1,1));
+        c.set(Calendar.HOUR, 10);
+        bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 14.0, 1,1,1));
+        c.set(Calendar.HOUR, 11);
+        bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 15.0, 1,1,1));
+        c = Calendar.getInstance();
         c.set(2018, Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DATE) -1);
         c.set(Calendar.HOUR, 8);
         bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 1.0, 1,1,1));
