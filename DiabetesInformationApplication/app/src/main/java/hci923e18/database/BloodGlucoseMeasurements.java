@@ -2,11 +2,12 @@ package hci923e18.database;
 
 import com.orm.SugarRecord;
 
+import java.io.Serializable;
 import java.sql.Time;
 import java.util.Calendar;
 import java.util.Date;
 
-public class BloodGlucoseMeasurements extends SugarRecord<BloodGlucoseMeasurements> {
+public class BloodGlucoseMeasurements extends SugarRecord<BloodGlucoseMeasurements> implements Serializable{
 
     private Long _date;
     private Double _glucoseLevel;
@@ -21,8 +22,8 @@ public class BloodGlucoseMeasurements extends SugarRecord<BloodGlucoseMeasuremen
         setDate(date);
         _glucoseLevel = glucoseLevel;
         _type = type;
-        _category = category;
-        _beforeAfter = beforeAfter;
+        _category = category;               // 0 = morgenmad, 1 = middagsmad, 2 = aftensmad
+        _beforeAfter = beforeAfter;         // 0 = ingen markering, 1 = før mad, 2 = efter mad
     }
 
     public void setDate(Calendar localdate){

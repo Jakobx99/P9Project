@@ -27,7 +27,11 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    //http://satyan.github.io/sugar/
     implementation 'com.github.satyan:sugar:1.3'
     implementation 'com.google.code.gson:gson:2.8.2'
+    //http://www.android-graphview.org/
     implementation 'com.jjoe64:graphview:4.2.2'
+    //https://github.com/florent37/SingleDateAndTimePicker
+    implementation 'com.github.florent37:singledateandtimepicker:2.1.1'
 }

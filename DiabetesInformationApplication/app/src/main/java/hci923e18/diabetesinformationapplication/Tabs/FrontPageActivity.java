@@ -26,6 +26,7 @@ import hci923e18.database.BloodGlucoseMeasurements;
 import hci923e18.database.Food;
 import hci923e18.database.FrequentlyAskedQuestions;
 import hci923e18.diabetesinformationapplication.FAQFragment;
+import hci923e18.database.LongTermBloodGlucose;
 import hci923e18.diabetesinformationapplication.BloodGlycoseOverview.BloodGlycoseOverviewActivity;
 import hci923e18.diabetesinformationapplication.MealLog.MealLogFragment;
 import hci923e18.diabetesinformationapplication.MealPlan.MealPlanFragment;
@@ -33,6 +34,7 @@ import hci923e18.diabetesinformationapplication.Notes.NewNoteFragment;
 import hci923e18.diabetesinformationapplication.Notes.NoteListFragment;
 import hci923e18.diabetesinformationapplication.R;
 import hci923e18.diabetesinformationapplication.SettingsActivity;
+import hci923e18.diabetesinformationapplication.newBloodGlucoseLevelActivity;
 
 
 public class FrontPageActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -208,6 +210,7 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
         fragmentTransaction.add(R.id.framelayoutFrontPage, new NoteListFragment()).addToBackStack("noteList").commit();
     }
 
+
     /**
      * Method to change navigation bar and active fragment to FAQ
      */
@@ -243,6 +246,16 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
         Calendar c = Calendar.getInstance();
 
         List<BloodGlucoseMeasurements> bloodGlucoseMeasurements = new ArrayList<>();
+        c.set(2018, Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DATE) -2);
+        c.set(Calendar.HOUR, 8);
+        bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 1.0, 1,1,1));
+        c.set(Calendar.HOUR, 9);
+        bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 4.0, 1,1,1));
+        c.set(Calendar.HOUR, 10);
+        bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 14.0, 1,1,1));
+        c.set(Calendar.HOUR, 11);
+        bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 15.0, 1,1,1));
+        c = Calendar.getInstance();
         c.set(2018, Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DATE) -1);
         c.set(Calendar.HOUR, 8);
         bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 1.0, 1,1,1));
@@ -261,6 +274,15 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
         bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 6.0, 1,1,1));
 
         SugarRecord.saveInTx(bloodGlucoseMeasurements);
+
+        //Calendar start, Calendar end, Double value
+        Calendar c1 = Calendar.getInstance();
+        Calendar c2 = Calendar.getInstance();
+        c1.set(Calendar.MONTH, 8);
+        c2.set(Calendar.MONTH, 11);
+
+        LongTermBloodGlucose longTermBloodGlucose = new LongTermBloodGlucose(c1, c2, 6.2);
+        longTermBloodGlucose.save();
 
         //String title, String answer, Integer type, Integer category
         List<FrequentlyAskedQuestions> FAQObjects = new ArrayList<>();
@@ -417,6 +439,7 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
                 0,1));
         SugarRecord.saveInTx(FAQObjects);
 
+
     }
 
     //--------------------------Burger menu-------------------------------------
@@ -445,12 +468,17 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
                 changeToNoteList();
                 drawerLayout.closeDrawers();
                 break;
+
             case R.id.blood_glycose_overview:
                 intent = new Intent(FrontPageActivity.this, BloodGlycoseOverviewActivity.class);
                 drawerLayout.closeDrawers();
                 break;
             case R.id.navigation_FAQ:
                 changeToFAQ();
+                drawerLayout.closeDrawers();
+                break;
+            case R.id.newbloodglucoselevel:
+                intent = new Intent(FrontPageActivity.this, newBloodGlucoseLevelActivity.class);
                 drawerLayout.closeDrawers();
                 break;
         }
