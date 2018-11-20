@@ -59,7 +59,7 @@ public class GraphActivity extends AppCompatActivity {
     private LineGraphSeries<DataPoint> longTermSeries;
     private Calendar startDate;
     private Calendar endDate;
-    final SimpleDateFormat sdf = new SimpleDateFormat("dd-MM HH:mm");
+    final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM \n'Kl.' HH:mm");
 
     /**
      * OnCreate method for this activity
@@ -335,8 +335,9 @@ public class GraphActivity extends AppCompatActivity {
             }
         });
 
-       // graphView.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(GraphActivity.this));
-        graphView.getGridLabelRenderer().setNumHorizontalLabels(3); // only 4 because of the space
+        //graphView.getGridLabelRenderer().setHorizontalLabelsAngle(90);
+        //graphView.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(GraphActivity.this));
+        //graphView.getGridLabelRenderer().setNumHorizontalLabels(3); // only 4 because of the space
 
     }
 
