@@ -22,7 +22,9 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import java.util.Calendar;
+import java.util.Objects;
 
+import hci923e18.database.BloodGlucoseMeasurements;
 import hci923e18.database.Profile;
 import hci923e18.utility.KeyBoard;
 import hci923e18.utility.TimePickerFragment;
@@ -63,8 +65,8 @@ public class newBloodGlucoseLevelActivity extends AppCompatActivity implements T
         afterMeal = findViewById(R.id.toggleButton_newglucoselevelafterfood);
         saveBloodGlucoseLevel = findViewById(R.id.button_newbloodglucoselevelsave);
 
-        upperLimitBS = 16.0;
-        lowerLimitBS = 4.0;
+        upperLimitBS = p.get_upperBloodGlucoseLevel();
+        lowerLimitBS = p.get_lowerBloodGlucoseLevel();
 
         String [] values =
                 {"Morgenmad","Middagsmad","Aftensmad"};
@@ -141,14 +143,12 @@ public class newBloodGlucoseLevelActivity extends AppCompatActivity implements T
                     afterMeal.setChecked(false);
                     beforeMeal.setClickable(false);
                     afterMeal.setClickable(false);
-                    Toast.makeText(getApplicationContext(),
-                            String.valueOf(buttonView.isChecked()), Toast.LENGTH_SHORT).show();
+
                 }
                 else {
                     beforeMeal.setClickable(true);
                     afterMeal.setClickable(true);
-                    Toast.makeText(getApplicationContext(),
-                            String.valueOf(buttonView.isChecked()), Toast.LENGTH_SHORT).show();
+
                 }
             }
 
@@ -163,13 +163,11 @@ public class newBloodGlucoseLevelActivity extends AppCompatActivity implements T
                     afterMeal.setChecked(false);
                     noMark.setClickable(false);
                     afterMeal.setClickable(false);
-                    Toast.makeText(getApplicationContext(),
-                            String.valueOf(buttonView.isChecked()), Toast.LENGTH_SHORT).show();
+
                 } else {
                     noMark.setClickable(true);
                     afterMeal.setClickable(true);
-                    Toast.makeText(getApplicationContext(),
-                            String.valueOf(buttonView.isChecked()), Toast.LENGTH_SHORT).show();
+
                 }
             }
         });
@@ -181,13 +179,11 @@ public class newBloodGlucoseLevelActivity extends AppCompatActivity implements T
                     beforeMeal.setChecked(false);
                     noMark.setClickable(false);
                     beforeMeal.setClickable(false);
-                    Toast.makeText(getApplicationContext(),
-                            String.valueOf(buttonView.isChecked()), Toast.LENGTH_SHORT).show();
+
                 } else {
                     noMark.setClickable(true);
                     beforeMeal.setClickable(true);
-                    Toast.makeText(getApplicationContext(),
-                            String.valueOf(buttonView.isChecked()), Toast.LENGTH_SHORT).show();
+
                 }
             }
         });
@@ -210,8 +206,49 @@ public class newBloodGlucoseLevelActivity extends AppCompatActivity implements T
                     Toast.makeText(newBloodGlucoseLevelActivity.this, "Du mangler at indtaste tid", Toast.LENGTH_SHORT).show();
                 }
                 else{
+                    BloodGlucoseMeasurements newBloodGlucoseLevel = new BloodGlucoseMeasurements();
+                    Calendar newTime = Calendar.getInstance();
+                    String timeHour = enteredTime.getText().toString();
+                    String[] parts = timeHour.split(":");
+                    String hour = parts[0]; // Hours
+                    String minut = parts[1]; // Minuts
 
+                    newTime.set(Calendar.HOUR_OF_DAY,Integer.parseInt(hour));
+                    newTime.set(Calendar.MINUTE,Integer.parseInt((minut)));
+                    newBloodGlucoseLevel.setDate(newTime);
+
+                    newBloodGlucoseLevel.set_glucoseLevel(Double.parseDouble(enteredBloodGlucoseLevel.getText().toString()));
+
+                    if (noMark.isChecked())
+                    {
+                        newBloodGlucoseLevel.set_beforeAfter(0);  //ingen markering
+                    }
+                    else if (beforeMeal.isChecked())
+                    {
+                        newBloodGlucoseLevel.set_beforeAfter(1);  // før måltid
+                    }
+                    else if(afterMeal.isChecked())
+                    {
+                        newBloodGlucoseLevel.set_beforeAfter(2);   // efter måltid
+                    }
+                    if(Objects.equals(mealType,"Morgenmad"))
+                    {
+                        newBloodGlucoseLevel.set_category(0);  // morgenmad
+                    }
+                    else if(Objects.equals(mealType,"Middagsmad"))
+                    {
+                        newBloodGlucoseLevel.set_category(1);   // middagsmad
+                    }
+                    else if(Objects.equals(mealType,"Aftensmad"))
+                    {
+                        newBloodGlucoseLevel.set_category(2);   //aftensmad
+                    }
+
+
+                    newBloodGlucoseLevel.save();
+                    finish();
                 }
+
 
             }
         });

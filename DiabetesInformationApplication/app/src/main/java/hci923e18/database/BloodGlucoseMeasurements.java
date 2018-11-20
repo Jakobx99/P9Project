@@ -21,8 +21,8 @@ public class BloodGlucoseMeasurements extends SugarRecord<BloodGlucoseMeasuremen
         setDate(date);
         _glucoseLevel = glucoseLevel;
         _type = type;
-        _category = category;
-        _beforeAfter = beforeAfter;
+        _category = category;               // 0 = morgenmad, 1 = middagsmad, 2 = aftensmad
+        _beforeAfter = beforeAfter;         // 0 = ingen markering, 1 = før mad, 2 = efter mad
     }
 
     public void setDate(Calendar localdate){
