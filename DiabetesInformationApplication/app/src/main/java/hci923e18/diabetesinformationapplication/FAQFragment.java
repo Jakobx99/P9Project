@@ -14,14 +14,9 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.Spinner;
-
-import com.orm.query.Condition;
-import com.orm.query.Select;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 
 import hci923e18.database.FrequentlyAskedQuestions;
 
@@ -90,8 +85,6 @@ public class FAQFragment extends Fragment {
         typeSpinner = view.findViewById(R.id.spinner_FAQType);
         categorySpinner = view.findViewById(R.id.spinner_FAQCategory);
 
-
-
         // get the listview
         expListView = view.findViewById(R.id.expandableListView_FAQ);
         // preparing list data
@@ -121,7 +114,9 @@ public class FAQFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 type = parent.getItemAtPosition(position).toString();
-                prepareListDataFilterTypeSpinner(position);
+                Integer categoryInt = categorySpinner.getSelectedItemPosition();
+
+                prepareListDataFilterSpinner(position, categoryInt);
                 listAdapter = new ExpandableListAdapter(getActivity(), listDataHeader, listDataChild);
                 expListView.setAdapter(listAdapter);
             }
@@ -136,14 +131,17 @@ public class FAQFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 category = parent.getItemAtPosition(position).toString();
+                Integer typeInt = typeSpinner.getSelectedItemPosition();
+
+                prepareListDataFilterSpinner(typeInt, position);
+                listAdapter = new ExpandableListAdapter(getActivity(), listDataHeader, listDataChild);
+                expListView.setAdapter(listAdapter);
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
-
-
 
         //Filter when using the search field
         final EditText editTextSearch = view.findViewById(R.id.edittext_FAQSearch);
@@ -159,6 +157,8 @@ public class FAQFragment extends Fragment {
                 listAdapter = new ExpandableListAdapter(getActivity(), listDataHeader, listDataChild);
                 // setting list adapter
                 expListView.setAdapter(listAdapter);
+                categorySpinner.setSelection(0);
+                typeSpinner.setSelection(0);
             }
 
             @Override
@@ -166,8 +166,6 @@ public class FAQFragment extends Fragment {
 
             }
         });
-
-
 
         return view;
     }
@@ -243,7 +241,7 @@ public class FAQFragment extends Fragment {
     }
 
     /**
-     * Method for preparing the List of FAQs from the database
+     * Method for preparing the List of FAQs from the database when searching
      */
     private void prepareListDataFilterSearch(String searchInput) {
 
@@ -267,20 +265,42 @@ public class FAQFragment extends Fragment {
     }
 
     /**
-     * Method for preparing the List of FAQs from the database
+     * Method for preparing the List of FAQs from the database when choosing from spinner
      */
-    private void prepareListDataFilterTypeSpinner(Integer type) {
+    private void prepareListDataFilterSpinner(Integer type, Integer category) {
 
         FAQList.clear();
         listDataHeader = new ArrayList<String>();
         listDataChild = new HashMap<String, String>();
         String tempAnswer;
-        String query = "SELECT * FROM FREQUENTLY_ASKED_QUESTIONS WHERE _type = " + type;
 
-        try {
-            FAQList = FrequentlyAskedQuestions.findWithQuery(FrequentlyAskedQuestions.class, query);
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (type == 0 && category == 0){
+            try {
+                FAQList = FrequentlyAskedQuestions.listAll(FrequentlyAskedQuestions.class);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        else if(type == 0 && category != 0) {
+            try {
+                FAQList = FrequentlyAskedQuestions.find(FrequentlyAskedQuestions.class, "_category = 0 OR _category = ?", category.toString());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        else if(type != 0 && category == 0) {
+            try {
+                FAQList = FrequentlyAskedQuestions.find(FrequentlyAskedQuestions.class, "_type = 0 OR _type = ?", category.toString());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        else if(type != 0 && category != 0) {
+            try {
+                FAQList = FrequentlyAskedQuestions.find(FrequentlyAskedQuestions.class, "(_type = 0 OR _type = ?) AND (_category = 0 OR _category = ?)", type.toString(), category.toString());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         for (int i = 0; i < FAQList.size(); i++){
