@@ -331,12 +331,11 @@ public class GraphActivity extends AppCompatActivity {
      */
     public void showDateTimePicker() {
         new DoubleDateAndTimePickerDialog.Builder(GraphActivity.this)
-                //.bottomSheet()
-                //.curved()
-                //.minutesStep(15)
                 .title("Indstil mellem 2 forskellige datoer")
                 .tab0Text("Start")
                 .tab1Text("Slut")
+                .mainColor(Color.RED)
+                .titleTextColor(Color.WHITE)
                 .listener(new DoubleDateAndTimePickerDialog.Listener() {
                     @Override
                     public void onDateSelected(List<Date> dates) {

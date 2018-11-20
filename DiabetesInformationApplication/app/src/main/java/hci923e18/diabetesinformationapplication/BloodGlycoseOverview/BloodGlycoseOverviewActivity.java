@@ -1,5 +1,6 @@
 package hci923e18.diabetesinformationapplication.BloodGlycoseOverview;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -33,6 +34,7 @@ import java.util.List;
 import hci923e18.database.BloodGlucoseMeasurements;
 import hci923e18.database.Profile;
 import hci923e18.diabetesinformationapplication.R;
+import hci923e18.diabetesinformationapplication.newBloodGlucoseLevelActivity;
 
 public class BloodGlycoseOverviewActivity extends AppCompatActivity {
 
@@ -75,15 +77,27 @@ public class BloodGlycoseOverviewActivity extends AppCompatActivity {
         linearLayout = findViewById(R.id.ratingBar_bloodoverview);
         graphView = findViewById(R.id.graph_overview);
 
+        newPageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(BloodGlycoseOverviewActivity.this, newBloodGlucoseLevelActivity.class);
+                BloodGlycoseOverviewActivity.this.startActivityForResult(i, 1);
+            }
+        });
 
+        setUp();
+    }
 
+    private void setUp(){
+        bloodGlucoseMeasurement = new ArrayList<>();
+
+        graphView.removeAllSeries();
         try {
             bloodGlucoseMeasurement = fetchWeekMeasurements();
             profile = fetchProfile();
         } catch (Exception e) {
 
         }
-
         //Sets the size of the red/yellow/green display on startup
         if (bloodGlucoseMeasurement.size() != 0){
             count = bloodGlucoseMeasurement.size();
@@ -170,8 +184,18 @@ public class BloodGlycoseOverviewActivity extends AppCompatActivity {
                 lastMeasurementEdittext.setBackgroundResource(R.drawable.rounded_edittext_green);
             }
         }
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
+        if (requestCode == 1) {
+            if(resultCode == Activity.RESULT_OK){
+                setUp();
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+            }
+        }
     }
 
     /**
@@ -212,6 +236,10 @@ public class BloodGlycoseOverviewActivity extends AppCompatActivity {
             p.set_idealBloodGlucoseLevel(5.5);
             p.set_insulinDuration(3.5);
             p.set_totalDailyInsulinConsumption(30.0);
+            p.set_upperBloodGlucoseLevel(15.0);
+            p.set_lowerBloodGlucoseLevel(3.0);
+            p.set_beforeBloodGlucoseLevel(8.0);
+            p.set_afterBloodGlucoseLevel(8.0);
 
             //Save default to DB
             p.save();
@@ -223,6 +251,9 @@ public class BloodGlycoseOverviewActivity extends AppCompatActivity {
      * Calculates the ratio between low, normal and high measurements
      */
     private void calculateRatio(){
+        yellows = 0;
+        reds = 0;
+        greens = 0;
 
         for (BloodGlucoseMeasurements b: bloodGlucoseMeasurement) {
             if (b.get_glucoseLevel() > profile.get_upperBloodGlucoseLevel()){
@@ -243,6 +274,11 @@ public class BloodGlycoseOverviewActivity extends AppCompatActivity {
      * @param bloodList
      */
     private void populateGraph(List<BloodGlucoseMeasurements> bloodList){
+        redSeries = null;
+        yellowSeries = null;
+        greenSeries = null;
+
+
         int i = 0;
         int count = bloodList.size();
         DataPoint[] values = new DataPoint[count];

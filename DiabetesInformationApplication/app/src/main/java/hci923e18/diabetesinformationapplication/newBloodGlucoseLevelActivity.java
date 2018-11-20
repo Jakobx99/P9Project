@@ -1,7 +1,9 @@
 package hci923e18.diabetesinformationapplication;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -64,6 +66,8 @@ public class newBloodGlucoseLevelActivity extends AppCompatActivity implements T
         beforeMeal = findViewById(R.id.toggleButton_newglucoselevelbeforefood);
         afterMeal = findViewById(R.id.toggleButton_newglucoselevelafterfood);
         saveBloodGlucoseLevel = findViewById(R.id.button_newbloodglucoselevelsave);
+
+        p = fetchProfile();
 
         upperLimitBS = p.get_upperBloodGlucoseLevel();
         lowerLimitBS = p.get_lowerBloodGlucoseLevel();
@@ -246,7 +250,12 @@ public class newBloodGlucoseLevelActivity extends AppCompatActivity implements T
 
 
                     newBloodGlucoseLevel.save();
+
+                    Intent returnIntent = new Intent();
+                    returnIntent.putExtra("result",1);
+                    setResult(Activity.RESULT_OK,returnIntent);
                     finish();
+
                 }
 
 
@@ -258,5 +267,29 @@ public class newBloodGlucoseLevelActivity extends AppCompatActivity implements T
     @Override
     public void OnTimeSet(String time) {
         enteredTime.setText(time);
+    }
+
+    /**
+     * Fetches the profile from the database
+     * @return The profile object
+     */
+    private Profile fetchProfile(){
+        Profile p;
+        try {
+            p = Profile.find(Profile.class, "ID = ?", "1").get(0);
+        } catch (Exception e) {
+            p = new Profile();
+            p.set_idealBloodGlucoseLevel(5.5);
+            p.set_insulinDuration(3.5);
+            p.set_totalDailyInsulinConsumption(30.0);
+            p.set_upperBloodGlucoseLevel(15.0);
+            p.set_lowerBloodGlucoseLevel(3.0);
+            p.set_beforeBloodGlucoseLevel(8.0);
+            p.set_afterBloodGlucoseLevel(8.0);
+
+            //Save default to DB
+            p.save();
+        }
+        return p;
     }
 }
