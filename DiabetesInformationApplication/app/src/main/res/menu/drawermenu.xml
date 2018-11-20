@@ -10,5 +10,5 @@
     <item android:id="@+id/newbloodglucoselevel" android:title="Indtast ny blodsukker måling" android:icon="@drawable/full_apple" />
 
 
-
+    <item android:id="@+id/navigation_FAQ" android:title="@string/FAQ" />
 </menu>
