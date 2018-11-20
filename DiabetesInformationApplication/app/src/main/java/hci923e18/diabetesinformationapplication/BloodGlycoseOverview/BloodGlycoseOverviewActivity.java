@@ -81,94 +81,96 @@ public class BloodGlycoseOverviewActivity extends AppCompatActivity {
             bloodGlucoseMeasurement = fetchWeekMeasurements();
             profile = fetchProfile();
         } catch (Exception e) {
-            e.printStackTrace();
+
         }
 
         //Sets the size of the red/yellow/green display on startup
-        //TODO CHECK FOR NULL/ZERO
-        count = bloodGlucoseMeasurement.size();
-        calculateRatio();
-        ViewTreeObserver vto = linearLayout.getViewTreeObserver();
-        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                int localwidth  = linearLayout.getMeasuredWidth();
-                if (count == 0){
-                    redButton.setText("0");
-                    yellowButton.setText("0");
-                    greenButton.setText("0");
-                } else {
-                    if (reds == 0){
-                        redButton.setText(String.valueOf(reds));
-                        redButton.setWidth((localwidth/count));
-                    }else{
-                        redButton.setText(String.valueOf(reds));
-                        redButton.setWidth((localwidth/count)*reds);
-                    }
-                    if (yellows == 0){
-                        yellowButton.setText(String.valueOf(yellows));
-                        yellowButton.setWidth((localwidth/count));
-                    }else{
-                        yellowButton.setText(String.valueOf(yellows));
-                        yellowButton.setWidth((localwidth/count)*yellows);
-                    }
-                    if (greens == 0){
-                        greenButton.setText(String.valueOf(greens));
-                        greenButton.setWidth((localwidth/count));
-                    }else {
-                        greenButton.setText(String.valueOf(greens));
-                        greenButton.setWidth((localwidth/count)*greens);
+        if (bloodGlucoseMeasurement.size() != 0){
+            count = bloodGlucoseMeasurement.size();
+            calculateRatio();
+            ViewTreeObserver vto = linearLayout.getViewTreeObserver();
+            vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                @Override
+                public void onGlobalLayout() {
+                    int localwidth  = linearLayout.getMeasuredWidth();
+                    if (count == 0){
+                        redButton.setText("0");
+                        yellowButton.setText("0");
+                        greenButton.setText("0");
+                    } else {
+                        if (reds == 0){
+                            redButton.setText(String.valueOf(reds));
+                            redButton.setWidth((localwidth/count));
+                        }else{
+                            redButton.setText(String.valueOf(reds));
+                            redButton.setWidth((localwidth/count)*reds);
+                        }
+                        if (yellows == 0){
+                            yellowButton.setText(String.valueOf(yellows));
+                            yellowButton.setWidth((localwidth/count));
+                        }else{
+                            yellowButton.setText(String.valueOf(yellows));
+                            yellowButton.setWidth((localwidth/count)*yellows);
+                        }
+                        if (greens == 0){
+                            greenButton.setText(String.valueOf(greens));
+                            greenButton.setWidth((localwidth/count));
+                        }else {
+                            greenButton.setText(String.valueOf(greens));
+                            greenButton.setWidth((localwidth/count)*greens);
+                        }
                     }
                 }
+            });
+
+            //Populate graph
+            populateGraph(bloodGlucoseMeasurement);
+
+            graphView.getViewport().setXAxisBoundsManual(true);
+            graphView.getViewport().setMinX(mSeries.getLowestValueX());
+            graphView.getViewport().setMaxX(mSeries.getHighestValueX());
+            graphView.getViewport().setYAxisBoundsManual(true);
+            graphView.getViewport().setMinY(mSeries.getLowestValueY());
+            graphView.getViewport().setMaxY(mSeries.getHighestValueY());
+            graphView.getGridLabelRenderer().setHorizontalLabelsVisible(false);
+            graphView.getGridLabelRenderer().setVerticalLabelsVisible(false);
+
+            graphView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent graph = new Intent(BloodGlycoseOverviewActivity.this, GraphActivity.class);
+                    Bundle extra = new Bundle();
+                    extra.putSerializable("graphData", (Serializable) bloodGlucoseMeasurement);
+                    graph.putExtra("extra", extra);
+                    startActivity(graph);
+
+                }
+            });
+
+            BloodGlucoseMeasurements bloodGlucoseMeasurements = null;
+            try {
+                List<BloodGlucoseMeasurements> b = new ArrayList<>();
+                b.addAll(BloodGlucoseMeasurements.listAll(BloodGlucoseMeasurements.class));
+                int last = b.size() - 1;
+
+                bloodGlucoseMeasurements = b.get(last);
+                b.clear();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        });
 
-        //Populate graph
-        populateGraph(bloodGlucoseMeasurement);
+            lastMeasurementEdittext.setText(bloodGlucoseMeasurements.get_glucoseLevel().toString());
+            lastMeasurementEdittext.setEnabled(false);
 
-        graphView.getViewport().setXAxisBoundsManual(true);
-        graphView.getViewport().setMinX(mSeries.getLowestValueX());
-        graphView.getViewport().setMaxX(mSeries.getHighestValueX());
-        graphView.getViewport().setYAxisBoundsManual(true);
-        graphView.getViewport().setMinY(mSeries.getLowestValueY());
-        graphView.getViewport().setMaxY(mSeries.getHighestValueY());
-        graphView.getGridLabelRenderer().setHorizontalLabelsVisible(false);
-        graphView.getGridLabelRenderer().setVerticalLabelsVisible(false);
-
-        graphView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent graph = new Intent(BloodGlycoseOverviewActivity.this, GraphActivity.class);
-                Bundle extra = new Bundle();
-                extra.putSerializable("graphData", (Serializable) bloodGlucoseMeasurement);
-                graph.putExtra("extra", extra);
-                startActivity(graph);
-
+            if (bloodGlucoseMeasurements.get_glucoseLevel() <= profile.get_lowerBloodGlucoseLevel()) {
+                lastMeasurementEdittext.setBackgroundResource(R.drawable.rounded_edittext_red);
+            } else if (bloodGlucoseMeasurements.get_glucoseLevel() >= profile.get_upperBloodGlucoseLevel()) {
+                lastMeasurementEdittext.setBackgroundResource(R.drawable.rounded_edittext_yellow);
+            } else {
+                lastMeasurementEdittext.setBackgroundResource(R.drawable.rounded_edittext_green);
             }
-        });
-
-        BloodGlucoseMeasurements bloodGlucoseMeasurements = null;
-        try {
-            List<BloodGlucoseMeasurements> b = new ArrayList<>();
-            b.addAll(BloodGlucoseMeasurements.listAll(BloodGlucoseMeasurements.class));
-            int last = b.size() - 1;
-
-            bloodGlucoseMeasurements = b.get(last);
-            b.clear();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
 
-        lastMeasurementEdittext.setText(bloodGlucoseMeasurements.get_glucoseLevel().toString());
-        lastMeasurementEdittext.setEnabled(false);
-
-        if (bloodGlucoseMeasurements.get_glucoseLevel() <= profile.get_lowerBloodGlucoseLevel()) {
-            lastMeasurementEdittext.setBackgroundResource(R.drawable.rounded_edittext_red);
-        } else if (bloodGlucoseMeasurements.get_glucoseLevel() >= profile.get_upperBloodGlucoseLevel()) {
-            lastMeasurementEdittext.setBackgroundResource(R.drawable.rounded_edittext_yellow);
-        } else {
-            lastMeasurementEdittext.setBackgroundResource(R.drawable.rounded_edittext_green);
-        }
 
     }
 

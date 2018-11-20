@@ -69,9 +69,12 @@ public class GraphActivity extends AppCompatActivity {
 
         graphView = findViewById(R.id.graph_specific);
 
-        Bundle extra = getIntent().getBundleExtra("extra");
-        graphList = (ArrayList<BloodGlucoseMeasurements>) extra.getSerializable("graphData");
+        try {
+            Bundle extra = getIntent().getBundleExtra("extra");
+            graphList = (ArrayList<BloodGlucoseMeasurements>) extra.getSerializable("graphData");
+        } catch (Exception e) {
 
+        }
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -84,12 +87,16 @@ public class GraphActivity extends AppCompatActivity {
             }
         });
 
-        profile = fetchProfile();
-        calculateRatio(graphList);
-        populateGraph(graphList);
-        getLongTermBloodGlucoseVisible();
-        addSeries();
-        adjustGraph();
+        try {
+            profile = fetchProfile();
+            calculateRatio(graphList);
+            populateGraph(graphList);
+            getLongTermBloodGlucoseVisible();
+            addSeries();
+            adjustGraph();
+        } catch (Exception e) {
+
+        }
 
 
         mSeries.setOnDataPointTapListener(new OnDataPointTapListener() {
@@ -339,7 +346,11 @@ public class GraphActivity extends AppCompatActivity {
                         startDate.setTime(dates.get(0));
                         endDate.setTime(dates.get(1));
 
-                        fetchNewAndRedraw();
+                        try {
+                            fetchNewAndRedraw();
+                        } catch (Exception e) {
+
+                        }
                     }
                 }).display();
     }
