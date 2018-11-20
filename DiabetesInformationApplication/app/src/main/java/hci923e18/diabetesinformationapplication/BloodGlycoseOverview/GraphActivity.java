@@ -18,8 +18,10 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.github.florent37.singledateandtimepicker.dialog.DoubleDateAndTimePickerDialog;
+import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
+import com.jjoe64.graphview.helper.StaticLabelsFormatter;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.DataPointInterface;
 import com.jjoe64.graphview.series.LineGraphSeries;
@@ -57,6 +59,7 @@ public class GraphActivity extends AppCompatActivity {
     private LineGraphSeries<DataPoint> longTermSeries;
     private Calendar startDate;
     private Calendar endDate;
+    final SimpleDateFormat sdf = new SimpleDateFormat("dd-MM HH:mm");
 
     /**
      * OnCreate method for this activity
@@ -102,7 +105,7 @@ public class GraphActivity extends AppCompatActivity {
         mSeries.setOnDataPointTapListener(new OnDataPointTapListener() {
             @Override
             public void onTap(Series series, DataPointInterface dataPoint) {
-                Toast.makeText(GraphActivity.this, "Måling: " + dataPoint.getY(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(GraphActivity.this, "Måling: " + dataPoint.getY() + " mmol/L" + "\n" + "Dato: " + sdf.format(dataPoint.getX()), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -301,7 +304,6 @@ public class GraphActivity extends AppCompatActivity {
      */
     private void adjustGraph(){
 
-
         graphView.getViewport().setXAxisBoundsManual(true);
         graphView.getViewport().setMinX(mSeries.getLowestValueX());
         graphView.getViewport().setMaxX(mSeries.getHighestValueX());
@@ -320,9 +322,21 @@ public class GraphActivity extends AppCompatActivity {
 
         // set date label formatter
 
+        graphView.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
+            @Override
+            public String formatLabel(double value, boolean isValueX) {
+                if (isValueX) {
+                    // show normal x values
+                    return sdf.format(value);
+                } else {
+                    // show currency for y values
+                    return super.formatLabel(value, isValueX) + " mmol/L";
+                }
+            }
+        });
 
-        graphView.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(GraphActivity.this));
-        graphView.getGridLabelRenderer().setNumHorizontalLabels(4); // only 4 because of the space
+       // graphView.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(GraphActivity.this));
+        graphView.getGridLabelRenderer().setNumHorizontalLabels(3); // only 4 because of the space
 
     }
 
