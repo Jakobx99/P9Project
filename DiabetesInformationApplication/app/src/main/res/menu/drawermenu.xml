@@ -7,4 +7,5 @@
     <item android:id="@+id/blood_glycose_overview" android:title="@string/title_bloodoverview" android:icon="@drawable/icons8_task_24_black" />
     <item android:id="@+id/newbloodglucoselevel" android:title="Indtast ny blodsukker måling" android:icon="@drawable/icons8_diabetes_26" />
     <item android:id="@+id/navigation_FAQ" android:title="@string/FAQ" android:icon="@drawable/icons8_faq_50"/>
+    <item android:id="@+id/navigation_AboutUS" android:title="@string/title_aboutUs" android:icon="@drawable/icons8_info_24"/>
 </menu>

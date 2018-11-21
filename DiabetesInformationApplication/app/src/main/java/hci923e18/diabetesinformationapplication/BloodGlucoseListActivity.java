@@ -76,6 +76,13 @@ public class BloodGlucoseListActivity extends AppCompatActivity {
                 showDateTimePicker();
             }
         });
+        textEndDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDateTimePicker();
+            }
+        });
+
 
     }
 

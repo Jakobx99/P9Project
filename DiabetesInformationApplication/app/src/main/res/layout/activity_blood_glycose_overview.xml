@@ -6,16 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".BloodGlycoseOverview.BloodGlycoseOverviewActivity">
 
+    <TextView
+        android:id="@+id/textView_latestBloodGlucoseMesurments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Målinger fra denne uge:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.jjoe64.graphview.GraphView
         android:id="@+id/graph_overview"
         android:layout_width="match_parent"
         android:layout_height="151dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:seriesType="line"/>
+        app:layout_constraintTop_toBottomOf="@+id/textView_latestBloodGlucoseMesurments"
+        app:seriesType="line" />
 
 
     <EditText
@@ -41,9 +52,9 @@
         style="@style/newbuttonstyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
         android:text="Tilføj ny måling"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -54,10 +65,10 @@
         android:id="@+id/textView_bloodoverview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="60dp"
-        android:text="Målinger i løbet af den sidste uge:"
+        android:layout_marginEnd="16dp"
+        android:text="Antal målinger i løbet af denne uge:"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_bloodoverview_new" />
@@ -105,13 +116,13 @@
         android:id="@+id/textView_bloodoverview_old"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="61dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="104dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="61dp"
         android:text="@string/oldmeasure"
-        android:textSize="20dp"
         android:textColor="@android:color/holo_blue_dark"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -125,7 +136,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Seneste måling"
+        android:text="Seneste måling:"
         app:layout_constraintBottom_toTopOf="@+id/textView_bloodoverview_lastmeasurement"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/graph_overview" />

@@ -4,17 +4,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="160dp"
-    android:background="@android:color/darker_gray"
-    android:padding="20dp">
+    android:layout_height="200dp"
+    android:background="@color/white">
     <!--android:orientation="vertical" -->
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@drawable/burger_menu_logo">
 
-        <TextView
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView_burgerHeaderAboutUs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:background="@color/white"
+                android:text="Diabetes Information Appliaktion"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </android.support.constraint.ConstraintLayout>
+
+        <!--<TextView
             android:id="@+id/textView_burgerHeaderAboutUs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -36,7 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Kontakt information hci923e18@cs.aau.dk"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/black" />-->
 
     </LinearLayout>
 

@@ -25,6 +25,7 @@ import java.util.List;
 import hci923e18.database.BloodGlucoseMeasurements;
 import hci923e18.database.Food;
 import hci923e18.database.FrequentlyAskedQuestions;
+import hci923e18.diabetesinformationapplication.AboutUsFragment;
 import hci923e18.diabetesinformationapplication.FAQFragment;
 import hci923e18.database.LongTermBloodGlucose;
 import hci923e18.diabetesinformationapplication.BloodGlycoseOverview.BloodGlycoseOverviewActivity;
@@ -218,6 +219,12 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.framelayoutFrontPage, new FAQFragment()).addToBackStack("FAQ").commit();
+    }
+
+    public void changeToAboutUs(){
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.framelayoutFrontPage, new AboutUsFragment()).addToBackStack("AboutUs").commit();
     }
 
     /**
@@ -479,6 +486,10 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
                 break;
             case R.id.newbloodglucoselevel:
                 intent = new Intent(FrontPageActivity.this, newBloodGlucoseLevelActivity.class);
+                drawerLayout.closeDrawers();
+                break;
+            case R.id.navigation_AboutUS:
+                changeToAboutUs();
                 drawerLayout.closeDrawers();
                 break;
         }
