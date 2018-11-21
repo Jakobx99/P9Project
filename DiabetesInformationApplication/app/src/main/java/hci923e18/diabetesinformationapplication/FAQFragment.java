@@ -166,7 +166,6 @@ public class FAQFragment extends Fragment {
 
             }
         });
-
         return view;
     }
 
@@ -309,5 +308,4 @@ public class FAQFragment extends Fragment {
             listDataChild.put(listDataHeader.get(i), tempAnswer);
         }
     }
-
 }

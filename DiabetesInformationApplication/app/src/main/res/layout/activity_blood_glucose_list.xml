@@ -14,6 +14,7 @@
             android:id="@+id/textView_BloodGlucoseOverviewFrom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
             android:layout_marginTop="16dp"
             android:text="Fra:"
             app:layout_constraintStart_toStartOf="@+id/textInputLayout_From"
@@ -23,13 +24,15 @@
             android:id="@+id/textInputLayout_From"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
+            android:layout_marginStart="25dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView_BloodGlucoseOverviewFrom">
 
             <android.support.design.widget.TextInputEditText
+                android:id="@+id/textInput_FromDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:editable="false"
                 android:hint="Dato fra" />
         </android.support.design.widget.TextInputLayout>
 
@@ -37,6 +40,7 @@
             android:id="@+id/textView_BloodGlucoseOverviewTo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
             android:layout_marginTop="16dp"
             android:text="Til:"
             app:layout_constraintStart_toStartOf="@+id/textInputLayout_To"
@@ -46,13 +50,15 @@
             android:id="@+id/textInputLayout_To"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="50dp"
+            android:layout_marginEnd="25dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView_BloodGlucoseOverviewFrom">
 
             <android.support.design.widget.TextInputEditText
+                android:id="@+id/textInput_ToDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:editable="false"
                 android:hint="Dato til" />
         </android.support.design.widget.TextInputLayout>
 

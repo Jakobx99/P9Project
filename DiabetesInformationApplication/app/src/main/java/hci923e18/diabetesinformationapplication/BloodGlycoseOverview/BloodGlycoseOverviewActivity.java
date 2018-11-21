@@ -33,6 +33,7 @@ import java.util.List;
 
 import hci923e18.database.BloodGlucoseMeasurements;
 import hci923e18.database.Profile;
+import hci923e18.diabetesinformationapplication.BloodGlucoseListActivity;
 import hci923e18.diabetesinformationapplication.R;
 import hci923e18.diabetesinformationapplication.newBloodGlucoseLevelActivity;
 
@@ -81,6 +82,14 @@ public class BloodGlycoseOverviewActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(BloodGlycoseOverviewActivity.this, newBloodGlucoseLevelActivity.class);
+                BloodGlycoseOverviewActivity.this.startActivityForResult(i, 1);
+            }
+        });
+
+        oldMeasurementList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(BloodGlycoseOverviewActivity.this, BloodGlucoseListActivity.class);
                 BloodGlycoseOverviewActivity.this.startActivityForResult(i, 1);
             }
         });
@@ -219,7 +228,7 @@ public class BloodGlycoseOverviewActivity extends AppCompatActivity {
         calendar.add(Calendar.DATE, +1);
         long firstDayOfWeekTimestamp = calendar.getTimeInMillis();
 
-        l.addAll(BloodGlucoseMeasurements.find(BloodGlucoseMeasurements.class, "_date >= ?", Long.toString(firstDayOfWeekTimestamp)));
+        l.addAll(BloodGlucoseMeasurements.find(BloodGlucoseMeasurements.class, "_date >= ? ORDER BY _date", Long.toString(firstDayOfWeekTimestamp)));
         return l;
     }
 

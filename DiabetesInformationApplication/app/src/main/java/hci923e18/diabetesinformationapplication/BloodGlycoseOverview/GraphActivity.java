@@ -375,7 +375,7 @@ public class GraphActivity extends AppCompatActivity {
     private void fetchNewAndRedraw(){
         List<BloodGlucoseMeasurements> l = new ArrayList<>();
 
-        l.addAll(BloodGlucoseMeasurements.find(BloodGlucoseMeasurements.class, "_date >= ? and _date <= ?", Long.toString(startDate.getTimeInMillis()), Long.toString(endDate.getTimeInMillis())));
+        l.addAll(BloodGlucoseMeasurements.find(BloodGlucoseMeasurements.class, "_date >= ? and _date <= ? ORDER BY _date", Long.toString(startDate.getTimeInMillis()), Long.toString(endDate.getTimeInMillis())));
 
         graphView.removeAllSeries();
 
