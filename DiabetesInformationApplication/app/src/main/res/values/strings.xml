@@ -17,4 +17,5 @@
     <string name="title_activity_blood_glycose_overview">BloodGlycoseOverview</string>
     <string name="oldmeasure"> <u>Liste over gamle målinger</u>.</string>
     <string name="title_activity_graph">GraphActivity</string>
+    <string name="title_activity_blood_glucose_list">BloodGlucoseListActivity</string>
 </resources>
