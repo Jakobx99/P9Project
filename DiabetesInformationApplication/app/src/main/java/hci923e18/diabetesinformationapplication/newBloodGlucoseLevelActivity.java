@@ -45,14 +45,14 @@ public class newBloodGlucoseLevelActivity extends AppCompatActivity implements T
     Button saveBloodGlucoseLevel;
     String mealType;
     Profile p;
-
     Double upperLimitBS;
     Double lowerLimitBS;
 
-
-
-
-
+    /**
+     * OnCreate method called when activity is initiated.
+     * Bindings are performed and setOnClickListener for button is made
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,8 +99,6 @@ public class newBloodGlucoseLevelActivity extends AppCompatActivity implements T
             }
         });
 
-
-
         enteredBloodGlucoseLevel.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -123,9 +121,7 @@ public class newBloodGlucoseLevelActivity extends AppCompatActivity implements T
                     }
                 }
                 else{
-
                 }
-
             }
 
             @Override
@@ -133,9 +129,6 @@ public class newBloodGlucoseLevelActivity extends AppCompatActivity implements T
 
             }
         });
-
-
-
 
         noMark.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
@@ -147,18 +140,14 @@ public class newBloodGlucoseLevelActivity extends AppCompatActivity implements T
                     afterMeal.setChecked(false);
                     beforeMeal.setClickable(false);
                     afterMeal.setClickable(false);
-
                 }
                 else {
                     beforeMeal.setClickable(true);
                     afterMeal.setClickable(true);
-
                 }
             }
 
         });
-
-
 
         beforeMeal.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -167,11 +156,9 @@ public class newBloodGlucoseLevelActivity extends AppCompatActivity implements T
                     afterMeal.setChecked(false);
                     noMark.setClickable(false);
                     afterMeal.setClickable(false);
-
                 } else {
                     noMark.setClickable(true);
                     afterMeal.setClickable(true);
-
                 }
             }
         });
@@ -183,11 +170,9 @@ public class newBloodGlucoseLevelActivity extends AppCompatActivity implements T
                     beforeMeal.setChecked(false);
                     noMark.setClickable(false);
                     beforeMeal.setClickable(false);
-
                 } else {
                     noMark.setClickable(true);
                     beforeMeal.setClickable(true);
-
                 }
             }
         });
@@ -248,22 +233,21 @@ public class newBloodGlucoseLevelActivity extends AppCompatActivity implements T
                         newBloodGlucoseLevel.set_category(2);   //aftensmad
                     }
 
-
                     newBloodGlucoseLevel.save();
 
                     Intent returnIntent = new Intent();
                     returnIntent.putExtra("result",1);
                     setResult(Activity.RESULT_OK,returnIntent);
                     finish();
-
                 }
-
-
             }
         });
-
-
     }
+
+    /**
+     * Default onTimeSet
+     * @param time a string used to set the time input
+     */
     @Override
     public void OnTimeSet(String time) {
         enteredTime.setText(time);

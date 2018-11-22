@@ -79,7 +79,6 @@ public class GraphActivity extends AppCompatActivity {
 
         }
 
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,7 +99,6 @@ public class GraphActivity extends AppCompatActivity {
         } catch (Exception e) {
 
         }
-
 
         mSeries.setOnDataPointTapListener(new OnDataPointTapListener() {
             @Override
@@ -180,11 +178,6 @@ public class GraphActivity extends AppCompatActivity {
         greenSeries = new PointsGraphSeries<>(greenValues);
         greenSeries.setShape(PointsGraphSeries.Shape.POINT);
         greenSeries.setColor(Color.GREEN);
-
-
-
-
-
     }
 
     /**
@@ -258,9 +251,6 @@ public class GraphActivity extends AppCompatActivity {
         paint.setColor(Color.LTGRAY);
         paint.setPathEffect(new DashPathEffect(new float[]{5,10,15,20}, 0));
         longTermSeries.setCustomPaint(paint);
-
-
-
     }
 
     /**
@@ -282,8 +272,6 @@ public class GraphActivity extends AppCompatActivity {
                 greens++;
             }
         }
-
-
     }
 
     /**
@@ -318,7 +306,7 @@ public class GraphActivity extends AppCompatActivity {
 
         // enable scaling and scrolling
         graphView.getViewport().setScalable(true);
-        graphView.getViewport().setScalableY(true);
+        graphView.getViewport().setScalableY(false);
 
         // set date label formatter
 
@@ -337,8 +325,7 @@ public class GraphActivity extends AppCompatActivity {
 
         //graphView.getGridLabelRenderer().setHorizontalLabelsAngle(90);
         //graphView.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(GraphActivity.this));
-        //graphView.getGridLabelRenderer().setNumHorizontalLabels(3); // only 4 because of the space
-
+        graphView.getGridLabelRenderer().setNumHorizontalLabels(4); // only 4 because of the space
     }
 
     /**

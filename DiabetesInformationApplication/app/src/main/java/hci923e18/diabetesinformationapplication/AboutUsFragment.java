@@ -29,6 +29,9 @@ public class AboutUsFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
+    /**
+     * Default constructor
+     */
     public AboutUsFragment() {
         // Required empty public constructor
     }
@@ -51,6 +54,10 @@ public class AboutUsFragment extends Fragment {
         return fragment;
     }
 
+    /**
+     * Default On create method - called when the fragment is constructed
+     * @param savedInstanceState The saved instance can be used if the application is reopened
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +67,13 @@ public class AboutUsFragment extends Fragment {
         }
     }
 
+    /**
+     * Default onCreateView
+     * @param inflater Layout inflater
+     * @param container Layout container
+     * @param savedInstanceState The saved instance state used if the application is reopened
+     * @return The View object
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -67,13 +81,20 @@ public class AboutUsFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_about_us, container, false);
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
+    /**
+     * Default onButtonPressed
+     * @param uri update argument and hook method into UI event
+     */
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
     }
 
+    /**
+     * Default onAttach
+     * @param context the context of the fragment
+     */
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -83,6 +104,9 @@ public class AboutUsFragment extends Fragment {
         }
     }
 
+    /**
+     * Default onDetach
+     */
     @Override
     public void onDetach() {
         super.onDetach();

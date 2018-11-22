@@ -39,6 +39,11 @@ public class BloodGlucoseListActivity extends AppCompatActivity {
     List<String> listHead = new ArrayList<>();
     HashMap<String, List<BloodGlucoseMeasurements>> listChild = null;
 
+    /**
+     * OnCreate method called when activity is initiated.
+     * Bindings are performed and setOnClickListener for button is made
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,8 +87,6 @@ public class BloodGlucoseListActivity extends AppCompatActivity {
                 showDateTimePicker();
             }
         });
-
-
     }
 
     /**
@@ -121,7 +124,11 @@ public class BloodGlucoseListActivity extends AppCompatActivity {
                 }).display();
     }
 
-
+    /**
+     * Fetch data from database method using start and endDate
+     * @param startDate date object used to query the database
+     * @param endDate date object used to query the database
+     */
     public void fetchData(Calendar startDate, Calendar endDate){
         //Fetch all measurements from/to date
         List<BloodGlucoseMeasurements> l = new ArrayList<>();

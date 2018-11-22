@@ -77,6 +77,13 @@ public class FAQFragment extends Fragment {
 
     }
 
+    /**
+     * Method to create the view that is rendered. Binds the different controls and sets up the onclick events
+     * @param inflater Layout inflater
+     * @param container Layout container
+     * @param savedInstanceState The saved instance state used if the application is reopened
+     * @return The View object
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
