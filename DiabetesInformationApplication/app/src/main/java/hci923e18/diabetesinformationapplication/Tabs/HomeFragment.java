@@ -12,6 +12,7 @@ import android.widget.Button;
 
 import hci923e18.diabetesinformationapplication.BloodGlycoseOverview.BloodGlycoseOverviewActivity;
 import hci923e18.diabetesinformationapplication.R;
+import hci923e18.diabetesinformationapplication.newBloodGlucoseLevelActivity;
 
 
 /**
@@ -36,6 +37,7 @@ public class HomeFragment extends Fragment {
     Button createButton;
     Button displayButton;
     Button overviewButton;
+    Button newbloodglucoselevelButton;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -82,6 +84,7 @@ public class HomeFragment extends Fragment {
         createButton = view.findViewById(R.id.button_homepageInsulinCalc);
         displayButton = view.findViewById(R.id.button_homepageMeal);
         overviewButton = view.findViewById(R.id.button_home_overview);
+        newbloodglucoselevelButton = view.findViewById(R.id.button_homepageNewBloodGlucoseLevel);
 
         //Click events
         createButton.setOnClickListener(new View.OnClickListener() {
@@ -102,6 +105,14 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), BloodGlycoseOverviewActivity.class);
+                getActivity().startActivity(intent);
+            }
+        });
+
+        newbloodglucoselevelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), newBloodGlucoseLevelActivity.class);
                 getActivity().startActivity(intent);
             }
         });

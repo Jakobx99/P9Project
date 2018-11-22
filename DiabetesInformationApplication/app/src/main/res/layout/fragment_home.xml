@@ -11,20 +11,36 @@
     <!-- TODO: Update blank fragment layout -->
 
     <Button
-        android:id="@+id/button_homepageInsulinCalc"
+        android:id="@+id/button_homepageNewBloodGlucoseLevel"
         style="@style/newbuttonstyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="75dp"
         android:layout_marginTop="52dp"
         android:layout_marginEnd="75dp"
+        android:drawableRight="@drawable/icons8_diabetes_whitepride"
+        android:paddingRight="10dp"
+        android:text="Indtast ny blodsukkermåling"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_homepage" />
+
+    <Button
+        android:id="@+id/button_homepageInsulinCalc"
+        style="@style/newbuttonstyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="75dp"
+        android:layout_marginStart="75dp"
+        android:layout_marginTop="16dp"
         android:drawableRight="@drawable/icons8_calculator_24_white"
         android:paddingRight="10dp"
         android:text="Insulin beregner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView_homepage" />
+        app:layout_constraintTop_toBottomOf="@+id/button_homepageNewBloodGlucoseLevel" />
 
     <Button
         android:id="@+id/button_homepageMeal"
