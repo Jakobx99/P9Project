@@ -28,6 +28,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import hci923e18.database.BloodGlucoseMeasurements;
 import hci923e18.database.Food;
 import hci923e18.database.MealObject;
 import hci923e18.database.Profile;
@@ -162,6 +163,14 @@ public class MealPlanFragment extends Fragment {
 
         mAdapter = new MealPlanAdapter(view.getContext(),0, foods, MealPlanFragment.this);
         mealPlanLayout.setAdapter(mAdapter);
+
+        try {
+            BloodGlucoseMeasurements b = fetchlastBloodMeasurement();
+            mealPlanBloodSugar.setText(b.get_glucoseLevel().toString());
+        } catch (Exception e) {
+
+        }
+
 
         return view;
     }
@@ -327,5 +336,20 @@ public class MealPlanFragment extends Fragment {
                 meal.save();
             }
         }
+    }
+
+    private BloodGlucoseMeasurements fetchlastBloodMeasurement(){
+        BloodGlucoseMeasurements bloodGlucoseMeasurements = null;
+        try {
+            List<BloodGlucoseMeasurements> b = new ArrayList<>();
+            b.addAll(BloodGlucoseMeasurements.listAll(BloodGlucoseMeasurements.class));
+            int last = b.size() - 1;
+
+            bloodGlucoseMeasurements = b.get(last);
+            b.clear();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return bloodGlucoseMeasurements;
     }
 }

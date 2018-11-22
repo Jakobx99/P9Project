@@ -13,11 +13,15 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
+
+import hci923e18.database.BloodGlucoseMeasurements;
 import hci923e18.database.Profile;
 import hci923e18.diabetesinformationapplication.R;
 import hci923e18.utility.Calculator;
 import hci923e18.utility.KeyBoard;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -176,6 +180,13 @@ public class CalculatorFragment extends Fragment {
                 }
             }});
 
+        try {
+            BloodGlucoseMeasurements b = fetchlastBloodMeasurement();
+            bloodGlucoseInput.setText(b.get_glucoseLevel().toString());
+        } catch (Exception e) {
+
+        }
+
         return view;
     }
 
@@ -215,5 +226,20 @@ public class CalculatorFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    private BloodGlucoseMeasurements fetchlastBloodMeasurement(){
+        BloodGlucoseMeasurements bloodGlucoseMeasurements = null;
+        try {
+            List<BloodGlucoseMeasurements> b = new ArrayList<>();
+            b.addAll(BloodGlucoseMeasurements.listAll(BloodGlucoseMeasurements.class));
+            int last = b.size() - 1;
+
+            bloodGlucoseMeasurements = b.get(last);
+            b.clear();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return bloodGlucoseMeasurements;
     }
 }

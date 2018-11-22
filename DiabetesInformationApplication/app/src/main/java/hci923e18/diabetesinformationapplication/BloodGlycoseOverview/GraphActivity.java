@@ -248,7 +248,7 @@ public class GraphActivity extends AppCompatActivity {
         Paint paint = new Paint();
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(5);
-        paint.setColor(Color.LTGRAY);
+        paint.setColor(Color.BLACK);
         paint.setPathEffect(new DashPathEffect(new float[]{5,10,15,20}, 0));
         longTermSeries.setCustomPaint(paint);
     }

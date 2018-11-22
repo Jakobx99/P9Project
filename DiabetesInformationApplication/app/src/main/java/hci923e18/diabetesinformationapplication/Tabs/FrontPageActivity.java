@@ -254,30 +254,30 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
 
         List<BloodGlucoseMeasurements> bloodGlucoseMeasurements = new ArrayList<>();
         c.set(2018, Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DATE) -2);
-        c.set(Calendar.HOUR, 8);
+        c.set(Calendar.HOUR_OF_DAY, 8);
         bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 1.0, 1,1,1));
-        c.set(Calendar.HOUR, 9);
+        c.set(Calendar.HOUR_OF_DAY, 9);
         bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 4.0, 1,1,1));
-        c.set(Calendar.HOUR, 10);
+        c.set(Calendar.HOUR_OF_DAY, 10);
         bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 14.0, 1,1,1));
-        c.set(Calendar.HOUR, 11);
+        c.set(Calendar.HOUR_OF_DAY, 11);
         bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 15.0, 1,1,1));
         c = Calendar.getInstance();
         c.set(2018, Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DATE) -1);
-        c.set(Calendar.HOUR, 8);
+        c.set(Calendar.HOUR_OF_DAY, 8);
         bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 1.0, 1,1,1));
-        c.set(Calendar.HOUR, 9);
+        c.set(Calendar.HOUR_OF_DAY, 9);
         bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 4.0, 1,1,1));
-        c.set(Calendar.HOUR, 10);
+        c.set(Calendar.HOUR_OF_DAY, 10);
         bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 14.0, 1,1,1));
-        c.set(Calendar.HOUR, 11);
+        c.set(Calendar.HOUR_OF_DAY, 11);
         bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 15.0, 1,1,1));
         c = Calendar.getInstance();
-        c.set(Calendar.HOUR, 8);
+        c.set(Calendar.HOUR_OF_DAY, 4);
         bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 8.0, 1,1,1));
-        c.set(Calendar.HOUR, 9);
+        c.set(Calendar.HOUR_OF_DAY, 5);
         bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 2.0, 1,1,1));
-        c.set(Calendar.HOUR, 10);
+        c.set(Calendar.HOUR_OF_DAY, 6);
         bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 6.0, 1,1,1));
 
         SugarRecord.saveInTx(bloodGlucoseMeasurements);
@@ -445,7 +445,6 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
                         "Almindelige cornflakes kan blandes med havregryn f.eks. halvt af hver. På den måde bliver måltidet også sundere og giver langsommere stigning i blodsukkeret, end hvis man kun spiser cornflakes.",
                 0,1));
         SugarRecord.saveInTx(FAQObjects);
-
 
     }
 

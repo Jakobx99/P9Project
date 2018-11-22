@@ -27,6 +27,7 @@ import com.jjoe64.graphview.series.PointsGraphSeries;
 import com.jjoe64.graphview.series.Series;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -59,6 +60,8 @@ public class BloodGlycoseOverviewActivity extends AppCompatActivity {
     private PointsGraphSeries<DataPoint> greenSeries;
     private LineGraphSeries<DataPoint> lowestSeries;
     private LineGraphSeries<DataPoint> highestSeries;
+    private TextView textViewSeneste;
+    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy \n'Kl.' HH:mm");
 
     /**
      * OnCreate method for this activity
@@ -77,6 +80,7 @@ public class BloodGlycoseOverviewActivity extends AppCompatActivity {
         oldMeasurementList = findViewById(R.id.textView_bloodoverview_old);
         linearLayout = findViewById(R.id.ratingBar_bloodoverview);
         graphView = findViewById(R.id.graph_overview);
+        textViewSeneste = findViewById(R.id.textView_overview_seneste);
 
         newPageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -182,6 +186,7 @@ public class BloodGlycoseOverviewActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
+            textViewSeneste.setText("Seneste måling: " + sdf.format(bloodGlucoseMeasurements.getDate().getTime()));
             lastMeasurementEdittext.setText(bloodGlucoseMeasurements.get_glucoseLevel().toString());
             lastMeasurementEdittext.setEnabled(false);
 
