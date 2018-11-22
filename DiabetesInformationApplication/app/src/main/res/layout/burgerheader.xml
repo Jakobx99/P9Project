@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28dp"
                 android:background="@color/white"
-                android:text="Diabetes Information Appliaktion"
+                android:text="Diabetes Information Applikation"
                 android:textAlignment="center"
                 android:textColor="@android:color/black"
                 android:textStyle="bold"

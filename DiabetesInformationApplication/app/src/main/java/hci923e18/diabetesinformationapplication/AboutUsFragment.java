@@ -7,6 +7,9 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 
 
 /**
@@ -78,7 +81,15 @@ public class AboutUsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_about_us, container, false);
+        View view = inflater.inflate(R.layout.fragment_about_us, container, false);
+
+        ImageView logo = (ImageView) view.findViewById(R.id.imageView_aboutus);
+
+        Animation myanim = AnimationUtils.loadAnimation(getActivity(),R.anim.mysplashanimation);
+        logo.startAnimation(myanim);
+
+
+        return view;
     }
 
     /**
