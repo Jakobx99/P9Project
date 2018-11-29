@@ -25,6 +25,7 @@ import java.util.List;
 import hci923e18.database.BloodGlucoseMeasurements;
 import hci923e18.database.Food;
 import hci923e18.database.FrequentlyAskedQuestions;
+import hci923e18.database.Profile;
 import hci923e18.diabetesinformationapplication.AboutUsFragment;
 import hci923e18.diabetesinformationapplication.FAQFragment;
 import hci923e18.database.LongTermBloodGlucose;
@@ -112,10 +113,9 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.framelayoutFrontPage, new HomeFragment()).commit();
 
-        List<Food> _food = Food.listAll(Food.class);
-        if (_food.size() == 0)
+        List<Profile> _profile = Profile.listAll(Profile.class);
+        if (_profile.size() == 0)
         {
-            PopulateDatabase.populateDB();
             Dialog dialog = null;
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage("Dette er første gang appen startes. Vil du gerne lave dine indstillinger")

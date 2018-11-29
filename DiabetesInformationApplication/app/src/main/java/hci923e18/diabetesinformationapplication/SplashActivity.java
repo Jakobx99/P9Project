@@ -8,7 +8,12 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import java.util.List;
+
+import hci923e18.database.Food;
+import hci923e18.database.Profile;
 import hci923e18.diabetesinformationapplication.Tabs.FrontPageActivity;
+import hci923e18.utility.PopulateDatabase;
 
 public class SplashActivity extends AppCompatActivity {
     private ImageView logo;
@@ -34,5 +39,13 @@ public class SplashActivity extends AppCompatActivity {
 
             Animation myanim = AnimationUtils.loadAnimation(this,R.anim.mysplashanimation);
             logo.startAnimation(myanim);
+
+        List<Food> _food = Food.listAll(Food.class);
+        if (_food.size() == 0)
+        {
+            PopulateDatabase.populateDB();
+        }
+        else {//Do nothing
         }
     }
+}
