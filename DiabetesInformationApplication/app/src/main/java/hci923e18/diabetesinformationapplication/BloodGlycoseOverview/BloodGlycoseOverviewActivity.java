@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
 import com.jjoe64.graphview.series.DataPoint;
@@ -61,7 +62,7 @@ public class BloodGlycoseOverviewActivity extends AppCompatActivity {
     private LineGraphSeries<DataPoint> lowestSeries;
     private LineGraphSeries<DataPoint> highestSeries;
     private TextView textViewSeneste;
-    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy \n'Kl.' HH:mm");
+    final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM \n'Kl.' HH:mm");
 
     /**
      * OnCreate method for this activity
@@ -160,7 +161,26 @@ public class BloodGlycoseOverviewActivity extends AppCompatActivity {
             graphView.getViewport().setMinY(mSeries.getLowestValueY());
             graphView.getViewport().setMaxY(mSeries.getHighestValueY());
             graphView.getGridLabelRenderer().setHorizontalLabelsVisible(false);
-            graphView.getGridLabelRenderer().setVerticalLabelsVisible(false);
+            graphView.getGridLabelRenderer().setVerticalLabelsVisible(true);
+
+            // set date label formatter
+
+            graphView.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
+                @Override
+                public String formatLabel(double value, boolean isValueX) {
+                    if (isValueX) {
+                        // show normal x values
+                        return sdf.format(value);
+                    } else {
+                        // show currency for y values
+                        return super.formatLabel(value, isValueX) + " mmol/L";
+                    }
+                }
+            });
+
+            //graphView.getGridLabelRenderer().setHorizontalLabelsAngle(90);
+            //graphView.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(GraphActivity.this));
+            graphView.getGridLabelRenderer().setNumHorizontalLabels(4); // only 4 because of the space
 
             graphView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -230,7 +250,7 @@ public class BloodGlycoseOverviewActivity extends AppCompatActivity {
         while (calendar.get(Calendar.DAY_OF_WEEK) > calendar.getFirstDayOfWeek()) {
             calendar.add(Calendar.DATE, -1); // Substract 1 day until first day of week.
         }
-        calendar.add(Calendar.DATE, +1);
+        //calendar.add(Calendar.DATE, +1); - For american telephones
         long firstDayOfWeekTimestamp = calendar.getTimeInMillis();
 
         l.addAll(BloodGlucoseMeasurements.find(BloodGlucoseMeasurements.class, "_date >= ? ORDER BY _date", Long.toString(firstDayOfWeekTimestamp)));

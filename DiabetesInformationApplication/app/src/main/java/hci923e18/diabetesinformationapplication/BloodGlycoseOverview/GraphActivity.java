@@ -375,5 +375,11 @@ public class GraphActivity extends AppCompatActivity {
         getLongTermBloodGlucoseVisible();
         addSeries();
         adjustGraph();
+        mSeries.setOnDataPointTapListener(new OnDataPointTapListener() {
+            @Override
+            public void onTap(Series series, DataPointInterface dataPoint) {
+                Toast.makeText(GraphActivity.this, "Måling: " + dataPoint.getY() + " mmol/L" + "\n" + "Dato: " + sdf.format(dataPoint.getX()), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

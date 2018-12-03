@@ -64,7 +64,7 @@ public class BloodGlucoseListActivity extends AppCompatActivity {
         while (calendar.get(Calendar.DAY_OF_WEEK) > calendar.getFirstDayOfWeek()) {
             calendar.add(Calendar.DATE, -1); // Substract 1 day until first day of week.
         }
-        calendar.add(Calendar.DATE, +1);
+        //calendar.add(Calendar.DATE, +1); For american phones
 
         // preparing list data
         fetchData(calendar, Calendar.getInstance());
