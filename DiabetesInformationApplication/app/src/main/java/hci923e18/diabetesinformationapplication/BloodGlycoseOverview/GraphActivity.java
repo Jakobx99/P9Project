@@ -11,6 +11,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
@@ -332,10 +333,13 @@ public class GraphActivity extends AppCompatActivity {
      * Creates the date and time picker
      */
     public void showDateTimePicker() {
+        DisplayMetrics displayMetrics = this.getResources().getDisplayMetrics();
+        Integer screenSize = Math.round(displayMetrics.ydpi);
         new DoubleDateAndTimePickerDialog.Builder(GraphActivity.this)
                 .title("Indstil mellem 2 forskellige datoer")
                 .tab0Text("Start")
                 .tab1Text("Slut")
+                .bottomSheetHeight(screenSize)
                 .mainColor(Color.RED)
                 .titleTextColor(Color.WHITE)
                 .listener(new DoubleDateAndTimePickerDialog.Listener() {
