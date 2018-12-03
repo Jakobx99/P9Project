@@ -316,7 +316,7 @@ public class GraphActivity extends AppCompatActivity {
             public String formatLabel(double value, boolean isValueX) {
                 if (isValueX) {
                     // show normal x values
-                    return sdf.format(value);
+                    return "\n" + sdf.format(value);
                 } else {
                     // show currency for y values
                     return super.formatLabel(value, isValueX) + " mmol/L";

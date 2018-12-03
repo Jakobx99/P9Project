@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.florent37.singledateandtimepicker.dialog.DoubleDateAndTimePickerDialog;
 
@@ -64,13 +65,17 @@ public class BloodGlucoseListActivity extends AppCompatActivity {
         while (calendar.get(Calendar.DAY_OF_WEEK) > calendar.getFirstDayOfWeek()) {
             calendar.add(Calendar.DATE, -1); // Substract 1 day until first day of week.
         }
-        //calendar.add(Calendar.DATE, +1); For american phones
-
-        // preparing list data
-        fetchData(calendar, Calendar.getInstance());
-        listAdapter = new ExpandableListObjectAdapter(this,listHead,listChild,fetchProfile());
-        // setting list adapter
-        expListView.setAdapter(listAdapter);
+        //calendar.add(Calendar.DATE, +1); //For american phones
+        try {
+            // preparing list data
+            fetchData(calendar, Calendar.getInstance());
+            listAdapter = new ExpandableListObjectAdapter(this,listHead,listChild,fetchProfile());
+            // setting list adapter
+            expListView.setAdapter(listAdapter);
+        } catch (Exception e) {
+            Toast.makeText(this, "Du har ingen tidligere blodsukker målinger for denne uge", Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        }
 
         textStartDate.setText(sdf.format(calendar.getTime()));
         textEndDate.setText(sdf.format(Calendar.getInstance().getTime()));

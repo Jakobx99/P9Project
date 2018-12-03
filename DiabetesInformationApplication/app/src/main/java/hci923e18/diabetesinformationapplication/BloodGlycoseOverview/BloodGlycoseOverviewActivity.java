@@ -153,14 +153,13 @@ public class BloodGlycoseOverviewActivity extends AppCompatActivity {
 
             //Populate graph
             populateGraph(bloodGlucoseMeasurement);
-
             graphView.getViewport().setXAxisBoundsManual(true);
             graphView.getViewport().setMinX(mSeries.getLowestValueX());
             graphView.getViewport().setMaxX(mSeries.getHighestValueX());
             graphView.getViewport().setYAxisBoundsManual(true);
             graphView.getViewport().setMinY(mSeries.getLowestValueY());
             graphView.getViewport().setMaxY(mSeries.getHighestValueY());
-            graphView.getGridLabelRenderer().setHorizontalLabelsVisible(false);
+            graphView.getGridLabelRenderer().setHorizontalLabelsVisible(true);
             graphView.getGridLabelRenderer().setVerticalLabelsVisible(true);
 
             // set date label formatter
@@ -170,7 +169,7 @@ public class BloodGlycoseOverviewActivity extends AppCompatActivity {
                 public String formatLabel(double value, boolean isValueX) {
                     if (isValueX) {
                         // show normal x values
-                        return sdf.format(value);
+                        return "";
                     } else {
                         // show currency for y values
                         return super.formatLabel(value, isValueX) + " mmol/L";

@@ -19,7 +19,7 @@
     <com.jjoe64.graphview.GraphView
         android:id="@+id/graph_overview"
         android:layout_width="match_parent"
-        android:layout_height="151dp"
+        android:layout_height="150dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="16dp"
@@ -89,27 +89,24 @@
 
         <Button
             android:id="@+id/button_bloodoverview_buttonred"
+            style="@style/redbuttonstyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            style="@style/redbuttonstyle"
-            android:text="Button" />
+            android:layout_weight="1" />
+        <Button
+            android:id="@+id/button_bloodoverview_buttongreen"
+            style="@style/greenbuttonstyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
 
         <Button
             android:id="@+id/button_bloodoverview_buttonyellow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
             style="@style/yellowbuttonstyle"
-            android:text="Button" />
-
-        <Button
-            android:id="@+id/button_bloodoverview_buttongreen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            style="@style/greenbuttonstyle"
-            android:text="Button" />
+            android:layout_weight="1" />
+
     </LinearLayout>
 
     <TextView
