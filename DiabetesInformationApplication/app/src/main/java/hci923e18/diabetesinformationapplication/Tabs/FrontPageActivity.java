@@ -13,6 +13,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.telephony.SmsManager;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.Toast;
@@ -226,6 +227,8 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.framelayoutFrontPage, new AboutUsFragment()).addToBackStack("AboutUs").commit();
+        /*SmsManager smsManager = SmsManager.getDefault();
+        smsManager.sendTextMessage("+4524636086", null, "sms message", null, null);*/
     }
 
     //--------------------------Burger menu-------------------------------------

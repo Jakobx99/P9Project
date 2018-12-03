@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="hci923e18.diabetesinformationapplication">
+    <uses-permission android:name="android.permission.SEND_SMS" />
 
     <application
         android:name="com.orm.SugarApp"
