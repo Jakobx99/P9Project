@@ -24,7 +24,13 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-
+        List<Food> _food = Food.listAll(Food.class);
+        if (_food.size() == 0)
+        {
+            PopulateDatabase.populateDB();
+        }
+        else {//Do nothing
+        }
 
             logo=(ImageView)findViewById(R.id.logo);
 
@@ -40,12 +46,6 @@ public class SplashActivity extends AppCompatActivity {
             Animation myanim = AnimationUtils.loadAnimation(this,R.anim.mysplashanimation);
             logo.startAnimation(myanim);
 
-        List<Food> _food = Food.listAll(Food.class);
-        if (_food.size() == 0)
-        {
-            PopulateDatabase.populateDB();
-        }
-        else {//Do nothing
-        }
+
     }
 }
