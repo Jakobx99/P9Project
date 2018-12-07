@@ -35,6 +35,7 @@ import hci923e18.diabetesinformationapplication.MealLog.MealLogFragment;
 import hci923e18.diabetesinformationapplication.MealPlan.MealPlanFragment;
 import hci923e18.diabetesinformationapplication.Notes.NewNoteFragment;
 import hci923e18.diabetesinformationapplication.Notes.NoteListFragment;
+import hci923e18.diabetesinformationapplication.ParentalControlActivity;
 import hci923e18.diabetesinformationapplication.R;
 import hci923e18.diabetesinformationapplication.SettingsActivity;
 import hci923e18.diabetesinformationapplication.newBloodGlucoseLevelActivity;
@@ -270,6 +271,10 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
                 break;
             case R.id.navigation_AboutUS:
                 changeToAboutUs();
+                drawerLayout.closeDrawers();
+                break;
+            case R.id.navigation_Parent_control:
+                intent = new Intent(FrontPageActivity.this, ParentalControlActivity.class);
                 drawerLayout.closeDrawers();
                 break;
         }
