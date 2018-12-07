@@ -35,6 +35,7 @@ import hci923e18.database.Profile;
 import hci923e18.diabetesinformationapplication.R;
 import hci923e18.utility.Calculator;
 import hci923e18.utility.KeyBoard;
+import hci923e18.utility.SMSUtil;
 
 
 /**
@@ -124,7 +125,7 @@ public class MealPlanFragment extends Fragment {
         mealPlanLayout = view.findViewById(R.id.mealplan_listview);
         mealPlanAddFood = view.findViewById(R.id.textView_addfood);
 
-        createDatabaseFoodList();
+        //createDatabaseFoodList();
 
         String [] values =
                 {"Morgenmad","Middagsmad","Aftensmad"};
@@ -159,6 +160,7 @@ public class MealPlanFragment extends Fragment {
             public void onClick(View v) {
                 calculate(view);
             }
+
         });
 
         mAdapter = new MealPlanAdapter(view.getContext(),0, foods, MealPlanFragment.this);
@@ -307,7 +309,7 @@ public class MealPlanFragment extends Fragment {
         //Calculate result
         Double result = calculator.insulinCalculator(carbs, bloodsugar);
         //Display result
-        mealPlanResult.setText(formater.format(result).toString());
+        mealPlanResult.setText(formater.format(result));
         //Save in db or override
 
         String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
@@ -336,6 +338,8 @@ public class MealPlanFragment extends Fragment {
                 meal.save();
             }
         }
+        //TODO add if statement to ensure parent mode is enabled
+        SMSUtil.sendSMS(carbs.toString(), bloodsugar.toString(), formater.format(result));
     }
 
     private BloodGlucoseMeasurements fetchlastBloodMeasurement(){

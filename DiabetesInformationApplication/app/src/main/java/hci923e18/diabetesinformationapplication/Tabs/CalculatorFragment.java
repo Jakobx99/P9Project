@@ -19,6 +19,8 @@ import hci923e18.database.Profile;
 import hci923e18.diabetesinformationapplication.R;
 import hci923e18.utility.Calculator;
 import hci923e18.utility.KeyBoard;
+import hci923e18.utility.SMSUtil;
+
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -115,6 +117,13 @@ public class CalculatorFragment extends Fragment {
         fiberLayout = view.findViewById(R.id.textInputLayoutFiber);
         final Calculator calculator = new Calculator();
 
+        try {
+            BloodGlucoseMeasurements b = fetchlastBloodMeasurement();
+            bloodGlucoseInput.setText(b.get_glucoseLevel().toString());
+        } catch (Exception e) {
+
+        }
+
         switchButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 fiberText.setVisibility(View.VISIBLE);
@@ -134,7 +143,7 @@ public class CalculatorFragment extends Fragment {
 
                 Double bloodGlucoseLevel = user.get_idealBloodGlucoseLevel();
 
-                if(!carbohydrateInput.getText().toString().isEmpty() && Integer.parseInt(carbohydrateInput.getText().toString())>0) {
+                if(!carbohydrateInput.getText().toString().isEmpty() && Integer.parseInt(carbohydrateInput.getText().toString())> 0) {
 
                     if (fiberInput.getText() != null && !fiberInput.getText().toString().isEmpty()) {
                         Double fiberPercentageResult = calculator.fiberPercentage(Double.parseDouble(carbohydrateInput.getText().toString()), Double.parseDouble(fiberInput.getText().toString()));
@@ -145,8 +154,7 @@ public class CalculatorFragment extends Fragment {
                             guideText.setText("Fiberen udgør " + formater.format(fiberPercentageResult) + "% af kulhydraterne, vi anbefaler at du tager insulin før måltidet");
                         }
                     }
-
-                    if (bloodGlucoseInput.getText().toString().isEmpty() || Integer.parseInt(bloodGlucoseInput.getText().toString())<=0) {
+                    if (bloodGlucoseInput.getText().toString().isEmpty() || Math.round(Float.parseFloat(bloodGlucoseInput.getText().toString()))<= 0) {
                         Double bloodGlucoseAdjustment = calculator.bloodGlucoseGoalCalculation(bloodGlucoseLevel);
                         Double result = calculator.insulinCalculator(Double.parseDouble(carbohydrateInput.getText().toString()), bloodGlucoseLevel);
                         insulinResult.setText(formater.format(result).toString());
@@ -173,19 +181,15 @@ public class CalculatorFragment extends Fragment {
                             }
                         }
                     }
+                    //TODO add if statement to ensure parent mode is enabled
+                    SMSUtil.sendSMS(carbohydrateInput.getText().toString(), bloodGlucoseInput.getText().toString(), insulinResult.getText().toString());
                 }
                 else
                 {
                     guideText.setText("Du har ikke indtastet nogen værdi i kulhydrater.");
                 }
-            }});
-
-        try {
-            BloodGlucoseMeasurements b = fetchlastBloodMeasurement();
-            bloodGlucoseInput.setText(b.get_glucoseLevel().toString());
-        } catch (Exception e) {
-
-        }
+            }
+        });
 
         return view;
     }

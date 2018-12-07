@@ -227,8 +227,6 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.framelayoutFrontPage, new AboutUsFragment()).addToBackStack("AboutUs").commit();
-        /*SmsManager smsManager = SmsManager.getDefault();
-        smsManager.sendTextMessage("+4524636086", null, "sms message", null, null);*/
     }
 
     //--------------------------Burger menu-------------------------------------
