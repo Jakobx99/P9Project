@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ParentalControlActivity">
+
+    <Switch
+        android:id="@+id/switch_parental_control_onoff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Slå forældrekontrol til/fra "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <TextView
+        android:id="@+id/textView_parental_control_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:text="Forældrekontrol"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/TextInputLayout_parental_control"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switch_parental_control_onoff">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/TextInput_parental_control"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Mobil nummer på modtager" />
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        style="@style/newbuttonstyle"
+        android:id="@+id/button_parental_control"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Gem"
+        app:layout_constraintEnd_toEndOf="@+id/TextInputLayout_parental_control"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/TextInputLayout_parental_control"
+        app:layout_constraintTop_toBottomOf="@+id/switch_parental_control_calc" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Forældrekontrol fungere ved at der bliver send en SMS til det angivet mobil nummer. Denne besked bliver inderholder dine forskellige værdier alt afhængig af hvor der bliver send fra. \nDen kan indeholde: \n1. Blodsukker måling, din markering af målingen og hvornår målingen blev fortager \n2. Den udregenet mængde af insulin enheder, mængde at kulhydrater spist og det indtast blodsukker. "
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_parental_control_title" />
+
+    <Switch
+        android:id="@+id/switch_parental_control_mesurment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Blodsukker målinger "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_parental_control_sendtitl" />
+
+    <Switch
+        android:id="@+id/switch_parental_control_calc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Insulin bergninger "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switch_parental_control_mesurment" />
+
+    <TextView
+        android:id="@+id/textView_parental_control_sendtitl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Send en SMS når du har lavet en:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TextInputLayout_parental_control" />
+
+</android.support.constraint.ConstraintLayout>
