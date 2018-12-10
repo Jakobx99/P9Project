@@ -10,6 +10,10 @@ import hci923e18.database.Profile;
 
 public class SMSUtil {
 
+    /**
+     * sendSMS method used to preparer and send SMS with input arguments
+     * @param bloodGlucoseMeasurements bloodGlucoseMeasurements object used to format the message
+     */
     public static void sendSMS(BloodGlucoseMeasurements bloodGlucoseMeasurements){
         String mobileNumber = fetchProfileParentPhoneNumber();
         String formattedMessage = formatSMSMessageBloodGlucose(bloodGlucoseMeasurements);
@@ -18,6 +22,12 @@ public class SMSUtil {
         smsManager.sendTextMessage("+45" + mobileNumber, null, formattedMessage, null, null);
     }
 
+    /**
+     * sendSMS method used to preparer and send SMS with input arguments
+     * @param carbohydrate string containing the amount carbs
+     * @param bloodGlucoseLevel string containing the blood glucose level
+     * @param units string containing the amount of insulin units
+     */
     public static void sendSMS(String carbohydrate, String bloodGlucoseLevel, String units){
         String mobileNumber = fetchProfileParentPhoneNumber();
         String formattedMessage = formatSMSMessageInculinCalc(carbohydrate, bloodGlucoseLevel, units);
@@ -26,6 +36,11 @@ public class SMSUtil {
         smsManager.sendTextMessage("+45" + mobileNumber, null, formattedMessage, null, null); //4560453035
     }
 
+    /**
+     * formatSMSMessageBloodGlucose used to format the message for blood glucose content
+     * @param bloodGlucoseMeasurements bloodGlucoseMeasurements object used to format the message
+     * @return string containing the formatted message
+     */
     public static String formatSMSMessageBloodGlucose(@NonNull BloodGlucoseMeasurements bloodGlucoseMeasurements){
 
         final SimpleDateFormat sdf = new SimpleDateFormat("'Kl.'HH:mm 'den' dd/MM");
@@ -49,6 +64,13 @@ public class SMSUtil {
         return formattedSMS;
     }
 
+    /**
+     *  formatSMSMessageBloodGlucose used to format the message for insulin calculations content
+     * @param carbohydrate string containing the amount carbs
+     * @param bloodGlucoseLevel string containing the blood glucose level
+     * @param units string containing the amount of insulin units
+     * @return string containing the formatted message
+     */
     public static String formatSMSMessageInculinCalc(String carbohydrate, String bloodGlucoseLevel, String units){
 
         String formattedSMS;
