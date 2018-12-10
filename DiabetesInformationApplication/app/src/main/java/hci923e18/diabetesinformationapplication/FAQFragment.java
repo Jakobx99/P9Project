@@ -48,7 +48,7 @@ public class FAQFragment extends Fragment {
      * Default constructor
      */
     public FAQFragment() {
-        // Required empty public constructor
+
     }
 
     /**

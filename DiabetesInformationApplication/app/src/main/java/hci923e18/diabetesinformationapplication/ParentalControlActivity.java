@@ -101,6 +101,9 @@ public class ParentalControlActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * fetchProfile method used to fetch the profil and set values for parental control
+     */
     public void fetchProfile(){
         try {
             profile = Profile.find(Profile.class, "ID = ?", "1").get(0);
@@ -122,6 +125,10 @@ public class ParentalControlActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * updateProfile method used for check the switches and saving the state of these to the database
+     * @return returns true or false depending on success full database save
+     */
     public Boolean updateProfile(){
         int parentalControlSwitch = switchButtonParentalControl.isChecked() ? 1 : 0;
         int bloodGlucoseSwitch = switchButtonBloodGlucose.isChecked() ? 1 : 0;
@@ -141,6 +148,9 @@ public class ParentalControlActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * getSMSPermission method used to check for SEND_SMS permission and request if missing
+     */
     private void getSMSPermission() {
         /*
          * Request location permission, so that we can get the location of the
@@ -158,6 +168,14 @@ public class ParentalControlActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Method used to catch the the returning activity asking the user for sms permisssion.
+     * If the permission is not granted this page will close.
+     *
+     * @param requestCode  The request code used for the permission activity.
+     * @param permissions  A string with the return permission.
+     * @param grantResults An integer array with a values describing the permissions granted.
+     */
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         smsPermission = false;

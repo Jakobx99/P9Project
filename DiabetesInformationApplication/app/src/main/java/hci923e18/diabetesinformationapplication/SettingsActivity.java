@@ -3,7 +3,6 @@ package hci923e18.diabetesinformationapplication;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.TooltipCompat;
-import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;

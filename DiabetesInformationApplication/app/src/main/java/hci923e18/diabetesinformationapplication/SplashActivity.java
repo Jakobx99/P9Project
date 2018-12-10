@@ -19,6 +19,10 @@ public class SplashActivity extends AppCompatActivity {
     private ImageView logo;
     private static int splashTimeOut=6000;
 
+    /**
+     * OnCreate method called when activity is initiated.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,8 +33,7 @@ public class SplashActivity extends AppCompatActivity {
         {
             PopulateDatabase.populateDB();
         }
-        else {//Do nothing
-        }
+        else {}
 
             logo=(ImageView)findViewById(R.id.logo);
 

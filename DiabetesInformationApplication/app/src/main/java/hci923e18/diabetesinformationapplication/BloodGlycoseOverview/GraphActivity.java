@@ -84,8 +84,6 @@ public class GraphActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
                 showDateTimePicker();
             }
         });
@@ -108,7 +106,6 @@ public class GraphActivity extends AppCompatActivity {
             }
         });
     }
-
 
     /**
      * Creates the different series that are displayed on the graph
@@ -134,15 +131,11 @@ public class GraphActivity extends AppCompatActivity {
         lowestSeries = new LineGraphSeries<>(lowest);
         lowestSeries.setColor(Color.RED);
 
-
         DataPoint[] highest = new DataPoint[2];
         highest[0] = new DataPoint(mSeries.getLowestValueX(), profile.get_upperBloodGlucoseLevel());
         highest[1] = new DataPoint(mSeries.getHighestValueX(), profile.get_upperBloodGlucoseLevel());
         highestSeries = new LineGraphSeries<>(highest);
         highestSeries.setColor(Color.YELLOW);
-
-
-        //Create reg, yellow and green
 
         DataPoint[] redValues = new DataPoint[reds];
         DataPoint[] yellowValues = new DataPoint[yellows];
@@ -300,10 +293,8 @@ public class GraphActivity extends AppCompatActivity {
         graphView.getViewport().setMinY(mSeries.getLowestValueY());
         graphView.getViewport().setMaxY(mSeries.getHighestValueY());
 
-
         graphView.getGridLabelRenderer().setHorizontalLabelsVisible(true);
         graphView.getGridLabelRenderer().setVerticalLabelsVisible(true);
-
 
         // enable scaling and scrolling
         graphView.getViewport().setScalable(true);

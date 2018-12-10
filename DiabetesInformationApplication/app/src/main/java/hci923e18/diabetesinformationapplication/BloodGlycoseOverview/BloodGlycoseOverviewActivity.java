@@ -341,8 +341,6 @@ public class BloodGlycoseOverviewActivity extends AppCompatActivity {
 
         graphView.addSeries(mSeries);
 
-        //Create reg, yellow and green
-
         DataPoint[] redValues = new DataPoint[reds];
         DataPoint[] yellowValues = new DataPoint[yellows];
         DataPoint[] greenValues = new DataPoint[greens];
