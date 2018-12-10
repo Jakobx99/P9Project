@@ -197,6 +197,10 @@ public class SettingsActivity extends AppCompatActivity {
             p.set_beforeBloodGlucoseLevel(6.0);
             p.set_lowerBloodGlucoseLevel(2.8);
             p.set_upperBloodGlucoseLevel(13.0);
+            p.set_parentalControl(0);
+            p.set_bloodGlucoseMeasurement(0);
+            p.set_insulinCalc(0);
+            p.set_phoneNumber("");
 
             //Save default to DB
             p.save();

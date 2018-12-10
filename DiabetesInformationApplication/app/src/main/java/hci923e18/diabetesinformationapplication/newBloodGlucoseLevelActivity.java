@@ -239,8 +239,9 @@ public class newBloodGlucoseLevelActivity extends AppCompatActivity implements T
                     Intent returnIntent = new Intent();
                     returnIntent.putExtra("result",1);
                     setResult(Activity.RESULT_OK,returnIntent);
-                    //TODO add if statement to ensure parent mode is enabled
-                    SMSUtil.sendSMS(newBloodGlucoseLevel);
+                    if (p.get_parentalControl() == 1 && p.get_bloodGlucoseMeasurement() == 1) {
+                        SMSUtil.sendSMS(newBloodGlucoseLevel);
+                    }
                     finish();
                 }
             }

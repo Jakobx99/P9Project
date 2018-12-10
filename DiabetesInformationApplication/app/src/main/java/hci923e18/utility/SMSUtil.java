@@ -6,25 +6,24 @@ import android.telephony.SmsManager;
 import java.text.SimpleDateFormat;
 
 import hci923e18.database.BloodGlucoseMeasurements;
+import hci923e18.database.Profile;
 
 public class SMSUtil {
 
     public static void sendSMS(BloodGlucoseMeasurements bloodGlucoseMeasurements){
-
-        //TODO Fetch parent number from profile page?
-        //TODO maybe include latest 3 readings ?
+        String mobileNumber = fetchProfileParentPhoneNumber();
         String formattedMessage = formatSMSMessageBloodGlucose(bloodGlucoseMeasurements);
 
         SmsManager smsManager = SmsManager.getDefault();
-        smsManager.sendTextMessage("+4524636086", null, formattedMessage, null, null);
+        smsManager.sendTextMessage("+45" + mobileNumber, null, formattedMessage, null, null);
     }
 
     public static void sendSMS(String carbohydrate, String bloodGlucoseLevel, String units){
-
+        String mobileNumber = fetchProfileParentPhoneNumber();
         String formattedMessage = formatSMSMessageInculinCalc(carbohydrate, bloodGlucoseLevel, units);
 
         SmsManager smsManager = SmsManager.getDefault();
-        smsManager.sendTextMessage("+4524636086", null, formattedMessage, null, null); //4560453035
+        smsManager.sendTextMessage("+45" + mobileNumber, null, formattedMessage, null, null); //4560453035
     }
 
     public static String formatSMSMessageBloodGlucose(@NonNull BloodGlucoseMeasurements bloodGlucoseMeasurements){
@@ -58,5 +57,8 @@ public class SMSUtil {
 
         return formattedSMS;
     }
-
+    public static String fetchProfileParentPhoneNumber(){
+        Profile profile = Profile.find(Profile.class, "ID = ?", "1").get(0);
+        return profile.get_phoneNumber();
+    }
 }

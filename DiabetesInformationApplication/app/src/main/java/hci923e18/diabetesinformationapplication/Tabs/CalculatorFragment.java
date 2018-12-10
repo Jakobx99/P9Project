@@ -42,7 +42,7 @@ public class CalculatorFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private Profile user = new Profile();
+    private Profile p = new Profile();
     private OnFragmentInteractionListener mListener;
     DecimalFormat formater = new DecimalFormat("#.##");
     Switch switchButton;
@@ -56,18 +56,7 @@ public class CalculatorFragment extends Fragment {
     TextInputLayout fiberLayout;
 
     public CalculatorFragment() {
-        // Required empty public constructor
-        try {
-            user = Profile.listAll(Profile.class).get(0);
-        } catch (Exception e) {
-            user.set_idealBloodGlucoseLevel(6.0);
-            user.set_insulinDuration(3.5);
-            user.set_totalDailyInsulinConsumption(41.6);
-            user.set_afterBloodGlucoseLevel(9.0);
-            user.set_beforeBloodGlucoseLevel(6.0);
-            user.set_lowerBloodGlucoseLevel(2.8);
-            user.set_upperBloodGlucoseLevel(13.0);
-        }
+
     }
 
     /**
@@ -102,8 +91,8 @@ public class CalculatorFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_calculator, container, false);
-
         KeyBoard.setHideKeyboardOnTouch(view.getContext(),view.findViewById(R.id.calculatorlayout));
+        fetchProfile();
 
         //Binding of components
         switchButton = view.findViewById(R.id.switchAdvancedOptionsCalculator);
@@ -141,7 +130,7 @@ public class CalculatorFragment extends Fragment {
             public void onClick(View v) {
                 guideText.setText("");
 
-                Double bloodGlucoseLevel = user.get_idealBloodGlucoseLevel();
+                Double bloodGlucoseLevel = p.get_idealBloodGlucoseLevel();
 
                 if(!carbohydrateInput.getText().toString().isEmpty() && Integer.parseInt(carbohydrateInput.getText().toString())> 0) {
 
@@ -165,14 +154,14 @@ public class CalculatorFragment extends Fragment {
                         Double result = calculator.insulinCalculator(Double.parseDouble(carbohydrateInput.getText().toString()), Double.parseDouble(bloodGlucoseInput.getText().toString()));
                         insulinResult.setText(formater.format(result).toString());
 
-                        if (Double.parseDouble(bloodGlucoseInput.getText().toString()) > user.get_idealBloodGlucoseLevel()) {
+                        if (Double.parseDouble(bloodGlucoseInput.getText().toString()) > p.get_idealBloodGlucoseLevel()) {
                             if (guideText.getText() != null && !guideText.getText().toString().isEmpty()) {
                                 guideText.append("\nVær opmærksom på at på grund af det indtastede blodsukker, er " + formater.format(bloodGlucoseAdjustment) + " enheder lagt til den beregnet insulin.");
                             } else {
                                 guideText.setText("Vær opmærksom på at på grund af det indtastede blodsukker, er " + formater.format(bloodGlucoseAdjustment) + " enheder lagt til den beregnet insulin.");
                             }
 
-                        } else if (Double.parseDouble(bloodGlucoseInput.getText().toString()) == user.get_idealBloodGlucoseLevel()) {
+                        } else if (Double.parseDouble(bloodGlucoseInput.getText().toString()) == p.get_idealBloodGlucoseLevel()) {
                         } else {
                             if (guideText.getText() != null && !guideText.getText().toString().isEmpty()) {
                                 guideText.append("\nVær opmærksom på at på grund af det indtastede blodsukker, er " + formater.format(bloodGlucoseAdjustment) + " enheder trukket fra den beregnet insulin.");
@@ -181,8 +170,10 @@ public class CalculatorFragment extends Fragment {
                             }
                         }
                     }
-                    //TODO add if statement to ensure parent mode is enabled
-                    SMSUtil.sendSMS(carbohydrateInput.getText().toString(), bloodGlucoseInput.getText().toString(), insulinResult.getText().toString());
+                    fetchProfile();
+                    if (p.get_parentalControl() == 1 && p.get_insulinCalc() == 1) {
+                        SMSUtil.sendSMS(carbohydrateInput.getText().toString(), bloodGlucoseInput.getText().toString(), insulinResult.getText().toString());
+                    }
                 }
                 else
                 {
@@ -245,5 +236,23 @@ public class CalculatorFragment extends Fragment {
             e.printStackTrace();
         }
         return bloodGlucoseMeasurements;
+    }
+
+    private void fetchProfile(){
+        try {
+            p = Profile.find(Profile.class, "ID = ?", "1").get(0);
+        } catch (Exception e) {
+            p = new Profile();
+            p.set_idealBloodGlucoseLevel(5.5);
+            p.set_insulinDuration(3.5);
+            p.set_totalDailyInsulinConsumption(30.0);
+            p.set_upperBloodGlucoseLevel(15.0);
+            p.set_lowerBloodGlucoseLevel(3.0);
+            p.set_beforeBloodGlucoseLevel(8.0);
+            p.set_afterBloodGlucoseLevel(8.0);
+
+            //Save default to DB
+            p.save();
+        }
     }
 }

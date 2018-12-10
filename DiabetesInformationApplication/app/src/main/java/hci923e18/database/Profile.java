@@ -10,6 +10,10 @@ public class Profile extends SugarRecord<Profile> {
     private Double _lowerBloodGlucoseLevel;
     private Double _beforeBloodGlucoseLevel;
     private Double _afterBloodGlucoseLevel;
+    private Integer _parentalControl;
+    private Integer _bloodGlucoseMeasurement;
+    private Integer _insulinCalc;
+    private String _phoneNumber;
 
 
     public Profile()
@@ -17,7 +21,8 @@ public class Profile extends SugarRecord<Profile> {
 
     }
 
-    public Profile(Double idealBloodGlucoseLevel, Double insulinDuration, Double totalDailyInsulinConsumption, Double upperBloodGlucoseLevel, Double lowerBloodGlucoseLevel, Double beforeBloodGlucoseLevel, Double afterBloodGlucoseLevel)
+        public Profile(Double idealBloodGlucoseLevel, Double insulinDuration, Double totalDailyInsulinConsumption, Double upperBloodGlucoseLevel, Double lowerBloodGlucoseLevel,
+                   Double beforeBloodGlucoseLevel, Double afterBloodGlucoseLevel, Integer parentalControl, Integer bloodGlucoseMeasurment, Integer insulinCalc, String phoneNumber)
     {
         _idealBloodGlucoseLevel = idealBloodGlucoseLevel;
         _insulinDuration = insulinDuration;
@@ -26,6 +31,10 @@ public class Profile extends SugarRecord<Profile> {
         _beforeBloodGlucoseLevel = beforeBloodGlucoseLevel;
         _lowerBloodGlucoseLevel = lowerBloodGlucoseLevel;
         _upperBloodGlucoseLevel = upperBloodGlucoseLevel;
+        _parentalControl = parentalControl;
+        _bloodGlucoseMeasurement = bloodGlucoseMeasurment;
+        _insulinCalc = insulinCalc;
+        _phoneNumber = phoneNumber;
     }
 
     public Double get_upperBloodGlucoseLevel() {
@@ -84,4 +93,37 @@ public class Profile extends SugarRecord<Profile> {
     public void set_insulinDuration(Double _insulinDuration) {
         this._insulinDuration = _insulinDuration;
     }
+
+    public Integer get_parentalControl() {
+        return _parentalControl;
+    }
+
+    public void set_parentalControl(Integer _parentalControl) {
+        this._parentalControl = _parentalControl;
+    }
+
+    public Integer get_bloodGlucoseMeasurement() {
+        return _bloodGlucoseMeasurement;
+    }
+
+    public void set_bloodGlucoseMeasurement(Integer _bloodGlucoseMeasurement) {
+        this._bloodGlucoseMeasurement = _bloodGlucoseMeasurement;
+    }
+
+    public Integer get_insulinCalc() {
+        return _insulinCalc;
+    }
+
+    public void set_insulinCalc(Integer _insulinCalc) {
+        this._insulinCalc = _insulinCalc;
+    }
+
+    public String get_phoneNumber() {
+        return _phoneNumber;
+    }
+
+    public void set_phoneNumber(String _phoneNumber) {
+        this._phoneNumber = _phoneNumber;
+    }
+
 }

@@ -5,6 +5,7 @@
     android:id="@+id/constraintLayout_parent_control"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
     tools:context=".ParentalControlActivity">
 
     <Switch
@@ -39,6 +40,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/switch_parental_control_onoff">
@@ -48,6 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Mobil nummer på modtager"
+            android:inputType="phone"
             android:visibility="gone" />
     </android.support.design.widget.TextInputLayout>
 

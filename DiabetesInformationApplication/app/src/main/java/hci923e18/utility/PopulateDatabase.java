@@ -10,6 +10,7 @@ import hci923e18.database.BloodGlucoseMeasurements;
 import hci923e18.database.Food;
 import hci923e18.database.FrequentlyAskedQuestions;
 import hci923e18.database.LongTermBloodGlucose;
+import hci923e18.database.Profile;
 
 public class PopulateDatabase {
 
@@ -231,6 +232,22 @@ public class PopulateDatabase {
                         "Almindelige cornflakes kan blandes med havregryn f.eks. halvt af hver. På den måde bliver måltidet også sundere og giver langsommere stigning i blodsukkeret, end hvis man kun spiser cornflakes.",
                 0,1));
         SugarRecord.saveInTx(FAQObjects);
+
+        Profile profile = new Profile();
+        profile.set_idealBloodGlucoseLevel(5.5);
+        profile.set_insulinDuration(3.5);
+        profile.set_totalDailyInsulinConsumption(30.0);
+        profile.set_afterBloodGlucoseLevel(9.0);
+        profile.set_beforeBloodGlucoseLevel(6.0);
+        profile.set_lowerBloodGlucoseLevel(2.8);
+        profile.set_upperBloodGlucoseLevel(13.0);
+        profile.set_parentalControl(0);
+        profile.set_bloodGlucoseMeasurement(0);
+        profile.set_insulinCalc(0);
+        profile.set_phoneNumber("");
+
+        profile.save();
+
 
     }
 
