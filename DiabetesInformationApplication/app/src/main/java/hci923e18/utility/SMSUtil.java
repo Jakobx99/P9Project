@@ -75,7 +75,7 @@ public class SMSUtil {
 
         String formattedSMS;
         formattedSMS = "Jeg har lige udregnet at jeg skal tage " + units + " enheder insulin, da jeg har spist "
-                + carbohydrate + " gram kulhydrater og har et blodsukker på: " + bloodGlucoseLevel;
+                + carbohydrate + " gram kulhydrater og har et blodsukker på: " + bloodGlucoseLevel + " mmol/L";
 
         return formattedSMS;
     }
