@@ -42,8 +42,6 @@
 
     </FrameLayout>
 
-
-
 </android.support.constraint.ConstraintLayout>
     <!--Burger menu -->
 <android.support.design.widget.NavigationView
@@ -58,4 +56,4 @@ app:itemTextColor="@android:color/black"
 app:menu="@menu/drawermenu">
 
 </android.support.design.widget.NavigationView>
-    </android.support.v4.widget.DrawerLayout>
+</android.support.v4.widget.DrawerLayout>

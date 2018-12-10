@@ -31,7 +31,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:seriesType="line" />
 
-
     </RelativeLayout>
 
     <TextView

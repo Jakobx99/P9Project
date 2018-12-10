@@ -125,7 +125,7 @@ public class MealPlanFragment extends Fragment {
         mealPlanLayout = view.findViewById(R.id.mealplan_listview);
         mealPlanAddFood = view.findViewById(R.id.textView_addfood);
 
-        //createDatabaseFoodList();
+        createDatabaseFoodList();
 
         String [] values =
                 {"Morgenmad","Middagsmad","Aftensmad"};

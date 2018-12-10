@@ -104,21 +104,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayoutPopUpWindowLayout" />
 
-    <!--<TextView
-        android:id="@+id/textView14"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/infoborder"
-        android:paddingLeft="5dp"
-        android:text="Navn:                   Kulhydrater(g),    Fiber(g),    Vægt(g)"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />-->
-
     <LinearLayout
         android:id="@+id/linearLayoutPopUpWindowLayout"
         android:layout_width="match_parent"
@@ -136,13 +121,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewMealTextSpecificLog">
-
-        <!--<TextView
-            android:id="@+id/column_header1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:text="Navn:" />-->
 
         <TextView
             android:id="@+id/column_carbsSpecificLog"
@@ -165,12 +143,6 @@
             android:layout_weight="1"
             android:text="Vægt(g)" />
 
-        <!--<ImageView
-            android:id="@+id/imageView_SpecificLogList"
-            android:layout_width="10dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.3" />-->
     </LinearLayout>
-
 
 </android.support.constraint.ConstraintLayout>

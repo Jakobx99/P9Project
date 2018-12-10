@@ -28,7 +28,6 @@
         app:layout_constraintTop_toBottomOf="@+id/textView_latestBloodGlucoseMesurments"
         app:seriesType="line" />
 
-
     <EditText
         android:id="@+id/textView_bloodoverview_lastmeasurement"
         android:layout_width="0dp"
@@ -45,7 +44,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/graph_overview" />
-
 
     <Button
         android:id="@+id/button_bloodoverview_new"
@@ -138,6 +136,5 @@
         app:layout_constraintBottom_toTopOf="@+id/textView_bloodoverview_lastmeasurement"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/graph_overview" />
-
 
 </android.support.constraint.ConstraintLayout>

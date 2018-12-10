@@ -10,16 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!--<TextView
-            android:id="@+id/textView_BloodGlucoseOverviewFrom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="16dp"
-            android:text="Fra:"
-            app:layout_constraintStart_toStartOf="@+id/textInputLayout_From"
-            app:layout_constraintTop_toTopOf="parent" />-->
-
         <android.support.design.widget.TextInputLayout
             android:id="@+id/textInputLayout_From"
             android:layout_width="0dp"
@@ -36,16 +26,6 @@
                 android:editable="false"
                 android:hint="Dato fra" />
         </android.support.design.widget.TextInputLayout>
-
-        <!--<TextView-->
-            <!--android:id="@+id/textView_BloodGlucoseOverviewTo"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginStart="4dp"-->
-            <!--android:layout_marginTop="16dp"-->
-            <!--android:text="Til:"-->
-            <!--app:layout_constraintStart_toStartOf="@+id/textInputLayout_To"-->
-            <!--app:layout_constraintTop_toTopOf="parent" />-->
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/textInputLayout_To"

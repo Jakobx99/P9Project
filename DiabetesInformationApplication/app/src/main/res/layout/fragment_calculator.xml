@@ -190,7 +190,6 @@
                 app:layout_constraintStart_toStartOf="@+id/buttonCalculate"
                 app:layout_constraintTop_toBottomOf="@+id/buttonCalculate" />
 
-
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
 
