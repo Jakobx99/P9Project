@@ -1,6 +1,12 @@
 package hci923e18.diabetesinformationapplication;
 
+import android.Manifest;
+import android.app.Activity;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +22,8 @@ import hci923e18.utility.KeyBoard;
 
 public class ParentalControlActivity extends AppCompatActivity {
 
+    private static final int PERMISSIONS_REQUEST_SEND_SMS = 1;
+    public Boolean smsPermission = false;
     public Button saveButton;
     public TextInputLayout mobileNumberLayout;
     public EditText mobileNumber;
@@ -27,6 +35,7 @@ public class ParentalControlActivity extends AppCompatActivity {
     Switch switchButtonBloodGlucose;
     Switch switchButtonCalc;
     Profile profile;
+
     /**
      * OnCreate method called when activity is initiated.
      * Bindings are performed and setOnClickListener for button is made
@@ -48,6 +57,7 @@ public class ParentalControlActivity extends AppCompatActivity {
         mobileNumber.setSelected(false);
 
         fetchProfile();
+        getSMSPermission();
 
         mobileNumber.setText(profile.get_phoneNumber());
         switchButtonParentalControl.setChecked(ParentalControl);
@@ -129,6 +139,41 @@ public class ParentalControlActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Der skete en fejl med databasen", Toast.LENGTH_SHORT).show();
             return false;
         }
-
     }
+
+    private void getSMSPermission() {
+        /*
+         * Request location permission, so that we can get the location of the
+         * device. The result of the permission request is handled by a callback,
+         * onRequestPermissionsResult.
+         */
+        if (ContextCompat.checkSelfPermission(this.getApplicationContext(),
+                Manifest.permission.SEND_SMS)
+                == PackageManager.PERMISSION_GRANTED) {
+            smsPermission = true;
+        } else {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.SEND_SMS},
+                    PERMISSIONS_REQUEST_SEND_SMS);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        smsPermission = false;
+        switch (requestCode) {
+            case PERMISSIONS_REQUEST_SEND_SMS: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    smsPermission = true;
+                } else {
+                    Intent resultIntent = new Intent();
+                    setResult(Activity.RESULT_CANCELED, resultIntent);
+                    finish();
+                }
+            }
+        }
+    }
+
 }
