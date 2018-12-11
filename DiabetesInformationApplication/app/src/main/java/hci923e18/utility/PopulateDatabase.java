@@ -38,8 +38,11 @@ public class PopulateDatabase {
 
         //Calendar date, Double glucoseLevel, Integer type, Integer category, Integer beforeAfter
         Calendar c = Calendar.getInstance();
-
         List<BloodGlucoseMeasurements> bloodGlucoseMeasurements = new ArrayList<>();
+//        c.set(2018, Calendar.getInstance().get(Calendar.MONTH) - 1, Calendar.getInstance().get(Calendar.DATE));
+//        bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 1.0, 1,1,1));
+//        c = Calendar.getInstance();
+
         c.set(2018, Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DATE) -2);
         c.set(Calendar.HOUR_OF_DAY, 8);
         bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 1.0, 1,1,1));
