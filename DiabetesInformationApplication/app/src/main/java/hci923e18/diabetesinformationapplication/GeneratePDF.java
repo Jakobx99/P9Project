@@ -11,12 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.StrictMode;
-import android.print.pdf.PrintedPdfDocument;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,7 +27,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -40,8 +34,6 @@ import java.util.List;
 
 import hci923e18.database.BloodGlucoseMeasurements;
 import hci923e18.database.Profile;
-
-import static java.net.Proxy.Type.HTTP;
 
 public class GeneratePDF extends AppCompatActivity {
 
@@ -64,7 +56,6 @@ public class GeneratePDF extends AppCompatActivity {
     private Profile profile;
     private Bitmap bitmap;
     private Uri documentUri = null;
-    private File emailFile = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,11 +80,7 @@ public class GeneratePDF extends AppCompatActivity {
         graphView.getGridLabelRenderer().setHorizontalLabelsVisible(true);
         graphView.getGridLabelRenderer().setVerticalLabelsVisible(true);
 
-
-
-
         // set date label formatter
-
         graphView.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
             @Override
             public String formatLabel(double value, boolean isValueX) {
@@ -107,7 +94,6 @@ public class GeneratePDF extends AppCompatActivity {
             }
         });
         graphView.getGridLabelRenderer().setNumHorizontalLabels(4); // only 3 because of the space
-
 
         download.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,7 +117,7 @@ public class GeneratePDF extends AppCompatActivity {
                 if (mail != null && !mail.isEmpty() ){
                     bitmap = graphView.takeSnapshot();
                     createPDF();
-                    sendEmail(mail, documentUri);
+                    sendEmail(mail);
                     Toast.makeText(GeneratePDF.this, "PDF lavet og sendt til: " + mail, Toast.LENGTH_LONG).show();
                     finish();
                 }
@@ -170,7 +156,6 @@ public class GeneratePDF extends AppCompatActivity {
                 y = 25;
                 pageNumber = pageNumber + 1;
                 pageInfo = new PdfDocument.PageInfo.Builder(595, 842, pageNumber).create();
-
                 page = document.startPage(pageInfo);
                 canvas = page.getCanvas();
                 paint = new Paint();
@@ -200,16 +185,9 @@ public class GeneratePDF extends AppCompatActivity {
         paint.setColor(Color.BLACK);
         canvas.drawBitmap(bitmap, 0,0,null);
         document.finishPage(page);
-
-
-
         SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyyhhmmss");
         String pdfName = "Blodsukker_malinger_"
                 + sdf.format(Calendar.getInstance().getTime()) + ".pdf";
-
-
-
-
         File outputFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), pdfName);
         outputFile.setReadable(true);
         outputFile.setWritable(true);
@@ -421,8 +399,11 @@ public class GeneratePDF extends AppCompatActivity {
         graphView.addSeries(greenSeries);
     }
 
-    protected void sendEmail(String email, Uri storage) {
-
+    /**
+     * Send an email
+     * @param email The string used for the message
+     */
+    protected void sendEmail(String email) {
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
         emailIntent.setType("vnd.android.cursor.dir/email");
         emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{email} );
