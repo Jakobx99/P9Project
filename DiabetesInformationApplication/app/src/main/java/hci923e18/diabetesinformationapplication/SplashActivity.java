@@ -4,10 +4,12 @@ import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import hci923e18.database.Food;
@@ -28,12 +30,15 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        List<Food> _food = Food.listAll(Food.class);
+        List<Food> _food = new ArrayList<Food>();
+         _food = Food.listAll(Food.class);
         if (_food.size() == 0)
         {
             PopulateDatabase.populateDB();
         }
-        else {}
+        else {
+            Log.d("DATABASE", "THERE IS A DATABASE");
+        }
 
             logo=(ImageView)findViewById(R.id.logo);
 

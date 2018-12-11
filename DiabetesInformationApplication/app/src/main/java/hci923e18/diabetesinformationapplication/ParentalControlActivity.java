@@ -28,9 +28,9 @@ public class ParentalControlActivity extends AppCompatActivity {
     public TextInputLayout mobileNumberLayout;
     public EditText mobileNumber;
     public TextView whenSMSTitle;
-    public Boolean ParentalControl;
-    public Boolean BloodGlucoseMeasurement;
-    public Boolean Calc;
+    public Boolean ParentalControl = false;
+    public Boolean BloodGlucoseMeasurement  = false;
+    public Boolean Calc  = false;
     Switch switchButtonParentalControl;
     Switch switchButtonBloodGlucose;
     Switch switchButtonCalc;
