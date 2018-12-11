@@ -79,4 +79,5 @@ public class BloodGlucoseMeasurements extends SugarRecord<BloodGlucoseMeasuremen
     public void set_beforeAfter(Integer _beforeAfter) {
         this._beforeAfter = _beforeAfter;
     }
+
 }
