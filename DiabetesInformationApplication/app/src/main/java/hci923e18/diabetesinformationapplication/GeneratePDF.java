@@ -10,6 +10,7 @@ import android.graphics.pdf.PdfDocument;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.StrictMode;
 import android.print.pdf.PrintedPdfDocument;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -63,6 +64,7 @@ public class GeneratePDF extends AppCompatActivity {
     private Profile profile;
     private Bitmap bitmap;
     private Uri documentUri = null;
+    private File emailFile = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,7 +106,7 @@ public class GeneratePDF extends AppCompatActivity {
                 }
             }
         });
-        graphView.getGridLabelRenderer().setNumHorizontalLabels(3); // only 3 because of the space
+        graphView.getGridLabelRenderer().setNumHorizontalLabels(4); // only 3 because of the space
 
 
         download.setOnClickListener(new View.OnClickListener() {
@@ -145,7 +147,8 @@ public class GeneratePDF extends AppCompatActivity {
         PdfDocument document = new PdfDocument();
         int pageNumber = 1;
         int y = 25;
-
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
 
         PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(595, 842, pageNumber).create();
 
@@ -204,7 +207,10 @@ public class GeneratePDF extends AppCompatActivity {
         String pdfName = "Blodsukker_malinger_"
                 + sdf.format(Calendar.getInstance().getTime()) + ".pdf";
 
-        File outputFile = new File(getFilesDir(), pdfName);
+
+
+
+        File outputFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), pdfName);
         outputFile.setReadable(true);
         outputFile.setWritable(true);
 
@@ -214,12 +220,18 @@ public class GeneratePDF extends AppCompatActivity {
             document.writeTo(out);
             document.close();
             out.close();
-            //documentUri = FileProvider.getUriForFile(GeneratePDF.this,"hci923e18.diabetesinformationapplication.fileprovider", outputFile);
+            documentUri = Uri.fromFile(outputFile);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * Rotates a bitmap
+     * @param source The bitmap
+     * @param angle The angle to rotate
+     * @return A rotated bitmap
+     */
     public static Bitmap RotateBitmap(Bitmap source, float angle)
     {
         Matrix matrix = new Matrix();
@@ -412,11 +424,11 @@ public class GeneratePDF extends AppCompatActivity {
     protected void sendEmail(String email, Uri storage) {
 
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
-        emailIntent.setType("text/plain");
+        emailIntent.setType("vnd.android.cursor.dir/email");
         emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{email} );
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "DIAbetesInformationApplication - Blodsukker målinger");
         emailIntent.putExtra(Intent.EXTRA_TEXT, "Vedhæftet er pdf med blodsukker målinger");
-        emailIntent.putExtra(Intent.EXTRA_STREAM, storage);
+        emailIntent.putExtra(Intent.EXTRA_STREAM, documentUri);
         // FOLLOWING STATEMENT CHECKS WHETHER THERE IS ANY APP THAT CAN HANDLE OUR EMAIL INTENT
         startActivity(Intent.createChooser(emailIntent,
                 "Send Email Using: "));

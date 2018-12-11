@@ -66,7 +66,7 @@
     <com.jjoe64.graphview.GraphView
         android:id="@+id/graph_generate"
         android:layout_width="787dp"
-        android:layout_height="429dp"
+        android:layout_height="401dp"
         android:visibility="invisible"
         app:seriesType="line" />
 
