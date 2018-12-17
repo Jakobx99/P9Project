@@ -19,7 +19,6 @@ import java.util.List;
 import java.util.Locale;
 
 import hci923e18.database.Food;
-import hci923e18.diabetesinformationapplication.MealPlan.MealPlanFragment;
 import hci923e18.diabetesinformationapplication.R;
 
 import static android.text.InputType.TYPE_NUMBER_FLAG_DECIMAL;

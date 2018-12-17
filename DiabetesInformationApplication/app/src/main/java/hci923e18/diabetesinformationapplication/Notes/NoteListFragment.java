@@ -1,18 +1,20 @@
 package hci923e18.diabetesinformationapplication.Notes;
 
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import hci923e18.database.NoteObject;
 import hci923e18.diabetesinformationapplication.R;
 import hci923e18.diabetesinformationapplication.Tabs.FrontPageActivity;
@@ -49,7 +51,6 @@ public class NoteListFragment extends Fragment {
      * @param param2 Parameter 2.
      * @return A new instance of fragment NoteListFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static NoteListFragment newInstance(String param1, String param2) {
         NoteListFragment fragment = new NoteListFragment();
         return fragment;
@@ -97,13 +98,6 @@ public class NoteListFragment extends Fragment {
         });
 
         return view;
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
     }
 
     /**
@@ -161,7 +155,6 @@ public class NoteListFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 }

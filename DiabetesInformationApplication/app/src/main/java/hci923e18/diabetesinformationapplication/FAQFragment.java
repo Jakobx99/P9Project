@@ -1,9 +1,9 @@
 package hci923e18.diabetesinformationapplication;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.Spinner;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -59,7 +60,6 @@ public class FAQFragment extends Fragment {
      * @param param2 Parameter 2.
      * @return A new instance of fragment FAQFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static FAQFragment newInstance(String param1, String param2) {
         FAQFragment fragment = new FAQFragment();
         Bundle args = new Bundle();
@@ -113,8 +113,6 @@ public class FAQFragment extends Fragment {
         ArrayAdapter<String> adapterCategory = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, valuesCategory);
         adapterCategory.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         categorySpinner.setAdapter(adapterCategory);
-
-        //TODO Fix sådan man vælge fra begge spinner, og at filterer der ud fra.
 
         // typeSpinner
         typeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -219,7 +217,6 @@ public class FAQFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 

@@ -1,9 +1,9 @@
 package hci923e18.diabetesinformationapplication.Tabs;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.support.design.widget.TextInputLayout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,16 +14,16 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
+
 import hci923e18.database.BloodGlucoseMeasurements;
 import hci923e18.database.Profile;
 import hci923e18.diabetesinformationapplication.R;
 import hci923e18.utility.Calculator;
 import hci923e18.utility.KeyBoard;
 import hci923e18.utility.SMSUtil;
-
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -34,12 +34,9 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class CalculatorFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
     private Profile p = new Profile();
@@ -55,6 +52,9 @@ public class CalculatorFragment extends Fragment {
     TextView fiberText;
     TextInputLayout fiberLayout;
 
+    /**
+     * Default constructor
+     */
     public CalculatorFragment() {
 
     }
@@ -67,7 +67,6 @@ public class CalculatorFragment extends Fragment {
      * @param param2 Parameter 2.
      * @return A new instance of fragment CalculatorFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static CalculatorFragment newInstance(String param1, String param2) {
         CalculatorFragment fragment = new CalculatorFragment();
         Bundle args = new Bundle();
@@ -77,6 +76,10 @@ public class CalculatorFragment extends Fragment {
         return fragment;
     }
 
+    /**
+     * Default onCreate method
+     * @param savedInstanceState The saved state of the application
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +89,13 @@ public class CalculatorFragment extends Fragment {
         }
     }
 
+    /**
+     * Default on create view method
+     * @param inflater The inflater for the view
+     * @param container The container for the view
+     * @param savedInstanceState The saved state of the application
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -185,13 +195,10 @@ public class CalculatorFragment extends Fragment {
         return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
+    /**
+     * Default onAttach method
+     * @param context The context of the application
+     */
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -202,6 +209,9 @@ public class CalculatorFragment extends Fragment {
         }
     }
 
+    /**
+     * Default onDetach method
+     */
     @Override
     public void onDetach() {
         super.onDetach();
@@ -219,10 +229,13 @@ public class CalculatorFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 
+    /**
+     * Fetches the last blood glucose measurement
+     * @return A bloodGlucoseMeasurement object
+     */
     private BloodGlucoseMeasurements fetchlastBloodMeasurement(){
         BloodGlucoseMeasurements bloodGlucoseMeasurements = null;
         try {
@@ -238,6 +251,9 @@ public class CalculatorFragment extends Fragment {
         return bloodGlucoseMeasurements;
     }
 
+    /**
+     * Fetches the profile
+     */
     private void fetchProfile(){
         try {
             p = Profile.find(Profile.class, "ID = ?", "1").get(0);

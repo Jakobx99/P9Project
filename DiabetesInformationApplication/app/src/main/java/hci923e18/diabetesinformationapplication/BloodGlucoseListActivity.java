@@ -2,12 +2,7 @@ package hci923e18.diabetesinformationapplication;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
@@ -24,9 +19,7 @@ import java.util.List;
 
 import hci923e18.database.BloodGlucoseMeasurements;
 import hci923e18.database.Profile;
-import hci923e18.diabetesinformationapplication.BloodGlycoseOverview.GraphActivity;
 import hci923e18.utility.KeyBoard;
-import hci923e18.utility.FetchBloodMeasurements;
 
 public class BloodGlucoseListActivity extends AppCompatActivity {
 

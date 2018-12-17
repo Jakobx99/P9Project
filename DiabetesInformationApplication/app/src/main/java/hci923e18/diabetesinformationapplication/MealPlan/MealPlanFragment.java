@@ -87,7 +87,6 @@ public class MealPlanFragment extends Fragment {
      * this fragment using the provided parameters.
      * @return A new instance of fragment MealPlanFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static MealPlanFragment newInstance(String param1, String param2) {
         MealPlanFragment fragment = new MealPlanFragment();
         return fragment;
@@ -211,7 +210,6 @@ public class MealPlanFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 
@@ -338,10 +336,12 @@ public class MealPlanFragment extends Fragment {
                 meal.save();
             }
         }
-        //TODO add if statement to ensure parent mode is enabled
-        SMSUtil.sendSMS(carbs.toString(), bloodsugar.toString(), formater.format(result));
     }
 
+    /**
+     * Fetch the latest blood glycose measurement
+     * @return A bloodGlucoseMeasurement object representing the latest measurement
+     */
     private BloodGlucoseMeasurements fetchlastBloodMeasurement(){
         BloodGlucoseMeasurements bloodGlucoseMeasurements = null;
         try {

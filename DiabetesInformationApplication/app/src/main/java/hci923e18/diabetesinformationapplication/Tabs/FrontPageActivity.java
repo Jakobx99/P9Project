@@ -13,24 +13,15 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.telephony.SmsManager;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
-import com.orm.SugarRecord;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
-import hci923e18.database.BloodGlucoseMeasurements;
-import hci923e18.database.Food;
-import hci923e18.database.FrequentlyAskedQuestions;
 import hci923e18.database.Profile;
 import hci923e18.diabetesinformationapplication.AboutUsFragment;
-import hci923e18.diabetesinformationapplication.FAQFragment;
-import hci923e18.database.LongTermBloodGlucose;
 import hci923e18.diabetesinformationapplication.BloodGlycoseOverview.BloodGlycoseOverviewActivity;
+import hci923e18.diabetesinformationapplication.FAQFragment;
 import hci923e18.diabetesinformationapplication.GeneratePDF;
 import hci923e18.diabetesinformationapplication.MealLog.MealLogFragment;
 import hci923e18.diabetesinformationapplication.MealPlan.MealPlanFragment;
@@ -40,7 +31,6 @@ import hci923e18.diabetesinformationapplication.ParentalControlActivity;
 import hci923e18.diabetesinformationapplication.R;
 import hci923e18.diabetesinformationapplication.SettingsActivity;
 import hci923e18.diabetesinformationapplication.newBloodGlucoseLevelActivity;
-import hci923e18.utility.PopulateDatabase;
 
 
 public class FrontPageActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -224,7 +214,9 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.framelayoutFrontPage, new FAQFragment()).addToBackStack("FAQ").commit();
     }
-
+    /**
+     * Method to change navigation bar and active fragment to AboutUs
+     */
     public void changeToAboutUs(){
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -232,6 +224,12 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
     }
 
     //--------------------------Burger menu-------------------------------------
+
+    /**
+     * onOptionsSelected method
+     * @param item The item selected
+     * @return A boolean
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         if(actionBarDrawerToggle.onOptionsItemSelected(item)){
@@ -240,6 +238,11 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * onNavigationItemSelected method
+     * @param item The item selected
+     * @return A boolean
+     */
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();

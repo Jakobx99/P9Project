@@ -127,7 +127,7 @@ public class PopulateDatabase {
                 0,2));
         FAQObjects.add(new FrequentlyAskedQuestions("Er hvidt hvedemel (hvid hvede) lige så sundt som f.eks. grahamsmel og rugmel?",
                 "Hvid hvede er et fuldkornsmel med højt indhold af kostfibre, vitaminer og mineraler. Pga. det høje indhold af kostfibre mætter det mere end almindeligt hvedemel. " +
-                        "Hvis du ønsker at bage et ”lyst” brød eller kage og opnå næsten samme smag og farve, som ved bagning med almindeligt hvedemel, så kan du fint anvende hvid hvede som en delvis erstatning for almindelig hvedemel. \n\n" +
+                        "Hvis du ønsker at bage et lyst brød eller kage og opnå næsten samme smag og farve, som ved bagning med almindeligt hvedemel, så kan du fint anvende hvid hvede som en delvis erstatning for almindelig hvedemel. \n\n" +
                         "Vi ved fra en række undersøgelser, at rug (og også havre) giver en langsom blodsukkerstigning – og specielt hvis rugbrødet indeholder hele kerner. \n\n" +
                         "Mig bekendt er der ikke lavet tilsvarende undersøgelser på hvid hvedes indflydelse på blodsukkeret. Med den viden vi har i dag, vil svaret derfor være, at rugbrød er det bedste valg til de fleste brødmåltider.",
                 0,1));

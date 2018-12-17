@@ -1,17 +1,13 @@
 package hci923e18.diabetesinformationapplication;
 
 import android.app.Activity;
-import android.app.Dialog;
-import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -19,7 +15,6 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TimePicker;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -32,8 +27,6 @@ import hci923e18.utility.KeyBoard;
 import hci923e18.utility.SMSUtil;
 import hci923e18.utility.TimePickerFragment;
 import hci923e18.utility.TimepickerInterface;
-
-import static java.lang.Double.parseDouble;
 
 public class newBloodGlucoseLevelActivity extends AppCompatActivity implements TimepickerInterface {
 

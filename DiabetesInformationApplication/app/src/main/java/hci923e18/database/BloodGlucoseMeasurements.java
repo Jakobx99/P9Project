@@ -3,7 +3,6 @@ package hci923e18.database;
 import com.orm.SugarRecord;
 
 import java.io.Serializable;
-import java.sql.Time;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -41,8 +40,6 @@ public class BloodGlucoseMeasurements extends SugarRecord<BloodGlucoseMeasuremen
     private Long get_date() {
         return _date;
     }
-
-
 
     private void set_date(Long _date) {
         this._date = _date;

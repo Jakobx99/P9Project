@@ -1,11 +1,11 @@
 package hci923e18.diabetesinformationapplication.Notes;
 
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +20,6 @@ import java.util.Locale;
 
 import hci923e18.database.NoteObject;
 import hci923e18.diabetesinformationapplication.R;
-import hci923e18.diabetesinformationapplication.Tabs.FrontPageActivity;
 import hci923e18.utility.KeyBoard;
 
 /**
@@ -57,7 +56,6 @@ public class NewNoteFragment extends Fragment {
      * @param param2 Parameter 2.
      * @return A new instance of fragment NewNoteFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static NewNoteFragment newInstance(String param1, String param2) {
         NewNoteFragment fragment = new NewNoteFragment();
         return fragment;
@@ -196,7 +194,6 @@ public class NewNoteFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 }

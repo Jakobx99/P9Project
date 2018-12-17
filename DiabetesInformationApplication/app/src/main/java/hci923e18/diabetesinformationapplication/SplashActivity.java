@@ -1,9 +1,9 @@
 package hci923e18.diabetesinformationapplication;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import hci923e18.database.Food;
-import hci923e18.database.Profile;
 import hci923e18.diabetesinformationapplication.Tabs.FrontPageActivity;
 import hci923e18.utility.PopulateDatabase;
 

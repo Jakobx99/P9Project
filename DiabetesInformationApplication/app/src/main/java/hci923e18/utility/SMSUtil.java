@@ -79,6 +79,11 @@ public class SMSUtil {
 
         return formattedSMS;
     }
+
+    /**
+     * Fetch the phone number for the parents
+     * @return
+     */
     public static String fetchProfileParentPhoneNumber(){
         Profile profile = Profile.find(Profile.class, "ID = ?", "1").get(0);
         return profile.get_phoneNumber();

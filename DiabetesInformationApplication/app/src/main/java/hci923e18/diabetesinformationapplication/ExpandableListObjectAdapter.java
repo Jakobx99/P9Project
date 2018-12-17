@@ -1,8 +1,5 @@
 package hci923e18.diabetesinformationapplication;
 
-import java.text.SimpleDateFormat;
-import java.util.HashMap;
-import java.util.List;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -12,6 +9,10 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import java.text.SimpleDateFormat;
+import java.util.HashMap;
+import java.util.List;
 
 import hci923e18.database.BloodGlucoseMeasurements;
 import hci923e18.database.Profile;
@@ -189,9 +190,4 @@ public class ExpandableListObjectAdapter extends BaseExpandableListAdapter {
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;
     }
-
-
-    //Guide til at bruge expandable List View
-    //setOnGroupExpandListener
-    //https://www.androidhive.info/2013/07/android-expandable-list-view-tutorial/
 }

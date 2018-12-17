@@ -46,7 +46,6 @@ public class MealLogFragment extends Fragment {
      * @param param2 Parameter 2.
      * @return A new instance of fragment MealLogFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static MealLogFragment newInstance(String param1, String param2) {
         MealLogFragment fragment = new MealLogFragment();
         return fragment;
@@ -119,6 +118,10 @@ public class MealLogFragment extends Fragment {
         mListener = null;
     }
 
+    /**
+     * Open the fragment with the specific meal log
+     * @param m The mealobject chosen
+     */
     public void openSpecificLog(MealObject m){
         SpecificLogFragment myFragment = new SpecificLogFragment();
         myFragment.passData(view.getContext(),m);
@@ -138,7 +141,6 @@ public class MealLogFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 }

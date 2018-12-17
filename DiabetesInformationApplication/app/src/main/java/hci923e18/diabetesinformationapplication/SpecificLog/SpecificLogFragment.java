@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+
 import hci923e18.database.MealObject;
 import hci923e18.diabetesinformationapplication.R;
 
@@ -45,7 +46,6 @@ public class SpecificLogFragment extends Fragment {
      *
      * @return A new instance of fragment SpecificLogFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static SpecificLogFragment newInstance(String param1, String param2) {
         SpecificLogFragment fragment = new SpecificLogFragment();
 
@@ -125,7 +125,6 @@ public class SpecificLogFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 
