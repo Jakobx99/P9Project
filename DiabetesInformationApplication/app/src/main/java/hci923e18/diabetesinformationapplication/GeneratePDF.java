@@ -32,7 +32,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import hci923e18.MongoDB.MongoDB;
 import hci923e18.database.BloodGlucoseMeasurements;
+import hci923e18.database.ErrorObject;
 import hci923e18.database.Profile;
 
 public class GeneratePDF extends AppCompatActivity {
@@ -124,8 +126,18 @@ public class GeneratePDF extends AppCompatActivity {
             }
         });
 
+        //dbtest();
+
+
     }
 
+    private void dbtest(){
+        ErrorObject e = new ErrorObject();
+        e.setMessage("message");
+        e.setName("name");
+        MongoDB m = new MongoDB();
+        m.execute(e);
+    }
     /**
      * Creates the pdf file
      */
