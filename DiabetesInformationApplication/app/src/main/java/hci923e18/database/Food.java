@@ -5,7 +5,29 @@ import com.orm.SugarRecord;
 public class Food extends SugarRecord<Food> {
 
     private String _name;
-    private Double _carbohydrate, _protein, _fiber, _sugar;
+    private Double _carbohydrate;
+    private Double _protein;
+    private Double _fiber;
+    private Double _sugar;
+    private Double _calories;
+
+    public Double get_calories() {
+        return _calories;
+    }
+
+    public void set_calories(Double _calories) {
+        this._calories = _calories;
+    }
+
+    public Double get_fat() {
+        return _fat;
+    }
+
+    public void set_fat(Double _fat) {
+        this._fat = _fat;
+    }
+
+    private Double _fat;
 
     public String get_name() {
         return _name;
@@ -52,12 +74,14 @@ public class Food extends SugarRecord<Food> {
 
     }
 
-    public Food(String name, Double carbohydrate, Double protein, Double fiber, Double sugar)
+    public Food(String name, Double calories, Double protein, Double carbohydrate, Double sugar, Double fiber, Double fat)
     {
         _name = name;
         _carbohydrate = carbohydrate;
         _protein = protein;
         _fiber = fiber;
         _sugar = sugar;
+        _calories = calories;
+        _fat = fat;
     }
 }
