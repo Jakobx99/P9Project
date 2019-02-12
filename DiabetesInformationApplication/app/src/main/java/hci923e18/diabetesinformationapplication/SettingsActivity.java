@@ -218,7 +218,7 @@ public class SettingsActivity extends AppCompatActivity {
         }
         else
         {
-            p.set_idealBloodGlucoseLevel(Double.parseDouble(idealBloodGlucoseLevel.getText().toString()));
+            p.set_idealBloodGlucoseLevel(Double.parseDouble(0 + idealBloodGlucoseLevel.getText().toString()));
         }
 
         if(insulinDuration.getText().toString().isEmpty())
@@ -228,7 +228,7 @@ public class SettingsActivity extends AppCompatActivity {
         }
         else
         {
-            p.set_insulinDuration(Double.parseDouble(insulinDuration.getText().toString()));
+            p.set_insulinDuration(Double.parseDouble(0 + insulinDuration.getText().toString()));
         }
 
         if(totalDailyInsulinConsumption.getText().toString().isEmpty())
@@ -238,7 +238,7 @@ public class SettingsActivity extends AppCompatActivity {
         }
         else
         {
-            p.set_totalDailyInsulinConsumption(Double.parseDouble(totalDailyInsulinConsumption.getText().toString()));
+            p.set_totalDailyInsulinConsumption(Double.parseDouble(0 + totalDailyInsulinConsumption.getText().toString()));
         }
 
         if(upperBloodGlucoseLevel.getText().toString().isEmpty()) {
@@ -246,7 +246,7 @@ public class SettingsActivity extends AppCompatActivity {
             return false;
         }
         else{
-            p.set_upperBloodGlucoseLevel(Double.parseDouble(upperBloodGlucoseLevel.getText().toString()));
+            p.set_upperBloodGlucoseLevel(Double.parseDouble(0 + upperBloodGlucoseLevel.getText().toString()));
         }
 
         if(lowerBloodGlucoseLevel.getText().toString().isEmpty()) {
@@ -254,7 +254,7 @@ public class SettingsActivity extends AppCompatActivity {
             return false;
         }
         else{
-            p.set_lowerBloodGlucoseLevel(Double.parseDouble(lowerBloodGlucoseLevel.getText().toString()));
+            p.set_lowerBloodGlucoseLevel(Double.parseDouble(0 + lowerBloodGlucoseLevel.getText().toString()));
         }
 
         if(beforeBloodGlucoseLevel.getText().toString().isEmpty()) {
@@ -262,14 +262,14 @@ public class SettingsActivity extends AppCompatActivity {
             return false;
         }
         else{
-            p.set_beforeBloodGlucoseLevel(Double.parseDouble(beforeBloodGlucoseLevel.getText().toString()));
+            p.set_beforeBloodGlucoseLevel(Double.parseDouble(0 + beforeBloodGlucoseLevel.getText().toString()));
         }
         if(afterBloodGlucoseLevel.getText().toString().isEmpty()) {
             Toast.makeText(this, "Du mangler at angive en grænseværdi for dit blod sukker efter måltider", Toast.LENGTH_LONG).show();
             return false;
         }
         else{
-            p.set_afterBloodGlucoseLevel(Double.parseDouble(afterBloodGlucoseLevel.getText().toString()));
+            p.set_afterBloodGlucoseLevel(Double.parseDouble(0 + afterBloodGlucoseLevel.getText().toString()));
         }
 
         try {

@@ -3,6 +3,7 @@ package hci923e18.database;
 import com.orm.SugarRecord;
 
 import java.util.Calendar;
+import java.util.Comparator;
 
 public class LongTermBloodGlucose extends SugarRecord<LongTermBloodGlucose> {
 

@@ -23,6 +23,8 @@ import com.jjoe64.graphview.series.Series;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -85,6 +87,7 @@ public class GraphActivity extends AppCompatActivity {
             addSeries();
             adjustGraph();
         } catch (Exception e) {
+            e.printStackTrace();
 
         }
 
@@ -189,36 +192,48 @@ public class GraphActivity extends AppCompatActivity {
     private void getLongTermBloodGlucoseVisible(){
         longTermBloodGlucoses = new ArrayList<>();
         longTermBloodGlucoses = LongTermBloodGlucose.listAll(LongTermBloodGlucose.class);
+
+
         List<DataPoint> relevantLongTerm = new ArrayList<>();
 
 
         int i = 0;
 
         for (LongTermBloodGlucose l: longTermBloodGlucoses){
-            if (mSeries.getLowestValueX() >= l.getStart().getTime().getTime() && mSeries.getHighestValueX() <= l.getEnd().getTime().getTime()){
+            if (l.getStart().getTimeInMillis() < mSeries.getLowestValueX() && l.getEnd().getTimeInMillis() < mSeries.getLowestValueX()){
+
+            } else if(mSeries.getLowestValueX() >= l.getStart().getTimeInMillis() && mSeries.getHighestValueX() <= l.getEnd().getTimeInMillis()){
                 DataPoint temp1 = new DataPoint(mSeries.getLowestValueX(), l.get_value());
                 DataPoint temp2 = new DataPoint(mSeries.getHighestValueX(), l.get_value());
                 relevantLongTerm.add(temp1);
                 relevantLongTerm.add(temp2);
 
-            } else if(mSeries.getLowestValueX() >= l.getStart().getTime().getTime() && mSeries.getHighestValueX() > l.getEnd().getTime().getTime()){
+            } else if(mSeries.getLowestValueX() >= l.getStart().getTimeInMillis() && mSeries.getHighestValueX() > l.getEnd().getTimeInMillis()){
                 DataPoint temp1 = new DataPoint(mSeries.getLowestValueX(), l.get_value());
-                DataPoint temp2 = new DataPoint(l.getEnd().getTime().getTime(), l.get_value());
+                DataPoint temp2 = new DataPoint(l.getEnd().getTimeInMillis(), l.get_value());
                 relevantLongTerm.add(temp1);
                 relevantLongTerm.add(temp2);
-            } else if(mSeries.getLowestValueX() < l.getStart().getTime().getTime() && mSeries.getHighestValueX() <= l.getEnd().getTime().getTime()){
-                DataPoint temp1 = new DataPoint(l.getStart().getTime().getTime(), l.get_value());
+            } else if(mSeries.getLowestValueX() < l.getStart().getTimeInMillis() && mSeries.getHighestValueX() <= l.getEnd().getTimeInMillis()){
+                DataPoint temp1 = new DataPoint(l.getStart().getTimeInMillis(), l.get_value());
                 DataPoint temp2 = new DataPoint(mSeries.getHighestValueX(), l.get_value());
                 relevantLongTerm.add(temp1);
                 relevantLongTerm.add(temp2);
 
-            } else if(mSeries.getLowestValueX() < l.getStart().getTime().getTime() && mSeries.getHighestValueX() > l.getEnd().getTime().getTime()){
-                DataPoint temp1 = new DataPoint(l.getStart().getTime().getTime(), l.get_value());
-                DataPoint temp2 = new DataPoint(l.getEnd().getTime().getTime(), l.get_value());
+            } else if(mSeries.getLowestValueX() < l.getStart().getTimeInMillis() && mSeries.getHighestValueX() > l.getEnd().getTimeInMillis()){
+                DataPoint temp1 = new DataPoint(l.getStart().getTimeInMillis(), l.get_value());
+                DataPoint temp2 = new DataPoint(l.getEnd().getTimeInMillis(), l.get_value());
                 relevantLongTerm.add(temp1);
                 relevantLongTerm.add(temp2);
             }
         }
+
+        Collections.sort(relevantLongTerm, new Comparator<DataPoint>() {
+            @Override
+            public int compare(DataPoint dataPoint, DataPoint t1) {
+                return Double.compare(dataPoint.getX(), t1.getX());
+            }
+        });
+
 
         int count = relevantLongTerm.size();
         DataPoint[] values = new DataPoint[count];
@@ -226,6 +241,7 @@ public class GraphActivity extends AppCompatActivity {
             values[i] = b;
             i++;
         }
+
 
         longTermSeries = new LineGraphSeries<>(values);
         Paint paint = new Paint();
@@ -335,8 +351,10 @@ public class GraphActivity extends AppCompatActivity {
                             fetchNewAndRedraw();
                         } catch (Exception e) {
 
+e.printStackTrace();
                         }
                     }
+
                 }).display();
     }
 
@@ -352,7 +370,7 @@ public class GraphActivity extends AppCompatActivity {
 
         calculateRatio(l);
         populateGraph(l);
-        getLongTermBloodGlucoseVisible();
+        //getLongTermBloodGlucoseVisible();
         addSeries();
         adjustGraph();
         mSeries.setOnDataPointTapListener(new OnDataPointTapListener() {

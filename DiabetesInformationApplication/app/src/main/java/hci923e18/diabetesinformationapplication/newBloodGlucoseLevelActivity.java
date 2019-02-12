@@ -104,7 +104,7 @@ public class newBloodGlucoseLevelActivity extends AppCompatActivity implements T
 
                 if(count > 0) {
                     // change that shit border color when high or low
-                    double bloodGlucoseLevelInput = Double.parseDouble(s.toString());
+                    double bloodGlucoseLevelInput = Double.parseDouble(0 + s.toString());
 
                     if (bloodGlucoseLevelInput <= lowerLimitBS) {
                         enteredBloodGlucoseLevel.setBackgroundResource(R.drawable.rounded_edittext_red);
@@ -200,7 +200,7 @@ public class newBloodGlucoseLevelActivity extends AppCompatActivity implements T
                     newTime.set(Calendar.MINUTE,Integer.parseInt((minut)));
                     newBloodGlucoseLevel.setDate(newTime);
 
-                    newBloodGlucoseLevel.set_glucoseLevel(Double.parseDouble(enteredBloodGlucoseLevel.getText().toString()));
+                    newBloodGlucoseLevel.set_glucoseLevel(Double.parseDouble(0 + enteredBloodGlucoseLevel.getText().toString()));
 
                     if (noMark.isChecked())
                     {

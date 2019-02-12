@@ -42,6 +42,8 @@
 
     </FrameLayout>
 
+
+
 </android.support.constraint.ConstraintLayout>
     <!--Burger menu -->
 <android.support.design.widget.NavigationView

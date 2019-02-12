@@ -268,7 +268,7 @@
                     android:text="Grænseværdier for grafer"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView_totalDailyInsulinConsumption" />
-
+<!--
                 <TextView
                     android:id="@+id/textView_settingDoctorInfo"
                     android:layout_width="171dp"
@@ -313,6 +313,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView_settingDoctorPhoneNum" />
+                    -->
             </android.support.constraint.ConstraintLayout>
         </LinearLayout>
     </ScrollView>

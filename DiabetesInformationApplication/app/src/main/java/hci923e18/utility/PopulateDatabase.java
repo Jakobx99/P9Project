@@ -1,14 +1,18 @@
 package hci923e18.utility;
 
+import android.util.Log;
+
 import com.orm.SugarRecord;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.UUID;
 
 import hci923e18.database.BloodGlucoseMeasurements;
 import hci923e18.database.Food;
 import hci923e18.database.FrequentlyAskedQuestions;
+import hci923e18.database.Identifier;
 import hci923e18.database.LongTermBloodGlucose;
 import hci923e18.database.Profile;
 
@@ -1222,7 +1226,7 @@ public class PopulateDatabase {
 //        bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 1.0, 1,1,1));
 //        c = Calendar.getInstance();
 
-        c.set(2018, Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DATE) -2);
+        c.set(2019, Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DATE) -2);
         c.set(Calendar.HOUR_OF_DAY, 8);
         bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 1.0, 1,1,1));
         c.set(Calendar.HOUR_OF_DAY, 9);
@@ -1232,7 +1236,7 @@ public class PopulateDatabase {
         c.set(Calendar.HOUR_OF_DAY, 11);
         bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 15.0, 1,1,1));
         c = Calendar.getInstance();
-        c.set(2018, Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DATE) -1);
+        c.set(2019, Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DATE) -1);
         c.set(Calendar.HOUR_OF_DAY, 8);
         bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 1.0, 1,1,1));
         c.set(Calendar.HOUR_OF_DAY, 9);
@@ -1254,8 +1258,11 @@ public class PopulateDatabase {
         //Calendar start, Calendar end, Double value
         Calendar c1 = Calendar.getInstance();
         Calendar c2 = Calendar.getInstance();
-        c1.set(Calendar.MONTH, 8);
+        c1.set(Calendar.MONTH, 1);
+        c1.set(Calendar.DATE, 2);
+        c1.set(Calendar.HOUR_OF_DAY, 4);
         c2.set(Calendar.MONTH, 11);
+        c2.set(Calendar.HOUR_OF_DAY, 4);
 
         LongTermBloodGlucose longTermBloodGlucose = new LongTermBloodGlucose(c1, c2, 6.2);
         longTermBloodGlucose.save();
@@ -1430,7 +1437,10 @@ public class PopulateDatabase {
 
         profile.save();
 
-
+        Identifier identifier = new Identifier();
+        String random = UUID.randomUUID().toString();
+        identifier.set_ID(random);
+        identifier.save();
     }
 
 }

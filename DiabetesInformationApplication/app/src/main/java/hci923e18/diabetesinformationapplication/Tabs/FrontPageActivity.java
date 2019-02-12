@@ -23,6 +23,7 @@ import hci923e18.diabetesinformationapplication.AboutUsFragment;
 import hci923e18.diabetesinformationapplication.BloodGlycoseOverview.BloodGlycoseOverviewActivity;
 import hci923e18.diabetesinformationapplication.FAQFragment;
 import hci923e18.diabetesinformationapplication.GeneratePDF;
+import hci923e18.diabetesinformationapplication.LongtermMeasurements.LongtermMeasurement;
 import hci923e18.diabetesinformationapplication.MealLog.MealLogFragment;
 import hci923e18.diabetesinformationapplication.MealPlan.MealPlanFragment;
 import hci923e18.diabetesinformationapplication.Notes.NewNoteFragment;
@@ -283,6 +284,10 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
                 break;
             case R.id.navigation_PDF:
                 intent = new Intent(FrontPageActivity.this, GeneratePDF.class);
+                drawerLayout.closeDrawers();
+                break;
+            case R.id.navigation_NewLong:
+                intent = new Intent(FrontPageActivity.this, LongtermMeasurement.class);
                 drawerLayout.closeDrawers();
                 break;
         }

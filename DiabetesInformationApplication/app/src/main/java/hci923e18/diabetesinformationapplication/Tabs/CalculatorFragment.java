@@ -142,10 +142,10 @@ public class CalculatorFragment extends Fragment {
 
                 Double bloodGlucoseLevel = p.get_idealBloodGlucoseLevel();
 
-                if(!carbohydrateInput.getText().toString().isEmpty() && Integer.parseInt(carbohydrateInput.getText().toString())> 0) {
+                if(!carbohydrateInput.getText().toString().isEmpty() && Double.parseDouble(0 + carbohydrateInput.getText().toString())> 0) {
 
                     if (fiberInput.getText() != null && !fiberInput.getText().toString().isEmpty()) {
-                        Double fiberPercentageResult = calculator.fiberPercentage(Double.parseDouble(carbohydrateInput.getText().toString()), Double.parseDouble(fiberInput.getText().toString()));
+                        Double fiberPercentageResult = calculator.fiberPercentage(Double.parseDouble(0 + carbohydrateInput.getText().toString()), Double.parseDouble(0 + fiberInput.getText().toString()));
 
                         if (fiberPercentageResult >= 25.0) {
                             guideText.setText("Fiberen udgør " + formater.format(fiberPercentageResult) + "% af kulhydraterne. \nVi anbefaler at du tager insulinen efter måltidet, da det optages langsommere i blodet.");
@@ -153,25 +153,25 @@ public class CalculatorFragment extends Fragment {
                             guideText.setText("Fiberen udgør " + formater.format(fiberPercentageResult) + "% af kulhydraterne, vi anbefaler at du tager insulin før måltidet");
                         }
                     }
-                    if (bloodGlucoseInput.getText().toString().isEmpty() || Math.round(Float.parseFloat(bloodGlucoseInput.getText().toString()))<= 0) {
+                    if (bloodGlucoseInput.getText().toString().isEmpty() || Math.round(Float.parseFloat(0 + bloodGlucoseInput.getText().toString()))<= 0) {
                         Double bloodGlucoseAdjustment = calculator.bloodGlucoseGoalCalculation(bloodGlucoseLevel);
-                        Double result = calculator.insulinCalculator(Double.parseDouble(carbohydrateInput.getText().toString()), bloodGlucoseLevel);
+                        Double result = calculator.insulinCalculator(Double.parseDouble(0 + carbohydrateInput.getText().toString()), bloodGlucoseLevel);
                         insulinResult.setText(formater.format(result).toString());
 
                         guideText.append("\nDa der ikke er indtastet et blodsukker, benyttes mål værdien " + bloodGlucoseLevel + " fra din profil.");
                     } else {
-                        Double bloodGlucoseAdjustment = calculator.bloodGlucoseGoalCalculation(Double.parseDouble(bloodGlucoseInput.getText().toString()));
-                        Double result = calculator.insulinCalculator(Double.parseDouble(carbohydrateInput.getText().toString()), Double.parseDouble(bloodGlucoseInput.getText().toString()));
+                        Double bloodGlucoseAdjustment = calculator.bloodGlucoseGoalCalculation(Double.parseDouble(0 + bloodGlucoseInput.getText().toString()));
+                        Double result = calculator.insulinCalculator(Double.parseDouble(0 + carbohydrateInput.getText().toString()), Double.parseDouble(0 + bloodGlucoseInput.getText().toString()));
                         insulinResult.setText(formater.format(result).toString());
 
-                        if (Double.parseDouble(bloodGlucoseInput.getText().toString()) > p.get_idealBloodGlucoseLevel()) {
+                        if (Double.parseDouble(0 + bloodGlucoseInput.getText().toString()) > p.get_idealBloodGlucoseLevel()) {
                             if (guideText.getText() != null && !guideText.getText().toString().isEmpty()) {
                                 guideText.append("\nVær opmærksom på at på grund af det indtastede blodsukker, er " + formater.format(bloodGlucoseAdjustment) + " enheder lagt til den beregnet insulin.");
                             } else {
                                 guideText.setText("Vær opmærksom på at på grund af det indtastede blodsukker, er " + formater.format(bloodGlucoseAdjustment) + " enheder lagt til den beregnet insulin.");
                             }
 
-                        } else if (Double.parseDouble(bloodGlucoseInput.getText().toString()) == p.get_idealBloodGlucoseLevel()) {
+                        } else if (Double.parseDouble(0 + bloodGlucoseInput.getText().toString()) == p.get_idealBloodGlucoseLevel()) {
                         } else {
                             if (guideText.getText() != null && !guideText.getText().toString().isEmpty()) {
                                 guideText.append("\nVær opmærksom på at på grund af det indtastede blodsukker, er " + formater.format(bloodGlucoseAdjustment) + " enheder trukket fra den beregnet insulin.");

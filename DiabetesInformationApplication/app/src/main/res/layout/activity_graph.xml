@@ -39,10 +39,11 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:layout_marginStart="16dp"
-        android:text="Høj"
-        android:textColor="@color/darkyellow"
+
+        android:text="Lav"
+        android:textColor="@android:color/holo_red_dark"
         android:textSize="20dp"
-        android:drawableLeft="@drawable/icons8_triangle_arrow_24"
+        android:drawableLeft="@drawable/icons8_rectangle_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -65,10 +66,10 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:layout_marginStart="16dp"
-        android:text="Lav"
-        android:textColor="@android:color/holo_red_dark"
+        android:text="Høj"
+        android:textColor="@color/darkyellow"
         android:textSize="20dp"
-        android:drawableLeft="@drawable/icons8_rectangle_24"
+        android:drawableLeft="@drawable/icons8_triangle_arrow_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView_graph_normal" />
 
@@ -78,7 +79,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:layout_marginStart="16dp"
-        android:text="Langtids blodsukker måling (HbA1c)"
+        android:text="Langtids blodsukker (HbA1c)"
         android:textColor="@android:color/black"
         android:textSize="20dp"
         android:drawableLeft="@drawable/baseline_remove_black_24dp"

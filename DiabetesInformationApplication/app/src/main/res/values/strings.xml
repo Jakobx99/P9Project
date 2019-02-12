@@ -6,6 +6,7 @@
     <string name="title_menuhome">Hjem</string>
     <string name="title_profile">Min profil</string>
     <string name="title_aboutUs">Om os</string>
+    <string name="title_NewLong">Indtast ny langtids blodsukker</string>
     <string name="title_notesList">Noter</string>
     <string name="title_bloodoverview">Blodsukker målings oversigt</string>
     <string name="open">Åben</string>
@@ -19,4 +20,6 @@
     <string name="title_activity_graph">GraphActivity</string>
     <string name="title_activity_blood_glucose_list">BloodGlucoseListActivity</string>
     <string name="title_activity_generate_pdf">GeneratePDF</string>
+    <string name="title_activity_longterm_measurement">LongtermMeasurement</string>
+    <string name="frida">Data for fødevarers næringsindhold er stillet til rådighed af DTU Fødevareinstituttet (<a href="http://frida.fooddata.dk">http://frida.fooddata.dk</a>)</string>
 </resources>

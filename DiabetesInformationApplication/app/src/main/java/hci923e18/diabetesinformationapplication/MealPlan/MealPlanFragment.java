@@ -127,7 +127,7 @@ public class MealPlanFragment extends Fragment {
         createDatabaseFoodList();
 
         String [] values =
-                {"Morgenmad","Middagsmad","Aftensmad"};
+                {"Morgenmad","Middagsmad","Aftensmad", "Mellemmåltid"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, values);
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         mealPlanSpinner.setAdapter(adapter);
@@ -285,14 +285,14 @@ public class MealPlanFragment extends Fragment {
 
         Double bloodsugar;
 
-        if (mealPlanBloodSugar.getText().toString().isEmpty() || Double.parseDouble(mealPlanBloodSugar.getText().toString())<=0)
+        if (mealPlanBloodSugar.getText().toString().isEmpty() || Double.parseDouble(0 + mealPlanBloodSugar.getText().toString())<=0)
         {
             bloodsugar = user.get_idealBloodGlucoseLevel();
             Toast.makeText(context.getContext(),"Da du ikke har skrevet et blodsukker ind, bruges din standard værdi: " + bloodsugar, Toast.LENGTH_LONG).show();
         }
         else
         {
-            bloodsugar = Double.parseDouble(mealPlanBloodSugar.getText().toString());
+            bloodsugar = Double.parseDouble(0 + mealPlanBloodSugar.getText().toString());
         }
 
         Double carbs = 0.0;
@@ -327,11 +327,17 @@ public class MealPlanFragment extends Fragment {
         }
         else {
             try {
-                MealObject m = MealObject.find(MealObject.class, "_mealtype = ? and _timestamp = ?", meal.get_mealtype(), meal.get_timestamp()).get(0);
-                Long id = m.getId();
-                m = meal;
-                m.setId(id);
-                m.save();
+                if (mealType == "Mellemmåltid"){
+                    meal.save();
+                    Toast.makeText(getActivity(), "Måltid beregnet og gem", Toast.LENGTH_LONG).show();
+                }else {
+                    MealObject m = MealObject.find(MealObject.class, "_mealtype = ? and _timestamp = ?", meal.get_mealtype(), meal.get_timestamp()).get(0);
+                    Long id = m.getId();
+                    m = meal;
+                    m.setId(id);
+                    m.save();
+                    Toast.makeText(getActivity(), "Måltid beregnet og gem", Toast.LENGTH_LONG).show();
+                }
             } catch (Exception e) {
                 meal.save();
             }

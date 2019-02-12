@@ -10,4 +10,5 @@
     <item android:id="@+id/navigation_Parent_control" android:title="@string/parent_control" android:icon="@drawable/icons8_family_24"/>
     <item android:id="@+id/navigation_PDF" android:title="Generer PDF" android:icon="@drawable/pdficon"/>
     <item android:id="@+id/navigation_AboutUS" android:title="@string/title_aboutUs" android:icon="@drawable/icons8_info_24"/>
+    <item android:id="@+id/navigation_NewLong" android:title="@string/title_NewLong" android:icon="@drawable/statisticsicon"/>
 </menu>

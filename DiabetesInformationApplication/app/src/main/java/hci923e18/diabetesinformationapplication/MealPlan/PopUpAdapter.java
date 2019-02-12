@@ -92,7 +92,7 @@ public class PopUpAdapter extends ArrayAdapter<Food> {
                     public void onClick(DialogInterface dialog, int which) {
                         m_Text = input.getText().toString();
                         dialog.cancel();
-                        Pair<Food, Double> chosenFood = new Pair<>(mFood.get(position), Double.parseDouble(m_Text));
+                        Pair<Food, Double> chosenFood = new Pair<>(mFood.get(position), Double.parseDouble(0 + m_Text));
                         mMealPlanFragment.addItemToList(chosenFood);
                         mMealPlanFragment.alertDialog.cancel();
                     }
