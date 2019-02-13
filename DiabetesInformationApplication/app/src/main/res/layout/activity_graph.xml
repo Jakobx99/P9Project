@@ -93,12 +93,27 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_gravity="bottom|end"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="72dp"
         android:layout_marginBottom="16dp"
         android:scaleType="center"
         app:backgroundTint="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/icons8_settings_filled_24" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButton_graphPage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="17dp"
+        android:clickable="true"
+        app:backgroundTint="@color/picker_button_background_innactive"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/fab"
+        app:srcCompat="@drawable/icons8_info_24" />
 
 </android.support.constraint.ConstraintLayout>

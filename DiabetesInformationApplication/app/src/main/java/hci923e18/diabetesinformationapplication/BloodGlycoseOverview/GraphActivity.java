@@ -1,5 +1,6 @@
 package hci923e18.diabetesinformationapplication.BloodGlycoseOverview;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.DashPathEffect;
 import android.graphics.Paint;
@@ -32,6 +33,7 @@ import hci923e18.database.BloodGlucoseMeasurements;
 import hci923e18.database.LongTermBloodGlucose;
 import hci923e18.database.Profile;
 import hci923e18.diabetesinformationapplication.R;
+import hci923e18.diabetesinformationapplication.UCI.UCI;
 
 public class GraphActivity extends AppCompatActivity {
 
@@ -52,6 +54,7 @@ public class GraphActivity extends AppCompatActivity {
     private Calendar startDate;
     private Calendar endDate;
     final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM \n'Kl.' HH:mm");
+    private FloatingActionButton floatingActionButtonGraphPage;
 
     /**
      * OnCreate method for this activity
@@ -95,6 +98,16 @@ public class GraphActivity extends AppCompatActivity {
             @Override
             public void onTap(Series series, DataPointInterface dataPoint) {
                 Toast.makeText(GraphActivity.this, "Måling: " + dataPoint.getY() + " mmol/L" + "\n" + "Dato: " + sdf.format(dataPoint.getX()), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        floatingActionButtonGraphPage = findViewById(R.id.floatingActionButton_graphPage);
+        floatingActionButtonGraphPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(GraphActivity.this, UCI.class);
+                intent.putExtra("PageName", "GraphPage");
+                startActivity(intent);
             }
         });
     }

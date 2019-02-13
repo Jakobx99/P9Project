@@ -13,6 +13,17 @@ public class Identifier extends SugarRecord<Identifier> {
     }
 
     private String _ID;
+    private Boolean _Opgaver;
+
+    public Boolean get_opgaver() {
+        return _Opgaver;
+    }
+
+    public void set_opgaver(Boolean _opgaver) {
+        this._Opgaver = _opgaver;
+    }
+
+
 
     public Identifier(){
 

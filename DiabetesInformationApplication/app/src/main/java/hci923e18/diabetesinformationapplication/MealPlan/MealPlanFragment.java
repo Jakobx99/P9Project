@@ -2,8 +2,10 @@ package hci923e18.diabetesinformationapplication.MealPlan;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -33,6 +35,7 @@ import hci923e18.database.Food;
 import hci923e18.database.MealObject;
 import hci923e18.database.Profile;
 import hci923e18.diabetesinformationapplication.R;
+import hci923e18.diabetesinformationapplication.UCI.UCI;
 import hci923e18.utility.Calculator;
 import hci923e18.utility.KeyBoard;
 import hci923e18.utility.SMSUtil;
@@ -63,6 +66,7 @@ public class MealPlanFragment extends Fragment {
     String mealType;
     DecimalFormat formater = new DecimalFormat("#.##");
     Profile user = new Profile();
+    private FloatingActionButton floatingActionButtonMealPlan;
 
     /**
      * Default constructor
@@ -172,6 +176,15 @@ public class MealPlanFragment extends Fragment {
 
         }
 
+        floatingActionButtonMealPlan = view.findViewById(R.id.floatingActionButton_MealPlan);
+        floatingActionButtonMealPlan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), UCI.class);
+                intent.putExtra("PageName", "MealPlan");
+                getActivity().startActivity(intent);
+            }
+        });
 
         return view;
     }

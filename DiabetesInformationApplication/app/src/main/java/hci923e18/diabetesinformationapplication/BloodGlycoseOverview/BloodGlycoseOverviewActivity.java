@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -28,6 +29,7 @@ import hci923e18.database.BloodGlucoseMeasurements;
 import hci923e18.database.Profile;
 import hci923e18.diabetesinformationapplication.BloodGlucoseListActivity;
 import hci923e18.diabetesinformationapplication.R;
+import hci923e18.diabetesinformationapplication.UCI.UCI;
 import hci923e18.diabetesinformationapplication.newBloodGlucoseLevelActivity;
 
 public class BloodGlycoseOverviewActivity extends AppCompatActivity {
@@ -54,6 +56,7 @@ public class BloodGlycoseOverviewActivity extends AppCompatActivity {
     private LineGraphSeries<DataPoint> highestSeries;
     private TextView textViewSeneste;
     final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM \n'Kl.' HH:mm");
+    private FloatingActionButton floatingActionButtonBloodOverview;
 
     /**
      * OnCreate method for this activity
@@ -87,6 +90,16 @@ public class BloodGlycoseOverviewActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(BloodGlycoseOverviewActivity.this, BloodGlucoseListActivity.class);
                 BloodGlycoseOverviewActivity.this.startActivityForResult(i, 1);
+            }
+        });
+
+        floatingActionButtonBloodOverview = findViewById(R.id.floatingActionButton_blood_glycose_overview);
+        floatingActionButtonBloodOverview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(BloodGlycoseOverviewActivity.this, UCI.class);
+                intent.putExtra("PageName", "BloodGlycoseOverviewPage");
+                startActivity(intent);
             }
         });
 

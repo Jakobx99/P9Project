@@ -3,9 +3,11 @@ package hci923e18.diabetesinformationapplication.MealLog;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +17,7 @@ import java.util.List;
 import hci923e18.database.MealObject;
 import hci923e18.diabetesinformationapplication.R;
 import hci923e18.diabetesinformationapplication.SpecificLog.SpecificLogFragment;
+import hci923e18.diabetesinformationapplication.UCI.UCI;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,6 +34,7 @@ public class MealLogFragment extends Fragment {
     ListView mealLogListView;
     MealLogAdapter mAdapter;
     View view;
+    private FloatingActionButton floatingActionButtonMealLog;
 
     /**
      * Default constructor
@@ -81,6 +85,16 @@ public class MealLogFragment extends Fragment {
 
         mAdapter = new MealLogAdapter(view.getContext(),0, meals, MealLogFragment.this);
         mealLogListView.setAdapter(mAdapter);
+
+        floatingActionButtonMealLog = view.findViewById(R.id.floatingActionButton_mealLog);
+        floatingActionButtonMealLog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), UCI.class);
+                intent.putExtra("PageName", "MealLogPage");
+                getActivity().startActivity(intent);
+            }
+        });
         return view;
     }
 

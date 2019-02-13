@@ -28,8 +28,17 @@ public class MongoDB extends AsyncTask<ErrorObject, Void, Boolean> {
         MongoCollection<BasicDBObject> collection = database.getCollection("Reports", BasicDBObject.class);
 
         BasicDBObject document = new BasicDBObject();
-        document.put("name", e.getName());
-        document.put("message", e.getMessage());
+        document.put("page", e.getPage());
+        document.put("date", e.getDate());
+        document.put("readableDate", e.getReadableDate());
+        document.put("type", e.getType());
+        document.put("element", e.getElement());
+        document.put("task", e.getTask());
+        document.put("frequency", e.getFrequency());
+        document.put("completed", e.getCompleted());
+        document.put("erroreffect", e.getError());
+        document.put("statisfaction", e.getEffect());
+        document.put("id", e.getId());
         collection.insertOne(document);
 
         //Might have to extend this with a wait

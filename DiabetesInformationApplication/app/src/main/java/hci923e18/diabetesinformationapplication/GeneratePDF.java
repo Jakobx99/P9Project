@@ -131,13 +131,6 @@ public class GeneratePDF extends AppCompatActivity {
 
     }
 
-    private void dbtest(){
-        ErrorObject e = new ErrorObject();
-        e.setMessage("message");
-        e.setName("name");
-        MongoDB m = new MongoDB();
-        m.execute(e);
-    }
     /**
      * Creates the pdf file
      */

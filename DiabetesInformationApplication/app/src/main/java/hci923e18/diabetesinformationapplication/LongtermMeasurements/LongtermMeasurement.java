@@ -1,5 +1,6 @@
 package hci923e18.diabetesinformationapplication.LongtermMeasurements;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -26,6 +27,7 @@ import hci923e18.database.LongTermBloodGlucose;
 import hci923e18.database.Profile;
 import hci923e18.diabetesinformationapplication.BloodGlycoseOverview.GraphActivity;
 import hci923e18.diabetesinformationapplication.R;
+import hci923e18.diabetesinformationapplication.UCI.UCI;
 
 public class LongtermMeasurement extends AppCompatActivity {
 
@@ -38,6 +40,7 @@ public class LongtermMeasurement extends AppCompatActivity {
     Double lowerLimitBS;
     private Calendar startDate;
     private Calendar endDate;
+    private FloatingActionButton floatingActionButtonLongtermMeasurement;
 
 
     @Override
@@ -116,7 +119,15 @@ public class LongtermMeasurement extends AppCompatActivity {
             }
         });
 
-
+        floatingActionButtonLongtermMeasurement = findViewById(R.id.floatingActionButton_home);
+        floatingActionButtonLongtermMeasurement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LongtermMeasurement.this, UCI.class);
+                intent.putExtra("PageName", "LongtermMeasurementPage");
+                startActivity(intent);
+            }
+        });
 
     }
     /**
