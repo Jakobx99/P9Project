@@ -2,8 +2,10 @@ package hci923e18.diabetesinformationapplication.Tabs;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputLayout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +23,7 @@ import java.util.List;
 import hci923e18.database.BloodGlucoseMeasurements;
 import hci923e18.database.Profile;
 import hci923e18.diabetesinformationapplication.R;
+import hci923e18.diabetesinformationapplication.UCI.UCI;
 import hci923e18.utility.Calculator;
 import hci923e18.utility.KeyBoard;
 import hci923e18.utility.SMSUtil;
@@ -51,6 +54,7 @@ public class CalculatorFragment extends Fragment {
     EditText fiberInput;
     TextView fiberText;
     TextInputLayout fiberLayout;
+    private FloatingActionButton floatingActionButtonCalculatorPage;
 
     /**
      * Default constructor
@@ -115,6 +119,7 @@ public class CalculatorFragment extends Fragment {
         fiberText = view.findViewById(R.id.textViewFiber);
         fiberLayout = view.findViewById(R.id.textInputLayoutFiber);
         final Calculator calculator = new Calculator();
+
 
         try {
             BloodGlucoseMeasurements b = fetchlastBloodMeasurement();
@@ -192,6 +197,15 @@ public class CalculatorFragment extends Fragment {
             }
         });
 
+        floatingActionButtonCalculatorPage = view.findViewById(R.id.floatingActionButton_calculatorPage);
+        floatingActionButtonCalculatorPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), UCI.class);
+                intent.putExtra("PageName", "CalculatorPage");
+                getActivity().startActivity(intent);
+            }
+        });
         return view;
     }
 

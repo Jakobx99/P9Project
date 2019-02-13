@@ -1,7 +1,9 @@
 package hci923e18.diabetesinformationapplication;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ExpandableListView;
@@ -19,6 +21,7 @@ import java.util.List;
 
 import hci923e18.database.BloodGlucoseMeasurements;
 import hci923e18.database.Profile;
+import hci923e18.diabetesinformationapplication.UCI.UCI;
 import hci923e18.utility.KeyBoard;
 
 public class BloodGlucoseListActivity extends AppCompatActivity {
@@ -32,6 +35,7 @@ public class BloodGlucoseListActivity extends AppCompatActivity {
     ExpandableListView expListView;
     List<String> listHead = new ArrayList<>();
     HashMap<String, List<BloodGlucoseMeasurements>> listChild = null;
+    private FloatingActionButton floatingActionButtonOldBloodMeasurements;
 
     /**
      * OnCreate method called when activity is initiated.
@@ -83,6 +87,16 @@ public class BloodGlucoseListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 showDateTimePicker();
+            }
+        });
+
+        floatingActionButtonOldBloodMeasurements = findViewById(R.id.floatingActionButton_oldBloodMeasurements);
+        floatingActionButtonOldBloodMeasurements.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(BloodGlucoseListActivity.this, UCI.class);
+                intent.putExtra("PageName", "OldBloodMeasurementsPage");
+                startActivity(intent);
             }
         });
     }

@@ -190,6 +190,16 @@
                 app:layout_constraintStart_toStartOf="@+id/buttonCalculate"
                 app:layout_constraintTop_toBottomOf="@+id/buttonCalculate" />
 
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/floatingActionButton_calculatorPage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                app:backgroundTint="@color/picker_button_background_innactive"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/icons8_info_24" />
+
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
 

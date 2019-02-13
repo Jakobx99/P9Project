@@ -64,7 +64,7 @@ public class UCI extends AppCompatActivity {
 
         //Type
         String [] types =
-                {"Applikaitons fejl","Uforståelig side","Brugbarhed"};
+                {"Applikations fejl","Uforståelig side","Brugbarheds problem"};
         ArrayAdapter<String> adapterTypes = new ArrayAdapter<String>(UCI.this, android.R.layout.simple_spinner_item, types);
         adapterTypes.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         UCIType.setAdapter(adapterTypes);

@@ -4,8 +4,10 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +20,7 @@ import java.util.List;
 import hci923e18.database.NoteObject;
 import hci923e18.diabetesinformationapplication.R;
 import hci923e18.diabetesinformationapplication.Tabs.FrontPageActivity;
+import hci923e18.diabetesinformationapplication.UCI.UCI;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,6 +38,7 @@ public class NoteListFragment extends Fragment {
     ListView noteListView;
     NoteListAdapter localAdapter;
     View view;
+    private FloatingActionButton floatingActionButtonNoteList;
 
     /**
      * Default constructor
@@ -94,6 +98,16 @@ public class NoteListFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ((FrontPageActivity)getActivity()).changeToNewNote();
+            }
+        });
+
+        floatingActionButtonNoteList = view.findViewById(R.id.floatingActionButton_noteList);
+        floatingActionButtonNoteList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), UCI.class);
+                intent.putExtra("PageName", "NoteListPage");
+                getActivity().startActivity(intent);
             }
         });
 

@@ -2,14 +2,18 @@ package hci923e18.diabetesinformationapplication;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+
+import hci923e18.diabetesinformationapplication.UCI.UCI;
 
 
 /**
@@ -25,6 +29,7 @@ public class AboutUsFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     private String mParam1;
     private String mParam2;
+    private FloatingActionButton floatingActionButtonAboutUs;
 
     private OnFragmentInteractionListener mListener;
 
@@ -80,8 +85,20 @@ public class AboutUsFragment extends Fragment {
 
         ImageView logo = (ImageView) view.findViewById(R.id.imageView_aboutus);
 
+        floatingActionButtonAboutUs = view.findViewById(R.id.floatingActionButton_AboutUs);
+        floatingActionButtonAboutUs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), UCI.class);
+                intent.putExtra("PageName", "AboutUsPage");
+                getActivity().startActivity(intent);
+            }
+        });
+
         Animation myanim = AnimationUtils.loadAnimation(getActivity(),R.anim.mysplashanimation);
         logo.startAnimation(myanim);
+
+
 
 
         return view;

@@ -85,6 +85,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textView_tileNoteListPage" />
 
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/floatingActionButton_noteList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            app:backgroundTint="@color/picker_button_background_innactive"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/icons8_info_24" />
+
     </android.support.constraint.ConstraintLayout>
 
 </FrameLayout>

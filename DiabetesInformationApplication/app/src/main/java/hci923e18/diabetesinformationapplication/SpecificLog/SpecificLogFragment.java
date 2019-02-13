@@ -2,8 +2,10 @@ package hci923e18.diabetesinformationapplication.SpecificLog;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 
 import hci923e18.database.MealObject;
 import hci923e18.diabetesinformationapplication.R;
+import hci923e18.diabetesinformationapplication.UCI.UCI;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,6 +35,7 @@ public class SpecificLogFragment extends Fragment {
     SpecificLogAdapter mAdapter;
     Context mContext;
     MealObject _MealObject;
+    private FloatingActionButton floatingActionButtonSpecificLog;
 
     /**
      * Default constructor
@@ -88,6 +92,15 @@ public class SpecificLogFragment extends Fragment {
         mAdapter = new SpecificLogAdapter(view.getContext(),0, _MealObject.get_meals());
         mealLogLayout.setAdapter(mAdapter);
 
+        floatingActionButtonSpecificLog = view.findViewById(R.id.floatingActionButton_specificLog);
+        floatingActionButtonSpecificLog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), UCI.class);
+                intent.putExtra("PageName", "SpecificLogPage");
+                getActivity().startActivity(intent);
+            }
+        });
         // Inflate the layout for this fragment
         return view;
     }
