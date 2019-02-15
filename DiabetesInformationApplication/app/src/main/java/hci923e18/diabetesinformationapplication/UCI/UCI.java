@@ -13,8 +13,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.io.ObjectStreamException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Objects;
 
 import hci923e18.MongoDB.MongoDB;
 import hci923e18.database.ErrorObject;
@@ -82,8 +84,7 @@ public class UCI extends AppCompatActivity {
 
         //Elements
         //TODO CREATE FOR EACH PAGE
-        String [] elements =
-                {"tekst felt","udregning","andet"};
+        String [] elements = generateStringArray(pageName);
         ArrayAdapter<String> adapterElements = new ArrayAdapter<String>(UCI.this, android.R.layout.simple_spinner_item, elements);
         adapterElements.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         UCIElement.setAdapter(adapterElements);
@@ -119,7 +120,7 @@ public class UCI extends AppCompatActivity {
 
         //Completed
         String [] completed =
-                {"Ikke muligt","Muligt men med store udfordringer", "Muligt men med mindre udfordringer", "Muligt med ubetydelige udfradringer", "Fejlen havde ingen effekt"};
+                {"Ikke muligt","Muligt men med store udfordringer", "Muligt men med mindre udfordringer", "Muligt med ubetydelige udfordringer", "Fejlen havde ingen effekt"};
         ArrayAdapter<String> adapterCompleted = new ArrayAdapter<String>(UCI.this, android.R.layout.simple_spinner_item, completed);
         adapterCompleted.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         UCICompleted.setAdapter(adapterCompleted);
@@ -195,5 +196,48 @@ public class UCI extends AppCompatActivity {
         }
         Toast.makeText(UCI.this, "Rapport sendt", Toast.LENGTH_LONG).show();
         finish();
+    }
+
+    private String [] generateStringArray(String page){
+
+        String[] def = {"tekst felt","udregning","andet"};
+
+        if (Objects.equals(page, "HomePage")){
+            return new String[]{"Knapper", "Navigations menu", "Menu i siden", "Andet"};
+        } else if(Objects.equals(page, "CalculatorPage")){
+            return new String[]{"Indtastning af kulhydrat", "Indtastning af blodsukker", "Indtastning af fiber", "Beregningen", "Andet"};
+        } else if(Objects.equals(page, "MealPlan")){
+            return new String[]{"Valg af måltids type", "Udvælgning af mad varer", "Indtastning af blodsukker", "Beregningen", "Andet"};
+        } else if(Objects.equals(page, "BloodGlycoseOverviewPage")){
+            return new String[]{"Graf i topppen af side", "Visning af sidste måling", "Tilføj ny måling knap", "Illustration af målinger i denne uge", "Link til liste over gamle målinger", "Andet"};
+        } else if(Objects.equals(page, "GraphPage")){
+            return new String[]{"Grafen", "Element på grafen", "Valg af dato interval", "Andet"};
+        } else if(Objects.equals(page, "LongtermMeasurementPage")){
+            return new String[]{"Valg af fra dato", "Valg af til dato", "Indtastning af blodsukker", "Gem knap", "Andet"};
+        } else if (Objects.equals(page, "MealLogPage")){
+            return new String[]{"Liste over tidligere beregnede måltider","Valg af måltid", "Andet"};
+        } else if (Objects.equals(page, "NoteListPage")){
+            return new String[]{"Liste over noter", "Ny note knap", "Andet"};
+        } else if (Objects.equals(page, "NewNotePage")) {
+            return new String[]{"Title felt", "Note felt", "Gem knap", "andet"};
+        } else if (Objects.equals(page, "SpecificLogPage")){
+            return new String[]{"Måltids type felt", "Liste af måltider", "Blodsukker felt", "Beregningen", "Andet"};
+        } else if (Objects.equals(page, "AboutUsPage")){
+            return new String[]{"Logo","Om os tekst", "Andet"};
+        } else if (Objects.equals(page, "OldBloodMeasurementsPage")){
+            return new String[]{"Valg af fra dato", "Valg af til dato", "List over målinger", "Andet"};
+        } else if (Objects.equals(page, "FAQPage")){
+            return new String[]{"Valg af type", "Valg af kategori", "Søge funktion", "list over Spørgsmål", "Andet"};
+        } else if (Objects.equals(page, "GeneratePDFPage")){
+            return new String[]{"Download til telefon knap","Email felt", "Gem og send til email knap", "Andet"};
+        } else if (Objects.equals(page, "newBloodGlucoseLevelPage")){
+            return new String[]{"Valg af tid", "Indtastning af blodsukker", "Valg af type af måltid", "Valg af markering", "Gem knap", "Andet"};
+        } else if (Objects.equals(page, "ParentalControlPage")){
+            return new String[]{"Tilladelses forspørgelse", "Indtastning af mobil nummer", "Til/fra valg af funktioner", "Gem knap", "Andet"};
+        } else if (Objects.equals(page, "SettingsPage")){
+            return new String[]{"Indtastning af mål blodsukker", "Indtastning af insulin virkningstid", "Indtastning af daglig insulin forbrug", "Indtastning af grænseværdier for graf", "Gem knap", "Andet"};
+        } else {
+            return def;
+        }
     }
 }

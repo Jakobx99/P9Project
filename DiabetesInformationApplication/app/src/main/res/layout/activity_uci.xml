@@ -107,7 +107,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="Element på siden:"
+        android:text="Hvilket Element på siden omhandler det?:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner_uci_type" />
 
@@ -117,7 +117,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="Type:"
+        android:text="Type af feedback:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edittext_uci_date" />
 
@@ -196,7 +196,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="Hvor ofter udfører du denne type opgave?"
+        android:text="Hvor ofter benytter du denne funktion?"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edittext_uci_task" />
 
@@ -206,7 +206,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="Blev opgaven udført?"
+            android:text="Blev opgaven du ville lave udført?"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spinner_uci_task_frequency" />
 
@@ -217,7 +217,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:text="Hvor kritisk var fejlens inflydelse på fuldførelse af opgaven?"
+            android:text="Hvor kritisk var fejlens/problemets inflydelse på fuldførelse af opgaven?"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spinner_uci_task_completed" />
@@ -229,7 +229,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:text="Hvor stor en effekt havde fejlen på din tilfredshed af systemet?"
+            android:text="Hvor stor en effekt havde fejlen på din tilfredshed af systemet gennerelt?"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/spinner_uci_task_error" />

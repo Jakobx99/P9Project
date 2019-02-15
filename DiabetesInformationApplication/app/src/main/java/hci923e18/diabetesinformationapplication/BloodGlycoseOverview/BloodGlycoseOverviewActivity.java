@@ -23,6 +23,8 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import hci923e18.database.BloodGlucoseMeasurements;
@@ -111,7 +113,6 @@ public class BloodGlycoseOverviewActivity extends AppCompatActivity {
      */
     private void setUp(){
         bloodGlucoseMeasurement = new ArrayList<>();
-
         graphView.removeAllSeries();
         try {
             bloodGlucoseMeasurement = fetchWeekMeasurements();
@@ -119,7 +120,15 @@ public class BloodGlycoseOverviewActivity extends AppCompatActivity {
         } catch (Exception e) {
 
         }
-        //Sets the size of the red/yellow/green display on startup
+
+//        Collections.sort(bloodGlucoseMeasurement, new Comparator<BloodGlucoseMeasurements>() {
+//            @Override
+//            public int compare(BloodGlucoseMeasurements bloodGlucoseMeasurements, BloodGlucoseMeasurements t1) {
+//                return Long.compare(bloodGlucoseMeasurements.getDate().getTimeInMillis(), t1.getDate().getTimeInMillis());
+//            }
+//        });
+
+                //Sets the size of the red/yellow/green display on startup
         if (bloodGlucoseMeasurement.size() != 0){
             count = bloodGlucoseMeasurement.size();
             calculateRatio();

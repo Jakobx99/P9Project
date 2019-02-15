@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import hci923e18.database.Profile;
+import hci923e18.diabetesinformationapplication.UCI.UCI;
 import hci923e18.utility.KeyBoard;
 
 public class ParentalControlActivity extends AppCompatActivity {
@@ -35,6 +37,7 @@ public class ParentalControlActivity extends AppCompatActivity {
     Switch switchButtonBloodGlucose;
     Switch switchButtonCalc;
     Profile profile;
+    private FloatingActionButton floatingActionButtonParentalControl;
 
     /**
      * OnCreate method called when activity is initiated.
@@ -97,6 +100,16 @@ public class ParentalControlActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Forældrekontrol indstillingerne blev gemt",Toast.LENGTH_LONG).show();
                     finish();
                 }
+            }
+        });
+
+        floatingActionButtonParentalControl = findViewById(R.id.floatingActionButton_parentalControl);
+        floatingActionButtonParentalControl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ParentalControlActivity.this, UCI.class);
+                intent.putExtra("PageName", "ParentalControlPage");
+                startActivity(intent);
             }
         });
     }

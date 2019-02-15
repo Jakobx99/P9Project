@@ -19,6 +19,7 @@ import com.github.florent37.singledateandtimepicker.SingleDateAndTimePicker;
 import com.github.florent37.singledateandtimepicker.dialog.DoubleDateAndTimePickerDialog;
 import com.github.florent37.singledateandtimepicker.dialog.SingleDateAndTimePickerDialog;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -41,6 +42,7 @@ public class LongtermMeasurement extends AppCompatActivity {
     private Calendar startDate;
     private Calendar endDate;
     private FloatingActionButton floatingActionButtonLongtermMeasurement;
+    final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM 'Kl.' HH:mm");
 
 
     @Override
@@ -119,7 +121,7 @@ public class LongtermMeasurement extends AppCompatActivity {
             }
         });
 
-        floatingActionButtonLongtermMeasurement = findViewById(R.id.floatingActionButton_home);
+        floatingActionButtonLongtermMeasurement = findViewById(R.id.floatingActionButton_longtermMeasurement);
         floatingActionButtonLongtermMeasurement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -174,7 +176,7 @@ public class LongtermMeasurement extends AppCompatActivity {
                     }
                 })
 
-                .title("Vælg dato")
+                .title("Vælg dato og tid")
                 .listener(new SingleDateAndTimePickerDialog.Listener() {
                     @Override
                     public void onDateSelected(Date date) {
@@ -193,10 +195,10 @@ public class LongtermMeasurement extends AppCompatActivity {
     }
 
     private void updateFrom(){
-        editTextFrom.setText(startDate.getTime().toString());
+        editTextFrom.setText(sdf.format(startDate.getTime()));
     }
     private void updateTo(){
-        editTextTo.setText(endDate.getTime().toString());
+        editTextTo.setText(sdf.format(endDate.getTime()));
     }
 
 }

@@ -2,8 +2,10 @@ package hci923e18.diabetesinformationapplication;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -20,6 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import hci923e18.database.FrequentlyAskedQuestions;
+import hci923e18.diabetesinformationapplication.UCI.UCI;
 
 
 /**
@@ -42,6 +45,7 @@ public class FAQFragment extends Fragment {
     List<FrequentlyAskedQuestions> FAQList = new ArrayList<>();
     List<String> listDataHeader;
     HashMap<String, String> listDataChild;
+    private FloatingActionButton floatingActionButtonFAQPage;
 
     private OnFragmentInteractionListener mListener;
 
@@ -169,6 +173,16 @@ public class FAQFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
 
+            }
+        });
+
+        floatingActionButtonFAQPage = view.findViewById(R.id.floatingActionButton_FAQPage);
+        floatingActionButtonFAQPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), UCI.class);
+                intent.putExtra("PageName", "FAQPage");
+                getActivity().startActivity(intent);
             }
         });
         return view;

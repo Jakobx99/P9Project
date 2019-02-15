@@ -4,8 +4,10 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +22,7 @@ import java.util.Locale;
 
 import hci923e18.database.NoteObject;
 import hci923e18.diabetesinformationapplication.R;
+import hci923e18.diabetesinformationapplication.UCI.UCI;
 import hci923e18.utility.KeyBoard;
 
 /**
@@ -40,6 +43,7 @@ public class NewNoteFragment extends Fragment {
     NoteObject noteObject = new NoteObject();
     Boolean data = false;
     DecimalFormat formater = new DecimalFormat("#.##");
+    private FloatingActionButton floatingActionButtonNewNote;
 
     /**
      * Default constructor
@@ -104,6 +108,16 @@ public class NewNoteFragment extends Fragment {
         if(data){
             setup();
         }
+
+        floatingActionButtonNewNote = view.findViewById(R.id.floatingActionButton_newNote);
+        floatingActionButtonNewNote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), UCI.class);
+                intent.putExtra("PageName", "NewNotePage");
+                getActivity().startActivity(intent);
+            }
+        });
         return view;
     }
 

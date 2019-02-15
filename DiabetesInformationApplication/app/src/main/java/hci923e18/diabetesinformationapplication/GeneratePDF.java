@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.StrictMode;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -36,6 +37,7 @@ import hci923e18.MongoDB.MongoDB;
 import hci923e18.database.BloodGlucoseMeasurements;
 import hci923e18.database.ErrorObject;
 import hci923e18.database.Profile;
+import hci923e18.diabetesinformationapplication.UCI.UCI;
 
 public class GeneratePDF extends AppCompatActivity {
 
@@ -58,6 +60,7 @@ public class GeneratePDF extends AppCompatActivity {
     private Profile profile;
     private Bitmap bitmap;
     private Uri documentUri = null;
+    private FloatingActionButton floatingActionButtonGeneratePDF;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,7 +129,15 @@ public class GeneratePDF extends AppCompatActivity {
             }
         });
 
-        //dbtest();
+        floatingActionButtonGeneratePDF = findViewById(R.id.floatingActionButton_generatePDF);
+        floatingActionButtonGeneratePDF.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(GeneratePDF.this, UCI.class);
+                intent.putExtra("PageName", "GeneratePDFPage");
+                startActivity(intent);
+            }
+        });
 
 
     }

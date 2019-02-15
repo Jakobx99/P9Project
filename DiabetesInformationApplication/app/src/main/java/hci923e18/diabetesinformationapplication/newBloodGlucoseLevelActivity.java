@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -18,11 +20,18 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.github.florent37.singledateandtimepicker.SingleDateAndTimePicker;
+import com.github.florent37.singledateandtimepicker.dialog.SingleDateAndTimePickerDialog;
+
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 
 import hci923e18.database.BloodGlucoseMeasurements;
 import hci923e18.database.Profile;
+import hci923e18.diabetesinformationapplication.LongtermMeasurements.LongtermMeasurement;
+import hci923e18.diabetesinformationapplication.UCI.UCI;
 import hci923e18.utility.KeyBoard;
 import hci923e18.utility.SMSUtil;
 import hci923e18.utility.TimePickerFragment;
@@ -41,6 +50,9 @@ public class newBloodGlucoseLevelActivity extends AppCompatActivity implements T
     Profile p;
     Double upperLimitBS;
     Double lowerLimitBS;
+    private FloatingActionButton floatingActionButtonNewBloodglycoseLevel;
+    private Calendar startDate;
+    final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM 'Kl.' HH:mm");
 
     /**
      * OnCreate method called when activity is initiated.
@@ -88,8 +100,7 @@ public class newBloodGlucoseLevelActivity extends AppCompatActivity implements T
         enteredTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogFragment newFragment = new TimePickerFragment();
-                newFragment.show(getSupportFragmentManager(),"Timepicker");
+                showDateTimePicker();
             }
         });
 
@@ -190,15 +201,15 @@ public class newBloodGlucoseLevelActivity extends AppCompatActivity implements T
                 }
                 else{
                     BloodGlucoseMeasurements newBloodGlucoseLevel = new BloodGlucoseMeasurements();
-                    Calendar newTime = Calendar.getInstance();
-                    String timeHour = enteredTime.getText().toString();
-                    String[] parts = timeHour.split(":");
-                    String hour = parts[0]; // Hours
-                    String minut = parts[1]; // Minuts
+//                    Calendar newTime = Calendar.getInstance();
+//                    String timeHour = enteredTime.getText().toString();
+//                    String[] parts = timeHour.split(":");
+//                    String hour = parts[0]; // Hours
+//                    String minut = parts[1]; // Minuts
 
-                    newTime.set(Calendar.HOUR_OF_DAY,Integer.parseInt(hour));
-                    newTime.set(Calendar.MINUTE,Integer.parseInt((minut)));
-                    newBloodGlucoseLevel.setDate(newTime);
+//                    newTime.set(Calendar.HOUR_OF_DAY,Integer.parseInt(hour));
+//                    newTime.set(Calendar.MINUTE,Integer.parseInt((minut)));
+                    newBloodGlucoseLevel.setDate(startDate);
 
                     newBloodGlucoseLevel.set_glucoseLevel(Double.parseDouble(0 + enteredBloodGlucoseLevel.getText().toString()));
 
@@ -239,6 +250,16 @@ public class newBloodGlucoseLevelActivity extends AppCompatActivity implements T
                 }
             }
         });
+
+        floatingActionButtonNewBloodglycoseLevel = findViewById(R.id.floatingActionButton_newBloodglucoseLevel);
+        floatingActionButtonNewBloodglycoseLevel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(newBloodGlucoseLevelActivity.this, UCI.class);
+                intent.putExtra("PageName", "newBloodGlucoseLevelPage");
+                startActivity(intent);
+            }
+        });
     }
 
     /**
@@ -272,5 +293,41 @@ public class newBloodGlucoseLevelActivity extends AppCompatActivity implements T
             p.save();
         }
         return p;
+    }
+
+    /**
+     * Creates the date and time picker
+     */
+    public void showDateTimePicker() {
+        DisplayMetrics displayMetrics = this.getResources().getDisplayMetrics();
+        Integer screenSize = Math.round(displayMetrics.ydpi);
+        new SingleDateAndTimePickerDialog.Builder(newBloodGlucoseLevelActivity.this)
+                //.bottomSheet()
+                //.curved()
+                //.minutesStep(15)
+                //.displayHours(false)
+                //.displayMinutes(false)
+                //.todayText("aujourd'hui")
+                .displayListener(new SingleDateAndTimePickerDialog.DisplayListener() {
+                    @Override
+                    public void onDisplayed(SingleDateAndTimePicker picker) {
+
+                    }
+                })
+
+                .title("Vælg dato og tid")
+                .listener(new SingleDateAndTimePickerDialog.Listener() {
+                    @Override
+                    public void onDateSelected(Date date) {
+                            startDate = Calendar.getInstance();
+                            startDate.setTime(date);
+                            updateFrom();
+
+
+                    }
+                }).display();
+    }
+    private void updateFrom(){
+        enteredTime.setText(sdf.format(startDate.getTime()));
     }
 }

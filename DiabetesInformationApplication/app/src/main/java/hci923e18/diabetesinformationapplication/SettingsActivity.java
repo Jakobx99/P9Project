@@ -1,6 +1,8 @@
 package hci923e18.diabetesinformationapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.TooltipCompat;
 import android.view.View;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import hci923e18.database.Profile;
+import hci923e18.diabetesinformationapplication.UCI.UCI;
 import hci923e18.utility.KeyBoard;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -36,6 +39,7 @@ public class SettingsActivity extends AppCompatActivity {
     public ImageButton infoLowerLimit;
     public ImageButton infoBefore;
     public ImageButton infoAfter;
+    private FloatingActionButton floatingActionButtonSettings;
     Switch switchButton;
     Profile p;
 
@@ -175,6 +179,16 @@ public class SettingsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 TooltipCompat.setTooltipText(v,"Bruges til at farvekode dine blodsukker målinger ved målinger taget efter et måltid");
                 Toast.makeText(v.getContext(), "Bruges til at farvekode dine blodsukker målinger ved målinger taget efter et måltid", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        floatingActionButtonSettings = findViewById(R.id.floatingActionButton_settings);
+        floatingActionButtonSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SettingsActivity.this, UCI.class);
+                intent.putExtra("PageName", "SettingsPage");
+                startActivity(intent);
             }
         });
     }
