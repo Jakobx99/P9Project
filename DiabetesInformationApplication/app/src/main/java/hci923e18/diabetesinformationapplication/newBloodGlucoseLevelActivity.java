@@ -2,6 +2,7 @@ package hci923e18.diabetesinformationapplication;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -308,6 +309,8 @@ public class newBloodGlucoseLevelActivity extends AppCompatActivity implements T
                 //.displayHours(false)
                 //.displayMinutes(false)
                 //.todayText("aujourd'hui")
+                .mainColor(Color.RED)
+                .titleTextColor(Color.WHITE)
                 .displayListener(new SingleDateAndTimePickerDialog.DisplayListener() {
                     @Override
                     public void onDisplayed(SingleDateAndTimePicker picker) {

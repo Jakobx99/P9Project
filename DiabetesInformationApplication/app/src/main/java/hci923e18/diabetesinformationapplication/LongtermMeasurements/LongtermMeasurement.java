@@ -169,6 +169,8 @@ public class LongtermMeasurement extends AppCompatActivity {
                 //.displayHours(false)
                 //.displayMinutes(false)
                 //.todayText("aujourd'hui")
+                .mainColor(Color.RED)
+                .titleTextColor(Color.WHITE)
                 .displayListener(new SingleDateAndTimePickerDialog.DisplayListener() {
                     @Override
                     public void onDisplayed(SingleDateAndTimePicker picker) {
