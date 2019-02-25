@@ -92,6 +92,11 @@
             android:windowSoftInputMode="adjustPan"></activity>
 
         <service android:name="hci923e18.utility.Time.TimeService"></service>
+        <receiver android:name="hci923e18.utility.Time.TimeReciever"
+            android:exported="true"
+            ></receiver>
+
+
 
     </application>
 

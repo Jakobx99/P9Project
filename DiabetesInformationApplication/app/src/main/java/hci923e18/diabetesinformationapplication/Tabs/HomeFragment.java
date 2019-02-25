@@ -16,6 +16,7 @@ import hci923e18.diabetesinformationapplication.R;
 import hci923e18.diabetesinformationapplication.UCI.UCI;
 import hci923e18.diabetesinformationapplication.newBloodGlucoseLevelActivity;
 import hci923e18.utility.NotificationUtil;
+import hci923e18.utility.Time.TimeNotification;
 
 
 /**
@@ -141,6 +142,8 @@ public class HomeFragment extends Fragment {
         tester.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                TimeNotification n = new TimeNotification();
+                n.setAlarm(getActivity());
             }
         });
 

@@ -23,6 +23,13 @@ public class PopulateDatabase {
      */
     public static void populateDB(){
 
+        Identifier identifier = new Identifier();
+        String random = UUID.randomUUID().toString();
+        identifier.set_ID(random);
+        //Identifier to determine if it is the advanced UCI part of the application they have access to
+        identifier.set_advanced(true);
+        identifier.save();
+
         //region Food region
         //http://maddata.dk/
         // Food(String name, Double carbohydrate, Double protein, Double fiber, Double sugar)
@@ -1437,12 +1444,7 @@ public class PopulateDatabase {
 
         profile.save();
 
-        Identifier identifier = new Identifier();
-        String random = UUID.randomUUID().toString();
-        identifier.set_ID(random);
-        //Identifier to determine if it is the advanced UCI part of the application they have access to
-        identifier.set_advanced(true);
-        identifier.save();
+
     }
 
 }

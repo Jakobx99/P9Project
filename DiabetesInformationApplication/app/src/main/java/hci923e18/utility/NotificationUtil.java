@@ -32,19 +32,22 @@ public class NotificationUtil extends ContextWrapper {
      *
      * @param base context of caller
      */
-    public NotificationUtil(Context base, Integer id) {
+    public NotificationUtil(Context base, Integer id, Boolean advanced) {
         super(base);
-        creationOfIntent(id);
+        creationOfIntent(id, advanced);
     }
 
     /**
      * Creates notification intent
      */
-    private void creationOfIntent(Integer id) {
-        if (id == 2){
-            //TODO If needed fix so it is a diffenrent report page
+    private void creationOfIntent(Integer id, Boolean advanced) {
+        if (id == 2 && advanced){
+            //TODO Redirect to the advanced UCI class
+            notifyIntent = new Intent(this, FrontPageActivity.class);
+        } else if (id == 2 && !advanced){
             notifyIntent = new Intent(this, UCI.class);
-        } else {
+        }
+        else {
             notifyIntent = new Intent(this, FrontPageActivity.class);
         }
 

@@ -40,10 +40,10 @@ public class SplashActivity extends AppCompatActivity {
         else {
             Log.d("DATABASE", "THERE IS A DATABASE");
         }
+
         //Starts the time based notification service
         Intent in = new Intent(SplashActivity.this, TimeService.class);
         startService(in);
-
 
             logo=(ImageView)findViewById(R.id.logo);
 
