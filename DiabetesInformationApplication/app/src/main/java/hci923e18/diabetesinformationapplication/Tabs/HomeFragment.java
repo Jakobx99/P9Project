@@ -13,6 +13,7 @@ import android.widget.Button;
 import hci923e18.diabetesinformationapplication.BloodGlycoseOverview.BloodGlycoseOverviewActivity;
 import hci923e18.diabetesinformationapplication.R;
 import hci923e18.diabetesinformationapplication.newBloodGlucoseLevelActivity;
+import hci923e18.utility.NotificationUtil;
 
 
 /**
@@ -117,6 +118,14 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), newBloodGlucoseLevelActivity.class);
                 getActivity().startActivity(intent);
+            }
+        });
+
+        Button tester = view.findViewById(R.id.button_tester);
+        tester.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
             }
         });
 

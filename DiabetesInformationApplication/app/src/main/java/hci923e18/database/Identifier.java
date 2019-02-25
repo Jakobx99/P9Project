@@ -14,11 +14,22 @@ public class Identifier extends SugarRecord<Identifier> {
 
     private String _ID;
 
+    public Boolean get_advanced() {
+        return _advanced;
+    }
+
+    public void set_advanced(Boolean _advanced) {
+        this._advanced = _advanced;
+    }
+
+    private Boolean _advanced;
+
     public Identifier(){
 
     }
-    public Identifier(String id){
+    public Identifier(String id, Boolean advanced){
         _ID = id;
+        _advanced = advanced;
     }
 
 }
