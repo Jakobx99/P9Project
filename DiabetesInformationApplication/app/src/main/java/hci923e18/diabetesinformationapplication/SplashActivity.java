@@ -15,6 +15,7 @@ import java.util.List;
 import hci923e18.database.Food;
 import hci923e18.diabetesinformationapplication.Tabs.FrontPageActivity;
 import hci923e18.utility.PopulateDatabase;
+import hci923e18.utility.Time.TimeService;
 
 public class SplashActivity extends AppCompatActivity {
     private ImageView logo;
@@ -34,10 +35,15 @@ public class SplashActivity extends AppCompatActivity {
         if (_food.size() == 0)
         {
             PopulateDatabase.populateDB();
+
         }
         else {
             Log.d("DATABASE", "THERE IS A DATABASE");
         }
+        //Starts the time based notification service
+        Intent in = new Intent(SplashActivity.this, TimeService.class);
+        startService(in);
+
 
             logo=(ImageView)findViewById(R.id.logo);
 

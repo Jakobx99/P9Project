@@ -90,6 +90,9 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan"></activity>
+
+        <service android:name="hci923e18.utility.Time.TimeService"></service>
+
     </application>
 
 </manifest>

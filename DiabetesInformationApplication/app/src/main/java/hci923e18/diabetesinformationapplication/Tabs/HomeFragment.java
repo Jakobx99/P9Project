@@ -15,6 +15,7 @@ import hci923e18.diabetesinformationapplication.BloodGlycoseOverview.BloodGlycos
 import hci923e18.diabetesinformationapplication.R;
 import hci923e18.diabetesinformationapplication.UCI.UCI;
 import hci923e18.diabetesinformationapplication.newBloodGlucoseLevelActivity;
+import hci923e18.utility.NotificationUtil;
 
 
 /**
@@ -125,6 +126,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
+
         floatingActionButtonHome = view.findViewById(R.id.floatingActionButton_home);
         floatingActionButtonHome.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,6 +134,13 @@ public class HomeFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), UCI.class);
                 intent.putExtra("PageName", "HomePage");
                 getActivity().startActivity(intent);
+                            }
+        });
+
+        Button tester = view.findViewById(R.id.button_tester);
+        tester.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
             }
         });
 

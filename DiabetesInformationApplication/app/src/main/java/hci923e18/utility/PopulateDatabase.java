@@ -1440,6 +1440,8 @@ public class PopulateDatabase {
         Identifier identifier = new Identifier();
         String random = UUID.randomUUID().toString();
         identifier.set_ID(random);
+        //Identifier to determine if it is the advanced UCI part of the application they have access to
+        identifier.set_advanced(true);
         identifier.save();
     }
 
