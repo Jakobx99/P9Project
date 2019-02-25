@@ -14,6 +14,7 @@ import android.support.annotation.RequiresApi;
 import hci923e18.diabetesinformationapplication.R;
 import hci923e18.diabetesinformationapplication.Tabs.FrontPageActivity;
 import hci923e18.diabetesinformationapplication.UCI.UCI;
+import hci923e18.diabetesinformationapplication.UCI.UCIAdvanced;
 
 
 public class NotificationUtil extends ContextWrapper {
@@ -42,8 +43,7 @@ public class NotificationUtil extends ContextWrapper {
      */
     private void creationOfIntent(Integer id, Boolean advanced) {
         if (id == 2 && advanced){
-            //TODO Redirect to the advanced UCI class
-            notifyIntent = new Intent(this, FrontPageActivity.class);
+            notifyIntent = new Intent(this, UCIAdvanced.class);
         } else if (id == 2 && !advanced){
             notifyIntent = new Intent(this, UCI.class);
         }

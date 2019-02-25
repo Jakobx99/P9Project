@@ -23,4 +23,5 @@
     <string name="title_activity_longterm_measurement">LongtermMeasurement</string>
     <string name="frida">Data for fødevarers næringsindhold er stillet til rådighed af DTU Fødevareinstituttet (<a href="http://frida.fooddata.dk">http://frida.fooddata.dk</a>)</string>
     <string name="title_activity_uci">UCI</string>
+    <string name="title_activity_uciadvanced">UCIAdvanced</string>
 </resources>

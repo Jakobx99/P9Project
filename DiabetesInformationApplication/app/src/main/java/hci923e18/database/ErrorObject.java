@@ -16,6 +16,17 @@ public class ErrorObject {
     private String error;
     private String effect;
     private String id;
+    private Boolean advanced;
+
+    public Boolean getAdvanced() {
+        return advanced;
+    }
+
+    public void setAdvanced(Boolean advanced) {
+        this.advanced = advanced;
+    }
+
+
 
     public String getId() {
         return id;

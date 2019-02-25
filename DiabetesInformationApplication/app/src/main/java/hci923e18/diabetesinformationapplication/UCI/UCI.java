@@ -83,7 +83,6 @@ public class UCI extends AppCompatActivity {
         });
 
         //Elements
-        //TODO CREATE FOR EACH PAGE
         String [] elements = generateStringArray(pageName);
         ArrayAdapter<String> adapterElements = new ArrayAdapter<String>(UCI.this, android.R.layout.simple_spinner_item, elements);
         adapterElements.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
@@ -190,6 +189,7 @@ public class UCI extends AppCompatActivity {
         try {
             Identifier i = Identifier.listAll(Identifier.class).get(0);
             errorObject.setId(i.get_ID());
+            errorObject.setAdvanced(i.get_advanced());
             m.execute(errorObject);
         } catch (Exception e) {
             e.printStackTrace();
