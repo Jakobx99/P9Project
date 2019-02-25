@@ -13,6 +13,7 @@ import android.support.annotation.RequiresApi;
 
 import hci923e18.diabetesinformationapplication.R;
 import hci923e18.diabetesinformationapplication.Tabs.FrontPageActivity;
+import hci923e18.diabetesinformationapplication.UCI.UCI;
 
 
 public class NotificationUtil extends ContextWrapper {
@@ -42,7 +43,7 @@ public class NotificationUtil extends ContextWrapper {
     private void creationOfIntent(Integer id) {
         if (id == 2){
             //TODO If needed fix so it is a diffenrent report page
-            notifyIntent = new Intent(this, FrontPageActivity.class);
+            notifyIntent = new Intent(this, UCI.class);
         } else {
             notifyIntent = new Intent(this, FrontPageActivity.class);
         }

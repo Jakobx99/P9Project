@@ -7,12 +7,12 @@ import android.support.annotation.Nullable;
 
 public class TimeService extends Service {
 
-    public static TimeNotification alarmReceiver = null;
+    public static TimeReciever alarmReceiver = null;
 
     @Override
     public void onCreate() {
         if (alarmReceiver == null) {
-            alarmReceiver = new TimeNotification();
+            alarmReceiver = new TimeReciever();
         }
     }
 
