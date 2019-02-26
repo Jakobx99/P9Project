@@ -138,15 +138,6 @@ public class HomeFragment extends Fragment {
                             }
         });
 
-        Button tester = view.findViewById(R.id.button_tester);
-        tester.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                TimeNotification n = new TimeNotification();
-                n.setAlarm(getActivity());
-            }
-        });
-
         // Inflate the layout for this fragment
         return view;
     }
