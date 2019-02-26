@@ -133,14 +133,7 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
                         }
                     });
 
-                    //  Make a new preferences editor
-                    SharedPreferences.Editor e = getPrefs.edit();
 
-                    //  Edit preference to make it false because we don't want this to run again
-                    e.putBoolean("firstStart", false);
-
-                    //  Apply changes
-                    e.apply();
                 }
             }
         });
@@ -148,31 +141,37 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
         // Start the thread
         t.start();
 
-        List<Profile> _profile = Profile.listAll(Profile.class);
-        if (_profile.size() == 0)
-        {
+        SharedPreferences s = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        if (s.getBoolean("firstStart", true)){
             Dialog dialog = null;
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(FrontPageActivity.this);
             builder.setMessage("Dette er første gang appen startes. Vil du gerne lave dine indstillinger")
                     .setCancelable(false)
                     .setPositiveButton("Nej", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             dialog.cancel();
-                            }
+                        }
                     })
                     .setNegativeButton("Ja", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             Intent intent = new Intent(FrontPageActivity.this, SettingsActivity.class);
                             startActivity(intent);
-                            }
+                        }
                     });
             AlertDialog alert = builder.create();
             dialog = alert;
             dialog.show();
+
+            //  Make a new preferences editor
+            SharedPreferences.Editor e = s.edit();
+
+            //  Edit preference to make it false because we don't want this to run again
+            e.putBoolean("firstStart", false);
+
+            //  Apply changes
+            e.apply();
         }
-        else{
-            //Do nothing
-        }
+
     }
 
     /**

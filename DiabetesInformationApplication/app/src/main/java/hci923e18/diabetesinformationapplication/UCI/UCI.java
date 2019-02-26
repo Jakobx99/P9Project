@@ -203,39 +203,39 @@ public class UCI extends AppCompatActivity {
         String[] def = {"tekst felt","udregning","andet"};
 
         if (Objects.equals(page, "HomePage")){
-            return new String[]{"Knapper", "Navigations menu", "Menu i siden", "Andet"};
+            return new String[]{"Knapper", "Navigations menu", "Menu i siden","Hele siden", "Andet"};
         } else if(Objects.equals(page, "CalculatorPage")){
-            return new String[]{"Indtastning af kulhydrat", "Indtastning af blodsukker", "Indtastning af fiber", "Beregningen", "Andet"};
+            return new String[]{"Indtastning af kulhydrat", "Indtastning af blodsukker", "Indtastning af fiber", "Beregningen","Hele siden", "Andet"};
         } else if(Objects.equals(page, "MealPlan")){
-            return new String[]{"Valg af måltids type", "Udvælgning af mad varer", "Indtastning af blodsukker", "Beregningen", "Andet"};
+            return new String[]{"Valg af måltids type", "Udvælgning af mad varer", "Indtastning af blodsukker", "Beregningen","Hele siden", "Andet"};
         } else if(Objects.equals(page, "BloodGlycoseOverviewPage")){
-            return new String[]{"Graf i topppen af side", "Visning af sidste måling", "Tilføj ny måling knap", "Illustration af målinger i denne uge", "Link til liste over gamle målinger", "Andet"};
+            return new String[]{"Graf i topppen af side", "Visning af sidste måling", "Tilføj ny måling knap", "Illustration af målinger i denne uge", "Link til liste over gamle målinger","Hele siden", "Andet"};
         } else if(Objects.equals(page, "GraphPage")){
-            return new String[]{"Grafen", "Element på grafen", "Valg af dato interval", "Andet"};
+            return new String[]{"Grafen", "Element på grafen", "Valg af dato interval","Hele siden", "Andet"};
         } else if(Objects.equals(page, "LongtermMeasurementPage")){
-            return new String[]{"Valg af fra dato", "Valg af til dato", "Indtastning af blodsukker", "Gem knap", "Andet"};
+            return new String[]{"Valg af fra dato", "Valg af til dato", "Indtastning af blodsukker", "Gem knap","Hele siden", "Andet"};
         } else if (Objects.equals(page, "MealLogPage")){
-            return new String[]{"Liste over tidligere beregnede måltider","Valg af måltid", "Andet"};
+            return new String[]{"Liste over tidligere beregnede måltider","Valg af måltid","Hele siden", "Andet"};
         } else if (Objects.equals(page, "NoteListPage")){
-            return new String[]{"Liste over noter", "Ny note knap", "Andet"};
+            return new String[]{"Liste over noter", "Ny note knap","Hele siden", "Andet"};
         } else if (Objects.equals(page, "NewNotePage")) {
-            return new String[]{"Title felt", "Note felt", "Gem knap", "andet"};
+            return new String[]{"Title felt", "Note felt", "Gem knap","Hele siden", "Andet"};
         } else if (Objects.equals(page, "SpecificLogPage")){
-            return new String[]{"Måltids type felt", "Liste af måltider", "Blodsukker felt", "Beregningen", "Andet"};
+            return new String[]{"Måltids type felt", "Liste af måltider", "Blodsukker felt", "Beregningen","Hele siden", "Andet"};
         } else if (Objects.equals(page, "AboutUsPage")){
-            return new String[]{"Logo","Om os tekst", "Andet"};
+            return new String[]{"Logo","Om os tekst","Hele siden", "Andet"};
         } else if (Objects.equals(page, "OldBloodMeasurementsPage")){
-            return new String[]{"Valg af fra dato", "Valg af til dato", "List over målinger", "Andet"};
+            return new String[]{"Valg af fra dato", "Valg af til dato", "List over målinger","Hele siden", "Andet"};
         } else if (Objects.equals(page, "FAQPage")){
-            return new String[]{"Valg af type", "Valg af kategori", "Søge funktion", "list over Spørgsmål", "Andet"};
+            return new String[]{"Valg af type", "Valg af kategori", "Søge funktion", "list over Spørgsmål","Hele siden", "Andet"};
         } else if (Objects.equals(page, "GeneratePDFPage")){
-            return new String[]{"Download til telefon knap","Email felt", "Gem og send til email knap", "Andet"};
+            return new String[]{"Download til telefon knap","Email felt", "Gem og send til email knap","Hele siden", "Andet"};
         } else if (Objects.equals(page, "newBloodGlucoseLevelPage")){
-            return new String[]{"Valg af tid", "Indtastning af blodsukker", "Valg af type af måltid", "Valg af markering", "Gem knap", "Andet"};
+            return new String[]{"Valg af tid", "Indtastning af blodsukker", "Valg af type af måltid", "Valg af markering", "Gem knap","Hele siden", "Andet"};
         } else if (Objects.equals(page, "ParentalControlPage")){
-            return new String[]{"Tilladelses forspørgelse", "Indtastning af mobil nummer", "Til/fra valg af funktioner", "Gem knap", "Andet"};
+            return new String[]{"Tilladelses forspørgelse", "Indtastning af mobil nummer", "Til/fra valg af funktioner", "Gem knap","Hele siden", "Andet"};
         } else if (Objects.equals(page, "SettingsPage")){
-            return new String[]{"Indtastning af mål blodsukker", "Indtastning af insulin virkningstid", "Indtastning af daglig insulin forbrug", "Indtastning af grænseværdier for graf", "Gem knap", "Andet"};
+            return new String[]{"Indtastning af mål blodsukker", "Indtastning af insulin virkningstid", "Indtastning af daglig insulin forbrug", "Indtastning af grænseværdier for graf", "Gem knap","Hele siden", "Andet"};
         } else {
             return def;
         }
