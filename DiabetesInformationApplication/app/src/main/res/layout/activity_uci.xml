@@ -81,7 +81,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView_uci_task" />
 
-    <TextView
+        <EditText
+            android:id="@+id/edittext_uci_expectation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/border"
+            android:hint="Beskriv din forventning her"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_uci_task2" />
+
+        <TextView
         android:id="@+id/textView_uci_pagename"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -190,15 +203,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner_uci_element" />
 
-    <TextView
-        android:id="@+id/textView_uci_task_frequency"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Hvor ofter benytter du denne funktion?"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edittext_uci_task" />
+        <TextView
+            android:id="@+id/textView_uci_task2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Hvad forventede du der skete?"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edittext_uci_task" />
+
+        <TextView
+            android:id="@+id/textView_uci_task_frequency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Hvor ofter benytter du denne funktion?"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edittext_uci_expectation" />
 
         <TextView
             android:id="@+id/textView_uci_task_completed"

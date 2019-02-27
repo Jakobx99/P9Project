@@ -40,6 +40,8 @@ public class MongoDB extends AsyncTask<ErrorObject, Void, Boolean> {
         document.put("statisfaction", e.getEffect());
         document.put("id", e.getId());
         document.put("advanced", e.getAdvanced());
+        document.put("diary",e.getDiary());
+        document.put("expectation",e.getExpectation());
         collection.insertOne(document);
 
         //Might have to extend this with a wait

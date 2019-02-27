@@ -37,6 +37,7 @@ public class UCI extends AppCompatActivity {
     ErrorObject errorObject;
     Button UCISend;
     final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy HH:mm");
+    EditText UCIExpectation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,7 @@ public class UCI extends AppCompatActivity {
         UCIError = findViewById(R.id.spinner_uci_task_error);
         UCIEffect = findViewById(R.id.spinner_uci_task_effect);
         UCISend = findViewById(R.id.button_uci_send);
+        UCIExpectation = findViewById(R.id.edittext_uci_expectation);
 
         errorObject.setDate(Calendar.getInstance().getTimeInMillis());
         errorObject.setReadableDate(sdf.format(Calendar.getInstance().getTimeInMillis()));
@@ -174,11 +176,24 @@ public class UCI extends AppCompatActivity {
         UCISend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                errorObject.setTask(UCITask.getText().toString());
-                sendToDatabase();
-
+                if (isEmpty(UCITask)){
+                    Toast.makeText(UCI.this, "Beskriv venligst hændelsen", Toast.LENGTH_LONG).show();
+                } else if(isEmpty(UCIExpectation)){
+                    Toast.makeText(UCI.this, "Beskriv venligst hvad du forventede", Toast.LENGTH_LONG).show();
+                } else {
+                    errorObject.setTask(UCITask.getText().toString());
+                    errorObject.setExpectation(UCIExpectation.getText().toString());
+                    sendToDatabase();
+                }
             }
         });
+    }
+
+    private boolean isEmpty(EditText etText) {
+        if (etText.getText().toString().trim().length() > 0)
+            return false;
+
+        return true;
     }
 
     /**

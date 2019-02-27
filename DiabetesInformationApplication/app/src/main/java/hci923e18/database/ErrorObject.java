@@ -3,7 +3,9 @@ package hci923e18.database;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-public class ErrorObject {
+import java.io.Serializable;
+
+public class ErrorObject implements Serializable {
 
     private String page;
     private Long date;
@@ -16,7 +18,26 @@ public class ErrorObject {
     private String error;
     private String effect;
     private String id;
-    private Boolean advanced;
+    private Boolean advanced = false;
+    private String diary;
+    private String expectation;
+
+
+    public String getExpectation() {
+        return expectation;
+    }
+
+    public void setExpectation(String expectation) {
+        this.expectation = expectation;
+    }
+
+    public String getDiary() {
+        return diary;
+    }
+
+    public void setDiary(String diary) {
+        this.diary = diary;
+    }
 
     public Boolean getAdvanced() {
         return advanced;
