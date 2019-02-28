@@ -52,7 +52,9 @@ public class UCIAdvancedGoodBad extends AppCompatActivity {
             }
         });
 
-
+//TODO HIDE DIARY ON HOME FOR WRONG PEOPLE
+        //TODO ONBOARDINGFRAGMENT SHOW SPECIAL FRAGMENT FOR ADVANCED PEOPLE
+        //TODO JAVADOCS
 
 
     }

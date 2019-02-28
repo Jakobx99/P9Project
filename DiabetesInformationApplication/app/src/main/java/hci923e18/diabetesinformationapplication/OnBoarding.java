@@ -9,15 +9,24 @@ import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntroFragment;
 import com.github.paolorotolo.appintro.model.SliderPage;
 
+import hci923e18.database.Identifier;
+
 public class OnBoarding extends AppIntro {
 
     String title = "title";
     String description ="desc";
+    Identifier i = new Identifier();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        try {
+            i = Identifier.listAll(Identifier.class).get(0);
+        } catch (Exception e) {
+
+        }
 
         SliderPage sliderPage1 = new SliderPage();
         sliderPage1.setTitle("DIAbetes Information Applikation");
@@ -65,6 +74,38 @@ public class OnBoarding extends AppIntro {
         sliderPage5.setTitleColor(getResources().getColor(R.color.lightRed));
         addSlide(AppIntroFragment.newInstance(sliderPage5));
 
+        //If advanced make additional
+        if (i.get_advanced()){
+
+            SliderPage sliderPage7 = new SliderPage();
+            sliderPage7.setTitle("Dagbog");
+            sliderPage7.setDescription("Ud over at kunne rapporterer fejl på hver side beder vi dig om at lave et lille dagbogs indslag hver dag" +"\n" + "Knappen til dagbogen findes på forsiden.");
+            //TODO Tag nyt billede
+            sliderPage7.setImageDrawable(R.drawable.middletext);
+            sliderPage7.setBgColor(getResources().getColor(R.color.white));
+            sliderPage7.setDescColor(getResources().getColor(R.color.lightRed));
+            sliderPage7.setTitleColor(getResources().getColor(R.color.lightRed));
+            addSlide(AppIntroFragment.newInstance(sliderPage7));
+
+            SliderPage sliderPage8 = new SliderPage();
+            sliderPage8.setTitle("Dagbog");
+            sliderPage8.setDescription("I dagbogen kan du skrive om dine oplevelser med appen.");
+            sliderPage8.setImageDrawable(R.drawable.diaryfront);
+            sliderPage8.setBgColor(getResources().getColor(R.color.white));
+            sliderPage8.setDescColor(getResources().getColor(R.color.lightRed));
+            sliderPage8.setTitleColor(getResources().getColor(R.color.lightRed));
+            addSlide(AppIntroFragment.newInstance(sliderPage8));
+
+            SliderPage sliderPage9 = new SliderPage();
+            sliderPage9.setTitle("Dagbog");
+            sliderPage9.setDescription("Vi spørger også om både de gode og dårlige ting ved appen");
+            sliderPage9.setImageDrawable(R.drawable.diarygood);
+            sliderPage9.setBgColor(getResources().getColor(R.color.white));
+            sliderPage9.setDescColor(getResources().getColor(R.color.lightRed));
+            sliderPage9.setTitleColor(getResources().getColor(R.color.lightRed));
+            addSlide(AppIntroFragment.newInstance(sliderPage9));
+        }
+
         SliderPage sliderPage6 = new SliderPage();
         sliderPage6.setTitle("Notifikationer");
         sliderPage6.setDescription("Appen sender dig 3 notifikationer i løbet af dagen for at minde dig om at benytte appen. En om morgen kl.8, en om middagen kl.13 og en om aftenen kl.20");
@@ -73,7 +114,6 @@ public class OnBoarding extends AppIntro {
         sliderPage6.setDescColor(getResources().getColor(R.color.lightRed));
         sliderPage6.setTitleColor(getResources().getColor(R.color.lightRed));
         addSlide(AppIntroFragment.newInstance(sliderPage6));
-
 
         // OPTIONAL METHODS
         // Override bar/separator color.

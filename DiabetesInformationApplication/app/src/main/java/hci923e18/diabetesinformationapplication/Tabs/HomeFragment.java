@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import hci923e18.database.Identifier;
 import hci923e18.diabetesinformationapplication.BloodGlycoseOverview.BloodGlycoseOverviewActivity;
 import hci923e18.diabetesinformationapplication.R;
 import hci923e18.diabetesinformationapplication.UCI.UCI;
@@ -148,6 +149,19 @@ public class HomeFragment extends Fragment {
                 startActivity(i);
             }
         });
+
+        try {
+            Identifier i = Identifier.listAll(Identifier.class).get(0);
+            if (!i.get_advanced()){
+                diary.setVisibility(View.GONE);
+                diary.setEnabled(false);
+            }
+        } catch (Exception e) {
+
+        }
+
+
+
         // Inflate the layout for this fragment
         return view;
     }
