@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -120,7 +123,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="60dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="61dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/oldmeasure"
         android:textColor="@android:color/holo_blue_dark"
         android:textSize="20dp"
@@ -142,21 +145,18 @@
         app:layout_constraintBottom_toTopOf="@+id/textView_bloodoverview_lastmeasurement"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/graph_overview" />
-
+</android.support.constraint.ConstraintLayout>
+</ScrollView>
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatingActionButton_blood_glycose_overview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="52dp"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="8dp"
+        android:alpha="0.6"
         android:clickable="true"
-        app:backgroundTint="@color/picker_button_background_innactive"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.619"
-        app:layout_constraintStart_toEndOf="@+id/textView_bloodoverview_old"
+        app:backgroundTint="@color/picker_button_background_innactive"
         app:srcCompat="@drawable/icons8_info_24" />
-</android.support.constraint.ConstraintLayout>
-
-</ScrollView>
+</FrameLayout>

@@ -101,14 +101,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginBottom="16dp"
                 android:textSize="32dp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/textView_insulinUnitTextSpecificLog"
                 app:layout_constraintHorizontal_bias="0.568"
                 app:layout_constraintStart_toStartOf="@+id/textView_insulinUnitTextSpecificLog"
-                app:layout_constraintTop_toBottomOf="@+id/textView_insulinUnitTextSpecificLog"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintTop_toBottomOf="@+id/textView_insulinUnitTextSpecificLog" />
 
             <ListView
                 android:id="@+id/mealplan_listview"
@@ -190,26 +187,29 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
                 android:text="@string/frida"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView_mealplan_result" />
 
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/floatingActionButton_MealPlan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="4dp"
-                android:layout_marginBottom="4dp"
-                android:clickable="true"
-                app:backgroundTint="@color/picker_button_background_innactive"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:srcCompat="@drawable/icons8_info_24" />
+
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
-
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButton_MealPlan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="8dp"
+        android:alpha="0.6"
+        android:clickable="true"
+        app:backgroundTint="@color/picker_button_background_innactive"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/icons8_info_24" />
 </FrameLayout>
