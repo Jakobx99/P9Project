@@ -16,13 +16,14 @@ import java.util.Calendar;
 
 import hci923e18.database.ErrorObject;
 import hci923e18.database.Identifier;
+import hci923e18.database.UCIAdvancedObject;
 import hci923e18.diabetesinformationapplication.R;
 
 public class UCIAdvanced extends AppCompatActivity {
 
     Button buttonAdvanced;
     EditText editTextDiary;
-    ErrorObject errorObject;
+    UCIAdvancedObject uciAdvancedObject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,7 @@ public class UCIAdvanced extends AppCompatActivity {
 
         buttonAdvanced = findViewById(R.id.button_advanced_diary);
         editTextDiary = findViewById(R.id.editText_advanced);
+        uciAdvancedObject = new UCIAdvancedObject();
 
         buttonAdvanced.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,18 +41,22 @@ public class UCIAdvanced extends AppCompatActivity {
                     Toast.makeText(UCIAdvanced.this, "Beskriv venligst dine oplevelser", Toast.LENGTH_LONG).show();
                 } else {
 
-                    Identifier i =Identifier.listAll(Identifier.class).get(0);
+                    Identifier i = null;
+                    try {
+                        i = Identifier.listAll(Identifier.class).get(0);
+                    } catch (Exception e) {
+                        Toast.makeText(UCIAdvanced.this, "Der skete en fejl med databasen prøv igen senere", Toast.LENGTH_LONG).show();
+                    }
 
-                    errorObject.setId(i.get_ID());
-                    errorObject.setAdvanced(true);
-                    errorObject.setDiary(editTextDiary.getText().toString());
-
-                    //TODO Enten upload til db eller redirect til mere
+                    uciAdvancedObject.setId(i.get_ID());
+                    uciAdvancedObject.setDiary(editTextDiary.getText().toString());
 
 
-//                    Intent intent = new Intent(UCIAdvanced.this, UCI.class);
-//                    intent.putExtra("myObj", errorObject);
-//                    startActivity(intent);
+                    Intent intent = new Intent(UCIAdvanced.this, UCIAdvancedGoodBad.class);
+                    intent.putExtra("myObj", uciAdvancedObject);
+                    startActivity(intent);
+
+
                     finish();
                 }
             }

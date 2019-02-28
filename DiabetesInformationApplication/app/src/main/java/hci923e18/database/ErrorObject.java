@@ -19,7 +19,6 @@ public class ErrorObject implements Serializable {
     private String effect;
     private String id;
     private Boolean advanced = false;
-    private String diary;
     private String expectation;
 
 
@@ -29,14 +28,6 @@ public class ErrorObject implements Serializable {
 
     public void setExpectation(String expectation) {
         this.expectation = expectation;
-    }
-
-    public String getDiary() {
-        return diary;
-    }
-
-    public void setDiary(String diary) {
-        this.diary = diary;
     }
 
     public Boolean getAdvanced() {

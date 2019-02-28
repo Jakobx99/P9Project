@@ -102,10 +102,14 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".OnBoarding"
+        <activity
+            android:name=".OnBoarding"
+            android:label="@string/app_name"></activity>
+        <activity
+            android:name=".UCI.UCIAdvancedGoodBad"
             android:label="@string/app_name"
-            >
-        </activity>
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" ></activity>
     </application>
 
 </manifest>

@@ -8,16 +8,14 @@ import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import hci923e18.database.ErrorObject;
+import hci923e18.database.UCIAdvancedObject;
 
-public class MongoDB extends AsyncTask<ErrorObject, Void, Boolean> {
+public class MongoDBAdvanced  extends AsyncTask<UCIAdvancedObject, Void, Boolean> {
 
     @Override
-    protected Boolean doInBackground(ErrorObject... errorObjects) {
-        ErrorObject e = errorObjects[0];
+    protected Boolean doInBackground(UCIAdvancedObject... uciAdvancedObjects) {
+        UCIAdvancedObject e = uciAdvancedObjects[0];
 
         MongoClientURI uri = new MongoClientURI(
                 "mongodb://Mobileapplication:d3swUuerAedKlera@diabetesapplication-shard-00-00-j8soa.mongodb.net:27017,diabetesapplication-shard-00-01-j8soa.mongodb.net:27017,diabetesapplication-shard-00-02-j8soa.mongodb.net:27017/test?ssl=true&replicaSet=DIAbetesApplication-shard-0&authSource=admin&retryWrites=true");
@@ -25,22 +23,16 @@ public class MongoDB extends AsyncTask<ErrorObject, Void, Boolean> {
         MongoClient mongoClient = new MongoClient(uri);
         MongoDatabase database = mongoClient.getDatabase("ReportDatabase");
 
-        MongoCollection<BasicDBObject> collection = database.getCollection("Reports", BasicDBObject.class);
+        MongoCollection<BasicDBObject> collection = database.getCollection("Diary", BasicDBObject.class);
 
         BasicDBObject document = new BasicDBObject();
-        document.put("page", e.getPage());
+        document.put("diary", e.getDiary());
+        document.put("good", e.getGood());
+        document.put("bad", e.getBad());
+        document.put("id", e.getId());
         document.put("date", e.getDate());
         document.put("readableDate", e.getReadableDate());
-        document.put("type", e.getType());
-        document.put("element", e.getElement());
-        document.put("task", e.getTask());
-        document.put("frequency", e.getFrequency());
-        document.put("completed", e.getCompleted());
-        document.put("erroreffect", e.getError());
-        document.put("statisfaction", e.getEffect());
-        document.put("id", e.getId());
-        document.put("advanced", e.getAdvanced());
-        document.put("expectation",e.getExpectation());
+
         collection.insertOne(document);
 
         //Might have to extend this with a wait
@@ -49,6 +41,5 @@ public class MongoDB extends AsyncTask<ErrorObject, Void, Boolean> {
 
         return true;
     }
-
 
 }
