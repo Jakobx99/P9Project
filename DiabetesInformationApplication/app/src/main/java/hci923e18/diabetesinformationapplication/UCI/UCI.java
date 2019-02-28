@@ -39,6 +39,10 @@ public class UCI extends AppCompatActivity {
     final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy HH:mm");
     EditText UCIExpectation;
 
+    /**
+     * The onCreate method
+     * @param savedInstanceState The saved instance state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -189,6 +193,11 @@ public class UCI extends AppCompatActivity {
         });
     }
 
+    /**
+     * A method to check if an edittext is empty
+     * @param etText The edittext field
+     * @return Boolean representing if the field was empty
+     */
     private boolean isEmpty(EditText etText) {
         if (etText.getText().toString().trim().length() > 0)
             return false;
@@ -213,6 +222,11 @@ public class UCI extends AppCompatActivity {
         finish();
     }
 
+    /**
+     * Method to generate the relevant string array for the dropdown menu regarding the selected page
+     * @param page The calling page
+     * @return A string array with the elements of the calling page
+     */
     private String [] generateStringArray(String page){
 
         String[] def = {"tekst felt","udregning","andet"};

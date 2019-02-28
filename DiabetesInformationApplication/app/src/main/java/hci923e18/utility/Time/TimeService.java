@@ -9,6 +9,9 @@ public class TimeService extends Service {
 
     public static TimeReciever alarmReceiver = null;
 
+    /**
+     * OnCreate method
+     */
     @Override
     public void onCreate() {
         if (alarmReceiver == null) {

@@ -18,6 +18,10 @@ public class OnBoarding extends AppIntro {
     Identifier i = new Identifier();
 
 
+    /**
+     * On create method for the boarding pages
+     * @param savedInstanceState The saved instance state from closed application
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -121,18 +125,31 @@ public class OnBoarding extends AppIntro {
 
     }
 
+    /**
+     * Method for the skip button
+     * @param currentFragment The current fragment
+     */
     @Override
     public void onSkipPressed(Fragment currentFragment) {
         super.onSkipPressed(currentFragment);
         finish();
     }
 
+    /**
+     * Method for done button
+     * @param currentFragment The current fragment
+     */
     @Override
     public void onDonePressed(Fragment currentFragment) {
         super.onDonePressed(currentFragment);
         finish();
     }
 
+    /**
+     * Method for slide changed event
+     * @param oldFragment The old fragment
+     * @param newFragment The new fragment
+     */
     @Override
     public void onSlideChanged(@Nullable Fragment oldFragment, @Nullable Fragment newFragment) {
         super.onSlideChanged(oldFragment, newFragment);

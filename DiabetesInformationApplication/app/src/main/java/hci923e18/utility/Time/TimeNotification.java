@@ -19,8 +19,11 @@ import hci923e18.utility.NotificationUtil;
 public class TimeNotification {
     //Initialize the interval for the alarm
     long intervalMillis = 0;
-    //If the alarm is for every day of the week
-    //Alarm once a day
+
+    /**
+     * Initiates the alarmmanager with 3 alarms each day
+     * @param ctx The context of the calling activity
+     */
     public void setAlarm(Context ctx){
 
         Identifier i = Identifier.listAll(Identifier.class).get(0);

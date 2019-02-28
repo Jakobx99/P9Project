@@ -22,6 +22,10 @@ public class UCIAdvancedGoodBad extends AppCompatActivity {
     UCIAdvancedObject uciAdvancedObject;
     final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy HH:mm");
 
+    /**
+     * OnCreate method
+     * @param savedInstanceState The saved instance state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,18 +55,22 @@ public class UCIAdvancedGoodBad extends AppCompatActivity {
                 }
             }
         });
-
-        //TODO JAVADOCS
-
-
     }
 
+    /**
+     * A method to check if an edittext is empty
+     * @param etText The edittext field
+     * @return Boolean representing if the field was empty
+     */
     private boolean isEmpty(EditText etText) {
         if (etText.getText().toString().trim().length() > 0)
             return false;
         return true;
     }
 
+    /**
+     * Method used to send the UCIAdvancedObject to the Mongo database
+     */
     private void sendToDatabase(){
         MongoDBAdvanced m = new MongoDBAdvanced();
         try {

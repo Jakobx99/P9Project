@@ -25,6 +25,10 @@ public class UCIAdvanced extends AppCompatActivity {
     EditText editTextDiary;
     UCIAdvancedObject uciAdvancedObject;
 
+    /**
+     * The onCreate method
+     * @param savedInstanceState The saved instance state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +69,11 @@ public class UCIAdvanced extends AppCompatActivity {
 
     }
 
-
+    /**
+     * A method to check if an edittext is empty
+     * @param etText The edittext field
+     * @return Boolean representing if the field was empty
+     */
     private boolean isEmpty(EditText etText) {
         if (etText.getText().toString().trim().length() > 0)
             return false;
