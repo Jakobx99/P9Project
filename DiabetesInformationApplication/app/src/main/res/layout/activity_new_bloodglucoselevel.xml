@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -199,18 +204,18 @@
             android:textAlignment="center" />
 
     </LinearLayout>
-
+</android.support.constraint.ConstraintLayout>
+</ScrollView>
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatingActionButton_newBloodglucoseLevel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="4dp"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="8dp"
+        android:alpha="0.6"
         android:clickable="true"
         app:backgroundTint="@color/picker_button_background_innactive"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/icons8_info_24" />
-
-</android.support.constraint.ConstraintLayout>
-</ScrollView>
+</FrameLayout>
