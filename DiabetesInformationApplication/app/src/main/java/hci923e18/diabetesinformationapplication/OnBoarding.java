@@ -80,8 +80,7 @@ public class OnBoarding extends AppIntro {
             SliderPage sliderPage7 = new SliderPage();
             sliderPage7.setTitle("Dagbog");
             sliderPage7.setDescription("Ud over at kunne rapporterer fejl på hver side beder vi dig om at lave et lille dagbogs indslag hver dag" +"\n" + "Knappen til dagbogen findes på forsiden.");
-            //TODO Tag nyt billede
-            sliderPage7.setImageDrawable(R.drawable.middletext);
+            sliderPage7.setImageDrawable(R.drawable.diaryfrontpage);
             sliderPage7.setBgColor(getResources().getColor(R.color.white));
             sliderPage7.setDescColor(getResources().getColor(R.color.lightRed));
             sliderPage7.setTitleColor(getResources().getColor(R.color.lightRed));
