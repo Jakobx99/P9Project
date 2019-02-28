@@ -244,7 +244,11 @@ public class MealPlanFragment extends Fragment {
         Pair<Food,Double> p = new Pair<>(calculator.calculateNutritinalValuesDependingOnWeight(f), f.second);
         foods.add(p);
         mAdapter.notifyDataSetChanged();
-        createDatabaseFoodList();
+        try {
+            createDatabaseFoodList();
+        } catch (Exception e) {
+            Toast.makeText(getActivity(), "Der skete en fejl med databasen prøv at genstarte appen", Toast.LENGTH_LONG).show();
+        }
     }
 
     /**
