@@ -15,6 +15,7 @@ import java.util.List;
 import hci923e18.database.Food;
 import hci923e18.diabetesinformationapplication.Tabs.FrontPageActivity;
 import hci923e18.utility.PopulateDatabase;
+import hci923e18.utility.Time.TimeNotification;
 import hci923e18.utility.Time.TimeService;
 
 public class SplashActivity extends AppCompatActivity {
@@ -44,6 +45,9 @@ public class SplashActivity extends AppCompatActivity {
         //Starts the time based notification service
         Intent in = new Intent(SplashActivity.this, TimeService.class);
         startService(in);
+        TimeNotification timeNotification = new TimeNotification();
+        timeNotification.setAlarm(getApplicationContext());
+
 
             logo=(ImageView)findViewById(R.id.logo);
 
