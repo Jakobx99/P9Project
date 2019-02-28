@@ -14,6 +14,7 @@ import android.widget.Button;
 import hci923e18.diabetesinformationapplication.BloodGlycoseOverview.BloodGlycoseOverviewActivity;
 import hci923e18.diabetesinformationapplication.R;
 import hci923e18.diabetesinformationapplication.UCI.UCI;
+import hci923e18.diabetesinformationapplication.UCI.UCIAdvanced;
 import hci923e18.diabetesinformationapplication.newBloodGlucoseLevelActivity;
 import hci923e18.utility.NotificationUtil;
 import hci923e18.utility.Time.TimeNotification;
@@ -39,6 +40,7 @@ public class HomeFragment extends Fragment {
     Button displayButton;
     Button overviewButton;
     Button newbloodglucoselevelButton;
+    Button diary;
 
     FloatingActionButton floatingActionButtonHome;
 
@@ -138,6 +140,14 @@ public class HomeFragment extends Fragment {
                             }
         });
 
+        diary = view.findViewById(R.id.button_diary);
+        diary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity(), UCIAdvanced.class);
+                startActivity(i);
+            }
+        });
         // Inflate the layout for this fragment
         return view;
     }

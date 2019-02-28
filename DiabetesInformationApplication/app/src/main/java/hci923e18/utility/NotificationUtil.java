@@ -45,7 +45,7 @@ public class NotificationUtil extends ContextWrapper {
         if (id == 2 && advanced){
             notifyIntent = new Intent(this, UCIAdvanced.class);
         } else if (id == 2 && !advanced){
-            notifyIntent = new Intent(this, UCI.class);
+            notifyIntent = new Intent(this, FrontPageActivity.class);
         }
         else {
             notifyIntent = new Intent(this, FrontPageActivity.class);
