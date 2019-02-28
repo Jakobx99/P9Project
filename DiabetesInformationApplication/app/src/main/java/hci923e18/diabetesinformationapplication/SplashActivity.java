@@ -1,8 +1,10 @@
 package hci923e18.diabetesinformationapplication;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.animation.Animation;
@@ -33,11 +35,16 @@ public class SplashActivity extends AppCompatActivity {
 
         List<Food> _food = new ArrayList<Food>();
          _food = Food.listAll(Food.class);
-        if (_food.size() == 0)
-        {
-            PopulateDatabase.populateDB();
 
+        SharedPreferences s = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        if (s.getBoolean("firstStart", true)){
+            PopulateDatabase.populateDB();
         }
+//        if (_food.size() == 0)
+//        {
+//            PopulateDatabase.populateDB();
+//
+//        }
         else {
             Log.d("DATABASE", "THERE IS A DATABASE");
         }
