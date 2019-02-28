@@ -61,6 +61,7 @@ public class MealPlanFragment extends Fragment {
     MealPlanAdapter mAdapter;
     TextView mealPlanAddFood;
     List<Food> databaseFoods = new ArrayList<>();
+    List<Food> backupFood = new ArrayList<>();
     AlertDialog alertDialog;
     Calculator calculator = new Calculator();
     String mealType;
@@ -243,6 +244,7 @@ public class MealPlanFragment extends Fragment {
         Pair<Food,Double> p = new Pair<>(calculator.calculateNutritinalValuesDependingOnWeight(f), f.second);
         foods.add(p);
         mAdapter.notifyDataSetChanged();
+        createDatabaseFoodList();
     }
 
     /**
@@ -273,6 +275,7 @@ public class MealPlanFragment extends Fragment {
 
                 String text = editTextSearch.getText().toString().toLowerCase(Locale.getDefault());
                 localAdapter.filter(text);
+
             }
 
             @Override
@@ -289,6 +292,7 @@ public class MealPlanFragment extends Fragment {
      */
     private void createDatabaseFoodList(){
         databaseFoods = Food.listAll(Food.class);
+        backupFood = databaseFoods;
     }
 
     /**

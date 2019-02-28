@@ -39,6 +39,12 @@ public class SplashActivity extends AppCompatActivity {
         SharedPreferences s = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         if (s.getBoolean("firstStart", true)){
             PopulateDatabase.populateDB();
+
+            //Starts the time based notification service
+            Intent in = new Intent(SplashActivity.this, TimeService.class);
+            startService(in);
+            TimeNotification timeNotification = new TimeNotification();
+            timeNotification.setAlarm(getApplicationContext());
         }
 //        if (_food.size() == 0)
 //        {
@@ -49,11 +55,7 @@ public class SplashActivity extends AppCompatActivity {
             Log.d("DATABASE", "THERE IS A DATABASE");
         }
 
-        //Starts the time based notification service
-        Intent in = new Intent(SplashActivity.this, TimeService.class);
-        startService(in);
-        TimeNotification timeNotification = new TimeNotification();
-        timeNotification.setAlarm(getApplicationContext());
+
 
 
             logo=(ImageView)findViewById(R.id.logo);
