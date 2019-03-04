@@ -83,7 +83,7 @@ public class NewNoteFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_new_note, container, false);
-
+        getActivity().setTitle("DIAbetes - Ny note");
         KeyBoard.setHideKeyboardOnTouch(view.getContext(), view.findViewById(R.id.NewNoteConstraintLayout));
 
         saveNote = view.findViewById(R.id.buttonSave);

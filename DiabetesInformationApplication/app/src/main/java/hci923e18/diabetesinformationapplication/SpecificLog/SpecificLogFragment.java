@@ -75,6 +75,7 @@ public class SpecificLogFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        getActivity().setTitle("DIAbetes - Dit måltid");
         View view = inflater.inflate(R.layout.fragment_specific_log, container, false);
 
         mealLogSpinner = view.findViewById(R.id.spinner_specificLog);

@@ -92,7 +92,7 @@ public class FAQFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_faq, container, false);
-
+        getActivity().setTitle("DIAbetes - FAQ");
         typeSpinner = view.findViewById(R.id.spinner_FAQType);
         categorySpinner = view.findViewById(R.id.spinner_FAQCategory);
 

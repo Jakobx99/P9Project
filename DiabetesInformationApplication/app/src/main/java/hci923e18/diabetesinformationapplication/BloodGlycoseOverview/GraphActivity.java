@@ -190,7 +190,6 @@ public class GraphActivity extends AppCompatActivity {
         } catch (Exception e) {
             p = new Profile();
             p.set_idealBloodGlucoseLevel(5.5);
-            p.set_insulinDuration(3.5);
             p.set_totalDailyInsulinConsumption(30.0);
 
             //Save default to DB

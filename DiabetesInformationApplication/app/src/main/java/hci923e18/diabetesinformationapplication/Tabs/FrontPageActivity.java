@@ -181,6 +181,7 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
     @Override
     public void onBackPressed() {
         if (getFragmentManager().getBackStackEntryCount() > 0) {
+            setTitle("DIAbetes");
             getFragmentManager().popBackStack();
         } else {
         }

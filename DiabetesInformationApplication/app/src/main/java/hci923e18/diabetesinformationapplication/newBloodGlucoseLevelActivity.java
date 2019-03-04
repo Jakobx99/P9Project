@@ -63,6 +63,7 @@ public class newBloodGlucoseLevelActivity extends AppCompatActivity implements T
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_new_bloodglucoselevel);
         KeyBoard.setHideKeyboardOnTouch(this, findViewById(R.id.container));
 
@@ -283,12 +284,9 @@ public class newBloodGlucoseLevelActivity extends AppCompatActivity implements T
         } catch (Exception e) {
             p = new Profile();
             p.set_idealBloodGlucoseLevel(5.5);
-            p.set_insulinDuration(3.5);
             p.set_totalDailyInsulinConsumption(30.0);
             p.set_upperBloodGlucoseLevel(15.0);
             p.set_lowerBloodGlucoseLevel(3.0);
-            p.set_beforeBloodGlucoseLevel(8.0);
-            p.set_afterBloodGlucoseLevel(8.0);
 
             //Save default to DB
             p.save();

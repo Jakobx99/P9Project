@@ -16,10 +16,7 @@ public class Calculator {
             user = Profile.listAll(Profile.class).get(0);
         } catch (Exception e) {
             user.set_idealBloodGlucoseLevel(6.0);
-            user.set_insulinDuration(3.5);
             user.set_totalDailyInsulinConsumption(41.6);
-            user.set_afterBloodGlucoseLevel(9.0);
-            user.set_beforeBloodGlucoseLevel(6.0);
             user.set_lowerBloodGlucoseLevel(2.8);
             user.set_upperBloodGlucoseLevel(13.0);
         }

@@ -81,7 +81,7 @@ public class NoteListFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_note_list, container, false);
-
+        getActivity().setTitle("DIAbetes - Dine noter");
         try {
             noteObjects = NoteObject.listAll(NoteObject.class);
         } catch (Exception e) {

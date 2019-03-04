@@ -22,25 +22,18 @@ public class SettingsActivity extends AppCompatActivity {
 
     public Button saveButton;
     public EditText idealBloodGlucoseLevel;
-    public EditText insulinDuration;
     public EditText totalDailyInsulinConsumption;
     public EditText upperBloodGlucoseLevel;
     public EditText lowerBloodGlucoseLevel;
-    public EditText beforeBloodGlucoseLevel;
-    public EditText afterBloodGlucoseLevel;
     public TextView titleUpper;
     public TextView titleLower;
-    public TextView titleBefore;
-    public TextView titleAfter;
     public ImageButton infoBloodGlucose;
-    public ImageButton infoDuration;
     public ImageButton infoInsulinUsage;
     public ImageButton infoUpperLimit;
     public ImageButton infoLowerLimit;
-    public ImageButton infoBefore;
-    public ImageButton infoAfter;
+
     private FloatingActionButton floatingActionButtonSettings;
-    Switch switchButton;
+
     Profile p;
 
     /**
@@ -54,13 +47,13 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
         KeyBoard.setHideKeyboardOnTouch(this, findViewById(R.id.container));
 
-        switchButton = findViewById(R.id.switch_settingLimits);
+
         saveButton = findViewById(R.id.button_save);
         idealBloodGlucoseLevel = findViewById(R.id.textView_idealBloodGlucoseLevel);
-        insulinDuration = findViewById(R.id.textView_insulinDuration);
+
         totalDailyInsulinConsumption = findViewById(R.id.textView_totalDailyInsulinConsumption);
         infoBloodGlucose = findViewById(R.id.imageButtonBloodGlucose);
-        infoDuration = findViewById(R.id.imageButtonInsulinDuratation);
+
         infoInsulinUsage = findViewById(R.id.imageButtonInsulinUsage);
         upperBloodGlucoseLevel = findViewById(R.id.textView_UpperBloodGlucoseLevel);
         titleUpper = findViewById(R.id.textView_titleUpperBloodGlucoseLevel);
@@ -68,53 +61,15 @@ public class SettingsActivity extends AppCompatActivity {
         lowerBloodGlucoseLevel = findViewById(R.id.textView_LowerBloodGlucoseLevel);
         titleLower = findViewById(R.id.textView_titleLowerBloodGlucoseLevel);
         infoLowerLimit = findViewById(R.id.imageButton_LowerBloodGlucoseLevel);
-        beforeBloodGlucoseLevel = findViewById(R.id.textView_BeforeBloodGlucoseLevel);
-        titleBefore = findViewById(R.id.textView_titleBeforeBloodGlucoseLevel);
-        infoBefore = findViewById(R.id.imageButton_BeforeBloodGlucoseLevel);
-        afterBloodGlucoseLevel = findViewById(R.id.textView_AfterBloodGlucoseLevel);
-        titleAfter = findViewById(R.id.textView_titleAfterBloodGlucoseLevel);
-        infoAfter = findViewById(R.id.imageButton_AfterBloodGlucoseLevel);
 
         fetchdata();
         idealBloodGlucoseLevel.setText(p.get_idealBloodGlucoseLevel().toString());
-        insulinDuration.setText(p.get_insulinDuration().toString());
+
         totalDailyInsulinConsumption.setText(p.get_totalDailyInsulinConsumption().toString());
         upperBloodGlucoseLevel.setText(p.get_upperBloodGlucoseLevel().toString());
         lowerBloodGlucoseLevel.setText(p.get_lowerBloodGlucoseLevel().toString());
-        beforeBloodGlucoseLevel.setText(p.get_beforeBloodGlucoseLevel().toString());
-        afterBloodGlucoseLevel.setText(p.get_afterBloodGlucoseLevel().toString());
 
-        switchButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                upperBloodGlucoseLevel.setVisibility(View.VISIBLE);
-                titleUpper.setVisibility(View.VISIBLE);
-                infoUpperLimit.setVisibility(View.VISIBLE);
-                lowerBloodGlucoseLevel.setVisibility(View.VISIBLE);
-                titleLower.setVisibility(View.VISIBLE);
-                infoLowerLimit.setVisibility(View.VISIBLE);
-                beforeBloodGlucoseLevel.setVisibility(View.VISIBLE);
-                titleBefore.setVisibility(View.VISIBLE);
-                infoBefore.setVisibility(View.VISIBLE);
-                afterBloodGlucoseLevel.setVisibility(View.VISIBLE);
-                titleAfter.setVisibility(View.VISIBLE);
-                infoAfter.setVisibility(View.VISIBLE);
-                if (!isChecked)
-                {
-                    upperBloodGlucoseLevel.setVisibility(View.GONE);
-                    titleUpper.setVisibility(View.GONE);
-                    infoUpperLimit.setVisibility(View.GONE);
-                    lowerBloodGlucoseLevel.setVisibility(View.GONE);
-                    titleLower.setVisibility(View.GONE);
-                    infoLowerLimit.setVisibility(View.GONE);
-                    beforeBloodGlucoseLevel.setVisibility(View.GONE);
-                    titleBefore.setVisibility(View.GONE);
-                    infoBefore.setVisibility(View.GONE);
-                    afterBloodGlucoseLevel.setVisibility(View.GONE);
-                    titleAfter.setVisibility(View.GONE);
-                    infoAfter.setVisibility(View.GONE);
-                }
-            }
-        });
+
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,14 +86,6 @@ public class SettingsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 TooltipCompat.setTooltipText(v,"Idealt blodsukker bliver brugt til at korrigere blodsukkeret udenfor normal værdien");
                 Toast.makeText(v.getContext(), "Idealt blodsukker bliver brugt til at korrigere blodsukkeret udenfor normal værdien", Toast.LENGTH_LONG).show();
-            }
-        });
-
-        infoDuration.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                TooltipCompat.setTooltipText(v,"Tiltænkt til fremtidige features");
-                Toast.makeText(v.getContext(), "Tiltænkt til fremtidige features", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -166,21 +113,6 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        infoBefore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                TooltipCompat.setTooltipText(v,"Bruges til at farvekode dine blodsukker målinger ved målinger taget før et måltid");
-                Toast.makeText(v.getContext(), "Bruges til at farvekode dine blodsukker målinger ved målinger taget før et måltid", Toast.LENGTH_LONG).show();
-            }
-        });
-
-        infoAfter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                TooltipCompat.setTooltipText(v,"Bruges til at farvekode dine blodsukker målinger ved målinger taget efter et måltid");
-                Toast.makeText(v.getContext(), "Bruges til at farvekode dine blodsukker målinger ved målinger taget efter et måltid", Toast.LENGTH_LONG).show();
-            }
-        });
 
         floatingActionButtonSettings = findViewById(R.id.floatingActionButton_settings);
         floatingActionButtonSettings.setOnClickListener(new View.OnClickListener() {
@@ -204,10 +136,7 @@ public class SettingsActivity extends AppCompatActivity {
         } catch (Exception e) {
             p = new Profile();
             p.set_idealBloodGlucoseLevel(5.5);
-            p.set_insulinDuration(3.5);
             p.set_totalDailyInsulinConsumption(30.0);
-            p.set_afterBloodGlucoseLevel(9.0);
-            p.set_beforeBloodGlucoseLevel(6.0);
             p.set_lowerBloodGlucoseLevel(2.8);
             p.set_upperBloodGlucoseLevel(13.0);
             p.set_parentalControl(0);
@@ -235,15 +164,6 @@ public class SettingsActivity extends AppCompatActivity {
             p.set_idealBloodGlucoseLevel(Double.parseDouble(0 + idealBloodGlucoseLevel.getText().toString()));
         }
 
-        if(insulinDuration.getText().toString().isEmpty())
-        {
-            Toast.makeText(this,"Du mangler at angive hvor længe insulinen er aktiv, efter du har taget det",Toast.LENGTH_LONG).show();
-            return false;
-        }
-        else
-        {
-            p.set_insulinDuration(Double.parseDouble(0 + insulinDuration.getText().toString()));
-        }
 
         if(totalDailyInsulinConsumption.getText().toString().isEmpty())
         {
@@ -269,21 +189,6 @@ public class SettingsActivity extends AppCompatActivity {
         }
         else{
             p.set_lowerBloodGlucoseLevel(Double.parseDouble(0 + lowerBloodGlucoseLevel.getText().toString()));
-        }
-
-        if(beforeBloodGlucoseLevel.getText().toString().isEmpty()) {
-            Toast.makeText(this, "Du mangler at angive en grænseværdi for dit blod sukker før måltider", Toast.LENGTH_LONG).show();
-            return false;
-        }
-        else{
-            p.set_beforeBloodGlucoseLevel(Double.parseDouble(0 + beforeBloodGlucoseLevel.getText().toString()));
-        }
-        if(afterBloodGlucoseLevel.getText().toString().isEmpty()) {
-            Toast.makeText(this, "Du mangler at angive en grænseværdi for dit blod sukker efter måltider", Toast.LENGTH_LONG).show();
-            return false;
-        }
-        else{
-            p.set_afterBloodGlucoseLevel(Double.parseDouble(0 + afterBloodGlucoseLevel.getText().toString()));
         }
 
         try {

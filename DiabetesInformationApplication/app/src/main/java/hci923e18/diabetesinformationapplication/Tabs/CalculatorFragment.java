@@ -105,6 +105,7 @@ public class CalculatorFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_calculator, container, false);
+        getActivity().setTitle("DIAbetes - Insulinberegner");
         KeyBoard.setHideKeyboardOnTouch(view.getContext(),view.findViewById(R.id.calculatorlayout));
         fetchProfile();
 
@@ -274,12 +275,9 @@ public class CalculatorFragment extends Fragment {
         } catch (Exception e) {
             p = new Profile();
             p.set_idealBloodGlucoseLevel(5.5);
-            p.set_insulinDuration(3.5);
             p.set_totalDailyInsulinConsumption(30.0);
             p.set_upperBloodGlucoseLevel(15.0);
             p.set_lowerBloodGlucoseLevel(3.0);
-            p.set_beforeBloodGlucoseLevel(8.0);
-            p.set_afterBloodGlucoseLevel(8.0);
 
             //Save default to DB
             p.save();

@@ -17,14 +17,16 @@
     tools:context=".LongtermMeasurements.LongtermMeasurement">
 
     <TextView
-        android:id="@+id/textView_langtid_title"
+        android:id="@+id/textView_longtermBloodglucoseInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Indtast ny langtids blodsukker:"
-        android:textSize="24sp"
-        android:textStyle="bold"
+        android:layout_marginTop="8dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:text="Her kan du indtaste dit seneste langtidsblodsukker. Du får derefter vist det indtastede langtidsblodsukker bliver herefter brugt på grafoversigten som reference punkt."
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -53,11 +55,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="16dp"
         android:text="Fra:"
-        android:textSize="20dp"
+        android:textSize="14dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_langtid_title" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_langtid_newbloodglucoselevelEnteredBS" />
 
     <TextView
         android:id="@+id/textView_langtid_til"
@@ -66,7 +68,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="Til:"
-        android:textSize="20dp"
+        android:textSize="14dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edittext_langtid_fradato" />
 
@@ -92,10 +94,10 @@
     <EditText
         android:id="@+id/editText_langtid_newbloodglucoselevelEnteredBS"
         android:layout_width="0dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
+        android:layout_height="71dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/rounded_edittext_green"
         android:ems="10"
         android:hint="Indtast blodsukker i mmol/L"
@@ -112,25 +114,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:text="Langtids blodsukker:"
-        android:textSize="20dp"
+        android:textSize="14dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_langtid_til" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_longtermBloodglucoseInfo" />
 
     <Button
         android:id="@+id/button_langtid_gem"
         style="@style/newbuttonstyle"
         android:layout_width="0dp"
         android:layout_height="43dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="60dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
         android:text="Gem"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_langtid_newbloodglucoselevelEnteredBS" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_langtid_til" />
 
 </android.support.constraint.ConstraintLayout>
 </ScrollView>

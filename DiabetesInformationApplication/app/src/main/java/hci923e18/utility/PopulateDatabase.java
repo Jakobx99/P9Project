@@ -1438,10 +1438,7 @@ public class PopulateDatabase {
 
         Profile profile = new Profile();
         profile.set_idealBloodGlucoseLevel(5.5);
-        profile.set_insulinDuration(3.5);
         profile.set_totalDailyInsulinConsumption(30.0);
-        profile.set_afterBloodGlucoseLevel(9.0);
-        profile.set_beforeBloodGlucoseLevel(6.0);
         profile.set_lowerBloodGlucoseLevel(2.8);
         profile.set_upperBloodGlucoseLevel(13.0);
         profile.set_parentalControl(0);

@@ -75,6 +75,7 @@ public class MealLogFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        getActivity().setTitle("DIAbetes - Måltidslog");
         view = inflater.inflate(R.layout.fragment_meal_log, container, false);
         mealLogListView = view.findViewById(R.id.listview_MealLog);
         try {

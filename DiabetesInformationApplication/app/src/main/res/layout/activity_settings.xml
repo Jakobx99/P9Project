@@ -38,10 +38,14 @@
                     android:id="@+id/textView_LowerBloodGlucoseLevel"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginTop="8dp"
                     android:hint="Nedre grænseværdi"
                     android:inputType="numberDecimal"
-                    android:visibility="gone"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toTopOf="@+id/button_save"
                     app:layout_constraintEnd_toStartOf="@+id/imageButton_LowerBloodGlucoseLevel"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView_titleLowerBloodGlucoseLevel" />
 
@@ -49,84 +53,23 @@
                     android:id="@+id/textView_titleLowerBloodGlucoseLevel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="12dp"
                     android:text="Nedre grænseværdi (mmol/L)"
-                    android:visibility="gone"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_BeforeBloodGlucoseLevel"
-                    tools:layout_editor_absoluteX="0dp" />
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toTopOf="@+id/textView_LowerBloodGlucoseLevel"
+                    app:layout_constraintTop_toBottomOf="@+id/imageButton_UpperBloodGlucoseLevel"
+                    tools:layout_editor_absoluteX="16dp" />
 
                 <ImageButton
                     android:id="@+id/imageButton_LowerBloodGlucoseLevel"
                     android:layout_width="0dp"
                     android:layout_height="47dp"
                     android:background="@android:color/transparent"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     app:layout_constraintBottom_toBottomOf="@+id/textView_LowerBloodGlucoseLevel"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView_LowerBloodGlucoseLevel"
-                    app:layout_constraintVertical_bias="0.0"
-                    app:srcCompat="@android:drawable/ic_menu_info_details" />
-
-                <TextView
-                    android:id="@+id/textView_titleBeforeBloodGlucoseLevel"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Før måltids grænseværdi (mmol/L)"
-                    android:visibility="gone"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_AfterBloodGlucoseLevel"
-                    tools:layout_editor_absoluteX="0dp" />
-
-                <EditText
-                    android:id="@+id/textView_BeforeBloodGlucoseLevel"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:hint="Før måltids grænseværdi"
-                    android:inputType="numberDecimal"
-                    android:visibility="gone"
-                    app:layout_constraintEnd_toStartOf="@+id/imageButton_BeforeBloodGlucoseLevel"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_titleBeforeBloodGlucoseLevel" />
-
-                <ImageButton
-                    android:id="@+id/imageButton_BeforeBloodGlucoseLevel"
-                    android:layout_width="0dp"
-                    android:layout_height="47dp"
-                    android:background="@android:color/transparent"
-                    android:visibility="gone"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView_BeforeBloodGlucoseLevel"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textView_BeforeBloodGlucoseLevel"
-                    app:layout_constraintVertical_bias="0.0"
-                    app:srcCompat="@android:drawable/ic_menu_info_details" />
-
-                <TextView
-                    android:id="@+id/textView_titleAfterBloodGlucoseLevel"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Efter måltids grænseværdi (mmol/L)"
-                    android:visibility="gone"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_UpperBloodGlucoseLevel"
-                    tools:layout_editor_absoluteX="0dp" />
-
-                <EditText
-                    android:id="@+id/textView_AfterBloodGlucoseLevel"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:hint="Efter måltids grænseværdi"
-                    android:inputType="numberDecimal"
-                    android:visibility="gone"
-                    app:layout_constraintEnd_toStartOf="@+id/imageButton_AfterBloodGlucoseLevel"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_titleAfterBloodGlucoseLevel" />
-
-                <ImageButton
-                    android:id="@+id/imageButton_AfterBloodGlucoseLevel"
-                    android:layout_width="0dp"
-                    android:layout_height="47dp"
-                    android:background="@android:color/transparent"
-                    android:visibility="gone"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView_AfterBloodGlucoseLevel"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textView_AfterBloodGlucoseLevel"
                     app:layout_constraintVertical_bias="0.0"
                     app:srcCompat="@android:drawable/ic_menu_info_details" />
 
@@ -134,11 +77,14 @@
                     android:id="@+id/textView_UpperBloodGlucoseLevel"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginTop="8dp"
                     android:hint="Øvre grænseværdi"
                     android:inputType="numberDecimal"
-                    android:visibility="gone"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toTopOf="@+id/textView_titleLowerBloodGlucoseLevel"
                     app:layout_constraintEnd_toStartOf="@+id/imageButton_UpperBloodGlucoseLevel"
-                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView_titleUpperBloodGlucoseLevel" />
 
@@ -146,10 +92,12 @@
                     android:id="@+id/textView_titleUpperBloodGlucoseLevel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="12dp"
                     android:text="Øvre grænseværdi (mmol/L)"
-                    android:visibility="gone"
-                    app:layout_constraintTop_toBottomOf="@+id/switch_settingLimits"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toTopOf="@+id/textView_UpperBloodGlucoseLevel"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_totalDailyInsulinConsumption"
                     tools:layout_editor_absoluteX="0dp" />
 
                 <ImageButton
@@ -157,7 +105,7 @@
                     android:layout_width="0dp"
                     android:layout_height="47dp"
                     android:background="@android:color/transparent"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     app:layout_constraintBottom_toBottomOf="@+id/textView_UpperBloodGlucoseLevel"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView_UpperBloodGlucoseLevel"
@@ -168,18 +116,25 @@
                     android:id="@+id/textView_titleBloodGlucose"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="12dp"
                     android:text="Mål blodsukker værdi (mmol/L)"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintBottom_toTopOf="@+id/imageButtonBloodGlucose"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:layout_editor_absoluteX="0dp" />
 
                 <EditText
                     android:id="@+id/textView_idealBloodGlucoseLevel"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
                     android:layout_marginEnd="5dp"
+                    android:layout_marginTop="8dp"
                     android:hint="Ideal blodsukker"
                     android:inputType="numberDecimal"
+                    app:layout_constraintBottom_toTopOf="@+id/textView6"
                     app:layout_constraintEnd_toStartOf="@+id/imageButtonBloodGlucose"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView_titleBloodGlucose" />
 
@@ -195,48 +150,29 @@
                     app:srcCompat="@android:drawable/ic_menu_info_details" />
 
                 <TextView
-                    android:id="@+id/textView_titleInsulinDuration"
-                    android:layout_width="match_parent"
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Insulin virkningstid (Timer)"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_idealBloodGlucoseLevel" />
-
-                <EditText
-                    android:id="@+id/textView_insulinDuration"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:hint="Insulin virkningstid"
-                    android:inputType="numberDecimal"
-                    app:layout_constraintEnd_toStartOf="@+id/imageButtonInsulinDuratation"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_titleInsulinDuration" />
-
-                <ImageButton
-                    android:id="@+id/imageButtonInsulinDuratation"
-                    android:layout_width="0dp"
-                    android:layout_height="47dp"
-                    android:background="@android:color/transparent"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView_insulinDuration"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textView_insulinDuration"
-                    app:srcCompat="@android:drawable/ic_menu_info_details" />
-
-                <TextView
-                    android:id="@+id/textView_titleInsulinUsage"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="12dp"
                     android:text="Daglig insulin forbrug (Enheder)"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_insulinDuration" />
+                    app:layout_constraintBottom_toTopOf="@+id/textView_totalDailyInsulinConsumption"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_idealBloodGlucoseLevel"
+                    tools:layout_editor_absoluteX="0dp" />
 
                 <EditText
                     android:id="@+id/textView_totalDailyInsulinConsumption"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
                     android:hint="Daglig insulin forbrug"
                     android:inputType="numberDecimal"
+                    app:layout_constraintBottom_toTopOf="@+id/textView_titleUpperBloodGlucoseLevel"
                     app:layout_constraintEnd_toStartOf="@+id/imageButtonInsulinUsage"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_titleInsulinUsage" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
                 <ImageButton
                     android:id="@+id/imageButtonInsulinUsage"
@@ -259,16 +195,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView_LowerBloodGlucoseLevel" />
 
-                <Switch
-                    android:id="@+id/switch_settingLimits"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:checked="false"
-                    android:text="Grænseværdier for grafer"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_totalDailyInsulinConsumption" />
-<!--
+                <!--
                 <TextView
                     android:id="@+id/textView_settingDoctorInfo"
                     android:layout_width="171dp"

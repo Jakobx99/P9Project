@@ -11,35 +11,38 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textView_tileNoteListPage"
+        <Button
+            android:id="@+id/buttonNewNote"
+            style="@style/newbuttonstyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="120dp"
+            android:layout_marginStart="120dp"
             android:layout_marginTop="8dp"
-            android:text="Dine Noter:"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/buttonNewNote"
+            android:text="Ny Note"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/listview_NoteList" />
 
         <LinearLayout
             android:id="@+id/linearLayoutPopUpWindowLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/colum_headers"
             android:orientation="horizontal"
-            android:paddingLeft="5dp"
-            android:paddingTop="5dp"
-            android:paddingRight="5dp"
             android:paddingBottom="5dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="5dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_tileNoteListPage">
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/column_tileNoteList"
@@ -54,6 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Dato" />
+
             <ImageView
                 android:id="@+id/imageView_NoteListHeader"
                 android:layout_width="10dp"
@@ -65,26 +69,15 @@
             android:id="@+id/listview_NoteList"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
             android:background="@drawable/meallog"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/buttonNewNote"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayoutPopUpWindowLayout" />
-
-        <Button
-            android:id="@+id/buttonNewNote"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:text="Ny Note"
-            style="@style/newbuttonstyle"
-            app:layout_constraintBottom_toBottomOf="@+id/textView_tileNoteListPage"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView_tileNoteListPage" />
-
 
 
     </android.support.constraint.ConstraintLayout>
