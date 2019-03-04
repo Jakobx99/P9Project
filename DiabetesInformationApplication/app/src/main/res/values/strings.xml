@@ -1,17 +1,17 @@
 <resources>
     <string name="app_name">DIAbetes</string>
     <string name="title_home">Forside</string>
-    <string name="title_dashboard">Insulin beregner</string>
-    <string name="title_notifications">Måltids planlægger</string>
+    <string name="title_dashboard">Insulinberegner</string>
+    <string name="title_notifications">Måltidsplanlægger</string>
     <string name="title_menuhome">Hjem</string>
     <string name="title_profile">Min profil</string>
     <string name="title_aboutUs">Om os</string>
-    <string name="title_NewLong">Ny langtids blodsukker</string>
+    <string name="title_NewLong">Ny langtidsblodsukker</string>
     <string name="title_notesList">Noter</string>
-    <string name="title_bloodoverview">Blodsukker målings oversigt</string>
+    <string name="title_bloodoverview">Blodsukkermålingsoversigt</string>
     <string name="open">Åben</string>
     <string name="close">Luk</string>
-    <string name="meal_log">Måltids oversigt</string>
+    <string name="meal_log">Måltidsoversigt</string>
     <string name="FAQ">FAQ</string>
     <string name="parent_control">Forældrekontrol</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
