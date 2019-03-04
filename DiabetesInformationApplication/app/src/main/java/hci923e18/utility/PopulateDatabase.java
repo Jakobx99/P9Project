@@ -1233,53 +1233,53 @@ public class PopulateDatabase {
         //Add to database
         SugarRecord.saveInTx(foods);
 
-        //Calendar date, Double glucoseLevel, Integer type, Integer category, Integer beforeAfter
-        Calendar c = Calendar.getInstance();
-        List<BloodGlucoseMeasurements> bloodGlucoseMeasurements = new ArrayList<>();
-//        c.set(2018, Calendar.getInstance().get(Calendar.MONTH) - 1, Calendar.getInstance().get(Calendar.DATE));
+//        //region Measurements
+//        //Calendar date, Double glucoseLevel, Integer type, Integer category, Integer beforeAfter
+//        Calendar c = Calendar.getInstance();
+//        List<BloodGlucoseMeasurements> bloodGlucoseMeasurements = new ArrayList<>();
+//
+//        c.set(2019, Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DATE) -2);
+//        c.set(Calendar.HOUR_OF_DAY, 8);
 //        bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 1.0, 1,1,1));
+//        c.set(Calendar.HOUR_OF_DAY, 9);
+//        bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 4.0, 1,1,1));
+//        c.set(Calendar.HOUR_OF_DAY, 10);
+//        bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 14.0, 1,1,1));
+//        c.set(Calendar.HOUR_OF_DAY, 11);
+//        bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 15.0, 1,1,1));
 //        c = Calendar.getInstance();
+//        c.set(2019, Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DATE) -1);
+//        c.set(Calendar.HOUR_OF_DAY, 8);
+//        bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 1.0, 1,1,1));
+//        c.set(Calendar.HOUR_OF_DAY, 9);
+//        bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 4.0, 1,1,1));
+//        c.set(Calendar.HOUR_OF_DAY, 10);
+//        bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 14.0, 1,1,1));
+//        c.set(Calendar.HOUR_OF_DAY, 11);
+//        bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 15.0, 1,1,1));
+//        c = Calendar.getInstance();
+//        c.set(Calendar.HOUR_OF_DAY, 4);
+//        bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 8.0, 1,1,1));
+//        c.set(Calendar.HOUR_OF_DAY, 5);
+//        bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 2.0, 1,1,1));
+//        c.set(Calendar.HOUR_OF_DAY, 6);
+//        bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 6.0, 1,1,1));
+//
+//        SugarRecord.saveInTx(bloodGlucoseMeasurements);
+//
+//        //Calendar start, Calendar end, Double value
+//        Calendar c1 = Calendar.getInstance();
+//        Calendar c2 = Calendar.getInstance();
+//        c1.set(Calendar.MONTH, 1);
+//        c1.set(Calendar.DATE, 2);
+//        c1.set(Calendar.HOUR_OF_DAY, 4);
+//        c2.set(Calendar.MONTH, 11);
+//        c2.set(Calendar.HOUR_OF_DAY, 4);
+//
+//        LongTermBloodGlucose longTermBloodGlucose = new LongTermBloodGlucose(c1, c2, 6.2);
+//        longTermBloodGlucose.save();
+//        //endregion
 
-        c.set(2019, Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DATE) -2);
-        c.set(Calendar.HOUR_OF_DAY, 8);
-        bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 1.0, 1,1,1));
-        c.set(Calendar.HOUR_OF_DAY, 9);
-        bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 4.0, 1,1,1));
-        c.set(Calendar.HOUR_OF_DAY, 10);
-        bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 14.0, 1,1,1));
-        c.set(Calendar.HOUR_OF_DAY, 11);
-        bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 15.0, 1,1,1));
-        c = Calendar.getInstance();
-        c.set(2019, Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DATE) -1);
-        c.set(Calendar.HOUR_OF_DAY, 8);
-        bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 1.0, 1,1,1));
-        c.set(Calendar.HOUR_OF_DAY, 9);
-        bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 4.0, 1,1,1));
-        c.set(Calendar.HOUR_OF_DAY, 10);
-        bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 14.0, 1,1,1));
-        c.set(Calendar.HOUR_OF_DAY, 11);
-        bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 15.0, 1,1,1));
-        c = Calendar.getInstance();
-        c.set(Calendar.HOUR_OF_DAY, 4);
-        bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 8.0, 1,1,1));
-        c.set(Calendar.HOUR_OF_DAY, 5);
-        bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 2.0, 1,1,1));
-        c.set(Calendar.HOUR_OF_DAY, 6);
-        bloodGlucoseMeasurements.add(new BloodGlucoseMeasurements(c, 6.0, 1,1,1));
-
-        SugarRecord.saveInTx(bloodGlucoseMeasurements);
-
-        //Calendar start, Calendar end, Double value
-        Calendar c1 = Calendar.getInstance();
-        Calendar c2 = Calendar.getInstance();
-        c1.set(Calendar.MONTH, 1);
-        c1.set(Calendar.DATE, 2);
-        c1.set(Calendar.HOUR_OF_DAY, 4);
-        c2.set(Calendar.MONTH, 11);
-        c2.set(Calendar.HOUR_OF_DAY, 4);
-
-        LongTermBloodGlucose longTermBloodGlucose = new LongTermBloodGlucose(c1, c2, 6.2);
-        longTermBloodGlucose.save();
 
         //String title, String answer, Integer type, Integer category
         List<FrequentlyAskedQuestions> FAQObjects = new ArrayList<>();

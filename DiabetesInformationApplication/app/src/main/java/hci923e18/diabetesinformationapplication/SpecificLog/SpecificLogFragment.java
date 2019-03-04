@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+
 import hci923e18.database.MealObject;
 import hci923e18.diabetesinformationapplication.R;
 import hci923e18.diabetesinformationapplication.UCI.UCI;
@@ -35,6 +37,7 @@ public class SpecificLogFragment extends Fragment {
     SpecificLogAdapter mAdapter;
     Context mContext;
     MealObject _MealObject;
+    DecimalFormat formater = new DecimalFormat("#.##");
     private FloatingActionButton floatingActionButtonSpecificLog;
 
     /**
@@ -83,11 +86,11 @@ public class SpecificLogFragment extends Fragment {
         mealLogResult = view.findViewById(R.id.textView_specificLog_result);
         mealLogLayout = view.findViewById(R.id.specificLog_listview);
 
-        mealLogResult.setText(_MealObject.get_insulinResult().toString());
+        mealLogResult.setText(formater.format(_MealObject.get_insulinResult()));
         mealLogBloodSugar.setText(_MealObject.get_bloodGlucoseLevel().toString());
         mealLogSpinner.setText(_MealObject.get_mealtype());
 
-        mealLogBloodSugar.setInputType(0);
+        //mealLogBloodSugar.setInputType(0);
         mealLogSpinner.setInputType(0);
 
         mAdapter = new SpecificLogAdapter(view.getContext(),0, _MealObject.get_meals());
