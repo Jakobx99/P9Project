@@ -80,7 +80,7 @@ public class newBloodGlucoseLevelActivity extends AppCompatActivity implements T
         lowerLimitBS = p.get_lowerBloodGlucoseLevel();
 
         String [] values =
-                {"Morgenmad","Middagsmad","Aftensmad"};
+                {"Morgenmad","Middagsmad","Aftensmad", "Andet"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, values);
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         typeOfMeal.setAdapter(adapter);
@@ -237,6 +237,8 @@ public class newBloodGlucoseLevelActivity extends AppCompatActivity implements T
                     else if(Objects.equals(mealType,"Aftensmad"))
                     {
                         newBloodGlucoseLevel.set_category(2);   //aftensmad
+                    } else if (Objects.equals(mealType, "Andet")){
+                        newBloodGlucoseLevel.set_category(3);
                     }
 
                     newBloodGlucoseLevel.save();

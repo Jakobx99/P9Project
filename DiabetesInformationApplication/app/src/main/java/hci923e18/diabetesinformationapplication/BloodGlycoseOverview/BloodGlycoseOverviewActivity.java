@@ -129,54 +129,70 @@ public class BloodGlycoseOverviewActivity extends AppCompatActivity {
 //        });
 
                 //Sets the size of the red/yellow/green display on startup
-        if (bloodGlucoseMeasurement.size() != 0){
+        if (bloodGlucoseMeasurement.size() != 0) {
             count = bloodGlucoseMeasurement.size();
             calculateRatio();
             ViewTreeObserver vto = linearLayout.getViewTreeObserver();
             vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                 @Override
                 public void onGlobalLayout() {
-                    int localwidth  = linearLayout.getMeasuredWidth();
-                    if (count == 0){
+                    int localwidth = linearLayout.getMeasuredWidth();
+                    if (count == 0) {
                         redButton.setText("0");
                         yellowButton.setText("0");
                         greenButton.setText("0");
                     } else {
-                        if (reds == 0){
+                        if (reds == 0) {
                             redButton.setText(String.valueOf(reds));
-                            redButton.setWidth((localwidth/count));
-                        }else{
+                            redButton.setWidth((localwidth / count));
+                        } else {
                             redButton.setText(String.valueOf(reds));
-                            redButton.setWidth((localwidth/count)*reds);
+                            redButton.setWidth((localwidth / count) * reds);
                         }
-                        if (yellows == 0){
+                        if (yellows == 0) {
                             yellowButton.setText(String.valueOf(yellows));
-                            yellowButton.setWidth((localwidth/count));
-                        }else{
+                            yellowButton.setWidth((localwidth / count));
+                        } else {
                             yellowButton.setText(String.valueOf(yellows));
-                            yellowButton.setWidth((localwidth/count)*yellows);
+                            yellowButton.setWidth((localwidth / count) * yellows);
                         }
-                        if (greens == 0){
+                        if (greens == 0) {
                             greenButton.setText(String.valueOf(greens));
-                            greenButton.setWidth((localwidth/count));
-                        }else {
+                            greenButton.setWidth((localwidth / count));
+                        } else {
                             greenButton.setText(String.valueOf(greens));
-                            greenButton.setWidth((localwidth/count)*greens);
+                            greenButton.setWidth((localwidth / count) * greens);
                         }
                     }
                 }
             });
 
+            if (count == 1) {
+                //Populate graph
+                populateGraph(bloodGlucoseMeasurement);
+                graphView.getViewport().setXAxisBoundsManual(true);
+                graphView.getViewport().setMinX(mSeries.getLowestValueX() - 1 );
+                graphView.getViewport().setMaxX(mSeries.getHighestValueX() + 1);
+                graphView.getViewport().setYAxisBoundsManual(true);
+                graphView.getViewport().setMinY(0);
+                graphView.getViewport().setMaxY(mSeries.getHighestValueY()+ 5);
+                graphView.getGridLabelRenderer().setHorizontalLabelsVisible(true);
+                graphView.getGridLabelRenderer().setVerticalLabelsVisible(true);
+            } else {
+
+
+
             //Populate graph
-            populateGraph(bloodGlucoseMeasurement);
-            graphView.getViewport().setXAxisBoundsManual(true);
-            graphView.getViewport().setMinX(mSeries.getLowestValueX());
-            graphView.getViewport().setMaxX(mSeries.getHighestValueX());
-            graphView.getViewport().setYAxisBoundsManual(true);
-            graphView.getViewport().setMinY(mSeries.getLowestValueY());
-            graphView.getViewport().setMaxY(mSeries.getHighestValueY());
-            graphView.getGridLabelRenderer().setHorizontalLabelsVisible(true);
-            graphView.getGridLabelRenderer().setVerticalLabelsVisible(true);
+                populateGraph(bloodGlucoseMeasurement);
+                graphView.getViewport().setXAxisBoundsManual(true);
+                graphView.getViewport().setMinX(mSeries.getLowestValueX());
+                graphView.getViewport().setMaxX(mSeries.getHighestValueX());
+                graphView.getViewport().setYAxisBoundsManual(true);
+                graphView.getViewport().setMinY(0);
+                graphView.getViewport().setMaxY(mSeries.getHighestValueY() + 5);
+                graphView.getGridLabelRenderer().setHorizontalLabelsVisible(true);
+                graphView.getGridLabelRenderer().setVerticalLabelsVisible(true);
+            }
 
             // set date label formatter
 
@@ -218,12 +234,13 @@ public class BloodGlycoseOverviewActivity extends AppCompatActivity {
                 bloodGlucoseMeasurements = b.get(last);
                 b.clear();
             } catch (Exception e) {
-                e.printStackTrace();
+
             }
 
             textViewSeneste.setText("Seneste måling: " + sdf.format(bloodGlucoseMeasurements.getDate().getTime()));
             lastMeasurementEdittext.setText(bloodGlucoseMeasurements.get_glucoseLevel().toString());
             lastMeasurementEdittext.setEnabled(false);
+            lastMeasurementEdittext.setFocusable(false);
 
             if (bloodGlucoseMeasurements.get_glucoseLevel() <= profile.get_lowerBloodGlucoseLevel()) {
                 lastMeasurementEdittext.setBackgroundResource(R.drawable.rounded_edittext_red);
@@ -232,6 +249,10 @@ public class BloodGlycoseOverviewActivity extends AppCompatActivity {
             } else {
                 lastMeasurementEdittext.setBackgroundResource(R.drawable.rounded_edittext_green);
             }
+        } else{
+            lastMeasurementEdittext.setText("Der er ingen målinger lavet");
+            lastMeasurementEdittext.setEnabled(false);
+            lastMeasurementEdittext.setFocusable(false);
         }
     }
 
