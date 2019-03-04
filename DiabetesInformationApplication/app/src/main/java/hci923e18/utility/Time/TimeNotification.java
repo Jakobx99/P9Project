@@ -41,10 +41,12 @@ public class TimeNotification {
         if (Calendar.getInstance().get(Calendar.HOUR_OF_DAY) < 8){
             calendar1.set(Calendar.HOUR_OF_DAY, 8);
             calendar1.set(Calendar.MINUTE, 00);
+            calendar1.set(Calendar.SECOND,00);
         } else {
             calendar1.add(Calendar.DATE, 1);
             calendar1.set(Calendar.HOUR_OF_DAY, 8);
             calendar1.set(Calendar.MINUTE, 00);
+            calendar1.set(Calendar.SECOND,00);
         }
 
         Intent morningIntent = new Intent(ctx, TimeReciever.class);
@@ -52,7 +54,7 @@ public class TimeNotification {
         morningIntent.putExtra("advanced", i.get_advanced());
         PendingIntent morningSender = PendingIntent.getBroadcast(ctx, 0, morningIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 
-        am.setRepeating(AlarmManager.RTC_WAKEUP, calendar1.getTimeInMillis(), intervalMillis, morningSender);
+        am.setExact(AlarmManager.RTC_WAKEUP, calendar1.getTimeInMillis(), morningSender);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", Locale.US);
         Log.i("Alarm", "Alarm added at: " + sdf.format(new Date()) + "With time:´" + sdf.format(calendar1.getTimeInMillis()));
 
@@ -64,10 +66,12 @@ public class TimeNotification {
         if (Calendar.getInstance().get(Calendar.HOUR_OF_DAY) < 13){
             calendar2.set(Calendar.HOUR_OF_DAY, 13);
             calendar2.set(Calendar.MINUTE, 00);
+            calendar2.set(Calendar.SECOND, 00);
         } else {
             calendar2.add(Calendar.DATE, 1);
             calendar2.set(Calendar.HOUR_OF_DAY, 13);
             calendar2.set(Calendar.MINUTE, 00);
+            calendar2.set(Calendar.SECOND, 00);
         }
 
         Intent afternoonIntent = new Intent(ctx, TimeReciever.class);
@@ -75,7 +79,7 @@ public class TimeNotification {
         afternoonIntent.putExtra("advanced", i.get_advanced());
         PendingIntent afternoonsender = PendingIntent.getBroadcast(ctx, 1, afternoonIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 
-        am.setRepeating(AlarmManager.RTC_WAKEUP, calendar2.getTimeInMillis(), intervalMillis, afternoonsender);
+        am.setExact(AlarmManager.RTC_WAKEUP, calendar2.getTimeInMillis(), afternoonsender);
         Log.i("Alarm", "Alarm added at: " + sdf.format(new Date()) + "With time:´" + sdf.format(calendar2.getTimeInMillis()));
 
         //Evening alarm
@@ -85,18 +89,20 @@ public class TimeNotification {
         if (Calendar.getInstance().get(Calendar.HOUR_OF_DAY) < 20){
             calendar3.set(Calendar.HOUR_OF_DAY, 20);
             calendar3.set(Calendar.MINUTE, 00);
+            calendar3.set(Calendar.SECOND, 00);
         } else {
             calendar3.add(Calendar.DATE, 1);
             calendar3.set(Calendar.HOUR_OF_DAY, 20);
             calendar3.set(Calendar.MINUTE, 00);
+            calendar3.set(Calendar.SECOND, 00);
         }
 
         Intent eveningIntent = new Intent(ctx, TimeReciever.class);
-        morningIntent.putExtra("Identifier", 2);
-        morningIntent.putExtra("advanced", i.get_advanced());
+        eveningIntent.putExtra("Identifier", 2);
+        eveningIntent.putExtra("advanced", i.get_advanced());
         PendingIntent sender = PendingIntent.getBroadcast(ctx, 2, eveningIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 
-        am.setRepeating(AlarmManager.RTC_WAKEUP, calendar3.getTimeInMillis(), intervalMillis, sender);
+        am.setExact(AlarmManager.RTC_WAKEUP, calendar3.getTimeInMillis(), sender);
         Log.i("Alarm", "Alarm added at: " + sdf.format(new Date()) + "With time:´" + sdf.format(calendar3.getTimeInMillis()));
 
     }

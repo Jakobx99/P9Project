@@ -1,10 +1,14 @@
 package hci923e18.diabetesinformationapplication;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.animation.Animation;
@@ -33,12 +37,9 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        List<Food> _food = new ArrayList<Food>();
-         _food = Food.listAll(Food.class);
-
         SharedPreferences s = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         if (s.getBoolean("firstStart", true)){
-            PopulateDatabase.populateDB();
+            PopulateDatabase.populateDB(getApplicationContext());
 
             //Starts the time based notification service
             Intent in = new Intent(SplashActivity.this, TimeService.class);
@@ -71,5 +72,10 @@ public class SplashActivity extends AppCompatActivity {
 
             Animation myanim = AnimationUtils.loadAnimation(this,R.anim.mysplashanimation);
             logo.startAnimation(myanim);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 }

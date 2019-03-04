@@ -1,5 +1,11 @@
 package hci923e18.utility;
 
+import android.Manifest;
+import android.app.Activity;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import com.orm.SugarRecord;
@@ -21,10 +27,11 @@ public class PopulateDatabase {
     /**
      * Method to populate Database with default Food items first time the app is launched
      */
-    public static void populateDB(){
+    public static void populateDB(Context context) {
+
+        String random = android.os.Build.SERIAL.toString();
 
         Identifier identifier = new Identifier();
-        String random = UUID.randomUUID().toString();
         identifier.set_ID(random);
         //Identifier to determine if it is the advanced UCI part of the application they have access to
         identifier.set_advanced(true);
