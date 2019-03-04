@@ -64,6 +64,7 @@ public class FrontPageActivity extends AppCompatActivity implements NavigationVi
                         fragmentManager.popBackStack();
                     }
                     fragmentTransaction.replace(R.id.framelayoutFrontPage, new HomeFragment()).commit();
+                    setTitle("DIAbetes");
                     return true;
                 case R.id.navigation_dashboard:
                     for(int i = 0; i < fragmentManager.getBackStackEntryCount(); ++i) {
