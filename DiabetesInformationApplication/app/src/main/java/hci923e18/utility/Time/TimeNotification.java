@@ -42,7 +42,7 @@ public class TimeNotification {
             calendar1.set(Calendar.HOUR_OF_DAY, 8);
             calendar1.set(Calendar.MINUTE, 00);
         } else {
-            calendar1.set(Calendar.DATE, + 1);
+            calendar1.add(Calendar.DATE, 1);
             calendar1.set(Calendar.HOUR_OF_DAY, 8);
             calendar1.set(Calendar.MINUTE, 00);
         }
@@ -65,7 +65,7 @@ public class TimeNotification {
             calendar2.set(Calendar.HOUR_OF_DAY, 13);
             calendar2.set(Calendar.MINUTE, 00);
         } else {
-            calendar2.set(Calendar.DATE, + 1);
+            calendar2.add(Calendar.DATE, 1);
             calendar2.set(Calendar.HOUR_OF_DAY, 13);
             calendar2.set(Calendar.MINUTE, 00);
         }
@@ -82,11 +82,11 @@ public class TimeNotification {
 
         Calendar calendar3 = Calendar.getInstance();
         //Get instance of the calendar
-        if (Calendar.getInstance().get(Calendar.HOUR_OF_DAY) < 13){
+        if (Calendar.getInstance().get(Calendar.HOUR_OF_DAY) < 20){
             calendar3.set(Calendar.HOUR_OF_DAY, 20);
             calendar3.set(Calendar.MINUTE, 00);
         } else {
-            calendar3.set(Calendar.DATE, + 1);
+            calendar3.add(Calendar.DATE, 1);
             calendar3.set(Calendar.HOUR_OF_DAY, 20);
             calendar3.set(Calendar.MINUTE, 00);
         }
