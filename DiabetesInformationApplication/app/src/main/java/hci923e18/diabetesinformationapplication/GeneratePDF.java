@@ -105,7 +105,7 @@ public class GeneratePDF extends AppCompatActivity {
             public void onClick(View view) {
                 bitmap = graphView.takeSnapshot();
                 createPDF();
-                Toast.makeText(GeneratePDF.this, "PDF lavet", Toast.LENGTH_LONG).show();
+                Toast.makeText(GeneratePDF.this, "PDF gemt i downloads", Toast.LENGTH_LONG).show();
                 finish();
             }
         });
@@ -123,7 +123,7 @@ public class GeneratePDF extends AppCompatActivity {
                     bitmap = graphView.takeSnapshot();
                     createPDF();
                     sendEmail(mail);
-                    Toast.makeText(GeneratePDF.this, "PDF lavet og sendt til: " + mail, Toast.LENGTH_LONG).show();
+                    Toast.makeText(GeneratePDF.this, "PDF gemt i downloads og sendt til: " + mail, Toast.LENGTH_LONG).show();
                     finish();
                 }
             }
@@ -204,7 +204,7 @@ public class GeneratePDF extends AppCompatActivity {
         SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyyhhmmss");
         String pdfName = "Blodsukker_malinger_"
                 + sdf.format(Calendar.getInstance().getTime()) + ".pdf";
-        File outputFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), pdfName);
+        File outputFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), pdfName);
         outputFile.setReadable(true);
         outputFile.setWritable(true);
 
