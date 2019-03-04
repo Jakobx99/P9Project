@@ -1,16 +1,20 @@
 package hci923e18.diabetesinformationapplication;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -23,6 +27,9 @@ import java.util.List;
 
 import hci923e18.database.FrequentlyAskedQuestions;
 import hci923e18.diabetesinformationapplication.UCI.UCI;
+import hci923e18.utility.HideKeyboardUtil;
+
+import static android.content.Context.INPUT_METHOD_SERVICE;
 
 
 /**
@@ -46,6 +53,7 @@ public class FAQFragment extends Fragment {
     List<String> listDataHeader;
     HashMap<String, String> listDataChild;
     private FloatingActionButton floatingActionButtonFAQPage;
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -175,6 +183,8 @@ public class FAQFragment extends Fragment {
 
             }
         });
+
+        HideKeyboardUtil.setHideKeyboardOnTouch(getActivity(), view.findViewById(R.id.FAQFragmentLayout));
 
         floatingActionButtonFAQPage = view.findViewById(R.id.floatingActionButton_FAQPage);
         floatingActionButtonFAQPage.setOnClickListener(new View.OnClickListener() {
@@ -325,5 +335,13 @@ public class FAQFragment extends Fragment {
             tempAnswer = FAQList.get(i).get_answer();
             listDataChild.put(listDataHeader.get(i), tempAnswer);
         }
+    }
+
+    public static void hideSoftKeyboard(Activity activity) {
+        InputMethodManager inputMethodManager =
+                (InputMethodManager) activity.getSystemService(
+                        INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(
+                activity.getCurrentFocus().getWindowToken(), 0);
     }
 }

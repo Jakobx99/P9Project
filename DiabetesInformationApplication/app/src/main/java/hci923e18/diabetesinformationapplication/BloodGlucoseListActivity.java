@@ -59,10 +59,18 @@ public class BloodGlucoseListActivity extends AppCompatActivity {
         calendar.clear(Calendar.MINUTE);
         calendar.clear(Calendar.SECOND);
         calendar.clear(Calendar.MILLISECOND);
-        while (calendar.get(Calendar.DAY_OF_WEEK) > calendar.getFirstDayOfWeek()) {
-            calendar.add(Calendar.DATE, -1); // Substract 1 day until first day of week.
-        }
+//        while (calendar.get(Calendar.DAY_OF_WEEK) > calendar.getFirstDayOfWeek()) {
+//            calendar.add(Calendar.DATE, -1); // Substract 1 day until first day of week.
+//        }
         //calendar.add(Calendar.DATE, +1); //For american phones
+
+        int i = 30;
+        while  (i != 0){
+            calendar.add(Calendar.DATE, -1); // Substract 1 day until first day of week.i
+            i = i - 1;
+        }
+
+
         try {
             // preparing list data
             fetchData(calendar, Calendar.getInstance());
@@ -70,7 +78,7 @@ public class BloodGlucoseListActivity extends AppCompatActivity {
             // setting list adapter
             expListView.setAdapter(listAdapter);
         } catch (Exception e) {
-            Toast.makeText(this, "Du har ingen tidligere blodsukker målinger for denne uge", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Du har ingen tidligere blodsukker målinger for dette interval", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
 

@@ -94,7 +94,25 @@ public class GraphActivity extends AppCompatActivity {
 
         }
 
-        mSeries.setOnDataPointTapListener(new OnDataPointTapListener() {
+//        mSeries.setOnDataPointTapListener(new OnDataPointTapListener() {
+//            @Override
+//            public void onTap(Series series, DataPointInterface dataPoint) {
+//                Toast.makeText(GraphActivity.this, "Måling: " + dataPoint.getY() + " mmol/L" + "\n" + "Dato: " + sdf.format(dataPoint.getX()), Toast.LENGTH_SHORT).show();
+//            }
+//        });
+        yellowSeries.setOnDataPointTapListener(new OnDataPointTapListener() {
+            @Override
+            public void onTap(Series series, DataPointInterface dataPoint) {
+                Toast.makeText(GraphActivity.this, "Måling: " + dataPoint.getY() + " mmol/L" + "\n" + "Dato: " + sdf.format(dataPoint.getX()), Toast.LENGTH_SHORT).show();
+            }
+        });
+        redSeries.setOnDataPointTapListener(new OnDataPointTapListener() {
+            @Override
+            public void onTap(Series series, DataPointInterface dataPoint) {
+                Toast.makeText(GraphActivity.this, "Måling: " + dataPoint.getY() + " mmol/L" + "\n" + "Dato: " + sdf.format(dataPoint.getX()), Toast.LENGTH_SHORT).show();
+            }
+        });
+        greenSeries.setOnDataPointTapListener(new OnDataPointTapListener() {
             @Override
             public void onTap(Series series, DataPointInterface dataPoint) {
                 Toast.makeText(GraphActivity.this, "Måling: " + dataPoint.getY() + " mmol/L" + "\n" + "Dato: " + sdf.format(dataPoint.getX()), Toast.LENGTH_SHORT).show();
@@ -290,9 +308,9 @@ public class GraphActivity extends AppCompatActivity {
      * Method used to control the sequence all the different series are added to the graph
      */
     private void addSeries(){
+        graphView.addSeries(mSeries);
         graphView.addSeries(lowestSeries);
         graphView.addSeries(highestSeries);
-        graphView.addSeries(mSeries);
         graphView.addSeries(redSeries);
         graphView.addSeries(yellowSeries);
         graphView.addSeries(greenSeries);
@@ -302,14 +320,15 @@ public class GraphActivity extends AppCompatActivity {
     /**
      * Adjusts the graphs settings
      */
-    private void adjustGraph(){
+    private void adjustGraph() {
 
         graphView.getViewport().setXAxisBoundsManual(true);
-        graphView.getViewport().setMinX(mSeries.getLowestValueX());
-        graphView.getViewport().setMaxX(mSeries.getHighestValueX());
+        graphView.getViewport().setMinX(mSeries.getLowestValueX() - 500000);
+        graphView.getViewport().setMaxX(mSeries.getHighestValueX() +500000);
         graphView.getViewport().setYAxisBoundsManual(true);
-        graphView.getViewport().setMinY(mSeries.getLowestValueY());
-        graphView.getViewport().setMaxY(mSeries.getHighestValueY());
+        graphView.getViewport().setMinY(0);
+        graphView.getViewport().setMaxY(mSeries.getHighestValueY() + 5);
+
 
         graphView.getGridLabelRenderer().setHorizontalLabelsVisible(true);
         graphView.getGridLabelRenderer().setVerticalLabelsVisible(true);
