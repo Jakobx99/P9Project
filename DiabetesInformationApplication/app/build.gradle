@@ -21,6 +21,7 @@ android {
         checkReleaseBuilds false
 
     }
+    buildToolsVersion '28.0.3'
 }
 
 dependencies {
@@ -41,6 +42,4 @@ dependencies {
     implementation 'com.github.florent37:singledateandtimepicker:2.1.1'
     //https://github.com/AppIntro/AppIntro
     implementation 'com.github.AppIntro:AppIntro:v4.2.3'
-
-
 }
