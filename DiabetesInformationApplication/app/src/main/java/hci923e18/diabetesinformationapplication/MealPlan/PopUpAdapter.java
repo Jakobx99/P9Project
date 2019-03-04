@@ -44,7 +44,7 @@ public class PopUpAdapter extends ArrayAdapter<Food> {
         this.mFood = objects;
         mMealPlanFragment = mealPlanFragment;
         this.arraylist = new ArrayList<Food>();
-        this.arraylist.addAll(mFood);
+        this.arraylist.addAll(objects);
     }
 
     /**
