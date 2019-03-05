@@ -52,7 +52,7 @@ public class TimeNotification {
         Intent morningIntent = new Intent(ctx, TimeReciever.class);
         morningIntent.putExtra("Identifier", 0);
         morningIntent.putExtra("advanced", i.get_advanced());
-        PendingIntent morningSender = PendingIntent.getBroadcast(ctx, 0, morningIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+        PendingIntent morningSender = PendingIntent.getBroadcast(ctx, 0, morningIntent, PendingIntent.FLAG_ONE_SHOT);
 
         am.setExact(AlarmManager.RTC_WAKEUP, calendar1.getTimeInMillis(), morningSender);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", Locale.US);
@@ -77,7 +77,7 @@ public class TimeNotification {
         Intent afternoonIntent = new Intent(ctx, TimeReciever.class);
         afternoonIntent.putExtra("Identifier", 1);
         afternoonIntent.putExtra("advanced", i.get_advanced());
-        PendingIntent afternoonsender = PendingIntent.getBroadcast(ctx, 1, afternoonIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+        PendingIntent afternoonsender = PendingIntent.getBroadcast(ctx, 1, afternoonIntent, PendingIntent.FLAG_ONE_SHOT);
 
         am.setExact(AlarmManager.RTC_WAKEUP, calendar2.getTimeInMillis(), afternoonsender);
         Log.i("Alarm", "Alarm added at: " + sdf.format(new Date()) + "With time:´" + sdf.format(calendar2.getTimeInMillis()));
@@ -100,7 +100,7 @@ public class TimeNotification {
         Intent eveningIntent = new Intent(ctx, TimeReciever.class);
         eveningIntent.putExtra("Identifier", 2);
         eveningIntent.putExtra("advanced", i.get_advanced());
-        PendingIntent sender = PendingIntent.getBroadcast(ctx, 2, eveningIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+        PendingIntent sender = PendingIntent.getBroadcast(ctx, 2, eveningIntent, PendingIntent.FLAG_ONE_SHOT);
 
         am.setExact(AlarmManager.RTC_WAKEUP, calendar3.getTimeInMillis(), sender);
         Log.i("Alarm", "Alarm added at: " + sdf.format(new Date()) + "With time:´" + sdf.format(calendar3.getTimeInMillis()));
