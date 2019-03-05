@@ -54,7 +54,7 @@ public class OnBoarding extends AppIntro {
         sliderPage3.setTitle("Rapporterings siden:");
         sliderPage3.setDescription("Du skal ikke tænke over siden samt dato rapporten omhandler da disse udfyldes automatisk." +
                 "\n Men du vælge hvilken typen fejlen/problemer er samt hvilke element på siden fejlen/problemet omhandler.");
-        sliderPage3.setImageDrawable(R.drawable.errorpagetop);
+        sliderPage3.setImageDrawable(R.drawable.topbillede);
         sliderPage3.setBgColor(getResources().getColor(R.color.white));
         sliderPage3.setDescColor(getResources().getColor(R.color.lightRed));
         sliderPage3.setTitleColor(getResources().getColor(R.color.lightRed));
