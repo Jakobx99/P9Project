@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="hci923e18.diabetesinformationapplication">
 
-    <uses-permission android:name="android.permission.SEND_SMS" />
+    <!--<uses-permission android:name="android.permission.SEND_SMS" />-->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
