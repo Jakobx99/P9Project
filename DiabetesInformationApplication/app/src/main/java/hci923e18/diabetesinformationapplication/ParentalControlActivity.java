@@ -60,35 +60,37 @@ public class ParentalControlActivity extends AppCompatActivity {
         mobileNumber.setSelected(false);
 
         fetchProfile();
-        getSMSPermission();
+        //getSMSPermission();
 
         mobileNumber.setText(profile.get_phoneNumber());
         switchButtonParentalControl.setChecked(ParentalControl);
         switchButtonBloodGlucose.setChecked(BloodGlucoseMeasurement);
         switchButtonCalc.setChecked(Calc);
 
-        if (ParentalControl == true){
+        /*if (ParentalControl == true){
             mobileNumberLayout.setVisibility(View.VISIBLE);
             mobileNumber.setVisibility(View.VISIBLE);
             whenSMSTitle.setVisibility(View.VISIBLE);
             switchButtonBloodGlucose.setVisibility(View.VISIBLE);
             switchButtonCalc.setVisibility(View.VISIBLE);
-        }
+        }*/
 
         switchButtonParentalControl.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                mobileNumberLayout.setVisibility(View.VISIBLE);
+                Toast.makeText(getApplicationContext(),"Forældrekontrol funktionalitet er på nuværende tidspunkt slået fra", Toast.LENGTH_LONG).show();
+                /*mobileNumberLayout.setVisibility(View.VISIBLE);
                 mobileNumber.setVisibility(View.VISIBLE);
                 whenSMSTitle.setVisibility(View.VISIBLE);
                 switchButtonBloodGlucose.setVisibility(View.VISIBLE);
-                switchButtonCalc.setVisibility(View.VISIBLE);
+                switchButtonCalc.setVisibility(View.VISIBLE);*/
                 if (!isChecked)
                 {
-                    mobileNumberLayout.setVisibility(View.GONE);
+                    Toast.makeText(getApplicationContext(),"Forældrekontrol funktionalitet er på nuværende tidspunkt slået fra", Toast.LENGTH_LONG).show();
+                    /*mobileNumberLayout.setVisibility(View.GONE);
                     mobileNumber.setVisibility(View.GONE);
                     whenSMSTitle.setVisibility(View.GONE);
                     switchButtonBloodGlucose.setVisibility(View.GONE);
-                    switchButtonCalc.setVisibility(View.GONE);
+                    switchButtonCalc.setVisibility(View.GONE);*/
                 }
             }
         });
