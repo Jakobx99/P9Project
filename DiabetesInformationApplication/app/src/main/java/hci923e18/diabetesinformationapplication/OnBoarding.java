@@ -43,7 +43,7 @@ public class OnBoarding extends AppIntro {
 
         SliderPage sliderPage2 = new SliderPage();
         sliderPage2.setTitle("På alle sider findes denne knap");
-        sliderPage2.setDescription("Denne knap kan benyttes på alle tidspunkter til at gå til en side hvor du kan indrapportere dine oplevelser med de forskellige sider i appen, hvorefter du vil blive returneret tilbage til hvor du var i appen");
+        sliderPage2.setDescription("Denne knap kan benyttes på alle tidspunkter til at gå til en side, hvor du kan indrapportere dine oplevelser med de forskellige sider i appen, hvorefter du vil blive returneret tilbage, til hvor du var i appen");
         sliderPage2.setImageDrawable(R.drawable.buttonfeedback);
         sliderPage2.setBgColor(getResources().getColor(R.color.white));
         sliderPage2.setDescColor(getResources().getColor(R.color.lightRed));
@@ -52,8 +52,8 @@ public class OnBoarding extends AppIntro {
 
         SliderPage sliderPage3 = new SliderPage();
         sliderPage3.setTitle("Rapporterings siden:");
-        sliderPage3.setDescription("Du skal ikke tænke over siden samt dato rapporten omhandler da disse udfyldes automatisk." +
-                "\n Men du vælge hvilken typen fejlen/problemer er samt hvilke element på siden fejlen/problemet omhandler.");
+        sliderPage3.setDescription("Siden samt dato du laver feedback om hentes automatisk." +
+                "\n Men du skal vælge, hvilken type fejlen/problemer er, samt hvilke element på siden fejlen/problemet omhandler.");
         sliderPage3.setImageDrawable(R.drawable.topbillede);
         sliderPage3.setBgColor(getResources().getColor(R.color.white));
         sliderPage3.setDescColor(getResources().getColor(R.color.lightRed));
@@ -62,7 +62,7 @@ public class OnBoarding extends AppIntro {
 
         SliderPage sliderPage4 = new SliderPage();
         sliderPage4.setTitle("Rapporterings siden:");
-        sliderPage4.setDescription("Herefter bedes du beskrive hvad du oplevede der skete. \n Du bedes yderligere vælge hvor ofte du udfører handlingen samt om det var muligt at udfører");
+        sliderPage4.setDescription("Herefter bedes du beskrive, hvad du oplevede, der skete. \n Du bedes yderligere vælge, hvor ofte du udfører handlingen, samt om handlingen var muligt at udfører");
         sliderPage4.setImageDrawable(R.drawable.errorpagemiddle);
         sliderPage4.setBgColor(getResources().getColor(R.color.white));
         sliderPage4.setDescColor(getResources().getColor(R.color.lightRed));
@@ -71,7 +71,7 @@ public class OnBoarding extends AppIntro {
 
         SliderPage sliderPage5 = new SliderPage();
         sliderPage5.setTitle("Rapporterings siden:");
-        sliderPage5.setDescription("Tilsidst vælger du hvor kraftig fejlen/problemets indflydelse var. \n Endeligt vælger du om fejlen/problemet har en indflydelse på dit overordnet indtryk af systemet. \n Når du trykker på knappen vender du tilbage til den side i appen du var på før.");
+        sliderPage5.setDescription("Tilsidst vælger du, hvor kraftig fejlen/problemets indflydelse var. \n Endeligt vælger du, om fejlen/problemet har en indflydelse på dit overordnet indtryk af systemet. \n Når du trykker på send, vender du tilbage til den side i appen, du var på.");
         sliderPage5.setImageDrawable(R.drawable.errorpagebot);
         sliderPage5.setBgColor(getResources().getColor(R.color.white));
         sliderPage5.setDescColor(getResources().getColor(R.color.lightRed));
