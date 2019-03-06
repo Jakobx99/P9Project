@@ -10,6 +10,7 @@ import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import hci923e18.MongoDB.MongoDB;
 import hci923e18.MongoDB.MongoDBAdvanced;
 import hci923e18.database.UCIAdvancedObject;
 import hci923e18.diabetesinformationapplication.R;
@@ -72,11 +73,10 @@ public class UCIAdvancedGoodBad extends AppCompatActivity {
      * Method used to send the UCIAdvancedObject to the Mongo database
      */
     private void sendToDatabase(){
-        MongoDBAdvanced m = new MongoDBAdvanced();
         try {
-            m.execute(uciAdvancedObject);
+            new MongoDBAdvanced().execute(uciAdvancedObject);
         } catch (Exception e) {
-
+            Toast.makeText(this, "Der skete en fejl da rapporten blev sendt, Tjek internet forbindelsen og prøv igen senere", Toast.LENGTH_LONG).show();
         }
         Toast.makeText(UCIAdvancedGoodBad.this, "Dagbogs indtastningen er hermed gemt og sendt :-)", Toast.LENGTH_LONG).show();
         finish();

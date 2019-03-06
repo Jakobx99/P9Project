@@ -38,9 +38,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import hci923e18.MongoDB.MongoDB;
 import hci923e18.database.BloodGlucoseMeasurements;
-import hci923e18.database.ErrorObject;
 import hci923e18.database.Profile;
 import hci923e18.diabetesinformationapplication.UCI.UCI;
 

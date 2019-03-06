@@ -108,16 +108,23 @@ public class LongtermMeasurement extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LongTermBloodGlucose longTermBloodGlucose = new LongTermBloodGlucose(startDate, endDate, Double.parseDouble(0 + enteredMeasurement.getText().toString()));
+                if (isEmpty(editTextFrom)){
+                    Toast.makeText(LongtermMeasurement.this, "Vælg venligst en fra dato", Toast.LENGTH_LONG).show();
+                } else if (isEmpty(editTextTo)){
+                    Toast.makeText(LongtermMeasurement.this, "Vælg venligst en til dato", Toast.LENGTH_LONG).show();
+                } else if (isEmpty(enteredMeasurement)){
+                    Toast.makeText(LongtermMeasurement.this, "Indtast venligst en langtids måling", Toast.LENGTH_LONG).show();
+                } else {
+                    LongTermBloodGlucose longTermBloodGlucose = new LongTermBloodGlucose(startDate, endDate, Double.parseDouble(0 + enteredMeasurement.getText().toString()));
 
-                try {
-                    longTermBloodGlucose.save();
-                    Toast.makeText(LongtermMeasurement.this, "Måling gemt", Toast.LENGTH_LONG).show();
-                    finish();
-                } catch (Exception e) {
-                    
+                    try {
+                        longTermBloodGlucose.save();
+                        Toast.makeText(LongtermMeasurement.this, "Måling gemt", Toast.LENGTH_LONG).show();
+                        finish();
+                    } catch (Exception e) {
+
+                    }
                 }
-
             }
         });
 
@@ -198,6 +205,18 @@ public class LongtermMeasurement extends AppCompatActivity {
     }
     private void updateTo(){
         editTextTo.setText(sdf.format(endDate.getTime()));
+    }
+
+    /**
+     * A method to check if an edittext is empty
+     * @param etText The edittext field
+     * @return Boolean representing if the field was empty
+     */
+    private boolean isEmpty(EditText etText) {
+        if (etText.getText().toString().trim().length() > 0)
+            return false;
+
+        return true;
     }
 
 }

@@ -72,7 +72,7 @@ public class UCI extends AppCompatActivity {
 
         //Type
         String [] types =
-                {"Applikationsfejl","Uforståelig side","Brugbarhedsproblem"};
+                {"Applikationsfejl", "Brugbarhedsproblem"};
         ArrayAdapter<String> adapterTypes = new ArrayAdapter<String>(UCI.this, android.R.layout.simple_spinner_item, types);
         adapterTypes.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         UCIType.setAdapter(adapterTypes);
@@ -209,14 +209,14 @@ public class UCI extends AppCompatActivity {
      * Method inserting the errorobject in the remote MongoDB
      */
     private void sendToDatabase(){
-        MongoDB m = new MongoDB();
+        //MongoDB m = new MongoDB();
         try {
             Identifier i = Identifier.listAll(Identifier.class).get(0);
             errorObject.setId(i.get_ID());
             errorObject.setAdvanced(i.get_advanced());
-            m.execute(errorObject);
+            new MongoDB().execute(errorObject);
         } catch (Exception e) {
-            e.printStackTrace();
+            Toast.makeText(this, "Der skete en fejl da rapporten blev sendt, Tjek internet forbindelsen og prøv igen senere", Toast.LENGTH_LONG).show();
         }
         Toast.makeText(UCI.this, "Rapport sendt", Toast.LENGTH_LONG).show();
         finish();
