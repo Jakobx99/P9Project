@@ -35,6 +35,7 @@ public class PopulateDatabase {
         identifier.set_ID(random);
         //Identifier to determine if it is the advanced UCI part of the application they have access to
         identifier.set_advanced(true);
+        identifier.set_hotfix(true);
         identifier.save();
 
         //region Food region

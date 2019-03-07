@@ -15,6 +15,16 @@ public class Identifier extends SugarRecord<Identifier> {
     private String _ID;
     private Boolean _Opgaver;
 
+    public Boolean get_hotfix() {
+        return _hotfix;
+    }
+
+    public void set_hotfix(Boolean _hotfix) {
+        this._hotfix = _hotfix;
+    }
+
+    private Boolean _hotfix;
+
     public Boolean get_opgaver() {
         return _Opgaver;
     }
