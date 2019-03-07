@@ -21,6 +21,16 @@ public class ErrorObject implements Serializable {
     private Boolean advanced = false;
     private String expectation;
 
+    public Boolean getHotfixes() {
+        return hotfixes;
+    }
+
+    public void setHotfixes(Boolean hotfixes) {
+        this.hotfixes = hotfixes;
+    }
+
+    private Boolean hotfixes = false;
+
 
     public String getExpectation() {
         return expectation;

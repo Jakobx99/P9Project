@@ -11,6 +11,16 @@ public class UCIAdvancedObject implements Serializable {
     private Long date;
     private String readableDate;
 
+    public Boolean getHotfixes() {
+        return hotfixes;
+    }
+
+    public void setHotfixes(Boolean hotfixes) {
+        this.hotfixes = hotfixes;
+    }
+
+    private Boolean hotfixes;
+
     public String getDiary() {
         return diary;
     }

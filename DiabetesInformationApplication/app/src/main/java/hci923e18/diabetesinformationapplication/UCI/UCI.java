@@ -214,6 +214,7 @@ public class UCI extends AppCompatActivity {
             Identifier i = Identifier.listAll(Identifier.class).get(0);
             errorObject.setId(i.get_ID());
             errorObject.setAdvanced(i.get_advanced());
+            errorObject.setHotfixes(i.get_hotfix());
             new MongoDB().execute(errorObject);
         } catch (Exception e) {
             Toast.makeText(this, "Der skete en fejl da rapporten blev sendt, Tjek internet forbindelsen og prøv igen senere", Toast.LENGTH_LONG).show();

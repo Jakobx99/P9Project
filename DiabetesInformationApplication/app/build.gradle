@@ -6,7 +6,7 @@ android {
         applicationId 'hci1025f19.diabetesinformationapplication'
         minSdkVersion 22
         targetSdkVersion 27
-        versionCode 7
+        versionCode 8
         versionName "Advanced with hotfixes initial release"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }

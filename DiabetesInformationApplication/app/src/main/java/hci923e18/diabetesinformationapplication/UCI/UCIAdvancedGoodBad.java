@@ -12,6 +12,7 @@ import java.util.Calendar;
 
 import hci923e18.MongoDB.MongoDB;
 import hci923e18.MongoDB.MongoDBAdvanced;
+import hci923e18.database.Identifier;
 import hci923e18.database.UCIAdvancedObject;
 import hci923e18.diabetesinformationapplication.R;
 
@@ -74,6 +75,8 @@ public class UCIAdvancedGoodBad extends AppCompatActivity {
      */
     private void sendToDatabase(){
         try {
+            Identifier i = Identifier.listAll(Identifier.class).get(0);
+            uciAdvancedObject.setHotfixes(i.get_hotfix());
             new MongoDBAdvanced().execute(uciAdvancedObject);
         } catch (Exception e) {
             Toast.makeText(this, "Der skete en fejl da rapporten blev sendt, Tjek internet forbindelsen og prøv igen senere", Toast.LENGTH_LONG).show();

@@ -32,6 +32,7 @@ public class MongoDBAdvanced  extends AsyncTask<UCIAdvancedObject, Void, Boolean
         document.put("id", e.getId());
         document.put("date", e.getDate());
         document.put("readableDate", e.getReadableDate());
+        document.put("hotfixes", e.getHotfixes());
 
         collection.insertOne(document);
 
