@@ -1,7 +1,7 @@
-# P9Project
+# P10Project
 
-# 9th Semester project at Aalborg University
-#### HCI923e18 semester project
+# 9th and 10th Semester project at Aalborg University
+#### HCI1025f19 Candidate project
 This project is about the development of a mobile application for the purpose of empowering diabetics
 
 **Project Group:**
@@ -9,8 +9,8 @@ This project is about the development of a mobile application for the purpose of
 - Mathias Huse Jensen
 - Pelle Ulmer Jørgensen
 
-**Email:** hci923e18@cs.aau.dk
-**Date of completion:** 07-01-2018
+**Email:**hci1025f19@cs.aau.dk
+**Date of completion:** ??-??-2019
 
 To clone the git, open Git Bash and call 
 
@@ -48,6 +48,6 @@ ___
 ___
 DISCLAIMER
 ----------
-This folder contains material for the P9 project of group hci923e18 at Aalborg University in the Autumn of 2018.
+This folder contains material for the P10 project of group hci1025f19 at Aalborg University in the Spring of 2019.
 
 The material used in this folder is intended for the use of the group, supervisor, censor and University alone. Unauthorized use is not allowed.
