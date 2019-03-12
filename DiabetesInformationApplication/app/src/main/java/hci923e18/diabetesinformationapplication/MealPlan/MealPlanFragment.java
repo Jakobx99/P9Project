@@ -27,6 +27,8 @@ import android.widget.Toast;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -314,7 +316,14 @@ public class MealPlanFragment extends Fragment {
      * Creates a list of all Food items in the database
      */
     private void createDatabaseFoodList(){
-        databaseFoods = Food.listAll(Food.class);
+        List<Food> temp = Food.listAll(Food.class);
+        Collections.sort(temp, new Comparator<Food>() {
+            @Override
+            public int compare(Food food, Food t1) {
+                return food.get_name().compareTo(t1.get_name());
+            }
+        });
+        databaseFoods = temp;
         backupFood = databaseFoods;
     }
 

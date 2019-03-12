@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.TooltipCompat;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -31,6 +33,11 @@ public class SettingsActivity extends AppCompatActivity {
     public ImageButton infoInsulinUsage;
     public ImageButton infoUpperLimit;
     public ImageButton infoLowerLimit;
+    public EditText carboRatio;
+    public EditText sensitive;
+    public Double daily = 30.0;
+    public Double ratio;
+    public Double sensitiveDouble;
 
     private FloatingActionButton floatingActionButtonSettings;
 
@@ -61,11 +68,17 @@ public class SettingsActivity extends AppCompatActivity {
         lowerBloodGlucoseLevel = findViewById(R.id.textView_LowerBloodGlucoseLevel);
         titleLower = findViewById(R.id.textView_titleLowerBloodGlucoseLevel);
         infoLowerLimit = findViewById(R.id.imageButton_LowerBloodGlucoseLevel);
+        carboRatio = findViewById(R.id.textView_carboratio);
+        sensitive = findViewById(R.id.textView_insulinSensitive);
 
         fetchdata();
         idealBloodGlucoseLevel.setText(p.get_idealBloodGlucoseLevel().toString());
 
         totalDailyInsulinConsumption.setText(p.get_totalDailyInsulinConsumption().toString());
+        dailyToRatio();
+        dailyToSensitive();
+        carboRatio.setText(String.format("%.2f", ratio).replace(",", "."));
+        sensitive.setText(String.format("%.2f", sensitiveDouble).replace(",", "."));
         upperBloodGlucoseLevel.setText(p.get_upperBloodGlucoseLevel().toString());
         lowerBloodGlucoseLevel.setText(p.get_lowerBloodGlucoseLevel().toString());
 
@@ -123,6 +136,10 @@ public class SettingsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        totalDailyInsulinConsumption.addTextChangedListener(dailyTextWatcher);
+        carboRatio.addTextChangedListener(ratioTextWatcher);
+        sensitive.addTextChangedListener(sensitivityTextWatcher);
+
     }
 
     /**
@@ -199,4 +216,119 @@ public class SettingsActivity extends AppCompatActivity {
             return false;
         }
     }
+
+    private void dailyToRatio(){
+        ratio = 500/daily;
+    }
+    private void dailyToSensitive(){
+        sensitiveDouble = 100/daily;
+    }
+    private void ratioToDaily(){
+        daily = 500/ratio;
+    }
+    private void sensitiveToDaily(){
+        daily = 100/sensitiveDouble;
+    }
+
+    /**
+     * A method to check if an edittext is empty
+     * @param s The string
+     * @return Boolean representing if the field was empty
+     */
+    private boolean isEmpty(String s) {
+        if (s.trim().length() > 0)
+            return false;
+        return true;
+    }
+
+    protected TextWatcher dailyTextWatcher = new TextWatcher() {
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            carboRatio.addTextChangedListener(ratioTextWatcher);
+            sensitive.addTextChangedListener(sensitivityTextWatcher);
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            // your logic here
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            carboRatio.removeTextChangedListener(ratioTextWatcher);
+            sensitive.removeTextChangedListener(sensitivityTextWatcher);
+            if (!isEmpty(s.toString())){
+                daily = Double.parseDouble(0 + totalDailyInsulinConsumption.getText().toString().replace(",", "."));
+                dailyToRatio();
+                dailyToSensitive();
+                carboRatio.setText(String.format("%.2f", ratio).replace(",", "."));
+                sensitive.setText(String.format("%.2f", sensitiveDouble).replace(",", "."));
+            }else {
+                carboRatio.setText("0.0");
+                sensitive.setText("0.0");
+            }
+        }
+    };
+
+    protected TextWatcher ratioTextWatcher = new TextWatcher() {
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            totalDailyInsulinConsumption.addTextChangedListener(dailyTextWatcher);
+            sensitive.addTextChangedListener(sensitivityTextWatcher);
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            totalDailyInsulinConsumption.removeTextChangedListener(dailyTextWatcher);
+            sensitive.removeTextChangedListener(sensitivityTextWatcher);
+            if (!isEmpty(s.toString())){
+                ratio = Double.parseDouble(0 + carboRatio.getText().toString().replace(",", "."));
+                ratioToDaily();
+                dailyToSensitive();
+                totalDailyInsulinConsumption.setText(String.format("%.2f", daily).replace(",", "."));
+                sensitive.setText(String.format("%.2f", sensitiveDouble).replace(",", "."));
+            }else {
+                totalDailyInsulinConsumption.setText("0.0");
+                sensitive.setText("0.0");
+            }
+        }
+    };
+
+    protected TextWatcher sensitivityTextWatcher = new TextWatcher() {
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            totalDailyInsulinConsumption.addTextChangedListener(dailyTextWatcher);
+            carboRatio.addTextChangedListener(ratioTextWatcher);
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            totalDailyInsulinConsumption.removeTextChangedListener(dailyTextWatcher);
+            carboRatio.removeTextChangedListener(ratioTextWatcher);
+            if (!isEmpty(s.toString())){
+                sensitiveDouble = Double.parseDouble(0 + sensitive.getText().toString().replace(",", "."));
+                sensitiveToDaily();
+                dailyToRatio();
+                totalDailyInsulinConsumption.setText(String.format("%.2f", daily).replace(",", "."));
+                carboRatio.setText(String.format("%.2f", ratio).replace(",", "."));
+            }else {
+                totalDailyInsulinConsumption.setText("0.0");
+                carboRatio.setText("0.0");
+            }
+        }
+    };
+
 }

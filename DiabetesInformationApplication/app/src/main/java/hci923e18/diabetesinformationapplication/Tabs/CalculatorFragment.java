@@ -148,7 +148,7 @@ public class CalculatorFragment extends Fragment {
 
                 Double bloodGlucoseLevel = p.get_idealBloodGlucoseLevel();
 
-                if(!carbohydrateInput.getText().toString().isEmpty() && Double.parseDouble(0 + carbohydrateInput.getText().toString())> 0) {
+                if(!carbohydrateInput.getText().toString().isEmpty() && Double.parseDouble(0 + carbohydrateInput.getText().toString())>= 0) {
 
                     if (fiberInput.getText() != null && !fiberInput.getText().toString().isEmpty()) {
                         Double fiberPercentageResult = calculator.fiberPercentage(Double.parseDouble(0 + carbohydrateInput.getText().toString()), Double.parseDouble(0 + fiberInput.getText().toString()));

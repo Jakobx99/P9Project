@@ -36,7 +36,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="32dp"
                 app:layout_constraintEnd_toStartOf="@+id/textViewCarbohydrate"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -146,13 +146,15 @@
 
             <TextView
                 android:id="@+id/textViewEnheder"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="Enheder"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="Enheder af hurtigtvirkende insulin"
                 app:layout_constraintBottom_toBottomOf="@+id/textViewCalculatedInsulin"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textViewCalculatedInsulin"
                 app:layout_constraintTop_toTopOf="@+id/textViewCalculatedInsulin" />
 
@@ -161,9 +163,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginBottom="8dp"
                 android:background="@null"
                 android:clickable="false"
                 android:cursorVisible="false"
@@ -171,11 +172,10 @@
                 android:focusable="false"
                 android:focusableInTouchMode="false"
                 android:inputType="textMultiLine"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewCalculatedInsulin" />
+                app:layout_constraintTop_toBottomOf="@+id/textViewEnheder" />
 
             <TextView
                 android:id="@+id/textViewCalculatedInsulin"
@@ -190,6 +190,18 @@
                 app:layout_constraintStart_toStartOf="@+id/buttonCalculate"
                 app:layout_constraintTop_toBottomOf="@+id/buttonCalculate" />
 
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="28dp"
+                android:layout_marginEnd="16dp"
+                android:text="Insulin beregnes som følger: Måltidets kulhydrater /Kulhydratratio + Forskellen mellem målt blodsukker og ideal værdi/Insulinfølsomhed \n \nKulhydratratio udregnes ved: (500/antal enheder insulin pr. døgn) \nInsulinfølsomhed udregnes ved:(100/antal enheder insulin pr. døgn )"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextShowGuideText" />
 
 
         </android.support.constraint.ConstraintLayout>
