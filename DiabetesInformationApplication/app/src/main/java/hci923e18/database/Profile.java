@@ -2,7 +2,7 @@ package hci923e18.database;
 
 import com.orm.SugarRecord;
 
-public class Profile extends SugarRecord<Profile> {
+public class Profile extends SugarRecord {
     private Double _idealBloodGlucoseLevel;
     private Double _totalDailyInsulinConsumption;
     private Double _upperBloodGlucoseLevel;

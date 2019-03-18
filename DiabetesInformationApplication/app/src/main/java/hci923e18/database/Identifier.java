@@ -2,7 +2,7 @@ package hci923e18.database;
 
 import com.orm.SugarRecord;
 
-public class Identifier extends SugarRecord<Identifier> {
+public class Identifier extends SugarRecord {
 
     public String get_ID() {
         return _ID;

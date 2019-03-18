@@ -10,7 +10,7 @@ import com.orm.dsl.Ignore;
 import java.io.Serializable;
 import java.util.List;
 
-public class MealObject extends SugarRecord<MealObject> implements Serializable
+public class MealObject extends SugarRecord implements Serializable
 {
     private String _mealtype;
     private String _listMeals;

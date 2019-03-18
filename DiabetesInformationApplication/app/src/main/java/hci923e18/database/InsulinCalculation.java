@@ -2,7 +2,7 @@ package hci923e18.database;
 
 import com.orm.SugarRecord;
 
-public class InsulinCalculation extends SugarRecord<InsulinCalculation> {
+public class InsulinCalculation extends SugarRecord {
 
     public Double get_result() {
         return _result;

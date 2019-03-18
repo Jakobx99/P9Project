@@ -2,7 +2,7 @@ package hci923e18.database;
 
 import com.orm.SugarRecord;
 
-public class Food extends SugarRecord<Food> {
+public class Food extends SugarRecord {
 
     private String _name;
     private Double _carbohydrate;

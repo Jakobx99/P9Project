@@ -5,7 +5,7 @@ import com.orm.SugarRecord;
 import java.util.Calendar;
 import java.util.Comparator;
 
-public class LongTermBloodGlucose extends SugarRecord<LongTermBloodGlucose> {
+public class LongTermBloodGlucose extends SugarRecord {
 
     private Long _start;
     private Long _end;
