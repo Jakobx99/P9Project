@@ -129,7 +129,7 @@ public class MealPlanFragment extends Fragment {
         mealPlanLayout = view.findViewById(R.id.mealplan_listview);
         mealPlanAddFood = view.findViewById(R.id.textView_addfood);
 
-        createDatabaseFoodList();
+
 
         String [] values =
                 {"Morgenmad","Middagsmad","Aftensmad", "Mellemmåltid"};
@@ -279,6 +279,7 @@ public class MealPlanFragment extends Fragment {
     public void createPopup(Context context){
         LayoutInflater li = LayoutInflater.from(context);
         View view = li.inflate(R.layout.popupwindow, null);
+        createDatabaseFoodList();
 
         final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
         alertDialogBuilder.setView(view);
@@ -287,6 +288,16 @@ public class MealPlanFragment extends Fragment {
         final PopUpAdapter localAdapter;
         localAdapter = new PopUpAdapter(view.getContext(),0, databaseFoods, MealPlanFragment.this);
         listViewPopUp.setAdapter(localAdapter);
+
+        Button newFoodButton = view.findViewById(R.id.button_newfooditem);
+        newFoodButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), AddNewFoodActivity.class);
+                getActivity().startActivity(intent);
+                alertDialog.cancel();
+            }
+        });
 
         final EditText editTextSearch = view.findViewById(R.id.edittext_PopUpSearch);
         editTextSearch.addTextChangedListener(new TextWatcher() {
@@ -323,7 +334,9 @@ public class MealPlanFragment extends Fragment {
                 return food.get_name().compareTo(t1.get_name());
             }
         });
+        databaseFoods = new ArrayList<>();
         databaseFoods = temp;
+        backupFood = new ArrayList<>();
         backupFood = databaseFoods;
     }
 

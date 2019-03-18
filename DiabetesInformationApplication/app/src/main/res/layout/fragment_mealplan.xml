@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
-    tools:context=".Tabs.CalculatorFragment">
+    tools:context=".Tabs.CalculatorFragment"
+    android:id="@+id/frameMealPlan">
 
     <ScrollView
         android:id="@+id/mealplankeyboardlayout"

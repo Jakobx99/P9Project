@@ -18,10 +18,13 @@ import android.widget.TextView;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import hci923e18.database.BloodGlucoseMeasurements;
+import hci923e18.database.InsulinCalculation;
 import hci923e18.database.Profile;
+import hci923e18.diabetesinformationapplication.OldCalculations.OldCalculationsActivity;
 import hci923e18.diabetesinformationapplication.R;
 import hci923e18.diabetesinformationapplication.UCI.UCI;
 import hci923e18.utility.Calculator;
@@ -55,6 +58,9 @@ public class CalculatorFragment extends Fragment {
     TextView fiberText;
     TextInputLayout fiberLayout;
     private FloatingActionButton floatingActionButtonCalculatorPage;
+    InsulinCalculation insulinCalculation;
+    TextView linkToOld;
+
 
     /**
      * Default constructor
@@ -119,6 +125,7 @@ public class CalculatorFragment extends Fragment {
         fiberInput = view.findViewById(R.id.textInputFiber);
         fiberText = view.findViewById(R.id.textViewFiber);
         fiberLayout = view.findViewById(R.id.textInputLayoutFiber);
+        linkToOld = view.findViewById(R.id.textView_linktoOld);
         final Calculator calculator = new Calculator();
 
 
@@ -144,6 +151,7 @@ public class CalculatorFragment extends Fragment {
         calculateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                insulinCalculation = new InsulinCalculation();
                 guideText.setText("");
 
                 Double bloodGlucoseLevel = p.get_idealBloodGlucoseLevel();
@@ -152,6 +160,9 @@ public class CalculatorFragment extends Fragment {
 
                     if (fiberInput.getText() != null && !fiberInput.getText().toString().isEmpty()) {
                         Double fiberPercentageResult = calculator.fiberPercentage(Double.parseDouble(0 + carbohydrateInput.getText().toString()), Double.parseDouble(0 + fiberInput.getText().toString()));
+
+                        insulinCalculation.set_fiber(Double.parseDouble(0 + fiberInput.getText().toString()));
+                        insulinCalculation.set_carbohydrates(Double.parseDouble(0 + carbohydrateInput.getText().toString()));
 
                         if (fiberPercentageResult >= 25.0) {
                             guideText.setText("Fiberen udgør " + formater.format(fiberPercentageResult) + "% af kulhydraterne. \nVi anbefaler at du tager insulinen efter måltidet, da det optages langsommere i blodet.");
@@ -164,11 +175,17 @@ public class CalculatorFragment extends Fragment {
                         Double result = calculator.insulinCalculator(Double.parseDouble(0 + carbohydrateInput.getText().toString()), bloodGlucoseLevel);
                         insulinResult.setText(formater.format(result).toString());
 
+                        insulinCalculation.set_result(result);
+                        insulinCalculation.set_bloodGlycoseMeasurement(bloodGlucoseLevel);
+
                         guideText.append("\nDa der ikke er indtastet et blodsukker, benyttes mål værdien " + bloodGlucoseLevel + " fra din profil.");
                     } else {
                         Double bloodGlucoseAdjustment = calculator.bloodGlucoseGoalCalculation(Double.parseDouble(0 + bloodGlucoseInput.getText().toString()));
                         Double result = calculator.insulinCalculator(Double.parseDouble(0 + carbohydrateInput.getText().toString()), Double.parseDouble(0 + bloodGlucoseInput.getText().toString()));
                         insulinResult.setText(formater.format(result).toString());
+
+                        insulinCalculation.set_result(result);
+                        insulinCalculation.set_bloodGlycoseMeasurement(Double.parseDouble(0 + bloodGlucoseInput.getText().toString()));
 
                         if (Double.parseDouble(0 + bloodGlucoseInput.getText().toString()) > p.get_idealBloodGlucoseLevel()) {
                             if (guideText.getText() != null && !guideText.getText().toString().isEmpty()) {
@@ -190,6 +207,10 @@ public class CalculatorFragment extends Fragment {
                     if (p.get_parentalControl() == 1 && p.get_insulinCalc() == 1) {
                         SMSUtil.sendSMS(carbohydrateInput.getText().toString(), bloodGlucoseInput.getText().toString(), insulinResult.getText().toString());
                     }
+
+                    insulinCalculation.set_date(Calendar.getInstance().getTimeInMillis());
+                    insulinCalculation.save();
+
                 }
                 else
                 {
@@ -207,6 +228,15 @@ public class CalculatorFragment extends Fragment {
                 getActivity().startActivity(intent);
             }
         });
+
+        linkToOld.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), OldCalculationsActivity.class);
+                getActivity().startActivity(intent);
+            }
+        });
+
         return view;
     }
 

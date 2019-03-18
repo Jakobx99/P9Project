@@ -10,9 +10,11 @@ import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.github.florent37.singledateandtimepicker.SingleDateAndTimePicker;
@@ -43,6 +45,8 @@ public class LongtermMeasurement extends AppCompatActivity {
     private Calendar endDate;
     private FloatingActionButton floatingActionButtonLongtermMeasurement;
     final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM 'Kl.' HH:mm");
+    private ListView oldLongTerm;
+    LongTermBloodGlucose longTermBloodGlucose = new LongTermBloodGlucose();
 
 
     @Override
@@ -54,6 +58,7 @@ public class LongtermMeasurement extends AppCompatActivity {
         editTextTo = findViewById(R.id.editText_langtid_til);
         saveButton = findViewById(R.id.button_langtid_gem);
         enteredMeasurement = findViewById(R.id.editText_langtid_newbloodglucoselevelEnteredBS);
+        oldLongTerm = findViewById(R.id.listview_oldlongterm);
         p = fetchProfile();
 
         upperLimitBS = p.get_upperBloodGlucoseLevel();
@@ -115,7 +120,7 @@ public class LongtermMeasurement extends AppCompatActivity {
                 } else if (isEmpty(enteredMeasurement)){
                     Toast.makeText(LongtermMeasurement.this, "Indtast venligst en langtids måling", Toast.LENGTH_LONG).show();
                 } else {
-                    LongTermBloodGlucose longTermBloodGlucose = new LongTermBloodGlucose(startDate, endDate, Double.parseDouble(0 + enteredMeasurement.getText().toString()));
+                    longTermBloodGlucose.set_value(Double.parseDouble(0 + enteredMeasurement.getText().toString()));
 
                     try {
                         longTermBloodGlucose.save();
@@ -137,6 +142,43 @@ public class LongtermMeasurement extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        editTextTo.addTextChangedListener(toTextWatcher);
+        editTextFrom.addTextChangedListener(fromTextWatcher);
+
+        List<LongTermBloodGlucose> longTermBloodGlucoseList = null;
+        try {
+            longTermBloodGlucoseList = LongTermBloodGlucose.findWithQuery(LongTermBloodGlucose.class,"Select * from LONG_TERM_BLOOD_GLUCOSE ORDER BY _start DESC");
+        } catch (Exception e) {
+        }
+
+        if (longTermBloodGlucoseList != null){
+            oldLongTerm.setAdapter(new LongtermAdapter(this,0,longTermBloodGlucoseList));
+        }
+
+        oldLongTerm.setOnTouchListener(new ListView.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                int action = event.getAction();
+                switch (action) {
+                    case MotionEvent.ACTION_DOWN:
+                        // Disallow ScrollView to intercept touch events.
+                        v.getParent().requestDisallowInterceptTouchEvent(true);
+                        break;
+
+                    case MotionEvent.ACTION_UP:
+                        // Allow ScrollView to intercept touch events.
+                        v.getParent().requestDisallowInterceptTouchEvent(false);
+                        break;
+                }
+
+                // Handle ListView touch events.
+                v.onTouchEvent(event);
+                return true;
+            }
+        });
+
+
 
     }
     /**
@@ -218,5 +260,73 @@ public class LongtermMeasurement extends AppCompatActivity {
 
         return true;
     }
+
+    /**
+     * A method to check if an edittext is empty
+     * @param s The String
+     * @return Boolean representing if the field was empty
+     */
+    private boolean isEmptyString(String s) {
+        if (s.trim().length() > 0)
+            return false;
+
+        return true;
+    }
+
+    protected TextWatcher fromTextWatcher = new TextWatcher() {
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            editTextTo.addTextChangedListener(toTextWatcher);
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            editTextTo.removeTextChangedListener(toTextWatcher);
+            if (!isEmptyString(s.toString())){
+                longTermBloodGlucose.setStart(startDate);
+                Calendar c = startDate;
+                c.add(Calendar.DATE, +90);
+                endDate = c;
+                longTermBloodGlucose.setEnd(endDate);
+                updateTo();
+            }else {
+
+            }
+        }
+    };
+
+    protected TextWatcher toTextWatcher = new TextWatcher() {
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            editTextFrom.addTextChangedListener(fromTextWatcher);
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            editTextFrom.removeTextChangedListener(fromTextWatcher);
+            if (!isEmptyString(s.toString())){
+                longTermBloodGlucose.setEnd(endDate);
+                Calendar c = endDate;
+                c.add(Calendar.DATE, -90);
+                startDate = c;
+                longTermBloodGlucose.setStart(startDate);
+                updateFrom();
+            }else {
+
+            }
+        }
+    };
 
 }
