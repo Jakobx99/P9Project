@@ -157,7 +157,7 @@ public class CalculatorFragment extends Fragment {
                 Double bloodGlucoseLevel = p.get_idealBloodGlucoseLevel();
 
                 if(!carbohydrateInput.getText().toString().isEmpty() && Double.parseDouble(0 + carbohydrateInput.getText().toString())>= 0) {
-
+                    insulinCalculation.set_carbohydrates(Double.parseDouble(0 + carbohydrateInput.getText().toString()));
                     if (fiberInput.getText() != null && !fiberInput.getText().toString().isEmpty()) {
                         Double fiberPercentageResult = calculator.fiberPercentage(Double.parseDouble(0 + carbohydrateInput.getText().toString()), Double.parseDouble(0 + fiberInput.getText().toString()));
 
@@ -169,6 +169,8 @@ public class CalculatorFragment extends Fragment {
                         } else {
                             guideText.setText("Fiberen udgør " + formater.format(fiberPercentageResult) + "% af kulhydraterne, vi anbefaler at du tager insulin før måltidet");
                         }
+                    } else  {
+                        insulinCalculation.set_fiber(0.0);
                     }
                     if (bloodGlucoseInput.getText().toString().isEmpty() || Math.round(Float.parseFloat(0 + bloodGlucoseInput.getText().toString()))<= 0) {
                         Double bloodGlucoseAdjustment = calculator.bloodGlucoseGoalCalculation(bloodGlucoseLevel);
@@ -204,8 +206,13 @@ public class CalculatorFragment extends Fragment {
                         }
                     }
                     fetchProfile();
-                    if (p.get_parentalControl() == 1 && p.get_insulinCalc() == 1) {
-                        SMSUtil.sendSMS(carbohydrateInput.getText().toString(), bloodGlucoseInput.getText().toString(), insulinResult.getText().toString());
+
+                    try {
+                        if (p.get_parentalControl() == 1 && p.get_insulinCalc() == 1) {
+                            SMSUtil.sendSMS(carbohydrateInput.getText().toString(), bloodGlucoseInput.getText().toString(), insulinResult.getText().toString());
+                        }
+                    } catch (Exception e) {
+
                     }
 
                     insulinCalculation.set_date(Calendar.getInstance().getTimeInMillis());
