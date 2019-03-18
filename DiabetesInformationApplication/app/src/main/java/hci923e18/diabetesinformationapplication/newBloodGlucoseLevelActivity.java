@@ -242,8 +242,13 @@ public class newBloodGlucoseLevelActivity extends AppCompatActivity implements T
                     Intent returnIntent = new Intent();
                     returnIntent.putExtra("result",1);
                     setResult(Activity.RESULT_OK,returnIntent);
-                    if (p.get_parentalControl() == 1 && p.get_bloodGlucoseMeasurement() == 1) {
-                        SMSUtil.sendSMS(newBloodGlucoseLevel);
+
+                    try {
+                        if (p.get_parentalControl() == 1 && p.get_bloodGlucoseMeasurement() == 1) {
+                            SMSUtil.sendSMS(newBloodGlucoseLevel);
+                        }
+                    } catch (Exception e) {
+
                     }
                     finish();
                 }
