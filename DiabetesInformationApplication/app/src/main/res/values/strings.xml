@@ -25,4 +25,6 @@
     <string name="title_activity_uci">UCI</string>
     <string name="title_activity_uciadvanced">UCIAdvanced</string>
     <string name="title_activity_uciadvanced_good_bad">UCIAdvancedGoodBad</string>
+    <string name="title_activity_add_new_food">AddNewFoodActivity</string>
+    <string name="title_activity_old_calculations">OldCalculationsActivity</string>
 </resources>

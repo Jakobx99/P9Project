@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
-public class BloodGlucoseMeasurements extends SugarRecord<BloodGlucoseMeasurements> implements Serializable{
+public class BloodGlucoseMeasurements extends SugarRecord implements Serializable{
 
     private Long _date;
     private Double _glucoseLevel;

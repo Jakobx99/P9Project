@@ -51,8 +51,8 @@ public class GraphActivity extends AppCompatActivity {
     private Profile profile;
     private List<LongTermBloodGlucose> longTermBloodGlucoses;
     private LineGraphSeries<DataPoint> longTermSeries;
-    private Calendar startDate;
-    private Calendar endDate;
+    public Calendar startDate;
+    public Calendar endDate;
     final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM \n'Kl.' HH:mm");
     private FloatingActionButton floatingActionButtonGraphPage;
 
@@ -394,6 +394,7 @@ e.printStackTrace();
      */
     private void fetchNewAndRedraw(){
         List<BloodGlucoseMeasurements> l = new ArrayList<>();
+        sortstartandendDate();
 
         l.addAll(BloodGlucoseMeasurements.find(BloodGlucoseMeasurements.class, "_date >= ? and _date <= ? ORDER BY _date", Long.toString(startDate.getTimeInMillis()), Long.toString(endDate.getTimeInMillis())));
 
@@ -410,5 +411,13 @@ e.printStackTrace();
                 Toast.makeText(GraphActivity.this, "Måling: " + dataPoint.getY() + " mmol/L" + "\n" + "Dato: " + sdf.format(dataPoint.getX()), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void sortstartandendDate(){
+        if (startDate.getTimeInMillis() > endDate.getTimeInMillis()){
+            Calendar temp = startDate;
+            startDate = endDate;
+            endDate =temp;
+        }
     }
 }

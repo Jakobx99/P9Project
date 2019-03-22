@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
-    tools:context=".Tabs.CalculatorFragment">
+    tools:context=".Tabs.CalculatorFragment"
+    android:id="@+id/frameMealPlan">
 
     <ScrollView
         android:id="@+id/mealplankeyboardlayout"
@@ -90,7 +91,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Beregnet insulin (Enheder):"
+                android:text="Beregnet insulin (Enheder af hurtigtvirkende insulin):"
                 app:layout_constraintEnd_toEndOf="@+id/button_mealplan"
                 app:layout_constraintStart_toStartOf="@+id/button_mealplan"
                 app:layout_constraintTop_toBottomOf="@+id/button_mealplan" />

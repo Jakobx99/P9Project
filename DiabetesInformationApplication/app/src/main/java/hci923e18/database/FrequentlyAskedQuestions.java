@@ -2,7 +2,7 @@ package hci923e18.database;
 
 import com.orm.SugarRecord;
 
-public class FrequentlyAskedQuestions extends SugarRecord<FrequentlyAskedQuestions> {
+public class FrequentlyAskedQuestions extends SugarRecord {
 
     private String _title;
     private String _answer;

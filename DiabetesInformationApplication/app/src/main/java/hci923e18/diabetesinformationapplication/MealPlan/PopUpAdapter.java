@@ -2,6 +2,7 @@ package hci923e18.diabetesinformationapplication.MealPlan;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -11,10 +12,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
@@ -26,10 +30,10 @@ import static android.text.InputType.TYPE_NUMBER_FLAG_DECIMAL;
 public class PopUpAdapter extends ArrayAdapter<Food> {
 
     private Context mContext;
-    private List<Food> mFood = null;
+    public List<Food> mFood = null;
     private MealPlanFragment mMealPlanFragment;
-    private ArrayList<Food> arraylist = null;
-    private String m_Text="";
+    public ArrayList<Food> arraylist = null;
+    public String m_Text="";
 
     /**
      * Constructor
@@ -130,8 +134,7 @@ public class PopUpAdapter extends ArrayAdapter<Food> {
      * Filter method used when searching
      * @param charText The search string
      */
-    public void filter(String charText) {
-        charText = charText.toLowerCase(Locale.getDefault());
+    public void filter(final String charText) {
         mFood.clear();
         if (charText.length() == 0) {
             mFood.addAll(arraylist);
@@ -139,10 +142,71 @@ public class PopUpAdapter extends ArrayAdapter<Food> {
         else
         {
             for (Food food : arraylist) {
-                if (food.get_name().toLowerCase(Locale.getDefault()).contains(charText)) {
+                if (food.get_name().toLowerCase(Locale.getDefault()).contains(charText.toLowerCase())) {
                     mFood.add(food);
                 }
             }
+
+            sorting(charText);
         }
+    }
+
+
+    public void sorting(final String s){
+        Collections.sort(mFood, new Comparator<Food>() {
+            @Override
+            public int compare(Food food, Food t1) {
+
+                if (similarity(s.toLowerCase(), food.get_name().toLowerCase()) > similarity(s.toLowerCase(), t1.get_name().toLowerCase())){
+                    return -1;
+                } else return 1;
+            }
+        });
+    }
+
+    /**
+     * Calculates the similarity (a number within 0 and 1) between two strings.
+     */
+    public static double similarity(String s1, String s2) {
+        String longer = s1, shorter = s2;
+        if (s1.length() < s2.length()) { // longer should always have greater length
+            longer = s2; shorter = s1;
+        }
+        int longerLength = longer.length();
+        if (longerLength == 0) { return 1.0; /* both strings are zero length */ }
+    /* // If you have Apache Commons Text, you can use it to calculate the edit distance:
+    LevenshteinDistance levenshteinDistance = new LevenshteinDistance();
+    return (longerLength - levenshteinDistance.apply(longer, shorter)) / (double) longerLength; */
+        return (longerLength - editDistance(longer, shorter)) / (double) longerLength;
+
+    }
+
+    // Example implementation of the Levenshtein Edit Distance
+    // See http://rosettacode.org/wiki/Levenshtein_distance#Java
+    public static int editDistance(String s1, String s2) {
+        s1 = s1.toLowerCase();
+        s2 = s2.toLowerCase();
+
+        int[] costs = new int[s2.length() + 1];
+        for (int i = 0; i <= s1.length(); i++) {
+            int lastValue = i;
+            for (int j = 0; j <= s2.length(); j++) {
+                if (i == 0)
+                    costs[j] = j;
+                else {
+                    if (j > 0) {
+                        int newValue = costs[j - 1];
+                        if (s1.charAt(i - 1) != s2.charAt(j - 1))
+                            newValue = Math.min(Math.min(newValue, lastValue),
+                                    costs[j]) + 1;
+                        costs[j - 1] = lastValue;
+                        lastValue = newValue;
+                    }
+                }
+            }
+            if (i > 0)
+                costs[s2.length()] = lastValue;
+        }
+        return costs[s2.length()];
     }
 }

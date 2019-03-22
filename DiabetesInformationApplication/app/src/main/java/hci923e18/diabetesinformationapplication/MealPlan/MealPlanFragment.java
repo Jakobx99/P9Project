@@ -27,6 +27,8 @@ import android.widget.Toast;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -127,7 +129,7 @@ public class MealPlanFragment extends Fragment {
         mealPlanLayout = view.findViewById(R.id.mealplan_listview);
         mealPlanAddFood = view.findViewById(R.id.textView_addfood);
 
-        createDatabaseFoodList();
+
 
         String [] values =
                 {"Morgenmad","Middagsmad","Aftensmad", "Mellemmåltid"};
@@ -277,6 +279,7 @@ public class MealPlanFragment extends Fragment {
     public void createPopup(Context context){
         LayoutInflater li = LayoutInflater.from(context);
         View view = li.inflate(R.layout.popupwindow, null);
+        createDatabaseFoodList();
 
         final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
         alertDialogBuilder.setView(view);
@@ -285,6 +288,16 @@ public class MealPlanFragment extends Fragment {
         final PopUpAdapter localAdapter;
         localAdapter = new PopUpAdapter(view.getContext(),0, databaseFoods, MealPlanFragment.this);
         listViewPopUp.setAdapter(localAdapter);
+
+        Button newFoodButton = view.findViewById(R.id.button_newfooditem);
+        newFoodButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), AddNewFoodActivity.class);
+                getActivity().startActivity(intent);
+                alertDialog.cancel();
+            }
+        });
 
         final EditText editTextSearch = view.findViewById(R.id.edittext_PopUpSearch);
         editTextSearch.addTextChangedListener(new TextWatcher() {
@@ -314,7 +327,16 @@ public class MealPlanFragment extends Fragment {
      * Creates a list of all Food items in the database
      */
     private void createDatabaseFoodList(){
-        databaseFoods = Food.listAll(Food.class);
+        List<Food> temp = Food.listAll(Food.class);
+        Collections.sort(temp, new Comparator<Food>() {
+            @Override
+            public int compare(Food food, Food t1) {
+                return food.get_name().compareTo(t1.get_name());
+            }
+        });
+        databaseFoods = new ArrayList<>();
+        databaseFoods = temp;
+        backupFood = new ArrayList<>();
         backupFood = databaseFoods;
     }
 
@@ -402,4 +424,6 @@ public class MealPlanFragment extends Fragment {
         }
         return bloodGlucoseMeasurements;
     }
+
+
 }
