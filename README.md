@@ -10,7 +10,7 @@ This project is about the development of a mobile application for the purpose of
 - Pelle Ulmer Jørgensen
 
 **Email:**hci1025f19@cs.aau.dk
-**Date of completion:** ??-??-2019
+**Date of completion:** 07-06-2019
 
 To clone the git, open Git Bash and call 
 
