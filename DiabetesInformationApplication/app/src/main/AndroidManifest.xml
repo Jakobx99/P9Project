@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="hci923e18.diabetesinformationapplication">
+    package="hci1025f19.diabetesinformationapplication">
     <!-- <uses-permission android:name="android.permission.SEND_SMS" /> -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -19,11 +19,11 @@
         android:theme="@style/AppTheme"
         tools:replace="android:icon, allowBackup">
         <activity
-            android:name=".OldCalculations.OldCalculationsActivity"
+            android:name="hci1025f19.diabetesinformationapplication.OldCalculations.OldCalculationsActivity"
             android:label="@string/title_activity_old_calculations"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
-            android:name=".MealPlan.AddNewFoodActivity"
+            android:name="hci1025f19.diabetesinformationapplication.MealPlan.AddNewFoodActivity"
             android:label="DIAbetes - Tilføj ny madvarer"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
@@ -42,37 +42,37 @@
             android:value="hci923e18.database" />
 
         <activity
-            android:name=".Tabs.FrontPageActivity"
+            android:name="hci1025f19.diabetesinformationapplication.Tabs.FrontPageActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".SettingsActivity"
+            android:name="hci1025f19.diabetesinformationapplication.SettingsActivity"
             android:label="DIAbetes - Profilside"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".BloodGlycoseOverview.BloodGlycoseOverviewActivity"
+            android:name="hci1025f19.diabetesinformationapplication.BloodGlycoseOverview.BloodGlycoseOverviewActivity"
             android:label="DIAbetes - Blodsukkeroversigt"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".newBloodGlucoseLevelActivity"
+            android:name="hci1025f19.diabetesinformationapplication.newBloodGlucoseLevelActivity"
             android:label="DIAbetes - Ny blodsukkerindtastning"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".BloodGlycoseOverview.GraphActivity"
+            android:name="hci1025f19.diabetesinformationapplication.BloodGlycoseOverview.GraphActivity"
             android:label="DIAbetes - Blodsukkeroversigt graf"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".BloodGlucoseListActivity"
+            android:name="hci1025f19.diabetesinformationapplication.BloodGlucoseListActivity"
             android:label="DIAbetes - Gamle blodsukkermålinger"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".SplashActivity"
+            android:name="hci1025f19.diabetesinformationapplication.SplashActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -81,42 +81,42 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ParentalControlActivity"
+            android:name="hci1025f19.diabetesinformationapplication.ParentalControlActivity"
             android:label="DIAbetes - Forældrekontrol"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".GeneratePDF"
+            android:name="hci1025f19.diabetesinformationapplication.GeneratePDF"
             android:label="DIAbetes - Exporter data"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".LongtermMeasurements.LongtermMeasurement"
+            android:name="hci1025f19.diabetesinformationapplication.LongtermMeasurements.LongtermMeasurement"
             android:label="DIAbetes - Langtidsblodsukker"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".UCI.UCI"
+            android:name="hci1025f19.diabetesinformationapplication.UCI.UCI"
             android:label="Hvad gik galt"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
 
-        <service android:name="hci923e18.utility.Time.TimeService" />
+        <service android:name="hci1025f19.utility.Time.TimeService" />
 
         <receiver
-            android:name="hci923e18.utility.Time.TimeReciever"
+            android:name="hci1025f19.utility.Time.TimeReciever"
             android:exported="true" />
 
         <activity
-            android:name=".UCI.UCIAdvanced"
+            android:name="hci1025f19.diabetesinformationapplication.UCI.UCIAdvanced"
             android:label="Fortæl om din dag med appen"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".OnBoarding"
+            android:name="hci1025f19.diabetesinformationapplication.OnBoarding"
             android:label="Velkommen til DIAbetes!" />
         <activity
-            android:name=".UCI.UCIAdvancedGoodBad"
+            android:name="hci1025f19.diabetesinformationapplication.UCI.UCIAdvancedGoodBad"
             android:label="Fortæl om din dag med appen"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />

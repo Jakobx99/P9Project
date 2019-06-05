@@ -10,7 +10,7 @@
     android:layout_height="match_parent"
     android:id="@+id/addnewfoodlayout"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="hci923e18.diabetesinformationapplication.MealPlan.AddNewFoodActivity">
+    tools:context="hci1025f19.diabetesinformationapplication.MealPlan.AddNewFoodActivity">
 
     <Button
         android:id="@+id/button_newfood_button"
