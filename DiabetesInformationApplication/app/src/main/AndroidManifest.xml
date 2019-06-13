@@ -30,7 +30,7 @@
 
         <meta-data
             android:name="DATABASE"
-            android:value="hci923e18.db" />
+            android:value="hci1025f19.db" />
         <meta-data
             android:name="VERSION"
             android:value="3" />
@@ -39,7 +39,7 @@
             android:value="true" />
         <meta-data
             android:name="DOMAIN_PACKAGE_NAME"
-            android:value="hci923e18.database" />
+            android:value="hci1025f19.database" />
 
         <activity
             android:name="hci1025f19.diabetesinformationapplication.Tabs.FrontPageActivity"
